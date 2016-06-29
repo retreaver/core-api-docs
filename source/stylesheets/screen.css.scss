@@ -73,16 +73,17 @@ html, body {
   // language selector for mobile devices
   .lang-selector {
     display: none;
-    a {
-      padding-top: 0.5em;
-      padding-bottom: 0.5em;
-    }
+    //a {
+    //  padding-top: 0.5em;
+    //  padding-bottom: 0.5em;
+    //}
   }
 
   // This is the logo at the top of the ToC
   &>img {
     display: block;
-    max-width: 100%;
+    max-width: 90%;
+    margin: 10px auto 0;
   }
 
   &>.search {
@@ -281,6 +282,7 @@ html, body {
   }
 
   .lang-selector {
+    display: none; // one lang above them all
     position: fixed;
     z-index: 50;
     border-bottom: 5px solid $lang-select-active-bg;

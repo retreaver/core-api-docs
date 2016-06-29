@@ -1,0 +1,1240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0044)http://callpixels.turnapi.com/docs/print/1.0 -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<meta name="language" content="en">
+
+		<link rel="icon" type="image/png" href="http://callpixels.turnapi.com/images/favicon.png">
+		<style type="text/css" media="all">
+			body {
+				background: none repeat scroll 0 0 #FFFFFF;
+				height: auto !important;
+				margin: 0 auto 50px;
+				width: 100%;
+
+			}
+			.document {font-size: 80%;color: #555;width:960px;font-family: Trebuchet MS;}
+			.document h1,
+			.document h2,
+			.document h3,
+			.document h4,
+			.document h5,
+			.document h6 {
+			  font-weight: normal;
+			  font-family: Trebuchet MS;
+			  color: #333;
+			}
+			.document h1 {
+			  font-size: 32px;
+			  line-height: 1.5em;
+			  margin: 18px 0 10px;
+			  color: #616161 !important;
+			  width: 640px;
+			  font-weight: 600;
+			}
+			.document em {
+			  padding: 1px 3px;
+			  font-style: normal;
+			  background: #EAEAEA;
+			}
+			.document h2 {
+			  margin: 20px 0 15px;
+			  font-size: 26px;
+			  font-weight: bold;
+			  line-height: 1.5em;
+			  color: #616161;
+			}
+			.document h1 + h2 {
+			  margin-top: 10px;
+			}
+			.document h3 {
+			  font-size: 22px;
+			  line-height: 1.5em;
+			  margin: 15px 0 15px;
+			  /*color: #00A3D3;*/
+
+			  color: #777;
+			  font-weight: bold;
+			}
+			.document h4 {
+			  font-size: 1.2em;
+			  line-height: 1.25;
+			  margin-bottom: 1.25em;
+			}
+			.document h5 {
+			  font-size: 1em;
+			  margin-bottom: 1.5em;
+			}
+			.document h6 {
+			  font-size: 1em;
+			}
+			.document h1 img,
+			.document h2 img,
+			.document h3 img,
+			.document h4 img,
+			.document h5 img,
+			.document h6 img {
+			  margin: 0;
+			}
+			.document p {
+			  margin: 1em 0 1em;
+			  line-height: 1.5em;
+			  font-size: 13px;
+			  font-weight: normal;
+			  color: #404040;
+			  /*font-family: sans-serif;*/
+
+			  text-align: justify;
+			}
+			.document li ul, .document li ol {
+			  margin-left: 25px;
+			}
+			.document ul, .document ol {
+			  margin-left: 20px;
+			  /*margin-bottom: 16px;*/
+
+			  /*font-family: sans-serif;*/
+
+			  text-align: justify;
+			  font-size: 13px;
+			  line-height: 1.5em;
+			}
+			.document ul {
+			  list-style-type: disc;
+			  line-height: 20px;
+				padding-left:0px;
+			}
+			.document ol {
+			  list-style-type: decimal;
+			  line-height: 20px;
+				padding-left:0px;
+			}
+			.document li {
+			  margin: 0.4em 0;
+			}
+			.document .code li {
+			  margin: 0;
+			}
+			.document dl {
+			  margin: 0 0 1.5em 0;
+			}
+			.document dl dt {
+			  font-weight: bold;
+			}
+			.document table {
+			  margin-bottom: 1.4em;
+			  width: 100%;
+			}
+			.document th {
+			  font-weight: bold;
+			}
+			.document thead th {
+			  background: #c3d9ff;
+			}
+			.document th, .document td, .document caption {
+			  padding: 4px 10px 4px 5px;
+			}
+			.document tbody tr:nth-child(even) td, .document tbody tr.even td {
+			  background: #e5ecf9;
+			}
+			.document tfoot {
+			  font-style: italic;
+			}
+			.document caption {
+			  background: #eee;
+			}
+			.document h3.method {
+			  font-size: 26px;
+			  line-height: 1.5em;
+			  margin: 18px 0;
+			  color: #616161 !important;
+			  /*width: 640px;*/
+
+			  width: 100%;
+			  font-weight: bold;
+			  border-bottom: 1px dashed #AAA;
+			  position: relative;
+			}
+			.document h3.method span {
+			  font-size: 0.8em;
+			  color: #aaaaaa;
+			  line-height: 1em;
+			  vertical-align: middle;
+			}
+			.document h3.method a {
+			  position: absolute;
+			  right: 0;
+			  text-decoration: none;
+			  font-size: 14px;
+			  color: #0081A8;
+			  top: 24px;
+			  line-height: 1em;
+			  font-weight: normal;
+			}
+			.document h3.method a b {
+			  font-size: 17px;
+			}
+			.document h3.method a i {
+			  font-size: 20px;
+			  font-style: normal;
+			  vertical-align: top;
+			  line-height: 0.8em;
+			}
+			.document h4.method-section {
+			  font-size: 2em;
+			  margin-bottom: 0.5em;
+			}
+			.document p.updatet-date {
+			  color: #9f9f9f;
+			  font-style: italic;
+			  font-size: 13px;
+			  float: right;
+			}
+			.document .note {
+			  padding: 10px;
+			  margin: 0 0 1em;
+			  border-bottom: 1px solid #EEEEEE;
+			  border-top: 1px solid #EEEEEE;
+			  background-color: #F9F9F9;
+			}
+			.document .note span.name {
+			  text-transform: capitalize;
+			  padding: 0 5px;
+			  font-weight: bold;
+			}
+			.document .note span.text {font-size:13px;}
+			.document .version {
+			  color: #00a3d3;
+			  margin: 0 0 1em;
+			}
+			.document .version span.name {
+			  padding: 0 5px 0 0;
+			  font-weight: bold;
+			}
+			.document dl.param {
+			  padding: 0 !important;
+			  margin: 0 !important;
+			  border-bottom: solid 1px #eee;
+			  border-top: solid 1px #eee;
+			  margin-bottom: -1px;
+			  font-size: 13px;
+			  width: 100%;
+			}
+			.document dl.param dt {
+			  width: 25%;
+			  float: left;
+			  border-right: 1px solid #eee;
+			  display: block;
+			  margin: 0;
+			  padding-top: 6px;
+			  padding-bottom: 6px;
+			  padding-left: 2%;
+			  /*span {display: block;}*/
+
+			}
+			.document dl.param dt span.name {
+			  font-weight: bold;
+			}
+			.document dl.param dt span.optional {
+			  color: #666;
+			}
+			.document dl.param dt span.range {
+			  color: #aaa;
+			}
+			.document dl.param dd {
+			  float: left;
+			  width: 70%;
+			  display: block;
+			  margin: 0;
+			  padding-top: 6px;
+			  padding-bottom: 6px;
+			  padding-left: 2%;
+			  border-left: 1px solid #eee;
+			  margin-left: -1px;
+			  /*span {display: block;}*/
+
+			}
+			.document dl.param + dl.param {
+			  border-top-width: 0px;
+			}
+			.document dl.param:nth-child(even) {
+			  background: #f9f9f9;
+			}
+			.document .toolbar {
+			  -moz-border-radius: 3px;
+			  -webkit-border-radius: 3px;
+			  -ms-border-radius: 3px;
+			  -o-border-radius: 3px;
+			  border-radius: 3px;
+			  border: solid 1px #ccc;
+			  color: #0d83ac;
+			  font-size: 12px;
+			  font-weight: 500;
+			  padding: 5px;
+			  margin-bottom: 4em;
+			}
+			.document .toolbar a {
+			  padding: 0 0 0 23px;
+			  margin: 0 23px 0 0;
+			  color: #0d83ac;
+			  text-decoration: none;
+			  display: inline-block;
+			}
+			.document .toolbar .report {
+			  padding: 0 5px;
+			}
+			.document .toolbar .last {
+			  text-align: right;
+			  float: right;
+			}
+			.document .code {
+			  background-color: #F8F8F8;
+			  border: solid 1px #ccc;
+			  padding: 10px 0;
+			  margin-bottom: 1em;
+			  overflow: auto;
+			}
+			.document .code span {
+				color: #404040 !important;
+			}
+			.document .code ol {
+			  padding-left: 25px;
+			  list-style: decimal outside;
+			}
+			.document hr {
+			  border-bottom: 1px solid #DDD;
+			  margin-bottom: 15px;
+			}
+			.document .clear {
+			  clear: both;
+			  display: block;
+			  overflow: hidden;
+			  visibility: hidden;
+			  height: 0;
+			  margin: 0;
+			  padding: 0;
+			  width: 0;
+			}
+			div.table-of-content {margin-bottom:40px;}
+			div.table-of-content ul {
+				list-style: none;
+				margin-left:20px;
+				padding:0;
+			}
+			div.table-of-content ul.root {
+				margin-left:0px;
+				padding:0;
+			}
+			div.table-of-content li{
+				list-style: none;
+				margin-left:0px;
+
+			}
+			div.table-of-content ul li a{
+				color: #333;
+			}
+			div.document.new-section {
+				page-break-before: always;
+			}
+			div.document a:after {
+				content: " (" attr(href) ") ";
+			}
+		</style>
+	</head>
+
+	<body class="document">
+		<h1>callpixels, version 1.0</h1>
+<div class="table-of-content">
+	<h2>Table of Content</h2>
+	<ul class="root">
+		
+				
+				<li id="doc_6357" docid="6357">
+			<div class="elem">
+				<div class="doc-link">
+					<span class="elem-row-ico"></span>
+					<a href="http://callpixels.turnapi.com/docs/print/1.0#References">References</a>
+				</div>
+			</div>
+			
+				
+							<ul>
+				<li id="doc_6362" docid="6362">
+			<div class="elem">
+				<div class="doc-link">
+					<span class="elem-row-ico"></span>
+					<a href="http://callpixels.turnapi.com/docs/print/1.0#Objects">Objects</a>
+				</div>
+			</div>
+			
+				
+							<ul>
+				<li id="doc_6373" docid="6373">
+			<div class="elem">
+				<div class="doc-link">
+					<span class="elem-row-ico"></span>
+					<a href="http://callpixels.turnapi.com/docs/print/1.0#Affiliate">Affiliate</a>
+				</div>
+			</div>
+			
+				
+				</li><li id="doc_6374" docid="6374">
+			<div class="elem">
+				<div class="doc-link">
+					<span class="elem-row-ico"></span>
+					<a href="http://callpixels.turnapi.com/docs/print/1.0#Call">Call</a>
+				</div>
+			</div>
+			
+				
+				</li><li id="doc_6375" docid="6375">
+			<div class="elem">
+				<div class="doc-link">
+					<span class="elem-row-ico"></span>
+					<a href="http://callpixels.turnapi.com/docs/print/1.0#Campaign">Campaign</a>
+				</div>
+			</div>
+			
+				
+				</li><li id="doc_6413" docid="6413">
+			<div class="elem">
+				<div class="doc-link">
+					<span class="elem-row-ico"></span>
+					<a href="http://callpixels.turnapi.com/docs/print/1.0#Company">Company</a>
+				</div>
+			</div>
+			
+				
+				</li><li id="doc_6363" docid="6363">
+			<div class="elem">
+				<div class="doc-link">
+					<span class="elem-row-ico"></span>
+					<a href="http://callpixels.turnapi.com/docs/print/1.0#Number">Number</a>
+				</div>
+			</div>
+			
+				
+				</li><li id="doc_8180" docid="8180">
+			<div class="elem">
+				<div class="doc-link">
+					<span class="elem-row-ico"></span>
+					<a href="http://callpixels.turnapi.com/docs/print/1.0#NumberPool">NumberPool</a>
+				</div>
+			</div>
+			
+				
+										</li></ul>
+				</li>
+								</ul>
+				</li>
+							<li id="doc_6361" docid="6361">
+			<div class="elem">
+				<div class="doc-link">
+					<span class="elem-row-ico"></span>
+					<a href="http://callpixels.turnapi.com/docs/print/1.0#Support">Support</a>
+				</div>
+			</div>
+			
+				
+							<ul>
+				<li id="doc_6376" docid="6376">
+			<div class="elem">
+				<div class="doc-link">
+					<span class="elem-row-ico"></span>
+					<a href="http://callpixels.turnapi.com/docs/print/1.0#FAQ">FAQ</a>
+				</div>
+			</div>
+			
+				
+				</li><li id="doc_6369" docid="6369">
+			<div class="elem">
+				<div class="doc-link">
+					<span class="elem-row-ico"></span>
+					<a href="http://callpixels.turnapi.com/docs/print/1.0#About">About</a>
+				</div>
+			</div>
+			
+				
+				</li><li id="doc_6370" docid="6370">
+			<div class="elem">
+				<div class="doc-link">
+					<span class="elem-row-ico"></span>
+					<a href="http://callpixels.turnapi.com/docs/print/1.0#Howtosignup">How to sign up</a>
+				</div>
+			</div>
+			
+			</li></ul></li>
+	
+
+
+<!--	--><!--		<li><a href="#--><!--">--><!--</a></li>-->
+<!--	-->	</ul>
+</div>
+<div class="document new-section" id="References"><h2>References</h2><p><strong>Objects</strong></p>
+
+<p>View our documentation on the APIs for Affiliates, Campaigns, Numbers, and Calls.</p>
+
+<h2>API Updates Mailing List</h2>
+
+<p>If you are implementing our API, please subscribe to our <a href="http://eepurl.com/vba4b">API update list</a> so we can inform you of changes and new versions.</p>
+
+<h2>API Pagination (12/13)</h2>
+
+<p>As of January 7 2014, requests to the index pages for resources will be limited to 25 results.</p>
+
+<p>In order to receive more results, you will need to include a ?page=x query parameter.</p>
+
+<p>A HTTP <em>Link</em> header will be included in the response, providing a link to the first, previous, last, and next pages where appropriate.</p>
+
+<div class="code"><pre class="http" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">GET /calls.json?page=3</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">HTTP/1.1 200 OK</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">Link: &lt;http://callpixels.com/calls.json?page=1&gt;; rel="first", &lt;http://callpixels.com/calls.json?apage=2&gt;; rel="prev", &lt;http://callpixels/calls.json?page=49&gt;; rel="last", &lt;http://callpixels.com/calls.json?page=4&gt;; rel="next"</div></li></ol></pre></div>
+
+<p>In order to faciliate a smooth transition, requests without a <em>page</em> query parameter will behave as normal until January 7th 2014.</p>
+
+<h2>Affiliate Network Integration Guides (04/13)</h2>
+
+<p>If you are looking to integrate CallPixels with your affiliate network, please follow our <a href="https://s3.amazonaws.com/callpixels/CallPixels+Deep_Integration_V1.1.0.pdf">Deep Integration Guide</a> (pdf). The API does not give full access to all the features on CallPixels and is currently being maintained to support existing users. We also have information on our replacement tokens available in our <a href="https://s3.amazonaws.com/callpixels/CallPixels+Implementation+Guide_Webhooks_Timers_V1.0.2.pdf">Webhooks and Timers Guide</a> (pdf).
+We recommend following these guides as the methods described will continue to be developed and kept up-to-date with the features available in our sevice.</p>
+
+<p>Please contact us at <a href="mailto:support@callpixels.com">support@callpixels.com</a> to obtain a partner code and shared key.</p>
+
+<h2>General API Info</h2>
+
+<p>Generally, Object parameters must be nested in a named node in the root object.</p>
+
+<p>For example, if you are updating an Affiliate, you will have to pass...</p>
+
+<div class="code"><pre class="json" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">{"affiliate":{"first_name":"John"}}</div></li></ol></pre></div>
+
+<p>You must also set an appropriate HTTP Content-Type header if you're posting JSON...</p>
+
+<pre><code>Content-Type: application/json
+</code></pre>
+
+<p>... or XML.</p>
+
+<pre><code>Content-Type: text/xml
+</code></pre>
+
+<p>You must also pass your API Key, and if you're a reseller, the Company ID that you are managing.</p>
+
+<div class="code"><pre class="json" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">{"affiliate":{"first_name":"John"},"api_key":"FromMyAccountPage","company_id":9}</div></li></ol></pre></div>
+
+<p><strong>Failure to include the company_id will have bad results for resellers.</strong></p>
+
+<h4 class="method-section">API Key</h4>
+
+<p>Get your API Key from the My Account page under the upper right corner User menu. Click Show at the bottom of the My Account page, and send that API key along with your requests. If you need to, you can reset your API key on that page.</p>
+
+<p>Your API Key can be passed as a GET variable or it can be a node in the root of your request.</p>
+
+<h4 class="method-section">Usage</h4>
+
+<ul>
+<li>Set up a campaign</li>
+<li>Create a number</li>
+<li>Call the number you just created</li>
+<li>Check out the call log</li>
+<li>Check your tracking system (Cake, HasOffers, HitPath, LinkTrust, etc) and see the click on your campaign</li>
+</ul>
+
+<h4 class="method-section">Resellers</h4>
+
+<ul>
+<li>Sign in to callpixels.com to get your company ID. Click "Companies" in the Reseller section on your account menu, and you will see your company ID.</li>
+</ul>
+
+</div><div class="document" id="Objects"><h2>Objects</h2><p><strong>Affiliate</strong></p>
+
+<p>Allows you to Add, Edit, and Delete Affiliates.</p>
+
+<p><strong>Call</strong></p>
+
+<p>Allows you to View Calls.</p>
+
+<p><strong>Campaign</strong></p>
+
+<p>Allows you to Add, Edit, and Delete Campaigns.</p>
+
+<p><strong>Number</strong></p>
+
+<p>Allows you to Add, Edit, and Delete Numbers. Numbers inherit their settings from Campaigns, but these settings can be overridden.</p>
+
+</div><div class="document" id="Affiliate"><h2>Affiliate</h2><p>By entering your affiliates in our system, you can more easily manage your existing numbers. Affiliates exist for your reference.</p>
+
+<h3 class="method">
+							POST <span>/affiliates</span>
+							</h3>
+
+<p>Creates an affiliate.</p>
+
+<p><strong>Resource URL</strong></p>
+
+<div class="note"><span class="text"><p>http://callpixels.com/affiliates.format</p>
+</span></div>
+
+<h4 class="method-section">Parameters</h4>
+
+<dl class="param"><dt><span class="name">afid</span><br><span class="range">string</span></dt><dd><span class="title"><p>The affiliate's AFID.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param optional"><dt><span class="name">first_name</span><br><span class="optional">optional</span><span class="range">string</span></dt><dd><span class="title"><p>The affiliate's first name, for your reference.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param optional"><dt><span class="name">last_name</span><br><span class="optional">optional</span><span class="range">string</span></dt><dd><span class="title"><p>The affiliate's last name, for your reference.</p>
+</span></dd><div class="clear"></div></dl>
+
+<p><strong>Request</strong></p>
+
+<div class="code"><pre class="json" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">{"affiliate":{"first_name":"Nancy", "last_name":"Drew", "afid":"0002"}}</div></li></ol></pre></div>
+
+<p><strong>Response</strong></p>
+
+<div class="code"><pre class="json" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  "affiliate": {</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    "afid": "0002",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    "first_name": "Nancy",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    "last_name": "Drew",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    "updated_at": "2012-05-03T15:56:01Z",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    "created_at": "2012-05-03T15:56:01Z"</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  }</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">}</div></li></ol></pre></div>
+
+<h3 class="method">
+							GET <span>/affiliates</span>
+							</h3>
+
+<p>Provides a complete list of affiliates.</p>
+
+<p><strong>Resource URL</strong></p>
+
+<div class="note"><span class="text"><p>http://callpixels.com/affiliates.format</p>
+</span></div>
+
+<h3 class="method">
+							GET <span>/affiliates/afid/0002</span>
+							</h3>
+
+<p>Finds an affiliate by AFID.</p>
+
+<p><strong>Resource URL</strong></p>
+
+<div class="note"><span class="text"><p>http://callpixels.com/affiliates/afid/0002.format</p>
+</span></div>
+
+<p><strong>Response</strong></p>
+
+<div class="code"><pre class="xml" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;?xml</span> <span style="color: #000066;">version</span>=<span style="color: #ff0000;">"1.0"</span> <span style="color: #000066;">encoding</span>=<span style="color: #ff0000;">"UTF-8"</span><span style="color: #000000; font-weight: bold;">?&gt;</span></span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;affiliates</span> <span style="color: #000066;">type</span>=<span style="color: #ff0000;">"array"</span><span style="color: #000000; font-weight: bold;">&gt;</span></span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;affiliate<span style="color: #000000; font-weight: bold;">&gt;</span></span></span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;afid<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>0002<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/afid<span style="color: #000000; font-weight: bold;">&gt;</span></span></span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;first-name<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>Nancy<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/first-name<span style="color: #000000; font-weight: bold;">&gt;</span></span></span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;last-name<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>Drew<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/last-name<span style="color: #000000; font-weight: bold;">&gt;</span></span></span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;updated-at</span> <span style="color: #000066;">type</span>=<span style="color: #ff0000;">"datetime"</span><span style="color: #000000; font-weight: bold;">&gt;</span></span>2012-05-03T15:56:01Z<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/updated-at<span style="color: #000000; font-weight: bold;">&gt;</span></span></span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;created-at</span> <span style="color: #000066;">type</span>=<span style="color: #ff0000;">"datetime"</span><span style="color: #000000; font-weight: bold;">&gt;</span></span>2012-05-03T15:56:01Z<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/created-at<span style="color: #000000; font-weight: bold;">&gt;</span></span></span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/affiliate<span style="color: #000000; font-weight: bold;">&gt;</span></span></span></div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;"><span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/affiliates<span style="color: #000000; font-weight: bold;">&gt;</span></span></span></div></li></ol></pre></div>
+
+<h3 class="method">
+							DELETE <span>/affiliates/afid/0002</span>
+							</h3>
+
+<p>Deletes the given affiliate. You must delete any numbers the affiliate has before deleting the affiliate.</p>
+
+<p><strong>Resource URL</strong></p>
+
+<div class="note"><span class="text"><p>http://callpixels.com/affiliates/afid/0002.format</p>
+</span></div>
+
+<h3 class="method">
+							PUT <span>/affiliates/afid/0002</span>
+							</h3>
+
+<p>Updates the given affiliate.</p>
+
+<p><strong>Resource URL</strong></p>
+
+<div class="note"><span class="text"><p>http://callpixels.com/affiliates/afid/007.format</p>
+</span></div>
+
+<p><strong>Request</strong>
+http://callpixels.com/affiliates/afid/007.json?api_key=FromMyAccountPage</p>
+
+<div class="code"><pre class="json" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">{"affiliate":{"first_name":"James"}}</div></li></ol></pre></div>
+
+<p><strong>Response</strong></p>
+
+<div class="code"><pre class="json" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  "affiliate": {</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    "afid": "007",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    "first_name": "James",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    "last_name": "Bond",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    "updated_at": "2012-05-03T20:20:03Z",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    "created_at": "2012-05-03T14:29:37Z"</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">  }</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">}</div></li></ol></pre></div>
+
+</div><div class="document" id="Call"><h2>Call</h2><p>Provides access to the call log. The call log contains all the calls which have been made through Numbers under your control.</p>
+
+<h3 class="method">
+							GET <span>/calls</span>
+							</h3>
+
+<p>Lists all the calls currently in the system for your account.</p>
+
+<p><strong>Resource URL</strong></p>
+
+<div class="note"><span class="text"><p>http://callpixels.com/calls.format</p>
+</span></div>
+
+<h3 class="method">
+							GET <span>/calls/from/2012/01/31/to/2012/02/28</span>
+							</h3>
+
+<p>Lists all the calls within the date range specified.</p>
+
+<p><strong>Resource URL</strong></p>
+
+<div class="note"><span class="text"><p>http://callpixels.com/calls/from/2012/01/31/to/2012/02/28.format</p>
+</span></div>
+
+<h3 class="method">
+							GET <span>/calls/addcf985-017e-4962-be34-cf5d55e74afc</span>
+							</h3>
+
+<p>Get a single call by UUID.</p>
+
+<p><strong>Resource URL</strong></p>
+
+<div class="note"><span class="text"><p>http://callpixels.com/calls/addcf985-017e-4962-be34-cf5d55e74afc.format</p>
+</span></div>
+
+<p><strong>Response</strong></p>
+
+<div class="code"><pre class="json" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">   "call":{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "uuid":"addcf985-017e-4962-be34-cf5d55e74afc",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "caller":"+17195220377",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "caller_zip":"80920",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "caller_state":"CO",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "caller_city":"COLORADO SPRINGS",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "caller_country":"US",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "dialed_call_duration":193,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "total_duration":204,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "status":"finished",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "start_time":"2012-04-29T12:29:40Z",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "forwarded_time":"2012-04-29T12:29:51Z",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "end_time":"2012-04-29T12:32:46Z",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "cid":"0003",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "afid":"03994",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "sid":null,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "dialed_number":"+18668987878",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "updated_at":"2012-04-29T12:29:46Z",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "created_at":"2012-04-29T12:29:40Z",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "recording_url":"http://callpixels.com/recordings/87d43a5f5c88041687f9fd1bb6a58d6f/call_17192096019_1342303189.mp3"</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">   }</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">}</div></li></ol></pre></div>
+
+</div><div class="document" id="Campaign"><h2>Campaign</h2><p>By configuring a campaign, you can reuse the settings of the campaign when creating numbers. Campaigns should be configured before creating numbers.</p>
+
+<p><strong>Deprecation Notice: As of 02/2014, this API will no longer be supported.</strong></p>
+
+<h3 class="method">
+							DELETE <span>/campaigns/cid/0044</span>
+							</h3>
+
+<p>Delete a campaign by CID. You must delete all the numbers belonging to that campaign first.</p>
+
+<p><strong>Resource URL</strong></p>
+
+<div class="note"><span class="text"><p>http://callpixels.com/campaigns/cid/0044.format</p>
+</span></div>
+
+<h3 class="method">
+							PUT <span>/campaigns/cid/0044</span>
+							</h3>
+
+<p>Update a campaign by CID.</p>
+
+<p><strong>Resource URL</strong></p>
+
+<div class="note"><span class="text"><p>http://callpixels.com/campaigns/cid/0044.format</p>
+</span></div>
+
+<h3 class="method">
+							GET <span>/campaigns</span>
+							</h3>
+
+<p>List all the campaigns in your account.</p>
+
+<p><strong>Resource URL</strong></p>
+
+<div class="note"><span class="text"><p>http://callpixels.com/campaigns.format</p>
+</span></div>
+
+<h3 class="method">
+							GET <span>/campaigns/cid/0044</span>
+							</h3>
+
+<p>Find a campaign by CID.</p>
+
+<p><strong>Resource URL</strong></p>
+
+<div class="note"><span class="text"><p>http://callpixels.com/campaigns/cid/0044.format</p>
+</span></div>
+
+<p><strong>Response</strong></p>
+
+<div class="code"><pre class="json" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">   "campaign":{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "cid":"111",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "name":"SuperFuntime",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "updated_at":"2012-07-15T03:40:24Z",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "created_at":"2012-04-16T13:50:21Z",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "record_calls":true,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "record_seconds":3600,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "dedupe_seconds":86400,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "affiliate_can_pull_number":false,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "show_key":"5e2ba674a8a1fb34dddcf850139ffdd9"</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "greeting":{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         "message":"Hi There! Press one to continue.",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         "voice_gender":"Female"</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      },</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "timers":[</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         {</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            "timer":{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "id":195,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "seconds":0,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "url":"http://www.thertrack.com/click.track?CID=[campaign_id]&amp;AFID=[affiliate_id]&amp;SID=[sub_id]"</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            }</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         },</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         {</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            "timer":{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "id":199,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "seconds":90,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "url":"http://www.thertrack.com/pixel.track?CID=[campaign_id]&amp;AFID=[affiliate_id]&amp;SID=[sub_id]&amp;MerchantReferenceID=[caller_id]-[called_number]-[call_duration]"</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            }</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         }</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      ],</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "menu_options":[</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         {</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            "menu_option":{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "id":61,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "option":"1",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "target_cid":null,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "target_number":"+18987748833"</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            }</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         }</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      ]</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">   }</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">}</div></li></ol></pre></div>
+
+<h3 class="method">
+							POST <span>/campaigns</span>
+							</h3>
+
+<p>Create a new campaign.</p>
+
+<p><strong>Resource URL</strong></p>
+
+<div class="note"><span class="text"><p>http://callpixels.com/campaigns.format</p>
+</span></div>
+
+<h4 class="method-section">Parameters</h4>
+
+<dl class="param"><dt><span class="name">cid</span><br><span class="range">string</span></dt><dd><span class="title"><p>Your internal campaign ID that will be referenced in the future.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param optional"><dt><span class="name">name</span><br><span class="optional">optional</span><span class="range">string</span></dt><dd><span class="title"><p>A name for the campaign for your reference.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param optional"><dt><span class="name">dedupe_seconds</span><br><span class="optional">optional</span><span class="range">integer</span></dt><dd><span class="title"><p>Prevent a caller from causing any Connect (timer.seconds == 0) or Sale (timer.seconds &gt; 0) timer from firing within n seconds. Default is 0 (disabled). Does not affect &lt; 0 second timers.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param optional"><dt><span class="name">affiliate_can_pull_number</span><br><span class="optional">optional</span><span class="range">boolean</span></dt><dd><span class="title"><p>Allow affiliates to access this campaign via our LinkTrust integration.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param optional"><dt><span class="name">record_calls</span><br><span class="optional">optional</span><span class="range">boolean</span></dt><dd><span class="title"><p>Toggles call recording on and off. Defaults to true.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param optional"><dt><span class="name">record_seconds</span><br><span class="optional">optional</span><span class="range">integer</span></dt><dd><span class="title"><p>Maximum length of the call recording. Defaults to 3600 (1 hour).</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param"><dt><span class="name">message</span><br><span class="range">string</span></dt><dd><span class="title"><p>(Text-to-Speech) A message you want read aloud to the caller when they dial your number. Make sure to tell them to press one to continue.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param"><dt><span class="name">voice_gender</span><br><span class="range">string</span></dt><dd><span class="title"><p>(Text-to-Speech) Male or Female, the gender of the text-to-speech voice you want.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param"><dt><span class="name">message_file</span><br><span class="range">file</span></dt><dd><span class="title"><p>(Audio File) An audio file you would like played for the caller when they dial your number. Use this field with multipart/form-data submissions.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param"><dt><span class="name">message_file_b64_data</span><br><span class="range">string</span></dt><dd><span class="title"><p>(Audio File) A Base64-encoded audio file. Only use this field if you're not using the message_file field.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param"><dt><span class="name">message_file_b64_filename</span><br><span class="range">string</span></dt><dd><span class="title"><p>(Audio File) The original file name for the Base64-encoded audio file. Something like 'memo.flac'. We suggest using the highest quality audio available.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param optional"><dt><span class="name">repeat</span><br><span class="optional">optional</span><span class="range">integer</span></dt><dd><span class="title"><p>The number of times to repeat the greeting. Defaults to 4.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param"><dt><span class="name">timers_attributes</span><br><span class="range">array</span></dt><dd><span class="title"><p>An array of timers.</p>
+</span></dd><div class="clear"></div></dl>
+
+<p>@prams menu_option_attributes {array} An array of menu options.</p>
+
+<dl class="param optional"><dt><span class="name">destroy_nested</span><br><span class="optional">optional</span><span class="range">boolean</span></dt><dd><span class="title"><p>When set, causes existing timers and menu_options to be destroyed. Defaults to false. Existing timers and menu options can be updated by including their unique ID. Alternatively, you can simply remove all the existing timers and menu options by setting this to true and resubmit all the values.</p>
+</span></dd><div class="clear"></div></dl>
+
+<p><strong>Timers</strong>
+We will fire any 0 second timer ('click timer') before firing a sale timer (&gt; 0 seconds). Only the highest second value sale timer that is applicable to this call will be fired. If you have timers for 30 seconds and 90 seconds and the call lasts 2 minutes, only the 90 second sale timer will be fired.</p>
+
+<h4 class="method-section">Nested Attribute: Timer</h4>
+
+<dl class="param"><dt><span class="name">seconds</span><br><span class="range">integer</span></dt><dd><span class="title"><p>The minimum length of time the call must last for this pixel to be fired. If set to 0, the pixel will fire at the beginning of the call, much like a click.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param"><dt><span class="name">url</span><br><span class="range">string</span></dt><dd><span class="title"><p>The URL that should be called for this timer. The URL does not have to be a pixel, and will be passed any cookies that were set on the 0-second timer. Our bot follows redirects intelligently.</p>
+</span></dd><div class="clear"></div></dl>
+
+<p><strong>Menu Options</strong>
+Menu options are used to route calls based on what button the caller presses on their phone. Menu options can redirect a caller to a different phone number or another CallPixels campaign. You must provide at least one menu option, and you must provide an option for '1', which is the option used to route calls when there is no greeting configured.</p>
+
+<h4 class="method-section">Nested Attribute: Menu Option</h4>
+
+<dl class="param"><dt><span class="name">option</span><br><span class="range">string</span></dt><dd><span class="title"><p>The button the caller will press. The default menu option for a campaign is the one for button press '1', so if you aren't using an IVR and want the call to forward instantly, set the option to '1'. (1 2 3 4 5 6 7 8 9 0 * #)</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param"><dt><span class="name">target_number</span><br><span class="range">string</span></dt><dd><span class="title"><p>A phone number to redirect the caller to. All &gt; 0 second timers will start when the call is answered.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param"><dt><span class="name">target_cid</span><br><span class="range">string</span></dt><dd><span class="title"><p>A campaign ID to redirect the caller to. The campaign must be configured in the system. If this value is set, it will overrride the target number. This option can be used to allow the caller to replay the greeting.</p>
+</span></dd><div class="clear"></div></dl>
+
+<p><strong>Request</strong></p>
+
+<div class="code"><pre class="json" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    "campaign": {</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "cid": "000333",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "name": "MyCampaign",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "message": "Thanks for calling, please press one to continue.",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "voice_gender": "Male",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "timers_attributes": [{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            "seconds": 0,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            "url": "http://callpixels.com/click.html"</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        }, {</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            "seconds": 90,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            "url": "http://callpixels.com/sale.html"</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        }],</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "menu_options_attributes": [{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            "option": "1",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            "target_number": "+16474570424"</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">           }</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        ]</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    }</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">}</div></li></ol></pre></div>
+
+<p><strong>Response</strong></p>
+
+<div class="code"><pre class="json" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">   "campaign":{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "cid":"000333",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "name":"MyCampaign",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "updated_at":"2012-07-15T03:34:00Z",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "created_at":"2012-07-15T03:34:00Z",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "record_calls":true,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "record_seconds":3600,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "dedupe_seconds":0,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "affiliate_can_pull_number":false,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "show_key":"5e2ba674a8a1fb34dddcf850139ffdd9"</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "greeting":{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         "message":"Thanks for calling, please press one to continue.",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         "voice_gender":"Male"</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      },</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "timers":[</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         {</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            "timer":{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "id":217,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "seconds":0,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "url":"http://callpixels.com/click.html"</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            }</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         },</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         {</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            "timer":{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "id":218,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "seconds":90,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "url":"http://callpixels.com/sale.html"</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            }</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         }</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      ],</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "menu_options":[</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         {</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            "menu_option":{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "id":77,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "option":"1",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "target_cid":null,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "target_number":"+16474570424"</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            }</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         }</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      ]</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">   }</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">}</div></li></ol></pre></div>
+
+</div><div class="document" id="Company"><h2>Company</h2><h4 class="method-section">Reseller API</h4>
+
+<p>Company exists to allow resellers to separate their resources by company. AFID and CID collisions will not occur between companies.</p>
+
+<h3 class="method">
+							GET <span>/company</span>
+							</h3>
+
+<p>Returns the currently active company. This is the company that will be modified if a request is sent in without a specific company_id.</p>
+
+<p><strong>Resource URL</strong></p>
+
+<div class="note"><span class="text"><p>http://callpixels.com/company.format</p>
+</span></div>
+
+<h3 class="method">
+							GET <span>/companies</span>
+							</h3>
+
+<p>Provides a complete list of companies.</p>
+
+<p><strong>Resource URL</strong></p>
+
+<div class="note"><span class="text"><p>http://callpixels.com/companies.format</p>
+</span></div>
+
+<h3 class="method">
+							GET <span>/companies/1</span>
+							</h3>
+
+<p>Returns the company matching our internal ID.</p>
+
+<p><strong>Resource URL</strong></p>
+
+<div class="note"><span class="text"><p>http://callpixels.com/companies/1.format</p>
+</span></div>
+
+<p><strong>Response</strong></p>
+
+<div class="code"><pre class="json" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    "company": {</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "id": 1,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "name": "CallPixels",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "default_click_url": "http://callpixels.com/?a=[affiliate_id]&amp;c=[campaign_id]&amp;cp=js&amp;s1=[sub_id]",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "default_sale_url": "http://callpixels.com/p.ashx?o=[campaign_id]&amp;t=[call_log_id]-[caller_id]-[called_number]-[call_duration]-[call_recording_url]",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "created_at": "2012-04-15T05:44:10Z",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "updated_at": "2012-05-07T15:32:44Z"</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    }</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">}</div></li></ol></pre></div>
+
+<h3 class="method">
+							POST <span>/companies</span>
+							</h3>
+
+<p>Creates a company. This is available to resellers only.</p>
+
+<p><strong>Resource URL</strong></p>
+
+<div class="note"><span class="text"><p>http://callpixels.com/companies.format</p>
+</span></div>
+
+<h4 class="method-section">Parameters</h4>
+
+<dl class="param"><dt><span class="name">name</span><br><span class="range">string</span></dt><dd><span class="title"><p>The company name.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param optional"><dt><span class="name">default_click_url</span><br><span class="optional">optional</span><span class="range">string</span></dt><dd><span class="title"><p>The default click URL to set as a Timer @ 0 seconds when creating a campaign.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param optional"><dt><span class="name">default_sale_url</span><br><span class="optional">optional</span><span class="range">string</span></dt><dd><span class="title"><p>The default sale URL to set as a Timer @ 90 seconds when creating a campaign</p>
+</span></dd><div class="clear"></div></dl>
+
+<p><strong>Request</strong></p>
+
+<div class="code"><pre class="json" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">{"company":{"name":"CallPixels.com"}}</div></li></ol></pre></div>
+
+<p><strong>Response</strong></p>
+
+<div class="code"><pre class="json" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    "company": {</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "id": 2,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "name": "CallPixels.com",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "default_click_url": null,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "default_sale_url": null,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "created_at": "2012-05-07T15:44:39Z",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "updated_at": "2012-05-07T15:44:39Z"</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    }</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">}</div></li></ol></pre></div>
+
+<h3 class="method">
+							DELETE <span>/companies/2</span>
+							</h3>
+
+<p>Deletes the given company. You must delete any numbers the company has first.</p>
+
+<p><strong>Resource URL</strong></p>
+
+<div class="note"><span class="text"><p>http://callpixels.com/companies/2.format</p>
+</span></div>
+
+<h3 class="method">
+							PUT <span>/companies/2</span>
+							</h3>
+
+<p>Updates the given company.</p>
+
+<p><strong>Resource URL</strong></p>
+
+<div class="note"><span class="text"><p>http://callpixels.com/companies/2.format</p>
+</span></div>
+
+<p><strong>Request</strong>
+http://callpixels.com/companies/1.json?api_key=FromMyAccountPage</p>
+
+<div class="code"><pre class="json" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">{"company":{"name":"CallPixels.com"}}</div></li></ol></pre></div>
+
+<p><strong>Response</strong></p>
+
+<div class="code"><pre class="json" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    "company": {</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "id": 1,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "name": "CallPixels.com",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "default_click_url": "http://callpixels.com/?a=[affiliate_id]&amp;c=[campaign_id]&amp;cp=js&amp;s1=[sub_id]",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "default_sale_url": "http://callpixels.com/p.ashx?o=[campaign_id]&amp;t=[call_log_id]-[caller_id]-[called_number]-[call_duration]-[call_recording_url]",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "created_at": "2012-04-15T05:44:10Z",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "updated_at": "2012-05-07T15:48:14Z"</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    }</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">}</div></li></ol></pre></div>
+
+</div><div class="document" id="Number"><h2>Number</h2><p>Numbers are the physical phone numbers that you want routed to a campaign. A number can be routed directly to the target phone number, or it can be screened with a greeting which requires the caller to press a button to continue. The IVR can be configured to have options that forward to other campaigns if desired.</p>
+
+<p>Numbers can be set to use the settings of an existing campaign.</p>
+
+<h3 class="method">
+							PUT <span>/numbers/1.format</span>
+							</h3>
+
+<p>Updates number with the given ID.</p>
+
+<p><strong>Resource URL</strong></p>
+
+<div class="note"><span class="text"><p>http://callpixels.com/numbers/1.format</p>
+</span></div>
+
+<h3 class="method">
+							DELETE <span>/numbers/1.format</span>
+							</h3>
+
+<p>Deletes number with the given ID.</p>
+
+<p><strong>Resource URL</strong></p>
+
+<div class="note"><span class="text"><p>http://callpixels.com/numbers/1.format</p>
+</span></div>
+
+<h3 class="method">
+							GET <span>numbers</span>
+							</h3>
+
+<p>Returns all the numbers you have in our system.</p>
+
+<p><strong>Resource URL</strong></p>
+
+<div class="note"><span class="text"><p>http://callpixels.com/numbers.format</p>
+</span></div>
+
+<h3 class="method">
+							GET <span>numbers/1</span>
+							</h3>
+
+<p>Returns a single number based on our internal ID.</p>
+
+<p><strong>Resource URL</strong></p>
+
+<div class="note"><span class="text"><p>http://callpixels.com/numbers/1.format</p>
+</span></div>
+
+<div class="code"><pre class="json" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">   "number":{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "id":5,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "number":"+16479311232",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "toll_free":false,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "updated_at":"2012-05-03T13:53:23Z",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "created_at":"2012-04-18T06:05:05Z",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "sid":"superaffiliate",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "afid":"0001",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "cid":"111",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "uses_campaign_settings":true,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "greeting":{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         "message":"Hi There! Press one to continue.",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         "voice_gender":"Female",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         "inherited":true</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      },</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "timers":[</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         {</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            "id":113,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            "seconds":0,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            "url":"http://www.thertrack.com/click.track?CID=[campaign_id]&amp;AFID=[affiliate_id]&amp;SID=[sub_id]",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            "inherited":true</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         },</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         {</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            "id":114,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            "seconds":5,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            "url":"http://www.thertrack.com/pixel.track?CID=[campaign_id]&amp;AFID=[affiliate_id]&amp;SID=[sub_id]&amp;MerchantReferenceID=[caller_id]-[called_number]-[call_duration]",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            "inherited":true</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         }</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      ],</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "menu_options":[</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         {</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            "menu_option":{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "id":44,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "option":"1",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "target_cid":null,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "target_number":"+18667878878",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "inherited":true</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            }</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         }</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      ]</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">   }</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">}</div></li></ol></pre></div>
+
+<h3 class="method">
+							GET <span>numbers/for/cid/0002/afid/0033/sid/sub_id</span>
+							</h3>
+
+<p>Searches for numbers matching the provided criteria.</p>
+
+<p><strong>Resource URL</strong></p>
+
+<div class="note"><span class="text"><p>http://callpixels.com/numbers/for/cid/0002/afid/0033/sid/sub_id.format</p>
+</span></div>
+
+<h3 class="method">
+							POST <span>numbers</span>
+							</h3>
+
+<p>Creates a new phone number.</p>
+
+<p><strong>Resource URL</strong></p>
+
+<div class="note"><span class="text"><p>http://callpixels.com/numbers.format</p>
+</span></div>
+
+<h4 class="method-section">Parameters</h4>
+
+<dl class="param optional"><dt><span class="name">type</span><br><span class="optional">optional</span><span class="range">string</span></dt><dd><span class="title"><p>Toll-free or Local, the kind of number that is desired. Defaults to Toll-free.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param optional"><dt><span class="name">desired_text</span><br><span class="optional">optional</span><span class="range">string</span></dt><dd><span class="title"><p>If you would like us to attempt to get a number that contains a specific word, enter it here. We will fall back to normal numbers if a number containing your word is not found.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param optional"><dt><span class="name">country</span><br><span class="optional">optional</span><span class="range">string</span></dt><dd><span class="title"><p>For Local numbers only, the 2 character country code for the country you would like the number to be in. Defaults to US. Possible values: US CA AT BE DK FI FR GB IE IT NL PL SE</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param"><dt><span class="name">afid</span><br><span class="range">string</span></dt><dd><span class="title"><p>The affiliate ID this number belongs to. If not found, we will create a new affiliate with this AFID.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param"><dt><span class="name">cid</span><br><span class="range">string</span></dt><dd><span class="title"><p>The campaign ID this number belongs to. You must set up the campaign before creating a number for it.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param optional"><dt><span class="name">sid</span><br><span class="optional">optional</span><span class="range">string</span></dt><dd><span class="title"><p>The SubID this number belongs to.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param optional"><dt><span class="name">destroy_nested</span><br><span class="optional">optional</span><span class="range">boolean</span></dt><dd><span class="title"><p>When set, causes existing timers and menu_options on this number to be destroyed. Defaults to false.</p>
+</span></dd><div class="clear"></div></dl>
+
+<p><strong>Optional Parameters</strong>
+Only include these parameters if you want to override the campaign settings.</p>
+
+<h4 class="method-section">Optional Parameters</h4>
+
+<dl class="param optional"><dt><span class="name">message</span><br><span class="optional">optional</span><span class="range">string</span></dt><dd><span class="title"><p>(Text-to-Speech) A message you want read aloud to the caller when they dial your number. Make sure to tell them to press one to continue.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param optional"><dt><span class="name">voice_gender</span><br><span class="optional">optional</span><span class="range">string</span></dt><dd><span class="title"><p>(Text-to-Speech) Male or Female, the gender of the text-to-speech voice you want.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param optional"><dt><span class="name">message_file</span><br><span class="optional">optional</span><span class="range">file</span></dt><dd><span class="title"><p>(Audio File) An audio file you would like played for the caller when they dial your number. Use this field with multipart/form-data submissions.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param optional"><dt><span class="name">message_file_b64_data</span><br><span class="optional">optional</span><span class="range">string</span></dt><dd><span class="title"><p>(Audio File) A Base64-encoded audio file. Only use this field if you're not using the message_file field.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param optional"><dt><span class="name">message_file_b64_filename</span><br><span class="optional">optional</span><span class="range">string</span></dt><dd><span class="title"><p>(Audio File) The original file name for the Base64-encoded audio file. Something like 'memo.flac'. We suggest using the highest quality audio available.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param optional"><dt><span class="name">repeat</span><br><span class="optional">optional</span><span class="range">integer</span></dt><dd><span class="title"><p>The number of times to repeat the greeting. Defaults to 4.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param optional"><dt><span class="name">timers_attributes</span><br><span class="optional">optional</span><span class="range">array</span></dt><dd><span class="title"><p>An array of timers.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param optional"><dt><span class="name">menu_options_attributes</span><br><span class="optional">optional</span><span class="range">array</span></dt><dd><span class="title"><p>An array of menu options.</p>
+</span></dd><div class="clear"></div></dl>
+
+<p><strong>Timers</strong>
+Only include Timers if you want to override the campaign settings. For more information on Timers, see <a href="http://callpixels.turnapi.com/docs/1.0/references-objects-campaign">Campaign</a>.</p>
+
+<h4 class="method-section">Nested Attribute: Timer</h4>
+
+<dl class="param"><dt><span class="name">seconds</span><br><span class="range">integer</span></dt><dd><span class="title"><p>The minimum length of time the call must last for this pixel to be fired. If set to 0, the pixel will fire at the beginning of the call, much like a click.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param"><dt><span class="name">url</span><br><span class="range">string</span></dt><dd><span class="title"><p>The URL that should be called for this timer. The URL does not have to be a pixel, and will be passed any cookies that were set on the 0-second timer.</p>
+</span></dd><div class="clear"></div></dl>
+
+<p><strong>Menu Options</strong>
+Only include Menu Options if you want to override the campaign settings. See <a href="http://callpixels.turnapi.com/docs/1.0/references-objects-campaign">Campaign</a> for more details.</p>
+
+<h4 class="method-section">Nested Attribute: Menu Option</h4>
+
+<dl class="param"><dt><span class="name">option</span><br><span class="range">string</span></dt><dd><span class="title"><p>The button the caller will press. The default menu option for a campaign is the one for button press '1', so if you aren't using an IVR and want the call to forward instantly, set the option to '1'. (1 2 3 4 5 6 7 8 9 0 * #)</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param"><dt><span class="name">target_number</span><br><span class="range">string</span></dt><dd><span class="title"><p>A phone number to redirect the caller to. All &gt; 0 second timers will start when the call is answered.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param"><dt><span class="name">target_cid</span><br><span class="range">string</span></dt><dd><span class="title"><p>A campaign ID to redirect the caller to. The campaign must be configured in the system. If this value is set, it will overrride the target number. This option can be used to allow the caller to replay the greeting.</p>
+</span></dd><div class="clear"></div></dl>
+
+<p><strong>Request</strong></p>
+
+<div class="code"><pre class="json" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    "number": {</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "type": "Toll-free",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "desired_text": "DEBUG",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "afid": "0002",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "cid": "0001",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "sid": "superaffiliate"</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    }</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">}</div></li></ol></pre></div>
+
+<p><strong>Response</strong></p>
+
+<div class="code"><pre class="json" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">   "number":{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "id":79,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "number":"+15558237206",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "toll_free":true,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "updated_at":"2012-07-15T03:15:42Z",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "created_at":"2012-07-15T03:15:42Z",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "sid":"superaffiliate",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "afid":"0002",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "cid":"0001",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "uses_campaign_settings":true,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "greeting":{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         "audio_file_name":"greeting.flac",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         "audio_file_content_type":"application/octet-stream",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         "audio_file_size":4990865,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         "audio_file_updated_at":"2012-07-15T01:30:34Z",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         "inherited":true</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      },</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "timers":[</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         {</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            "timer":{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "id":201,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "seconds":0,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "url":"http://callpixels.com.go2cloud.org/aff_c?offer_id=[campaign_id]&amp;aff_id=[affiliate_id]&amp;aff_sub=[sub_id]",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "inherited":true</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            }</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         },</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         {</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            "timer":{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "id":202,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "seconds":90,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "url":"http://callpixels.com.go2cloud.org/[has_offers_code]?adv_sub=[call_log_id]-[caller_id]-[called_number]-[call_duration]-[call_recording_url]",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "inherited":true</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            }</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         }</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      ],</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      "menu_options":[</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         {</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            "menu_option":{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "id":66,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "option":"1",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "target_cid":null,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "target_number":"+18884899999",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "inherited":true</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            }</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         },</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         {</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            "menu_option":{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "id":71,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "option":"2",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "target_cid":"399944",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "target_number":null,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">               "inherited":true</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            }</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">         }</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">      ]</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">   }</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">}</div></li></ol></pre></div>
+
+</div><div class="document" id="NumberPool"><h2>NumberPool</h2><p>Number pools are used to dynamically assign numbers whenever a user visits your website.</p>
+
+<h3 class="method">
+							GET <span>number_pools</span>
+							</h3>
+
+<p>Returns all the number pools you have in our system.</p>
+
+<p><strong>Resource URL</strong></p>
+
+<div class="note"><span class="text"><p>http://callpixels.com/number_pools.format</p>
+</span></div>
+
+<h3 class="method">
+							GET <span>number_pools/1</span>
+							</h3>
+
+<p>Returns a single number pool based on our internal ID.</p>
+
+<p><strong>Resource URL</strong></p>
+
+<div class="note"><span class="text"><p>http://callpixels.com/number_pools/1.format</p>
+</span></div>
+
+<div class="code"><pre class="json" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    "number_pool": {</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "id": 1,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "numbers_count": 0,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "type": "Toll-free",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "country": "CA",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "max_pool_size": 10,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "buffer_seconds": 0,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "updated_at": "2013-04-25T16:16:51Z",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "created_at": "2013-04-25T16:16:51Z",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "google_analytics": false,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "hide_embedded_access": false,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "afid": "0001",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "cid": "111",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "reserve_size": 1</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    }</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">}</div></li></ol></pre></div>
+
+<h3 class="method">
+							GET <span>number_pools/for/cid/0002/afid/0033</span>
+							</h3>
+
+<p>Searches for number pools matching the provided criteria. The afid portion is optional.</p>
+
+<p><strong>Resource URL</strong></p>
+
+<div class="note"><span class="text"><p>http://callpixels.com/number_pools/for/cid/111/afid/0001.format</p>
+</span></div>
+
+<div class="note"><span class="text"><p>http://callpixels.com/number_pools/for/cid/111.format</p>
+</span></div>
+
+<h3 class="method">
+							POST <span>number_pools</span>
+							</h3>
+
+<p>Creates a new number pool.</p>
+
+<p><strong>Resource URL</strong></p>
+
+<div class="note"><span class="text"><p>http://callpixels.com/number_pools.format</p>
+</span></div>
+
+<h4 class="method-section">Parameters</h4>
+
+<dl class="param"><dt><span class="name">cid</span><br><span class="range">string</span></dt><dd><span class="title"><p>The campaign ID this number pool belongs to. You must set up the campaign before creating a number pool for it.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param optional"><dt><span class="name">type</span><br><span class="optional">optional</span><span class="range">string</span></dt><dd><span class="title"><p>Toll-free or Local, the type of number that is desired for this number pool. Defaults to Toll-free.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param optional"><dt><span class="name">country</span><br><span class="optional">optional</span><span class="range">string</span></dt><dd><span class="title"><p>For Local number pools only, the 2 character country code for the country you would like the numbers to be in. Defaults to US. Possible values: US CA AT BE DK FI FR GB IE IT NL PL SE</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param optional"><dt><span class="name">afid</span><br><span class="optional">optional</span><span class="range">string</span></dt><dd><span class="title"><p>The affiliate ID this number pool belongs to. You must set up the affiliate before you create the number pool.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param optional"><dt><span class="name">max_pool_size</span><br><span class="optional">optional</span><span class="range">integer</span></dt><dd><span class="title"><p>The maximum number of numbers you want in this number pool. Defaults to 10.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param optional"><dt><span class="name">buffer_seconds</span><br><span class="optional">optional</span><span class="range">integer</span></dt><dd><span class="title"><p>The number of seconds for a number to retain its assignment after the visitor has left your site. Defaults to 0.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param optional"><dt><span class="name">hide_embedded_access</span><br><span class="optional">optional</span><span class="range">boolean</span></dt><dd><span class="title"><p>When true, will not show the embedded affiliate phone number management interface for this campaign. Defaults to false.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param optional"><dt><span class="name">google_analytics</span><br><span class="optional">optional</span><span class="range">boolean</span></dt><dd><span class="title"><p>Enables our Google Analytics integration. Incompatible with number pools that have an assigned affiliate. Defaults to false.</p>
+</span></dd><div class="clear"></div></dl>
+
+<dl class="param optional"><dt><span class="name">reserve_size</span><br><span class="optional">optional</span><span class="range">integer</span></dt><dd><span class="title"><p>The number of numbers to pre-provision and hold in reserve. Allows numbers to be instantly assigned and helps avoid delays in provisioning numbers. Minimum 1, defaults to 1.</p>
+</span></dd><div class="clear"></div></dl>
+
+<p><strong>Request</strong></p>
+
+<div class="code"><pre class="json" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    "number_pool": {</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "cid": "111",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "max_pool_size": 100,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "hide_embedded_access": true,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "google_analytics": true</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    }</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">}</div></li></ol></pre></div>
+
+<p><strong>Response</strong></p>
+
+<div class="code"><pre class="json" style="font-family:monospace;"><ol><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">{</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    "number_pool": {</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "id": 49,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "numbers_count": 0,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "country": "US",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "max_pool_size": 100,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "buffer_seconds": 0,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "updated_at": "2013-04-25T16:53:52Z",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "created_at": "2013-04-25T16:53:52Z",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "hide_embedded_access": true,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "google_analytics": true,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "afid": null,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "cid": "111",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "type": "Toll-free",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "reserve_size": 1,</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        "google_analytics_paths": [</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            {</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">                "name": "Network timer (always)",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">                "path": "/callpixels/8ddc04aa-0020-45eb-89df-ed45b8ed43a7"</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            },</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            {</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">                "name": "Network timer (connect)",</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">                "path": "/callpixels/18135f62-00ff-4818-941d-d88b6a93f27d"</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">            }</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">        ]</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">    }</div></li><li style="font-weight: normal; vertical-align:top;"><div style="font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;">}</div></li></ol></pre></div>
+
+<h3 class="method">
+							PUT <span>/number_pools/1.format</span>
+							</h3>
+
+<p>Updates number pool with the given ID.</p>
+
+<p><strong>Resource URL</strong></p>
+
+<div class="note"><span class="text"><p>http://callpixels.com/numbers/1.format</p>
+</span></div>
+
+<h3 class="method">
+							DELETE <span>/number_pools/1.format</span>
+							</h3>
+
+<p>Deletes number pool with the given ID.</p>
+
+<h4 class="method-section">WARNING</h4>
+
+<p><em>This will also delete all numbers associated with this pool!</em></p>
+
+<p><strong>Resource URL</strong></p>
+
+<div class="note"><span class="text"><p>http://callpixels.com/numbers/1.format</p>
+</span></div>
+
+</div><div class="document new-section" id="Support"><h2>Support</h2><p>If you require support, please call us at (866) 898-7878 and press 2. Alternatively, you can email us at <a href="mailto:support@callpixels.com">support@callpixels.com</a> or check out one of the links on the left.</p>
+
+<p><strong>API Mailing List</strong></p>
+
+<p>If you are implementing our API, please subscribe to our <a href="http://eepurl.com/vba4b">API update list</a> so we can inform you of changes and new versions.</p>
+
+<p><strong>Contents</strong></p>
+
+<ul>
+<li>FAQ</li>
+<li>About</li>
+<li>How to sign up</li>
+</ul>
+
+</div><div class="document" id="FAQ"><h2>FAQ</h2><p><strong>Where do I get my API Key?</strong></p>
+
+<p>Your API Key is available at the bottom of the "My Account" page. Simply login to CallPixels.com, click your name in the upper right hand corner, and click My Account.</p>
+
+<p>The API Key is not shown by default, click Show to reveal your Key.</p>
+
+<p><strong>Someone hacked my site, how do I reset my key?</strong></p>
+
+<p>Just click Reset Key on the bottom of the "My Account" page in the lower right. The old key will be disabled immediately and you will have to update your clients with the new key.</p>
+
+<p><strong>How can I test this without making a big program first?</strong></p>
+
+<p>We recommend you download the RESTClient plugin for Firefox. It makes it very easy to test RESTful interfaces like ours.</p>
+
+</div><div class="document" id="About"><h2>About</h2><p>The CallPixels API is available to all users of CallPixels.com at no additional cost. There are no limits on the number of queries, or any other artificial limitations.</p>
+
+</div><div class="document" id="Howtosignup"><h2>How to sign up</h2><p>To sign up for an account, visit the [CallPixels sign-up page][https://callpixels.com/users/sign_up]. Accounts are free, and your account is started off with a $5.00 credit so you can try everything out!</p>
+
+</div>
+	
+
+</body></html>

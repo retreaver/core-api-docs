@@ -1,0 +1,1 @@
+To sign up for an account, visit the [CallPixels sign-up page][https://callpixels.com/users/sign_up]. Accounts are free, and your account is started off with a $5.00 credit so you can try everything out!
