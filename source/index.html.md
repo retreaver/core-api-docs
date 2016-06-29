@@ -1,11 +1,12 @@
 ---
-title: Retreaver Core API 0.1 Reference
+title: Retreaver Core 0.1 API Reference
 
 language_tabs:
   - shell: cURL
 
 toc_footers:
   - <a href='https://retreaver.com/users/sign_up'>Sign Up for a Developer Key</a>
+  - <a href='https://support.retreaver.com/'>Knowledge Base</a>
 
 includes:
   - errors
@@ -15,7 +16,7 @@ search: true
 
 # Introduction
 
-The Retreaver API can be used to automate core business processes, like changing where calls are routed, and many other
+The Retreaver Core API can be used to automate core business processes, like changing where calls are routed, and many other
 features that would normally be accessed through our account portal.
 
 If you're looking for information on tracking visitors and displaying phone numbers on your landing pages, please see
@@ -23,12 +24,18 @@ our [Retreaver.js](https://github.com/retreaver/retreaver-js) library.
 
 The API can be used to automate core business processes, but does not currently support all functionality.
 
-*Please note: this API is currently in the process of being replaced with a better API.*
+*Please note: We're currently working on a versioned replacement for this API. This API isn't going away, but soon we'll be promoting the new API and if you bring this one up you'll cause flashbacks and general anxiety. If you're building an API, this is a very poor example of what an API should look like.*
+
+## Version
+
+This is our *unversioned* API and for sake of clarity we'll refer to it henceforth as: 
+
+`Retreaver Core 0.1`
 
 
 ## Multi-format
 
-The Retreaver API can be accessed by JSON or XML. Simply change the file extension and Content-Type header to match your preferences.
+The Retreaver Core API can be accessed by JSON or XML. Simply change the file extension and Content-Type header to match your preferences.
 
 We recommend using JSON since XML is archaic, has high overhead, and is generally awful.
 
@@ -42,7 +49,7 @@ XML    | text/xml         | xml
 
 Retreaver is a RESTful paginated API that returns 25 results per page. Each relevant index response will have a [Link HTTP header](https://www.w3.org/wiki/LinkHeader) present.
 
-`Link:<https://retreaver.com/calls.json?api_key=woofwoofwoof&company_id=1&sort_by=created_at&order=asc&page=6996>; rel="last", <https://retreaver.com/calls.json?api_key=woofwoofwoof&company_id=1&sort_by=created_at&order=asc&page=2>; rel="next"`
+`Link: <https://retreaver.com/calls.json?api_key=woofwoofwoof&company_id=1&sort_by=created_at&order=asc&page=6996>; rel="last", <https://retreaver.com/calls.json?api_key=woofwoofwoof&company_id=1&sort_by=created_at&order=asc&page=2>; rel="next"`
 
 By parsing the Link header, you can determine the last, next, and previous pages.
 
@@ -63,9 +70,9 @@ curl "https://api.retreaver.com/call.json?api_key=woofwoofwoof&company_id=1"
 
 > Make sure to replace `woofwoofwoof` with your API key.
 
-Retreaver uses API keys to allow access to the API. You can register a new Retreaver API key at our [account portal](https://retreaver.com/users/sign_up).
+Retreaver uses API keys to allow access to the API. You can register a new Retreaver Core API key at our [account portal](https://retreaver.com/users/sign_up).
 
-If you have a Retreaver account, you can find you API key at the bottom of your [user page](https://retreaver.com/users/edit).
+If you have a Retreaver account, you can find your Core API key at the bottom of your [user page](https://retreaver.com/users/edit).
 
 Retreaver expects for the API key to be included in all API requests to the server in a query string parameter that looks like the following:
 
@@ -78,6 +85,12 @@ You must replace <code>woofwoofwoof</code> with your personal API key.
 If you have access to more than one company on Retreaver, you must also pass in the company ID of the company you want to work with:
 
 `?api_key=woofwoofwoof&company_id=1`
+
+<aside class="warning">
+You should <strong>never, ever expose your Retreaver Core API key publicly</strong> as it can be used to access your entire Retreaver account without restriction!
+</aside>
+
+If you suspect your API key has been publicly exposed, [reset it](https://support.retreaver.com/faq/how-do-i-get-my-api-key/).
 
 # Calls
 
@@ -198,7 +211,7 @@ The timestamp should be formatted according to [rfc3339](https://validator.w3.or
 ## Get a Specific Call
 
 ```shell
-curl "https://api.retreaver.com/calls.json?api_key=woofwoofwoof&company_id=1&uuid=addcf985-017e-4962-be34-cf5d55e74afc"
+curl "https://api.retreaver.com/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof&company_id=1"
 ```
 
 > The above command returns JSON structured like this:
@@ -718,129 +731,11 @@ curl -s \
         "sip_username": null,
         "sip_password": null,
         "cid_number_id": null,
-        "obfuscate_cid": false,
         "created_at": "2016-06-28T23:13:51.434Z",
         "updated_at": "2016-06-28T23:30:00.529Z",
-        "object_key": "97bbaa7555b96333e81155eb4b1ff5cc9a6a1ffc478a7ab21ed2e830483f0b22",
-        "tid": null,
-        "priority": 1,
-        "weight": 1,
-        "timeout_seconds": 30,
-        "timer_offset": 0,
-        "send_digits": null,
-        "concurrency_cap": null,
-        "calls_in_progress": 0,
-        "inband_signals": false,
-        "time_zone": "UTC",
         "paused": true,
         "paused_at": "2016-06-28T23:30:01.251Z",
-        "name": "Retreaver Support",
-        "caps": [
-            {
-                "id": 707900,
-                "filled": 0,
-                "cap": null,
-                "type": "Daily"
-            },
-            {
-                "id": 707898,
-                "filled": 0,
-                "cap": null,
-                "type": "Hard"
-            },
-            {
-                "id": 707899,
-                "filled": 0,
-                "cap": null,
-                "type": "Hourly"
-            },
-            {
-                "id": 707901,
-                "filled": 0,
-                "cap": null,
-                "type": "Monthly"
-            }
-        ],
-        "business_hours": [
-            {
-                "id": 156838,
-                "target_id": 22592,
-                "work_day": true,
-                "time_open": 0,
-                "time_close": 2400,
-                "day_of_week": 0,
-                "invert": false,
-                "created_at": "2016-06-28T23:13:52.924Z",
-                "updated_at": "2016-06-28T23:13:52.924Z"
-            },
-            {
-                "id": 156839,
-                "target_id": 22592,
-                "work_day": true,
-                "time_open": 0,
-                "time_close": 2400,
-                "day_of_week": 1,
-                "invert": false,
-                "created_at": "2016-06-28T23:13:53.093Z",
-                "updated_at": "2016-06-28T23:13:53.093Z"
-            },
-            {
-                "id": 156840,
-                "target_id": 22592,
-                "work_day": true,
-                "time_open": 0,
-                "time_close": 2400,
-                "day_of_week": 2,
-                "invert": false,
-                "created_at": "2016-06-28T23:13:53.281Z",
-                "updated_at": "2016-06-28T23:13:53.281Z"
-            },
-            {
-                "id": 156841,
-                "target_id": 22592,
-                "work_day": true,
-                "time_open": 0,
-                "time_close": 2400,
-                "day_of_week": 3,
-                "invert": false,
-                "created_at": "2016-06-28T23:13:53.684Z",
-                "updated_at": "2016-06-28T23:13:53.684Z"
-            },
-            {
-                "id": 156842,
-                "target_id": 22592,
-                "work_day": true,
-                "time_open": 0,
-                "time_close": 2400,
-                "day_of_week": 4,
-                "invert": false,
-                "created_at": "2016-06-28T23:13:53.846Z",
-                "updated_at": "2016-06-28T23:13:53.846Z"
-            },
-            {
-                "id": 156843,
-                "target_id": 22592,
-                "work_day": true,
-                "time_open": 0,
-                "time_close": 2400,
-                "day_of_week": 5,
-                "invert": false,
-                "created_at": "2016-06-28T23:13:54.008Z",
-                "updated_at": "2016-06-28T23:13:54.008Z"
-            },
-            {
-                "id": 156844,
-                "target_id": 22592,
-                "work_day": true,
-                "time_open": 0,
-                "time_close": 2400,
-                "day_of_week": 6,
-                "invert": false,
-                "created_at": "2016-06-28T23:13:54.165Z",
-                "updated_at": "2016-06-28T23:13:54.165Z"
-            }
-        ],
-        "tag_values": []
+        "name": "Retreaver Support"
     }
 }
 ```
