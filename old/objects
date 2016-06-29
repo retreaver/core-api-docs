@@ -1,0 +1,15 @@
+<p><strong>Affiliate</strong></p>
+
+<p>Allows you to Add, Edit, and Delete Affiliates.</p>
+
+<p><strong>Call</strong></p>
+
+<p>Allows you to View Calls.</p>
+
+<p><strong>Campaign</strong></p>
+
+<p>Allows you to Add, Edit, and Delete Campaigns.</p>
+
+<p><strong>Number</strong></p>
+
+<p>Allows you to Add, Edit, and Delete Numbers. Numbers inherit their settings from Campaigns, but these settings can be overridden.</p>

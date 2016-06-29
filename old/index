@@ -1,0 +1,74 @@
+<p><strong>Objects</strong></p>
+
+<p>View our documentation on the APIs for Affiliates, Campaigns, Numbers, and Calls.</p>
+
+<h1 id="api-updates-mailing-list">API Updates Mailing List</h1>
+
+<p>If you are implementing our API, please subscribe to our <a href="http://eepurl.com/vba4b">API update list</a> so we can inform you of changes and new versions. </p>
+
+<h1 id="api-pagination-12-13">API Pagination (12/13)</h1>
+
+<p>As of January 7 2014, requests to the index pages for resources will be limited to 25 results.</p>
+
+<p>In order to receive more results, you will need to include a ?page=x query parameter.</p>
+
+<p>A HTTP <em>Link</em> header will be included in the response, providing a link to the first, previous, last, and next pages where appropriate.</p>
+<pre class="highlight plaintext"><code>HTTP
+GET /calls.json?page=3
+HTTP/1.1 200 OK
+Link: &lt;http://callpixels.com/calls.json?page=1&gt;; rel="first", &lt;http://callpixels.com/calls.json?apage=2&gt;; rel="prev", &lt;http://callpixels/calls.json?page=49&gt;; rel="last", &lt;http://callpixels.com/calls.json?page=4&gt;; rel="next"
+</code></pre>
+
+<p>In order to faciliate a smooth transition, requests without a <em>page</em> query parameter will behave as normal until January 7th 2014.</p>
+
+<h1 id="affiliate-network-integration-guides-04-13">Affiliate Network Integration Guides (04/13)</h1>
+
+<p>If you are looking to integrate CallPixels with your affiliate network, please follow our <a href="https://s3.amazonaws.com/callpixels/CallPixels+Deep_Integration_V1.1.0.pdf">Deep Integration Guide</a> (pdf). The API does not give full access to all the features on CallPixels and is currently being maintained to support existing users. We also have information on our replacement tokens available in our <a href="https://s3.amazonaws.com/callpixels/CallPixels+Implementation+Guide_Webhooks_Timers_V1.0.2.pdf">Webhooks and Timers Guide</a> (pdf).
+We recommend following these guides as the methods described will continue to be developed and kept up-to-date with the features available in our sevice.</p>
+
+<p>Please contact us at <a href="mailto:support@callpixels.com">support@callpixels.com</a> to obtain a partner code and shared key.</p>
+
+<h1 id="general-api-info">General API Info</h1>
+
+<p>Generally, Object parameters must be nested in a named node in the root object.</p>
+
+<p>For example, if you are updating an Affiliate, you will have to pass&hellip;</p>
+<pre class="highlight plaintext"><code>JSON
+{"affiliate":{"first_name":"John"}}
+</code></pre>
+
+<p>You must also set an appropriate HTTP Content-Type header if you&rsquo;re posting JSON&hellip;</p>
+
+<p>Content-Type: application/json
+&hellip; or XML.</p>
+
+<p>Content-Type: text/xml</p>
+
+<p>You must also pass your API Key, and if you&rsquo;re a reseller, the Company ID that you are managing.</p>
+<pre class="highlight plaintext"><code>JSON
+{"affiliate":{"first_name":"John"},"api_key":"FromMyAccountPage","company_id":9}
+</code></pre>
+
+<p><strong>Failure to include the company_id will have bad results for resellers.</strong></p>
+
+<h2 id="api-key">API Key</h2>
+
+<p>Get your API Key from the My Account page under the upper right corner User menu. Click Show at the bottom of the My Account page, and send that API key along with your requests. If you need to, you can reset your API key on that page.</p>
+
+<p>Your API Key can be passed as a GET variable or it can be a node in the root of your request.</p>
+
+<h2 id="usage">Usage</h2>
+
+<ul>
+<li>Set up a campaign</li>
+<li>Create a number</li>
+<li>Call the number you just created</li>
+<li>Check out the call log</li>
+<li>Check your tracking system (Cake, HasOffers, HitPath, LinkTrust, etc) and see the click on your campaign</li>
+</ul>
+
+<h2 id="resellers">Resellers</h2>
+
+<ul>
+<li>Sign in to callpixels.com to get your company ID. Click &ldquo;Companies&rdquo; in the Reseller section on your account menu, and you will see your company ID.</li>
+</ul>
