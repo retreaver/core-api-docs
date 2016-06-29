@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Retreaver Core API 0.1 Reference</title>
+    <title>Retreaver Core 0.1 API Reference</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -111,6 +111,7 @@
       </div>
         <ul class="toc-footer">
             <li><a href='https://retreaver.com/users/sign_up'>Sign Up for a Developer Key</a></li>
+            <li><a href='https://support.retreaver.com/'>Knowledge Base</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -118,7 +119,7 @@
       <div class="content">
         <h1 id="introduction">Introduction</h1>
 
-<p>The Retreaver API can be used to automate core business processes, like changing where calls are routed, and many other
+<p>The Retreaver Core API can be used to automate core business processes, like changing where calls are routed, and many other
 features that would normally be accessed through our account portal.</p>
 
 <p>If you&rsquo;re looking for information on tracking visitors and displaying phone numbers on your landing pages, please see
@@ -126,11 +127,17 @@ our <a href="https://github.com/retreaver/retreaver-js">Retreaver.js</a> library
 
 <p>The API can be used to automate core business processes, but does not currently support all functionality.</p>
 
-<p><em>Please note: this API is currently in the process of being replaced with a better API.</em></p>
+<p><em>Please note: We&rsquo;re currently working on a versioned replacement for this API. This API isn&rsquo;t going away, but soon we&rsquo;ll be promoting the new API and if you bring this one up you&rsquo;ll cause flashbacks and general anxiety. If you&rsquo;re building an API, this is a very poor example of what an API should look like.</em></p>
+
+<h2 id="version">Version</h2>
+
+<p>This is our <em>unversioned</em> API and for sake of clarity we&rsquo;ll refer to it henceforth as: </p>
+
+<p><code class="prettyprint">Retreaver Core 0.1</code></p>
 
 <h2 id="multi-format">Multi-format</h2>
 
-<p>The Retreaver API can be accessed by JSON or XML. Simply change the file extension and Content-Type header to match your preferences.</p>
+<p>The Retreaver Core API can be accessed by JSON or XML. Simply change the file extension and Content-Type header to match your preferences.</p>
 
 <p>We recommend using JSON since XML is archaic, has high overhead, and is generally awful.</p>
 
@@ -157,7 +164,7 @@ our <a href="https://github.com/retreaver/retreaver-js">Retreaver.js</a> library
 
 <p>Retreaver is a RESTful paginated API that returns 25 results per page. Each relevant index response will have a <a href="https://www.w3.org/wiki/LinkHeader">Link HTTP header</a> present.</p>
 
-<p><code class="prettyprint">Link:&lt;https://retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;sort_by=created_at&amp;order=asc&amp;page=6996&gt;; rel=&quot;last&quot;, &lt;https://retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;sort_by=created_at&amp;order=asc&amp;page=2&gt;; rel=&quot;next&quot;</code></p>
+<p><code class="prettyprint">Link: &lt;https://retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;sort_by=created_at&amp;order=asc&amp;page=6996&gt;; rel=&quot;last&quot;, &lt;https://retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;sort_by=created_at&amp;order=asc&amp;page=2&gt;; rel=&quot;next&quot;</code></p>
 
 <p>By parsing the Link header, you can determine the last, next, and previous pages.</p>
 
@@ -178,9 +185,9 @@ curl <span class="s2">"https://api.retreaver.com/call.json?api_key=woofwoofwoof&
 <p>Make sure to replace <code class="prettyprint">woofwoofwoof</code> with your API key.</p>
 </blockquote>
 
-<p>Retreaver uses API keys to allow access to the API. You can register a new Retreaver API key at our <a href="https://retreaver.com/users/sign_up">account portal</a>.</p>
+<p>Retreaver uses API keys to allow access to the API. You can register a new Retreaver Core API key at our <a href="https://retreaver.com/users/sign_up">account portal</a>.</p>
 
-<p>If you have a Retreaver account, you can find you API key at the bottom of your <a href="https://retreaver.com/users/edit">user page</a>.</p>
+<p>If you have a Retreaver account, you can find your Core API key at the bottom of your <a href="https://retreaver.com/users/edit">user page</a>.</p>
 
 <p>Retreaver expects for the API key to be included in all API requests to the server in a query string parameter that looks like the following:</p>
 
@@ -193,6 +200,12 @@ You must replace <code>woofwoofwoof</code> with your personal API key.
 <p>If you have access to more than one company on Retreaver, you must also pass in the company ID of the company you want to work with:</p>
 
 <p><code class="prettyprint">?api_key=woofwoofwoof&amp;company_id=1</code></p>
+
+<aside class="warning">
+You should <strong>never, ever expose your Retreaver Core API key publicly</strong> as it can be used to access your entire Retreaver account without restriction!
+</aside>
+
+<p>If you suspect your API key has been publicly exposed, <a href="https://support.retreaver.com/faq/how-do-i-get-my-api-key/">reset it</a>.</p>
 
 <h1 id="calls">Calls</h1>
 
@@ -330,7 +343,7 @@ created, and then paginate through all your calls.</p>
 <p><code class="prettyprint">GET https://api.retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;created_at_start=2016-01-01T00:00:00+00:00&amp;created_at_end=2016-01-02T00:00:00+00:00&amp;page=1</code></p>
 
 <h2 id="get-a-specific-call">Get a Specific Call</h2>
-<pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;uuid=addcf985-017e-4962-be34-cf5d55e74afc"</span>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof&amp;company_id=1"</span>
 </code></pre>
 
 <blockquote>
@@ -1157,129 +1170,11 @@ You must replace <code>0002</code> with the afid of the affiliate you want to de
         </span><span class="nt">"sip_username"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"sip_password"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nt">"cid_number_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"obfuscate_cid"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
         </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-28T23:13:51.434Z"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-28T23:30:00.529Z"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"object_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"97bbaa7555b96333e81155eb4b1ff5cc9a6a1ffc478a7ab21ed2e830483f0b22"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"tid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"timeout_seconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"timer_offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"send_digits"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"concurrency_cap"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"calls_in_progress"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"inband_signals"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"time_zone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UTC"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"paused"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
         </span><span class="nt">"paused_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-28T23:30:01.251Z"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Retreaver Support"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"caps"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">707900</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"filled"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"cap"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Daily"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">707898</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"filled"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"cap"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hard"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">707899</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"filled"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"cap"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hourly"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">707901</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"filled"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"cap"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Monthly"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">],</span><span class="w">
-        </span><span class="nt">"business_hours"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">156838</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"target_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22592</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"work_day"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"time_open"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"time_close"</span><span class="p">:</span><span class="w"> </span><span class="mi">2400</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"day_of_week"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"invert"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-28T23:13:52.924Z"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-28T23:13:52.924Z"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">156839</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"target_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22592</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"work_day"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"time_open"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"time_close"</span><span class="p">:</span><span class="w"> </span><span class="mi">2400</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"day_of_week"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"invert"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-28T23:13:53.093Z"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-28T23:13:53.093Z"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">156840</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"target_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22592</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"work_day"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"time_open"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"time_close"</span><span class="p">:</span><span class="w"> </span><span class="mi">2400</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"day_of_week"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"invert"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-28T23:13:53.281Z"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-28T23:13:53.281Z"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">156841</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"target_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22592</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"work_day"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"time_open"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"time_close"</span><span class="p">:</span><span class="w"> </span><span class="mi">2400</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"day_of_week"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"invert"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-28T23:13:53.684Z"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-28T23:13:53.684Z"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">156842</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"target_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22592</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"work_day"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"time_open"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"time_close"</span><span class="p">:</span><span class="w"> </span><span class="mi">2400</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"day_of_week"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"invert"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-28T23:13:53.846Z"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-28T23:13:53.846Z"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">156843</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"target_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22592</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"work_day"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"time_open"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"time_close"</span><span class="p">:</span><span class="w"> </span><span class="mi">2400</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"day_of_week"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"invert"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-28T23:13:54.008Z"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-28T23:13:54.008Z"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">156844</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"target_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">22592</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"work_day"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"time_open"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"time_close"</span><span class="p">:</span><span class="w"> </span><span class="mi">2400</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"day_of_week"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"invert"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-28T23:13:54.165Z"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-28T23:13:54.165Z"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">],</span><span class="w">
-        </span><span class="nt">"tag_values"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Retreaver Support"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
