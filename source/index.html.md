@@ -86,6 +86,8 @@ If you have access to more than one company on Retreaver, you must also pass in 
 
 `?api_key=woofwoofwoof&company_id=1`
 
+You can [find your company ID here](https://retreaver.com/company). We suggest passing it in anyways.
+
 <aside class="warning">
 You should <strong>never, ever expose your Retreaver Core API key publicly</strong> as it can be used to access your entire Retreaver account without restriction!
 </aside>
