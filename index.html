@@ -213,7 +213,7 @@ You should <strong>never, ever expose your Retreaver Core API key publicly</stro
 
 <p>Or, more precisely, phone calls.</p>
 
-<h2 id="get-recent-calls">Get Recent Calls</h2>
+<h2 id="get-recent-calls">Get recent Calls</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1"</span>
 </code></pre>
 
@@ -268,7 +268,7 @@ You should <strong>never, ever expose your Retreaver Core API key publicly</stro
 </span><span class="p">}]</span><span class="w">
 </span></code></pre>
 
-<p>Provides access to the call log. The call log contains all the calls which have been made through Numbers under your control.</p>
+<p>Provides access to the call log. The call log contains all the Calls which have been made through Numbers under your control.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -286,12 +286,12 @@ You should <strong>never, ever expose your Retreaver Core API key publicly</stro
 <tr>
 <td>created_at_start</td>
 <td>-4712-01-01T00:00:00+00:00</td>
-<td>Return any calls that were created after this date.</td>
+<td>Return any Calls that were created after this date.</td>
 </tr>
 <tr>
 <td>created_at_end</td>
 <td>4712-01-01T00:00:00+00:00</td>
-<td>Return any calls that were created before this date.</td>
+<td>Return any Calls that were created before this date.</td>
 </tr>
 <tr>
 <td>order</td>
@@ -301,7 +301,7 @@ You should <strong>never, ever expose your Retreaver Core API key publicly</stro
 <tr>
 <td>sort_by</td>
 <td>created_at</td>
-<td><code class="prettyprint">created_at</code> or <code class="prettyprint">updated_at</code>, calls will be sorted by this value. If you only want recently updated calls, sort by updated_at.</td>
+<td><code class="prettyprint">created_at</code> or <code class="prettyprint">updated_at</code>, Calls will be sorted by this value. If you only want recently updated Calls, sort by updated_at.</td>
 </tr>
 </tbody></table>
 
@@ -323,7 +323,7 @@ You should <strong>never, ever expose your Retreaver Core API key publicly</stro
 <p>etc&hellip;</p>
 </blockquote>
 
-<p>To fetch all calls on your account, use the <code class="prettyprint">sort_by</code> and <code class="prettyprint">order</code> params to return your calls in the order they were
+<p>To fetch all Calls on your Account, use the <code class="prettyprint">sort_by</code> and <code class="prettyprint">order</code> params to return your Calls in the order they were
 created, and then paginate through all your calls.</p>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -332,11 +332,11 @@ created, and then paginate through all your calls.</p>
 
 <p><code class="prettyprint">https://api.retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;sort_by=created_at&amp;order=asc&amp;page=2</code></p>
 
-<h2 id="enumerate-through-calls-in-a-specific-date-time-range">Enumerate through calls in a specific date/time range.</h2>
+<h2 id="enumerate-through-calls-in-a-specific-date-time-range">Enumerate through Calls in a specific date/time range.</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;created_at_start=2016-01-01T00:00:00+00:00&amp;created_at_end=2016-01-02T00:00:00+00:00&amp;page=1"</span>
 </code></pre>
 
-<p>By passing in <code class="prettyprint">created_at_start</code> and <code class="prettyprint">created_at_end</code> parameters, you can control the start and end time of calls returned.</p>
+<p>By passing in <code class="prettyprint">created_at_start</code> and <code class="prettyprint">created_at_end</code> parameters, you can control the start and end time of Calls returned.</p>
 
 <p>The timestamp should be formatted according to <a href="https://validator.w3.org/feed/docs/error/InvalidRFC3339Date.html">rfc3339</a></p>
 
@@ -344,7 +344,7 @@ created, and then paginate through all your calls.</p>
 
 <p><code class="prettyprint">GET https://api.retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;created_at_start=2016-01-01T00:00:00+00:00&amp;created_at_end=2016-01-02T00:00:00+00:00&amp;page=1</code></p>
 
-<h2 id="get-a-specific-call">Get a Specific Call</h2>
+<h2 id="get-a-specific-call">Get a specific Call</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof&amp;company_id=1"</span>
 </code></pre>
 
@@ -384,9 +384,9 @@ created, and then paginate through all your calls.</p>
 
 <h1 id="affiliates">Affiliates</h1>
 
-<p>Entering affiliates into our system allows you to attribute calls back to the affiliate who created them, and to update any external tracking systems. </p>
+<p>Entering Affiliates into our system allows you to attribute calls back to the Affiliate who created them, and to update any external tracking systems. </p>
 
-<p>If you&rsquo;re not in affiliate marketing, affiliate objects can be used for whatever source attribution is relevant. Affiliates exist for your reference.</p>
+<p>If you&rsquo;re not in affiliate marketing, Affiliate objects can be used for whatever source attribution is relevant. Affiliates exist for your reference.</p>
 
 <h2 id="get-all-affiliates">Get all Affiliates</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/affiliates.xml?api_key=woofwoofwoof&amp;company_id=1"</span>
@@ -408,17 +408,17 @@ created, and then paginate through all your calls.</p>
 <span class="nt">&lt;/affiliates&gt;</span>
 </code></pre>
 
-<p>Provides a complete list of affiliates.</p>
+<p>Provides a complete list of Affiliates.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">GET https://retreaver.com/affiliates.xml?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
-<h2 id="get-a-specific-affiliate-by-id">Get a Specific Affiliate by ID</h2>
+<h2 id="get-a-specific-affiliate-by-your-id">Get a specific Affiliate by your ID</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/affiliates/afid/0002.json?api_key=woofwoofwoof&amp;company_id=1"</span>
 </code></pre>
 
-<p>Finds an affiliate by AFID.</p>
+<p>Finds an Affiliate by AFID.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -432,7 +432,7 @@ created, and then paginate through all your calls.</p>
     -d <span class="s1">'{"affiliate":{"first_name":"Nancy", "last_name":"Drew", "afid":"0002"}}'</span>
 </code></pre>
 
-<p>Creates an affiliate.</p>
+<p>Creates an Affiliate.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -509,7 +509,7 @@ created, and then paginate through all your calls.</p>
 <p>Changes any attributes you have passed in on the Affiliate.</p>
 
 <aside class="notice">
-You must replace <code>0002</code> with the afid of the affiliate you want to delete.
+You must replace <code>0002</code> with the afid of the Affiliate you want to delete.
 </aside>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -524,7 +524,7 @@ You must replace <code>0002</code> with the afid of the affiliate you want to de
 <pre class="highlight shell"><code>curl -X DELETE https://api.retreaver.com/affiliates/afid/0002.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1
 </code></pre>
 
-<p>Deletes the given affiliate. You must delete any numbers the affiliate has before deleting the affiliate.</p>
+<p>Deletes the given Affiliate. You must delete any Numbers the Affiliate has before deleting the Affiliate.</p>
 
 <h1 id="targets">Targets</h1>
 
@@ -569,7 +569,7 @@ You must replace <code>0002</code> with the afid of the affiliate you want to de
 
 <p><code class="prettyprint">GET https://retreaver.com/targets.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
-<h2 id="get-a-specific-target">Get a Specific Target</h2>
+<h2 id="get-a-specific-target">Get a specific Target</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/targets/6588.json?api_key=woofwoofwoof&amp;company_id=1"</span>
 </code></pre>
 
@@ -753,7 +753,7 @@ You must replace <code>0002</code> with the afid of the affiliate you want to de
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Creates a new target.</p>
+<p>Creates a new Target.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -883,7 +883,7 @@ You must replace <code>0002</code> with the afid of the affiliate you want to de
 
 <p><strong>Nested Attribute: Business Hours</strong></p>
 
-<p>We&rsquo;ll only attempt to route calls to your target during its business hours. These hours are based on the target <code class="prettyprint">time_zone</code>. Note that when <em>updating</em> business hours on a target, you must pass in the existing <code class="prettyprint">id</code> attribute that gets created on this request.</p>
+<p>We&rsquo;ll only attempt to route calls to your target during its Business Hours. These hours are based on the Target <code class="prettyprint">time_zone</code>. Note that when <em>updating</em> business hours on a Target, you must pass in the existing <code class="prettyprint">id</code> attribute that gets created on this request.</p>
 
 <table><thead>
 <tr>
@@ -1184,7 +1184,7 @@ You must replace <code>0002</code> with the afid of the affiliate you want to de
 <p>Changes any attributes you have passed in on the Target.</p>
 
 <aside class="notice">
-You must replace <code>22592</code> with the Retreaver ID of the target you want to delete.
+You must replace <code>22592</code> with the Retreaver ID of the Target you want to delete.
 </aside>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -1199,7 +1199,7 @@ You must replace <code>22592</code> with the Retreaver ID of the target you want
 <pre class="highlight shell"><code>curl -X DELETE https://api.retreaver.com/targets/22592.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1
 </code></pre>
 
-<p>Deletes the given target.</p>
+<p>Deletes the given Target.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -1214,7 +1214,7 @@ You must replace <code>22592</code> with the Retreaver ID of the target you want
 </code></pre>
 
 <blockquote>
-<p>Upon reloading the target, the following JSON is returned with the tags included:</p>
+<p>Upon reloading the Target, the following JSON is returned with the tags included:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"target"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -1239,7 +1239,7 @@ You must replace <code>22592</code> with the Retreaver ID of the target you want
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>To set tags on a target, pass in a comma delimitated, triple-angle-bracket enclosed string of tags as the <code class="prettyprint">tag_list</code> value.</p>
+<p>To set tags on a Target, pass in a comma delineated, triple-angle-bracket enclosed string of tags as the <code class="prettyprint">tag_list</code> value.</p>
 
 <p>The system will create/find whatever tags you have set given this input without you having to track tag IDs. You must include the full list of tags you want set any time a tag_list parameter is passed in. To clear the tags, just pass in a blank string.</p>
 
@@ -1304,11 +1304,11 @@ You must replace <code>22592</code> with the Retreaver ID of the target you want
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>There are 4 types of caps: Hard Cap, Hourly Cap, Daily Cap, and Monthly Cap. Hard cap is a hard limit, and once it is reached, the target will not receive more calls until the cap is reset. This is useful when routing calls to buyers that have insertion orders for a set number of leads.</p>
+<p>There are 4 types of caps: Hard Cap, Hourly Cap, Daily Cap, and Monthly Cap. Hard cap is a hard limit, and once it is reached, the target will not receive more Calls until the Cap is reset. This is useful when routing Calls to buyers that have insertion orders for a set number of leads.</p>
 
-<p>The other types of cap reset periodically as expected.</p>
+<p>The other types of Cap reset periodically as expected.</p>
 
-<p>You can modify these caps by updating your target with nested objects <code class="prettyprint">hard_cap_attributes</code>, <code class="prettyprint">hourly_cap_attributes</code>, <code class="prettyprint">daily_cap_attributes</code>, and <code class="prettyprint">monthly_cap_attributes</code>.</p>
+<p>You can modify these Caps by updating your Target with nested objects <code class="prettyprint">hard_cap_attributes</code>, <code class="prettyprint">hourly_cap_attributes</code>, <code class="prettyprint">daily_cap_attributes</code>, and <code class="prettyprint">monthly_cap_attributes</code>.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -1345,7 +1345,7 @@ You must replace <code>22592</code> with the Retreaver ID of the target you want
  -H <span class="s2">"Content-Type: application/json"</span>
 </code></pre>
 
-<p>Clears any calls contributing to the given target&rsquo;s hard cap, resetting it to 0. Returns HTTP 200 on success.</p>
+<p>Clears any Calls contributing to the given Target&rsquo;s hard cap, resetting it to 0. Returns HTTP 200 on success.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -1355,7 +1355,7 @@ You must replace <code>22592</code> with the Retreaver ID of the target you want
 
 <h1 id="campaigns">Campaigns</h1>
 
-<p>By configuring a campaign, you can reuse the settings of the campaign when creating numbers. Campaigns should be configured before creating numbers.</p>
+<p>By configuring a Campaign, you can reuse the settings of the Campaign when creating Numbers. Campaigns should be configured before creating Numbers.</p>
 
 <h2 id="get-all-campaigns">Get all Campaigns</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/campaigns.json?api_key=woofwoofwoof&amp;company_id=1"</span>
@@ -1409,13 +1409,13 @@ You must replace <code>22592</code> with the Retreaver ID of the target you want
 </span><span class="p">}]</span><span class="w">
 </span></code></pre>
 
-<p>List all the campaigns in your account.</p>
+<p>List all the Campaigns in your Account.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">GET https://retreaver.com/campaigns.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
-<h2 id="get-a-specific-campaign">Get a Specific Campaign</h2>
+<h2 id="get-a-specific-campaign">Get a specific Campaign</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/campaigns/cid/0044.json?api_key=woofwoofwoof&amp;company_id=1"</span>
 </code></pre>
 
@@ -1466,6 +1466,8 @@ You must replace <code>22592</code> with the Retreaver ID of the target you want
    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+
+<p>Get a campaign by your ID.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -1546,7 +1548,7 @@ You must replace <code>22592</code> with the Retreaver ID of the target you want
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Create a new campaign. </p>
+<p>Create a new Campaign. </p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -1791,7 +1793,7 @@ You must replace <code>22592</code> with the Retreaver ID of the target you want
 <p>Changes any attributes you have passed in on the Campaign.</p>
 
 <aside class="notice">
-You must replace <code>0044</code> with the cid of the campaign you want to update.
+You must replace <code>0044</code> with the cid of the Campaign you want to update.
 </aside>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -1806,13 +1808,13 @@ You must replace <code>0044</code> with the cid of the campaign you want to upda
 <pre class="highlight shell"><code>curl -X DELETE https://api.retreaver.com/campaigns/cid/0044.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1
 </code></pre>
 
-<p>Delete a campaign by CID. You must delete all the numbers belonging to that campaign first.</p>
+<p>Delete a Campaign by CID. You must delete all the Numbers belonging to that Campaign first.</p>
 
 <h1 id="numbers">Numbers</h1>
 
-<p>Numbers are the physical phone numbers that you want routed to a campaign. A number can be routed directly to the target phone number, or it can be screened with a greeting which requires the caller to press a button to continue. The IVR can be configured to have options that forward to other campaigns if desired.</p>
+<p>Numbers are the physical phone numbers that you want routed to a Campaign. A Number can be routed directly to the Target phone number, or it can be screened with a greeting which requires the caller to press a button to continue. The IVR can be configured to have options that forward to other Campaigns if desired.</p>
 
-<p>Numbers can be set to use the settings of an existing campaign.</p>
+<p>Numbers can be set to use the settings of an existing Campaign.</p>
 
 <h2 id="get-all-numbers">Get all Numbers</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/numbers.json?api_key=woofwoofwoof&amp;company_id=1"</span>
@@ -1866,6 +1868,8 @@ You must replace <code>0044</code> with the cid of the campaign you want to upda
 </span><span class="p">}]</span><span class="w">
 </span></code></pre>
 
+<p>Get all Numbers belonging to the Company.</p>
+
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">GET https://retreaver.com/numbers.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
@@ -1882,21 +1886,21 @@ You must replace <code>0044</code> with the cid of the campaign you want to upda
 <tr>
 <td>cid</td>
 <td>null</td>
-<td>Restrict results to numbers that belong to the given Campaign ID.</td>
+<td>Restrict results to Numbers that belong to the given Campaign ID.</td>
 </tr>
 <tr>
 <td>afid</td>
 <td>null</td>
-<td>Restrict results to numbers that belong to the given Affiliate ID.</td>
+<td>Restrict results to Numbers that belong to the given Affiliate ID.</td>
 </tr>
 <tr>
 <td>sid</td>
 <td>null</td>
-<td>Restrict results to numbers that belong to the given SubID.</td>
+<td>Restrict results to Numbers that belong to the given SubID.</td>
 </tr>
 </tbody></table>
 
-<h2 id="get-a-specific-number">Get a Specific Number</h2>
+<h2 id="get-a-specific-number">Get a specific Number</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/numbers/5.json?api_key=woofwoofwoof&amp;company_id=1"</span>
 </code></pre>
 
@@ -1947,6 +1951,8 @@ You must replace <code>0044</code> with the cid of the campaign you want to upda
    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+
+<p>Get a Number by our internal ID.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -2023,7 +2029,7 @@ You must replace <code>0044</code> with the cid of the campaign you want to upda
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Creates a new phone number.</p>
+<p>Creates a new phone Number.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -2156,7 +2162,7 @@ You must replace <code>0044</code> with the cid of the campaign you want to upda
 <td>An array of timers.</td>
 </tr>
 <tr>
-<td>menu_option_attributes</td>
+<td>menu_options_attributes</td>
 <td>array</td>
 <td></td>
 <td></td>
@@ -2166,9 +2172,9 @@ You must replace <code>0044</code> with the cid of the campaign you want to upda
 
 <p><strong>Nested Attribute: Timer</strong></p>
 
-<p>Only include Timers if you want to override the campaign settings. For more information on Timers, see <a href="#create-a-campaign">Campaign</a>.</p>
+<p>Only include Timers if you want to override the Campaign settings. For more information on Timers, see <a href="#create-a-campaign">Campaign</a>.</p>
 
-<p>If you do include timers, the <code class="prettyprint">inherited</code> attribute on them will be set to <code class="prettyprint">false</code>.</p>
+<p>If you do include Timers, the <code class="prettyprint">inherited</code> attribute on them will be set to <code class="prettyprint">false</code>.</p>
 
 <table><thead>
 <tr>
@@ -2197,9 +2203,9 @@ You must replace <code>0044</code> with the cid of the campaign you want to upda
 
 <p><strong>Nested Attribute: Menu Option</strong></p>
 
-<p>Only include Menu Options if you want to override the campaign settings. See <a href="#create-a-campaign">Campaign</a> for more details.</p>
+<p>Only include Menu Options if you want to override the Campaign settings. See <a href="#create-a-campaign">Campaign</a> for more details.</p>
 
-<p>If you do include menu options, the <code class="prettyprint">inherited</code> attribute on them will be set to <code class="prettyprint">false</code>.</p>
+<p>If you do include Menu Options, the <code class="prettyprint">inherited</code> attribute on them will be set to <code class="prettyprint">false</code>.</p>
 
 <table><thead>
 <tr>
@@ -2307,7 +2313,7 @@ You must replace <code>0044</code> with the cid of the campaign you want to upda
 <p>Updates the Number with any attributes you have passed in.</p>
 
 <aside class="notice">
-You must replace <code>79</code> with the Retreaver ID of the number you want to update.
+You must replace <code>79</code> with the Retreaver ID of the Number you want to update.
 </aside>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -2322,12 +2328,12 @@ You must replace <code>79</code> with the Retreaver ID of the number you want to
 <pre class="highlight shell"><code>curl -X DELETE https://api.retreaver.com/numbers/79.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1
 </code></pre>
 
-<p>Deletes the given number. Numbers will be deprovisioned within 24 hours. Do not delete numbers if you are porting them to another provider, 
+<p>Deletes the given number. Numbers will be deprovisioned within 24 hours. Do not delete Numbers if you are porting them to another provider, 
 until you have confirmed that the port has completed.</p>
 
 <h1 id="number-pools">Number Pools</h1>
 
-<p>Number pools are used to dynamically assign numbers whenever a user visits your website. Number pools are used in lieu of static numbers when 
+<p>Number Pools are used to dynamically assign Numbers whenever a user visits your website. Number Pools are used in lieu of static Numbers when 
 you want to track many different attributes.</p>
 
 <h2 id="get-all-number-pools">Get all Number Pools</h2>
@@ -2356,7 +2362,7 @@ you want to track many different attributes.</p>
  </span><span class="p">}]</span><span class="w">
 </span></code></pre>
 
-<p>Returns all the number pools you have in our system.</p>
+<p>Returns all the Number Pools you have in our system.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -2374,16 +2380,16 @@ you want to track many different attributes.</p>
 <tr>
 <td>cid</td>
 <td>null</td>
-<td>Restrict results to number pools that belong to the given Campaign ID.</td>
+<td>Restrict results to Number Pools that belong to the given Campaign ID.</td>
 </tr>
 <tr>
 <td>afid</td>
 <td>null</td>
-<td>Restrict results to number pools that belong to the given Affiliate ID.</td>
+<td>Restrict results to Number Pools that belong to the given Affiliate ID.</td>
 </tr>
 </tbody></table>
 
-<h2 id="get-a-specific-number-pool">Get a Specific Number Pool</h2>
+<h2 id="get-a-specific-number-pool">Get a specific Number Pool</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/number_pools/1.json?api_key=woofwoofwoof&amp;company_id=1"</span>
 </code></pre>
 
@@ -2409,7 +2415,7 @@ you want to track many different attributes.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Returns a single number pool based on our internal ID.</p>
+<p>Returns a single Number Pool based on our internal ID.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -2462,7 +2468,7 @@ you want to track many different attributes.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Creates a new number pool.</p>
+<p>Creates a new Number Pool.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -2591,7 +2597,7 @@ you want to track many different attributes.</p>
 <p>Updates the Number Pool with any attributes you have passed in.</p>
 
 <aside class="notice">
-You must replace <code>49</code> with the Retreaver ID of the number pool you want to update.
+You must replace <code>49</code> with the Retreaver ID of the Number Pool you want to update.
 </aside>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -2606,17 +2612,17 @@ You must replace <code>49</code> with the Retreaver ID of the number pool you wa
 <pre class="highlight shell"><code>curl -X DELETE https://api.retreaver.com/number_pools/49.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1
 </code></pre>
 
-<p>Deletes the given number pool.</p>
+<p>Deletes the given Number Pool.</p>
 
 <aside class="warning">
-This will also delete all numbers associated with this pool!
+This will also delete all Numbers associated with this Number Pool!
 </aside>
 
 <h1 id="companies">Companies</h1>
 
-<p>Company exists to allow resellers to separate their resources by company. AFID and CID collisions will not occur between companies.</p>
+<p>Company exists to allow resellers to separate their resources by Company. AFID and CID collisions will not occur between Companies.</p>
 
-<h2 id="get-the-active-company">Get the Active Company</h2>
+<h2 id="get-the-active-company">Get the active Company</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/company.json?api_key=woofwoofwoof"</span>
 </code></pre>
 
@@ -2635,17 +2641,17 @@ This will also delete all numbers associated with this pool!
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Returns the currently active company. This is the company that will be modified if a request is sent in without a specific company_id.</p>
+<p>Returns the currently active Company. This is the Company that will be modified if a request is sent in without a specific company_id.</p>
 
 <aside class="warning">
-You should always pass in the <code>company_id</code> parameter when requesting other objects, because switching companies in the web interface will also switch companies in the API.
+You should always pass in the <code>company_id</code> parameter when requesting other objects, because switching Companies in the web interface will also switch Companies in the API.
 </aside>
 
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">GET https://retreaver.com/company.json?api_key=woofwoofwoof</code></p>
 
-<h2 id="get-a-specific-company">Get a Specific Company</h2>
+<h2 id="get-a-specific-company">Get a specific Company</h2>
 <pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/companies/1.json?api_key=woofwoofwoof"</span>
 </code></pre>
 
@@ -2664,7 +2670,7 @@ You should always pass in the <code>company_id</code> parameter when requesting 
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Returns the company matching our internal ID.</p>
+<p>Returns the Company matching our internal ID.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -2689,7 +2695,7 @@ You should always pass in the <code>company_id</code> parameter when requesting 
  </span><span class="p">}]</span><span class="w">
 </span></code></pre>
 
-<p>Provides a complete list of companies accessible via your account.</p>
+<p>Provides a complete list of Companies accessible via your Account.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -2718,10 +2724,10 @@ You should always pass in the <code>company_id</code> parameter when requesting 
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Creates a company.</p>
+<p>Creates a Company.</p>
 
 <aside class="info">
-The companies you create each have their own accounts and payment settings.
+The Companies you create each have their own Accounts and payment settings.
 </aside>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -2789,10 +2795,10 @@ The companies you create each have their own accounts and payment settings.
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>Updates the given company with any attributes you have passed in.</p>
+<p>Updates the given Company with any attributes you have passed in.</p>
 
 <aside class="notice">
-You must replace <code>2</code> with the Retreaver ID of the company you want to update.
+You must replace <code>2</code> with the Retreaver ID of the Company you want to update.
 </aside>
 
 <h3 id="http-request">HTTP Request</h3>
@@ -2807,11 +2813,378 @@ You must replace <code>2</code> with the Retreaver ID of the company you want to
 <pre class="highlight shell"><code>curl -X DELETE https://api.retreaver.com/companies/2.json?api_key<span class="o">=</span>woofwoofwoof
 </code></pre>
 
-<p>Deletes the given company. You must delete any numbers and number pools the company has first.</p>
+<p>Deletes the given Company. You must delete any Numbers and Number Pools the Company has first.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">DELETE https://api.retreaver.com/companies/2.json?api_key=woofwoofwoof</code></p>
+
+<h1 id="contacts">Contacts</h1>
+
+<p>Contacts allow you to tie individual Calls from many Contact Numbers back to one person. You can also tag Contacts, and calls from their Contact Numbers will automatically inherit the tags.</p>
+
+<h2 id="get-all-contacts">Get all Contacts</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/contacts.json?api_key=woofwoofwoof&amp;company_id=1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[{</span><span class="w">
+    </span><span class="nt">"contact"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"contact_numbers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+18668987878"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Landline"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"tag_values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Retreaver Support"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"operator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"=="</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">154060720</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}]</span><span class="w">
+</span></code></pre>
+
+<p>Provides a complete list of Contacts.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://retreaver.com/contacts.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+
+<h2 id="get-a-specific-contact-by-id">Get a Specific Contact by ID</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/contacts/2.json?api_key=woofwoofwoof&amp;company_id=1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"contact"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"contact_numbers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+18668987878"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Landline"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"tag_values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Retreaver Support"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"operator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"=="</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">154060720</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Finds a Contact by its Retreaver ID.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.retreaver.com/contacts/2.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+
+<h2 id="create-a-contact">Create a Contact</h2>
+<pre class="highlight shell"><code>curl -s <span class="se">\</span>
+    -X POST <span class="se">\</span>
+    https://api.retreaver.com/contacts.json <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -d <span class="s1">'{"contact":{"tag_list":"&lt;&lt;&lt;name:Retreaver Support&gt;&gt;&gt;","contact_numbers_attributes":[{"number":"8668987878", "description":"Landline"}]}}'</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"contact"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"contact_numbers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+18668987878"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Landline"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"tag_values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Retreaver Support"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"operator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"=="</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">154060720</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Creates a Contact and associated Contact Number(s).</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://api.retreaver.com/contacts.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+
+<p><code class="prettyprint">Content-Type: application/json</code></p>
+
+<p><code class="prettyprint">{&quot;contact&quot;:{&quot;tag_list&quot;:&quot;&lt;&lt;&lt;name:Retreaver Support&gt;&gt;&gt;&quot;,&quot;contact_numbers_attributes&quot;:[{&quot;number&quot;:&quot;8668987878&quot;, &quot;description&quot;:&quot;Landline&quot;}]}}</code></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tag_list</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>See notes below.</td>
+</tr>
+<tr>
+<td>contact_numbers_attributes</td>
+<td>array</td>
+<td></td>
+<td>required</td>
+<td>An array of Contact Numbers.</td>
+</tr>
+</tbody></table>
+
+<p><strong>Nested Attribute: Contact Number</strong></p>
+
+<p>These are the phone numbers that are associated with your Contact.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>number</td>
+<td>string</td>
+<td></td>
+<td>required</td>
+<td>Either a phone number or <code class="prettyprint">sip:user@domain.com</code> formatted SIP endpoint. PSTN numbers should be <a href="https://en.wikipedia.org/wiki/E.164">E.164 formatted</a>.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>A description of the phone number, like &#39;Home&rsquo;, &#39;Mobile&rsquo;, &#39;Work&rsquo;, &#39;iPhone&rsquo;, etc.</td>
+</tr>
+</tbody></table>
+
+<h3 id="tag_list-notes">tag_list notes</h3>
+
+<p>To set tags on a Contact, pass in a comma delineated, triple-angle-bracket enclosed string of tags as the <code class="prettyprint">tag_list</code> value.</p>
+
+<p>The system will create/find whatever tags you have set given this input without you having to track tag IDs. You must include the full list of tags you want set any time a tag_list parameter is passed in. To clear the tags, just pass in a blank string.</p>
+
+<p>There is a limit of 100 tags added in this manner, but the system will automatically concatenate US zip <code class="prettyprint">geo</code> tags.</p>
+
+<h2 id="update-a-contact">Update a Contact</h2>
+<pre class="highlight shell"><code>curl -s <span class="se">\</span>
+    -X PUT <span class="se">\</span>
+    https://api.retreaver.com/contacts/2.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1 <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -d <span class="s1">'{"contact":{"contact_numbers_attributes":[{"id":2,"number":"+18001234567"}]}}'</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"contact"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"contact_numbers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+18001234567"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Landline"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"tag_values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Retreaver Support"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"operator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"=="</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">154060720</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Changes any attributes you have passed in on the Contact. To change a Contact Number, you must pass in the ID of the 
+existing Contact Number, or see <a href="#update-a-contact-number-by-phone-number">below</a> for an easier method.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT https://api.retreaver.com/contacts/2.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+
+<p><code class="prettyprint">Content-Type: application/json</code></p>
+
+<p><code class="prettyprint">{&quot;contact&quot;:{&quot;contact_numbers_attributes&quot;:[{&quot;id&quot;:2,&quot;number&quot;:&quot;+18001234567&quot;}]}}</code></p>
+
+<h2 id="remove-a-contact">Remove a Contact</h2>
+<pre class="highlight shell"><code>curl -X DELETE https://api.retreaver.com/contacts/2.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1
+</code></pre>
+
+<p>Deletes the given Contact and all Contact Numbers associated with it.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE https://api.retreaver.com/contacts/2.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+
+<h2 id="get-a-specific-contact-by-phone-number">Get a specific Contact by phone number</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/contact_numbers/+18001234567/contact.json?api_key=woofwoofwoof&amp;company_id=1"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"contact"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"contact_numbers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+18001234567"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Landline"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"tag_values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Retreaver Support"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"operator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"=="</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">154060720</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Finds a Contact by phone number.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.retreaver.com/contact_numbers/+18001234567/contact.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+
+<h2 id="update-a-contact-by-phone-number">Update a Contact by phone number</h2>
+<pre class="highlight shell"><code>curl -s <span class="se">\</span>
+    -X PUT <span class="se">\</span>
+    https://api.retreaver.com/contact_numbers/+18001234567/contact.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1 <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -d <span class="s1">'{"contact":{"tag_list":"&lt;&lt;&lt;name:Invalid Number&gt;&gt;&gt;"}}'</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"contact"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"contact_numbers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+18001234567"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Landline"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"tag_values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid Number"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"operator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"=="</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">154060721</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Updates a Contact by phone number.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT https://api.retreaver.com/contact_numbers/+18001234567/contact.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+
+<p><code class="prettyprint">Content-Type: application/json</code></p>
+
+<p><code class="prettyprint">{&quot;contact&quot;:{&quot;tag_list&quot;:&quot;&lt;&lt;&lt;name:Invalid Number&gt;&gt;&gt;&quot;}}</code></p>
+
+<h2 id="delete-a-contact-by-phone-number">Delete a Contact by phone number</h2>
+<pre class="highlight shell"><code>curl -X DELETE https://api.retreaver.com/contact_numbers/+18001234567/contact.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1
+</code></pre>
+
+<p>Deletes the contact associated with the phone number and all other contact numbers associated with the contact.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE https://api.retreaver.com/contact_numbers/+18001234567/contact.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+
+<h1 id="contact-numbers">Contact Numbers</h1>
+
+<p>A convenience API for removing and updating Contact Numbers.</p>
+
+<h2 id="delete-a-contact-number-from-a-contact-by-phone-number">Delete a Contact Number from a Contact by phone number</h2>
+<pre class="highlight shell"><code>curl -X DELETE https://api.retreaver.com/contact_numbers/+18668987878.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1
+</code></pre>
+
+<p>Deletes the contact number from the Contact it is associated with, as long as the Contact has more than one Contact Number.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE https://api.retreaver.com/contacts/2.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+
+<h2 id="update-a-contact-number-by-phone-number">Update a Contact Number by phone number</h2>
+<pre class="highlight shell"><code>curl -s <span class="se">\</span>
+    -X PUT <span class="se">\</span>
+    https://api.retreaver.com/contact_numbers/+18001234567.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1 <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -d <span class="s1">'{"contact_number":{"number":"+18005551234"}}'</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"contact_number"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+18005551234"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Landline"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Easily updates a Contact Number.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT https://api.retreaver.com/contact_numbers/+18001234567.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+
+<p><code class="prettyprint">Content-Type: application/json</code></p>
+
+<p><code class="prettyprint">{&quot;contact_number&quot;:{&quot;number&quot;:&quot;+18005551234&quot;}}</code></p>
 
           <h1 id="errors">Errors</h1>
 
