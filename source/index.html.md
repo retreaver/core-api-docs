@@ -24,13 +24,13 @@ our [Retreaver.js](https://github.com/retreaver/retreaver-js) library.
 
 The API can be used to automate core business processes, but does not currently support all functionality.
 
-*Please note: We're currently working on a versioned replacement for this API. This API isn't going away, but soon we'll be promoting the new API and if you bring this one up you'll cause flashbacks and general anxiety. If you're building an API, this is a very poor example of what an API should look like.*
+*Please note: We're currently working on a better, versioned replacement for this API. But don't worry, this API isn't going away.*
 
 ## Version
 
 This is our *unversioned* API and for sake of clarity we'll refer to it henceforth as: 
 
-`Retreaver Core 0.1`
+`Retreaver Core API`
 
 
 ## Multi-format
@@ -311,7 +311,7 @@ Finds an Affiliate by AFID.
 ```shell
 curl -s \
     -X POST \
-    https://api.retreaver.com/affiliates.json \
+    https://api.retreaver.com/affiliates.json?api_key=woofwoofwoof&company_id=1 \
     -H "Content-Type: application/json" \
     -d '{"affiliate":{"first_name":"Nancy", "last_name":"Drew", "afid":"0002"}}'
 ```
@@ -2442,7 +2442,7 @@ Deletes the contact number from the Contact it is associated with, as long as th
 ### HTTP Request
 
 
-`DELETE https://api.retreaver.com/contacts/2.json?api_key=woofwoofwoof&company_id=1`
+`DELETE https://api.retreaver.com/contact_numbers/+18668987878.json?api_key=woofwoofwoof&company_id=1`
 
 
 ## Update a Contact Number by phone number
