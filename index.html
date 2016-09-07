@@ -127,13 +127,13 @@ our <a href="https://github.com/retreaver/retreaver-js">Retreaver.js</a> library
 
 <p>The API can be used to automate core business processes, but does not currently support all functionality.</p>
 
-<p><em>Please note: We&rsquo;re currently working on a versioned replacement for this API. This API isn&rsquo;t going away, but soon we&rsquo;ll be promoting the new API and if you bring this one up you&rsquo;ll cause flashbacks and general anxiety. If you&rsquo;re building an API, this is a very poor example of what an API should look like.</em></p>
+<p><em>Please note: We&rsquo;re currently working on a better, versioned replacement for this API. But don&rsquo;t worry, this API isn&rsquo;t going away.</em></p>
 
 <h2 id="version">Version</h2>
 
 <p>This is our <em>unversioned</em> API and for sake of clarity we&rsquo;ll refer to it henceforth as: </p>
 
-<p><code class="prettyprint">Retreaver Core 0.1</code></p>
+<p><code class="prettyprint">Retreaver Core API</code></p>
 
 <h2 id="multi-format">Multi-format</h2>
 
@@ -427,7 +427,7 @@ created, and then paginate through all your calls.</p>
 <h2 id="create-an-affiliate">Create an Affiliate</h2>
 <pre class="highlight shell"><code>curl -s <span class="se">\</span>
     -X POST <span class="se">\</span>
-    https://api.retreaver.com/affiliates.json <span class="se">\</span>
+    https://api.retreaver.com/affiliates.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1 <span class="se">\</span>
     -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
     -d <span class="s1">'{"affiliate":{"first_name":"Nancy", "last_name":"Drew", "afid":"0002"}}'</span>
 </code></pre>
@@ -3154,7 +3154,7 @@ existing Contact Number, or see <a href="#update-a-contact-number-by-phone-numbe
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">DELETE https://api.retreaver.com/contacts/2.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+<p><code class="prettyprint">DELETE https://api.retreaver.com/contact_numbers/+18668987878.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
 <h2 id="update-a-contact-number-by-phone-number">Update a Contact Number by phone number</h2>
 <pre class="highlight shell"><code>curl -s <span class="se">\</span>
@@ -3185,6 +3185,77 @@ existing Contact Number, or see <a href="#update-a-contact-number-by-phone-numbe
 <p><code class="prettyprint">Content-Type: application/json</code></p>
 
 <p><code class="prettyprint">{&quot;contact_number&quot;:{&quot;number&quot;:&quot;+18005551234&quot;}}</code></p>
+
+<h1 id="suppressed-numbers">Suppressed Numbers</h1>
+
+<p>Check and modify whether or not a Contact Number is blocked by your Suppression List.</p>
+
+<aside class="warning">
+Suppressed Numbers exist regardless of whether or not there is a corresponding Contact Number or Contact.
+</aside>
+
+<h2 id="check-whether-or-not-you-have-any-suppressed-numbers">Check whether or not you have any Suppressed Numbers</h2>
+<pre class="highlight shell"><code>curl https://api.retreaver.com/suppression_list/check.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="nt">"suppression_list"</span><span class="p">:</span><span class="kc">true</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Returns true if the Company has any numbers suppressed.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.retreaver.com/suppression_list/check.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+
+<h2 id="delete-a-contact-number-from-the-suppression-list-by-phone-number">Delete a Contact Number from the Suppression List by phone number</h2>
+<pre class="highlight shell"><code>curl -X DELETE https://api.retreaver.com/contact_numbers/+18668987878/suppressed_number.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1
+</code></pre>
+
+<p>Removes the Contact Number from your Suppression List.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE https://api.retreaver.com/contact_numbers/+18668987878/suppressed_number.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+
+<h2 id="suppress-a-contact-number-by-phone-number">Suppress a Contact Number by phone number</h2>
+<pre class="highlight shell"><code>curl -s <span class="se">\</span>
+    -X POST <span class="se">\</span>
+    https://api.retreaver.com/contact_numbers/+18668987878/suppressed_number.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1 <span class="se">\</span>
+    -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    -d <span class="s1">'{"suppressed_number":{"can_resubscribe":false}}'</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"suppressed_number"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">502997</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+18668987878"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"can_resubscribe"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-10-02T14:36:14.166-04:00"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>Adds a Contact Number to the Company&rsquo;s Suppression List. The <code class="prettyprint">can_resubscribe</code> value toggles whether or not the contact
+can unblock themselves by pressing 7 if there is a &ldquo;Caller Blocked&rdquo; Prompt on the Campaign/Number they are calling.</p>
+
+<p>The entire body of the post is optional, simply posting to 
+<code class="prettyprint">https://api.retreaver.com/contact_numbers/+18668987878/suppressed_number.json?api_key=woofwoofwoof&amp;company_id=1</code>
+would block +18668987878; <code class="prettyprint">can_resubscribe</code> is <code class="prettyprint">true</code> by default. The intended use case is to allow callers to restore 
+contact with a company after choosing to be routed to a &ldquo;add caller to suppression list and hang up&rdquo; routing option.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://api.retreaver.com/contact_numbers/+18668987878/suppressed_number.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+
+<p><code class="prettyprint">Content-Type: application/json</code></p>
+
+<p><code class="prettyprint">{&quot;suppressed_number&quot;:{&quot;can_resubscribe&quot;:false}}</code></p>
 
           <h1 id="errors">Errors</h1>
 
