@@ -2558,3 +2558,77 @@ contact with a company after choosing to be routed to a "add caller to suppressi
 `Content-Type: application/json`
 
 `{"suppressed_number":{"can_resubscribe":false}}`
+
+
+# Static Caller Numbers
+
+Static Caller Numbers are used to tell Retreaver that calls from a certain CallerID should be handled separately. Use 
+Static Caller Numbers when you have a call center sending you many calls with the same CallerID. Retreaver will either 
+prompt the caller for the caller's real number, or will randomize the CallerID for use with our call control API.
+
+## Get all Static Caller Numbers
+
+
+```shell
+curl "https://api.retreaver.com/static_caller_numbers.json?api_key=woofwoofwoof&company_id=1"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[{
+    "static_caller_number": {
+        "id": 1234,
+        "number": "+18668987878",
+        "created_at": "2013-10-02T14:36:14.166-04:00"
+    }
+}]
+```
+
+
+Provides a complete list of Static Numbers.
+
+### HTTP Request
+
+`GET https://retreaver.com/static_caller_numbers.json?api_key=woofwoofwoof&company_id=1`
+
+
+## Create a Static Caller Number
+
+```shell
+curl -s \
+    -X POST \
+    https://api.retreaver.com/static_caller_numbers.json?api_key=woofwoofwoof&company_id=1 \
+    -H "Content-Type: application/json" \
+    -d '{"static_caller_number":{"number":"+18668987878"}}'
+```
+
+Creates a Static Caller Number.
+
+### HTTP Request
+
+`POST https://api.retreaver.com/static_caller_numbers.json?api_key=woofwoofwoof&company_id=1`
+
+`Content-Type: application/json`
+
+`{"static_caller_number":{"number":"+18668987878"}}`
+
+
+### Parameters
+
+Parameter | Type | Default | Required | Description
+--------- | ---- | ------- | -------- | -----------
+number | string | null | required | A phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164).
+
+
+## Delete a Static Caller Number
+
+```shell
+curl -X DELETE https://api.retreaver.com/static_caller_numbers/1234.json?api_key=woofwoofwoof&company_id=1
+```
+
+Removes the Static Caller Number.
+
+### HTTP Request
+
+`DELETE https://api.retreaver.com/static_caller_numbers/1234.json?api_key=woofwoofwoof&company_id=1`
