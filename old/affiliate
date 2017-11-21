@@ -1,14 +1,10 @@
 <p>By entering your affiliates in our system, you can more easily manage your existing numbers. Affiliates exist for your reference.</p>
-
-<h1 id="get-affiliates">GET /affiliates</h1>
-
+<h1 id='get-affiliates'>GET /affiliates</h1>
 <p>Provides a complete list of affiliates.</p>
 
 <p><strong>Resource URL</strong>
 @note http://callpixels.com/affiliates.format</p>
-
-<h1 id="get-affiliates-afid-0002">GET /affiliates/afid/0002</h1>
-
+<h1 id='get-affiliates-afid-0002'>GET /affiliates/afid/0002</h1>
 <p>Finds an affiliate by AFID.</p>
 
 <p><strong>Resource URL</strong>
@@ -17,7 +13,7 @@
 <p><strong>Response</strong>
 ~~~~
 XML
-&lt;?xml version=&ldquo;1.0&rdquo; encoding=&ldquo;UTF-8&rdquo;?&gt;
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 <affiliates type="array">
   <affiliate>
     <afid>0002</afid>
@@ -28,48 +24,40 @@ XML
   </affiliate>
 </affiliates>
 ~~~~</p>
-
-<h1 id="post-affiliates">POST /affiliates</h1>
-
+<h1 id='post-affiliates'>POST /affiliates</h1>
 <p>Creates an affiliate.</p>
 
 <p><strong>Resource URL</strong>
 @note http://callpixels.com/affiliates.format</p>
-
-<h2 id="parameters">Parameters</h2>
-
-<p>@param afid {string} The affiliate&rsquo;s AFID.
-@param [first_name] {string} The affiliate&rsquo;s first name, for your reference.
-@param [last_name] {string} The affiliate&rsquo;s last name, for your reference.</p>
+<h2 id='parameters'>Parameters</h2>
+<p>@param afid {string} The affiliate&#39;s AFID.
+@param [first_name] {string} The affiliate&#39;s first name, for your reference.
+@param [last_name] {string} The affiliate&#39;s last name, for your reference.</p>
 
 <p><strong>Request</strong>
 ~~~~
 JSON
-{&ldquo;affiliate&rdquo;:{&ldquo;first_name&rdquo;:&ldquo;Nancy&rdquo;, &ldquo;last_name&rdquo;:&ldquo;Drew&rdquo;, &ldquo;afid&rdquo;:&ldquo;0002&rdquo;}}
+{&quot;affiliate&quot;:{&quot;first_name&quot;:&quot;Nancy&quot;, &quot;last_name&quot;:&quot;Drew&quot;, &quot;afid&quot;:&quot;0002&quot;}}
 ~~~~
 <strong>Response</strong>
 ~~~~
 JSON
 {
-  &ldquo;affiliate&rdquo;: {
-    &ldquo;afid&rdquo;: &ldquo;0002&rdquo;,
-    &ldquo;first_name&rdquo;: &ldquo;Nancy&rdquo;,
-    &ldquo;last_name&rdquo;: &ldquo;Drew&rdquo;,
-    &ldquo;updated_at&rdquo;: &ldquo;2012-05-03T15:56:01Z&rdquo;,
-    &ldquo;created_at&rdquo;: &ldquo;2012-05-03T15:56:01Z&rdquo;
+  &quot;affiliate&quot;: {
+    &quot;afid&quot;: &quot;0002&quot;,
+    &quot;first_name&quot;: &quot;Nancy&quot;,
+    &quot;last_name&quot;: &quot;Drew&quot;,
+    &quot;updated_at&quot;: &quot;2012-05-03T15:56:01Z&quot;,
+    &quot;created_at&quot;: &quot;2012-05-03T15:56:01Z&quot;
   }
 }
 ~~~~</p>
-
-<h1 id="delete-affiliates-afid-0002">DELETE /affiliates/afid/0002</h1>
-
+<h1 id='delete-affiliates-afid-0002'>DELETE /affiliates/afid/0002</h1>
 <p>Deletes the given affiliate. You must delete any numbers the affiliate has before deleting the affiliate.</p>
 
 <p><strong>Resource URL</strong>
 @note http://callpixels.com/affiliates/afid/0002.format</p>
-
-<h1 id="put-affiliates-afid-0002">PUT /affiliates/afid/0002</h1>
-
+<h1 id='put-affiliates-afid-0002'>PUT /affiliates/afid/0002</h1>
 <p>Updates the given affiliate.</p>
 
 <p><strong>Resource URL</strong>
@@ -79,19 +67,19 @@ JSON
 http://callpixels.com/affiliates/afid/007.json?api_key=FromMyAccountPage
 ~~~~
 JSON
-{&ldquo;affiliate&rdquo;:{&ldquo;first_name&rdquo;:&ldquo;James&rdquo;}}
+{&quot;affiliate&quot;:{&quot;first_name&quot;:&quot;James&quot;}}
 ~~~~</p>
 
 <p><strong>Response</strong>
 ~~~~
 JSON
 {
-  &ldquo;affiliate&rdquo;: {
-    &ldquo;afid&rdquo;: &ldquo;007&rdquo;,
-    &ldquo;first_name&rdquo;: &ldquo;James&rdquo;,
-    &ldquo;last_name&rdquo;: &ldquo;Bond&rdquo;,
-    &ldquo;updated_at&rdquo;: &ldquo;2012-05-03T20:20:03Z&rdquo;,
-    &ldquo;created_at&rdquo;: &ldquo;2012-05-03T14:29:37Z&rdquo;
+  &quot;affiliate&quot;: {
+    &quot;afid&quot;: &quot;007&quot;,
+    &quot;first_name&quot;: &quot;James&quot;,
+    &quot;last_name&quot;: &quot;Bond&quot;,
+    &quot;updated_at&quot;: &quot;2012-05-03T20:20:03Z&quot;,
+    &quot;created_at&quot;: &quot;2012-05-03T14:29:37Z&quot;
   }
 }
 ~~~~</p>

@@ -1,14 +1,10 @@
 <p>Number pools are used to dynamically assign numbers whenever a user visits your website.</p>
-
-<h1 id="get-number_pools">GET number_pools</h1>
-
+<h1 id='get-number_pools'>GET number_pools</h1>
 <p>Returns all the number pools you have in our system.</p>
 
 <p><strong>Resource URL</strong>
 @note http://callpixels.com/number_pools.format</p>
-
-<h1 id="get-number_pools-1">GET number_pools/1</h1>
-
+<h1 id='get-number_pools-1'>GET number_pools/1</h1>
 <p>Returns a single number pool based on our internal ID.</p>
 
 <p><strong>Resource URL</strong>
@@ -31,25 +27,18 @@
         "reserve_size": 1
     }
 }
-</code></pre>
-
-<h1 id="get-number_pools-for-cid-0002-afid-0033">GET number_pools/for/cid/0002/afid/0033</h1>
-
+</code></pre><h1 id='get-number_pools-for-cid-0002-afid-0033'>GET number_pools/for/cid/0002/afid/0033</h1>
 <p>Searches for number pools matching the provided criteria. The afid portion is optional.</p>
 
 <p><strong>Resource URL</strong>
 @note http://callpixels.com/number_pools/for/cid/111/afid/0001.format
 @note http://callpixels.com/number_pools/for/cid/111.format</p>
-
-<h1 id="post-number_pools">POST number_pools</h1>
-
+<h1 id='post-number_pools'>POST number_pools</h1>
 <p>Creates a new number pool.</p>
 
 <p><strong>Resource URL</strong>
 @note http://callpixels.com/number_pools.format</p>
-
-<h2 id="parameters">Parameters</h2>
-
+<h2 id='parameters'>Parameters</h2>
 <p>@param cid {string} The campaign ID this number pool belongs to. You must set up the campaign before creating a number pool for it.
 @param [type] {string} Toll-free or Local, the type of number that is desired for this number pool. Defaults to Toll-free.
 @param [country] {string} For Local number pools only, the 2 character country code for the country you would like the numbers to be in. Defaults to US. Possible values: US CA AT BE DK FI FR GB IE IT NL PL SE
@@ -64,11 +53,11 @@
 ~~~~
 JSON
 {
-    &ldquo;number_pool&rdquo;: {
-        &ldquo;cid&rdquo;: &ldquo;111&rdquo;,
-        &ldquo;max_pool_size&rdquo;: 100,
-        &ldquo;hide_embedded_access&rdquo;: true,
-        &ldquo;google_analytics&rdquo;: true
+    &quot;number_pool&quot;: {
+        &quot;cid&quot;: &quot;111&quot;,
+        &quot;max_pool_size&quot;: 100,
+        &quot;hide_embedded_access&quot;: true,
+        &quot;google_analytics&quot;: true
     }
 }
 ~~~~</p>
@@ -77,47 +66,41 @@ JSON
 ~~~~
 JSON
 {
-    &ldquo;number_pool&rdquo;: {
-        &ldquo;id&rdquo;: 49,
-        &ldquo;numbers_count&rdquo;: 0,
-        &ldquo;country&rdquo;: &ldquo;US&rdquo;,
-        &ldquo;max_pool_size&rdquo;: 100,
-        &ldquo;buffer_seconds&rdquo;: 0,
-        &ldquo;updated_at&rdquo;: &ldquo;2013-04-25T16:53:52Z&rdquo;,
-        &ldquo;created_at&rdquo;: &ldquo;2013-04-25T16:53:52Z&rdquo;,
-        &ldquo;hide_embedded_access&rdquo;: true,
-        &ldquo;google_analytics&rdquo;: true,
-        &ldquo;afid&rdquo;: null,
-        &ldquo;cid&rdquo;: &ldquo;111&rdquo;,
-        &ldquo;type&rdquo;: &ldquo;Toll-free&rdquo;,
-        &ldquo;reserve_size&rdquo;: 1,
-        &ldquo;google_analytics_paths&rdquo;: [
+    &quot;number_pool&quot;: {
+        &quot;id&quot;: 49,
+        &quot;numbers_count&quot;: 0,
+        &quot;country&quot;: &quot;US&quot;,
+        &quot;max_pool_size&quot;: 100,
+        &quot;buffer_seconds&quot;: 0,
+        &quot;updated_at&quot;: &quot;2013-04-25T16:53:52Z&quot;,
+        &quot;created_at&quot;: &quot;2013-04-25T16:53:52Z&quot;,
+        &quot;hide_embedded_access&quot;: true,
+        &quot;google_analytics&quot;: true,
+        &quot;afid&quot;: null,
+        &quot;cid&quot;: &quot;111&quot;,
+        &quot;type&quot;: &quot;Toll-free&quot;,
+        &quot;reserve_size&quot;: 1,
+        &quot;google_analytics_paths&quot;: [
             {
-                &ldquo;name&rdquo;: &ldquo;Network timer (always)&rdquo;,
-                &ldquo;path&rdquo;: &ldquo;/callpixels/8ddc04aa-0020-45eb-89df-ed45b8ed43a7&rdquo;
+                &quot;name&quot;: &quot;Network timer (always)&quot;,
+                &quot;path&quot;: &quot;/callpixels/8ddc04aa-0020-45eb-89df-ed45b8ed43a7&quot;
             },
             {
-                &ldquo;name&rdquo;: &ldquo;Network timer (connect)&rdquo;,
-                &ldquo;path&rdquo;: &ldquo;/callpixels/18135f62-00ff-4818-941d-d88b6a93f27d&rdquo;
+                &quot;name&quot;: &quot;Network timer (connect)&quot;,
+                &quot;path&quot;: &quot;/callpixels/18135f62-00ff-4818-941d-d88b6a93f27d&quot;
             }
         ]
     }
 }
 ~~~~</p>
-
-<h1 id="put-number_pools-1-format">PUT /number_pools/1.format</h1>
-
+<h1 id='put-number_pools-1-format'>PUT /number_pools/1.format</h1>
 <p>Updates number pool with the given ID.</p>
 
 <p><strong>Resource URL</strong>
 @note http://callpixels.com/numbers/1.format</p>
-
-<h1 id="delete-number_pools-1-format">DELETE /number_pools/1.format</h1>
-
+<h1 id='delete-number_pools-1-format'>DELETE /number_pools/1.format</h1>
 <p>Deletes number pool with the given ID.</p>
-
-<h2 id="warning">WARNING</h2>
-
+<h2 id='warning'>WARNING</h2>
 <p><em>This will also delete all numbers associated with this pool!</em></p>
 
 <p><strong>Resource URL</strong>

@@ -1,21 +1,15 @@
 <p>Provides access to the call log. The call log contains all the calls which have been made through Numbers under your control.</p>
-
-<h1 id="get-calls">GET /calls</h1>
-
+<h1 id='get-calls'>GET /calls</h1>
 <p>Lists all the calls currently in the system for your account.</p>
 
 <p><strong>Resource URL</strong>
 @note http://callpixels.com/calls.format</p>
-
-<h1 id="get-calls-from-2012-01-31-to-2012-02-28">GET /calls/from/2012/01/31/to/2012/02/28</h1>
-
+<h1 id='get-calls-from-2012-01-31-to-2012-02-28'>GET /calls/from/2012/01/31/to/2012/02/28</h1>
 <p>Lists all the calls within the date range specified.</p>
 
 <p><strong>Resource URL</strong>
 @note http://callpixels.com/calls/from/2012/01/31/to/2012/02/28.format</p>
-
-<h1 id="get-calls-addcf985-017e-4962-be34-cf5d55e74afc">GET /calls/addcf985-017e-4962-be34-cf5d55e74afc</h1>
-
+<h1 id='get-calls-addcf985-017e-4962-be34-cf5d55e74afc'>GET /calls/addcf985-017e-4962-be34-cf5d55e74afc</h1>
 <p>Get a single call by UUID.</p>
 
 <p><strong>Resource URL</strong>

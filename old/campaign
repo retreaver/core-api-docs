@@ -1,16 +1,12 @@
 <p>By configuring a campaign, you can reuse the settings of the campaign when creating numbers. Campaigns should be configured before creating numbers.</p>
 
 <p><strong>Deprecation Notice: As of 02/2014, this API will no longer be supported.</strong></p>
-
-<h1 id="get-campaigns">GET /campaigns</h1>
-
+<h1 id='get-campaigns'>GET /campaigns</h1>
 <p>List all the campaigns in your account.</p>
 
 <p><strong>Resource URL</strong>
 @note http://callpixels.com/campaigns.format</p>
-
-<h1 id="get-campaigns-cid-0044">GET /campaigns/cid/0044</h1>
-
+<h1 id='get-campaigns-cid-0044'>GET /campaigns/cid/0044</h1>
 <p>Find a campaign by CID.</p>
 
 <p><strong>Resource URL</strong>
@@ -20,59 +16,55 @@
 ~~~~
 JSON
 {
-   &ldquo;campaign&rdquo;:{
-      &ldquo;cid&rdquo;:&ldquo;111&rdquo;,
-      &ldquo;name&rdquo;:&ldquo;SuperFuntime&rdquo;,
-      &ldquo;updated_at&rdquo;:&ldquo;2012-07-15T03:40:24Z&rdquo;,
-      &ldquo;created_at&rdquo;:&ldquo;2012-04-16T13:50:21Z&rdquo;,
-      &ldquo;record_calls&rdquo;:true,
-      &ldquo;record_seconds&rdquo;:3600,
-      &ldquo;dedupe_seconds&rdquo;:86400,
-      &ldquo;affiliate_can_pull_number&rdquo;:false,
-      &ldquo;show_key&rdquo;:&ldquo;5e2ba674a8a1fb34dddcf850139ffdd9&rdquo;
-      &ldquo;greeting&rdquo;:{
-         &ldquo;message&rdquo;:&ldquo;Hi There! Press one to continue.&rdquo;,
-         &ldquo;voice_gender&rdquo;:&ldquo;Female&rdquo;
+   &quot;campaign&quot;:{
+      &quot;cid&quot;:&quot;111&quot;,
+      &quot;name&quot;:&quot;SuperFuntime&quot;,
+      &quot;updated_at&quot;:&quot;2012-07-15T03:40:24Z&quot;,
+      &quot;created_at&quot;:&quot;2012-04-16T13:50:21Z&quot;,
+      &quot;record_calls&quot;:true,
+      &quot;record_seconds&quot;:3600,
+      &quot;dedupe_seconds&quot;:86400,
+      &quot;affiliate_can_pull_number&quot;:false,
+      &quot;show_key&quot;:&quot;5e2ba674a8a1fb34dddcf850139ffdd9&quot;
+      &quot;greeting&quot;:{
+         &quot;message&quot;:&quot;Hi There! Press one to continue.&quot;,
+         &quot;voice_gender&quot;:&quot;Female&quot;
       },
-      &ldquo;timers&rdquo;:[
+      &quot;timers&quot;:[
          {
-            &ldquo;timer&rdquo;:{
-               &ldquo;id&rdquo;:195,
-               &ldquo;seconds&rdquo;:0,
-               &ldquo;url&rdquo;:&ldquo;http://www.thertrack.com/click.track?CID=[campaign_id]&amp;AFID=[affiliate_id]&amp;SID=[sub_id]&rdquo;
+            &quot;timer&quot;:{
+               &quot;id&quot;:195,
+               &quot;seconds&quot;:0,
+               &quot;url&quot;:&quot;http://www.thertrack.com/click.track?CID=[campaign_id]&amp;AFID=[affiliate_id]&amp;SID=[sub_id]&quot;
             }
          },
          {
-            &ldquo;timer&rdquo;:{
-               &ldquo;id&rdquo;:199,
-               &ldquo;seconds&rdquo;:90,
-               &ldquo;url&rdquo;:&ldquo;http://www.thertrack.com/pixel.track?CID=[campaign_id]&amp;AFID=[affiliate_id]&amp;SID=[sub_id]&amp;MerchantReferenceID=[caller_id]-[called_number]-[call_duration]&rdquo;
+            &quot;timer&quot;:{
+               &quot;id&quot;:199,
+               &quot;seconds&quot;:90,
+               &quot;url&quot;:&quot;http://www.thertrack.com/pixel.track?CID=[campaign_id]&amp;AFID=[affiliate_id]&amp;SID=[sub_id]&amp;MerchantReferenceID=[caller_id]-[called_number]-[call_duration]&quot;
             }
          }
       ],
-      &ldquo;menu_options&rdquo;:[
+      &quot;menu_options&quot;:[
          {
-            &ldquo;menu_option&rdquo;:{
-               &ldquo;id&rdquo;:61,
-               &ldquo;option&rdquo;:&ldquo;1&rdquo;,
-               &ldquo;target_cid&rdquo;:null,
-               &ldquo;target_number&rdquo;:&ldquo;+18987748833&rdquo;
+            &quot;menu_option&quot;:{
+               &quot;id&quot;:61,
+               &quot;option&quot;:&quot;1&quot;,
+               &quot;target_cid&quot;:null,
+               &quot;target_number&quot;:&quot;+18987748833&quot;
             }
          }
       ]
    }
 }
 ~~~~</p>
-
-<h1 id="post-campaigns">POST /campaigns</h1>
-
+<h1 id='post-campaigns'>POST /campaigns</h1>
 <p>Create a new campaign.</p>
 
 <p><strong>Resource URL</strong>
 @note http://callpixels.com/campaigns.format</p>
-
-<h2 id="parameters">Parameters</h2>
-
+<h2 id='parameters'>Parameters</h2>
 <p>@param cid {string} Your internal campaign ID that will be referenced in the future.
 @param [name] {string} A name for the campaign for your reference.
 @param [dedupe_seconds] {integer} Prevent a caller from causing any Connect (timer.seconds == 0) or Sale (timer.seconds &gt; 0) timer from firing within n seconds. Default is 0 (disabled). Does not affect &lt; 0 second timers.
@@ -82,27 +74,23 @@ JSON
 @param message {string} (Text-to-Speech) A message you want read aloud to the caller when they dial your number. Make sure to tell them to press one to continue.
 @param voice_gender {string} (Text-to-Speech) Male or Female, the gender of the text-to-speech voice you want.
 @param message_file {file} (Audio File) An audio file you would like played for the caller when they dial your number. Use this field with multipart/form-data submissions.
-@param message_file_b64_data {string} (Audio File) A Base64-encoded audio file. Only use this field if you&rsquo;re not using the message_file field.
-@param message_file_b64_filename {string} (Audio File) The original file name for the Base64-encoded audio file. Something like &lsquo;memo.flac&rsquo;. We suggest using the highest quality audio available.
+@param message_file_b64_data {string} (Audio File) A Base64-encoded audio file. Only use this field if you&#39;re not using the message_file field.
+@param message_file_b64_filename {string} (Audio File) The original file name for the Base64-encoded audio file. Something like &#39;memo.flac&#39;. We suggest using the highest quality audio available.
 @param [repeat] {integer} The number of times to repeat the greeting. Defaults to 4.
 @param timers_attributes {array} An array of timers.
 @prams menu_option_attributes {array} An array of menu options.
 @param [destroy_nested] {boolean} When set, causes existing timers and menu_options to be destroyed. Defaults to false. Existing timers and menu options can be updated by including their unique ID. Alternatively, you can simply remove all the existing timers and menu options by setting this to true and resubmit all the values.</p>
 
 <p><strong>Timers</strong>
-We will fire any 0 second timer (&#39;click timer&rsquo;) before firing a sale timer (&gt; 0 seconds). Only the highest second value sale timer that is applicable to this call will be fired. If you have timers for 30 seconds and 90 seconds and the call lasts 2 minutes, only the 90 second sale timer will be fired.</p>
-
-<h2 id="nested-attribute-timer">Nested Attribute: Timer</h2>
-
+We will fire any 0 second timer (&#39;click timer&#39;) before firing a sale timer (&gt; 0 seconds). Only the highest second value sale timer that is applicable to this call will be fired. If you have timers for 30 seconds and 90 seconds and the call lasts 2 minutes, only the 90 second sale timer will be fired.</p>
+<h2 id='nested-attribute-timer'>Nested Attribute: Timer</h2>
 <p>@param seconds {integer} The minimum length of time the call must last for this pixel to be fired. If set to 0, the pixel will fire at the beginning of the call, much like a click.
 @param url {string} The URL that should be called for this timer. The URL does not have to be a pixel, and will be passed any cookies that were set on the 0-second timer. Our bot follows redirects intelligently.</p>
 
 <p><strong>Menu Options</strong>
-Menu options are used to route calls based on what button the caller presses on their phone. Menu options can redirect a caller to a different phone number or another CallPixels campaign. You must provide at least one menu option, and you must provide an option for &#39;1&rsquo;, which is the option used to route calls when there is no greeting configured.</p>
-
-<h2 id="nested-attribute-menu-option">Nested Attribute: Menu Option</h2>
-
-<p>@param option {string} The button the caller will press. The default menu option for a campaign is the one for button press &#39;1&rsquo;, so if you aren&rsquo;t using an IVR and want the call to forward instantly, set the option to &#39;1&rsquo;. (1 2 3 4 5 6 7 8 9 0 * #)
+Menu options are used to route calls based on what button the caller presses on their phone. Menu options can redirect a caller to a different phone number or another CallPixels campaign. You must provide at least one menu option, and you must provide an option for &#39;1&#39;, which is the option used to route calls when there is no greeting configured.</p>
+<h2 id='nested-attribute-menu-option'>Nested Attribute: Menu Option</h2>
+<p>@param option {string} The button the caller will press. The default menu option for a campaign is the one for button press &#39;1&#39;, so if you aren&#39;t using an IVR and want the call to forward instantly, set the option to &#39;1&#39;. (1 2 3 4 5 6 7 8 9 0 * #)
 @param target_number {string} A phone number to redirect the caller to. All &gt; 0 second timers will start when the call is answered.
 @param target_cid {string} A campaign ID to redirect the caller to. The campaign must be configured in the system. If this value is set, it will overrride the target number. This option can be used to allow the caller to replay the greeting.</p>
 
@@ -110,21 +98,21 @@ Menu options are used to route calls based on what button the caller presses on 
 ~~~~
 JSON
 {
-    &ldquo;campaign&rdquo;: {
-        &ldquo;cid&rdquo;: &ldquo;000333&rdquo;,
-        &ldquo;name&rdquo;: &ldquo;MyCampaign&rdquo;,
-        &ldquo;message&rdquo;: &ldquo;Thanks for calling, please press one to continue.&rdquo;,
-        &ldquo;voice_gender&rdquo;: &ldquo;Male&rdquo;,
-        &ldquo;timers_attributes&rdquo;: [{
-            &ldquo;seconds&rdquo;: 0,
-            &ldquo;url&rdquo;: &ldquo;http://callpixels.com/click.html&rdquo;
+    &quot;campaign&quot;: {
+        &quot;cid&quot;: &quot;000333&quot;,
+        &quot;name&quot;: &quot;MyCampaign&quot;,
+        &quot;message&quot;: &quot;Thanks for calling, please press one to continue.&quot;,
+        &quot;voice_gender&quot;: &quot;Male&quot;,
+        &quot;timers_attributes&quot;: [{
+            &quot;seconds&quot;: 0,
+            &quot;url&quot;: &quot;http://callpixels.com/click.html&quot;
         }, {
-            &ldquo;seconds&rdquo;: 90,
-            &ldquo;url&rdquo;: &ldquo;http://callpixels.com/sale.html&rdquo;
+            &quot;seconds&quot;: 90,
+            &quot;url&quot;: &quot;http://callpixels.com/sale.html&quot;
         }],
-        &ldquo;menu_options_attributes&rdquo;: [{
-            &ldquo;option&rdquo;: &ldquo;1&rdquo;,
-            &ldquo;target_number&rdquo;: &ldquo;+16474570424&rdquo;
+        &quot;menu_options_attributes&quot;: [{
+            &quot;option&quot;: &quot;1&quot;,
+            &quot;target_number&quot;: &quot;+16474570424&quot;
            }
         ]
     }
@@ -135,59 +123,55 @@ JSON
 ~~~~
 JSON
 {
-   &ldquo;campaign&rdquo;:{
-      &ldquo;cid&rdquo;:&ldquo;000333&rdquo;,
-      &ldquo;name&rdquo;:&ldquo;MyCampaign&rdquo;,
-      &ldquo;updated_at&rdquo;:&ldquo;2012-07-15T03:34:00Z&rdquo;,
-      &ldquo;created_at&rdquo;:&ldquo;2012-07-15T03:34:00Z&rdquo;,
-      &ldquo;record_calls&rdquo;:true,
-      &ldquo;record_seconds&rdquo;:3600,
-      &ldquo;dedupe_seconds&rdquo;:0,
-      &ldquo;affiliate_can_pull_number&rdquo;:false,
-      &ldquo;show_key&rdquo;:&ldquo;5e2ba674a8a1fb34dddcf850139ffdd9&rdquo;
-      &ldquo;greeting&rdquo;:{
-         &ldquo;message&rdquo;:&ldquo;Thanks for calling, please press one to continue.&rdquo;,
-         &ldquo;voice_gender&rdquo;:&ldquo;Male&rdquo;
+   &quot;campaign&quot;:{
+      &quot;cid&quot;:&quot;000333&quot;,
+      &quot;name&quot;:&quot;MyCampaign&quot;,
+      &quot;updated_at&quot;:&quot;2012-07-15T03:34:00Z&quot;,
+      &quot;created_at&quot;:&quot;2012-07-15T03:34:00Z&quot;,
+      &quot;record_calls&quot;:true,
+      &quot;record_seconds&quot;:3600,
+      &quot;dedupe_seconds&quot;:0,
+      &quot;affiliate_can_pull_number&quot;:false,
+      &quot;show_key&quot;:&quot;5e2ba674a8a1fb34dddcf850139ffdd9&quot;
+      &quot;greeting&quot;:{
+         &quot;message&quot;:&quot;Thanks for calling, please press one to continue.&quot;,
+         &quot;voice_gender&quot;:&quot;Male&quot;
       },
-      &ldquo;timers&rdquo;:[
+      &quot;timers&quot;:[
          {
-            &ldquo;timer&rdquo;:{
-               &ldquo;id&rdquo;:217,
-               &ldquo;seconds&rdquo;:0,
-               &ldquo;url&rdquo;:&ldquo;http://callpixels.com/click.html&rdquo;
+            &quot;timer&quot;:{
+               &quot;id&quot;:217,
+               &quot;seconds&quot;:0,
+               &quot;url&quot;:&quot;http://callpixels.com/click.html&quot;
             }
          },
          {
-            &ldquo;timer&rdquo;:{
-               &ldquo;id&rdquo;:218,
-               &ldquo;seconds&rdquo;:90,
-               &ldquo;url&rdquo;:&ldquo;http://callpixels.com/sale.html&rdquo;
+            &quot;timer&quot;:{
+               &quot;id&quot;:218,
+               &quot;seconds&quot;:90,
+               &quot;url&quot;:&quot;http://callpixels.com/sale.html&quot;
             }
          }
       ],
-      &ldquo;menu_options&rdquo;:[
+      &quot;menu_options&quot;:[
          {
-            &ldquo;menu_option&rdquo;:{
-               &ldquo;id&rdquo;:77,
-               &ldquo;option&rdquo;:&ldquo;1&rdquo;,
-               &ldquo;target_cid&rdquo;:null,
-               &ldquo;target_number&rdquo;:&ldquo;+16474570424&rdquo;
+            &quot;menu_option&quot;:{
+               &quot;id&quot;:77,
+               &quot;option&quot;:&quot;1&quot;,
+               &quot;target_cid&quot;:null,
+               &quot;target_number&quot;:&quot;+16474570424&quot;
             }
          }
       ]
    }
 }
 ~~~~</p>
-
-<h1 id="delete-campaigns-cid-0044">DELETE /campaigns/cid/0044</h1>
-
+<h1 id='delete-campaigns-cid-0044'>DELETE /campaigns/cid/0044</h1>
 <p>Delete a campaign by CID. You must delete all the numbers belonging to that campaign first.</p>
 
 <p><strong>Resource URL</strong>
 @note http://callpixels.com/campaigns/cid/0044.format</p>
-
-<h1 id="put-campaigns-cid-0044">PUT /campaigns/cid/0044</h1>
-
+<h1 id='put-campaigns-cid-0044'>PUT /campaigns/cid/0044</h1>
 <p>Update a campaign by CID.</p>
 
 <p><strong>Resource URL</strong>

@@ -1,21 +1,14 @@
-<h2 id="reseller-api">Reseller API</h2>
-
-<h1 id="get-company">GET /company</h1>
-
+<h2 id='reseller-api'>Reseller API</h2><h1 id='get-company'>GET /company</h1>
 <p>Returns the currently active company. This is the company that will be modified if a request is sent in without a specific company_id.</p>
 
 <p><strong>Resource URL</strong>
 @note http://callpixels.com/company.format</p>
-
-<h1 id="get-companies">GET /companies</h1>
-
+<h1 id='get-companies'>GET /companies</h1>
 <p>Provides a complete list of companies.</p>
 
 <p><strong>Resource URL</strong>
 @note http://callpixels.com/companies.format</p>
-
-<h1 id="get-companies-1">GET /companies/1</h1>
-
+<h1 id='get-companies-1'>GET /companies/1</h1>
 <p>Returns the company matching our internal ID.</p>
 
 <p><strong>Resource URL</strong>
@@ -25,26 +18,22 @@
 ~~~~
 JSON
 {
-    &ldquo;company&rdquo;: {
-        &ldquo;id&rdquo;: 1,
-        &ldquo;name&rdquo;: &ldquo;CallPixels&rdquo;,
-        &ldquo;default_click_url&rdquo;: &ldquo;http://callpixels.com/?a=[affiliate_id]&amp;c=[campaign_id]&amp;cp=js&amp;s1=[sub_id]&rdquo;,
-        &ldquo;default_sale_url&rdquo;: &ldquo;http://callpixels.com/p.ashx?o=[campaign_id]&amp;t=[call_log_id]-[caller_id]-[called_number]-[call_duration]-[call_recording_url]&rdquo;,
-        &ldquo;created_at&rdquo;: &ldquo;2012-04-15T05:44:10Z&rdquo;,
-        &ldquo;updated_at&rdquo;: &ldquo;2012-05-07T15:32:44Z&rdquo;
+    &quot;company&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;CallPixels&quot;,
+        &quot;default_click_url&quot;: &quot;http://callpixels.com/?a=[affiliate_id]&amp;c=[campaign_id]&amp;cp=js&amp;s1=[sub_id]&quot;,
+        &quot;default_sale_url&quot;: &quot;http://callpixels.com/p.ashx?o=[campaign_id]&amp;t=[call_log_id]-[caller_id]-[called_number]-[call_duration]-[call_recording_url]&quot;,
+        &quot;created_at&quot;: &quot;2012-04-15T05:44:10Z&quot;,
+        &quot;updated_at&quot;: &quot;2012-05-07T15:32:44Z&quot;
     }
 }
 ~~~~</p>
-
-<h1 id="post-companies">POST /companies</h1>
-
+<h1 id='post-companies'>POST /companies</h1>
 <p>Creates a company. This is available to resellers only.</p>
 
 <p><strong>Resource URL</strong>
 @note http://callpixels.com/companies.format</p>
-
-<h2 id="parameters">Parameters</h2>
-
+<h2 id='parameters'>Parameters</h2>
 <p>@param name {string} The company name.
 @param [default_click_url] {string}
 @param [default_sale_url] {string}</p>
@@ -52,19 +41,19 @@ JSON
 <p><strong>Request</strong>
 ~~~~
 JSON
-{&ldquo;company&rdquo;:{&ldquo;name&rdquo;:&ldquo;CallPixels.com&rdquo;}}
+{&quot;company&quot;:{&quot;name&quot;:&quot;CallPixels.com&quot;}}
 ~~~~
 <strong>Response</strong>
 ~~~~
 JSON
 {
-    &ldquo;company&rdquo;: {
-        &ldquo;id&rdquo;: 2,
-        &ldquo;name&rdquo;: &ldquo;CallPixels.com&rdquo;,
-        &ldquo;default_click_url&rdquo;: null,
-        &ldquo;default_sale_url&rdquo;: null,
-        &ldquo;created_at&rdquo;: &ldquo;2012-05-07T15:44:39Z&rdquo;,
-        &ldquo;updated_at&rdquo;: &ldquo;2012-05-07T15:44:39Z&rdquo;
+    &quot;company&quot;: {
+        &quot;id&quot;: 2,
+        &quot;name&quot;: &quot;CallPixels.com&quot;,
+        &quot;default_click_url&quot;: null,
+        &quot;default_sale_url&quot;: null,
+        &quot;created_at&quot;: &quot;2012-05-07T15:44:39Z&quot;,
+        &quot;updated_at&quot;: &quot;2012-05-07T15:44:39Z&quot;
     }
 }</p>
 <pre class="highlight plaintext"><code>
@@ -85,22 +74,21 @@ Updates the given company.
 **Request**
 http://callpixels.com/companies/1.json?api_key=FromMyAccountPage
 </code></pre>
-
 <p>JSON
-{&ldquo;company&rdquo;:{&ldquo;name&rdquo;:&ldquo;CallPixels.com&rdquo;}}
+{&quot;company&quot;:{&quot;name&quot;:&quot;CallPixels.com&quot;}}
 ~~~~</p>
 
 <p><strong>Response</strong>
 ~~~~
 JSON
 {
-    &ldquo;company&rdquo;: {
-        &ldquo;id&rdquo;: 1,
-        &ldquo;name&rdquo;: &ldquo;CallPixels.com&rdquo;,
-        &ldquo;default_click_url&rdquo;: &ldquo;http://callpixels.com/?a=[affiliate_id]&amp;c=[campaign_id]&amp;cp=js&amp;s1=[sub_id]&rdquo;,
-        &ldquo;default_sale_url&rdquo;: &ldquo;http://callpixels.com/p.ashx?o=[campaign_id]&amp;t=[call_log_id]-[caller_id]-[called_number]-[call_duration]-[call_recording_url]&rdquo;,
-        &ldquo;created_at&rdquo;: &ldquo;2012-04-15T05:44:10Z&rdquo;,
-        &ldquo;updated_at&rdquo;: &ldquo;2012-05-07T15:48:14Z&rdquo;
+    &quot;company&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;CallPixels.com&quot;,
+        &quot;default_click_url&quot;: &quot;http://callpixels.com/?a=[affiliate_id]&amp;c=[campaign_id]&amp;cp=js&amp;s1=[sub_id]&quot;,
+        &quot;default_sale_url&quot;: &quot;http://callpixels.com/p.ashx?o=[campaign_id]&amp;t=[call_log_id]-[caller_id]-[called_number]-[call_duration]-[call_recording_url]&quot;,
+        &quot;created_at&quot;: &quot;2012-04-15T05:44:10Z&quot;,
+        &quot;updated_at&quot;: &quot;2012-05-07T15:48:14Z&quot;
     }
 }
 ~~~~</p>
