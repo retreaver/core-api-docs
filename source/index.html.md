@@ -159,7 +159,7 @@ Provides access to the call log. The call log contains all the Calls which have 
 
 ### HTTP Request
 
-`GET https://retreaver.com/calls.json?api_key=woofwoofwoof&company_id=1`
+`GET https://api.retreaver.com/calls.json?api_key=woofwoofwoof&company_id=1`
 
 ### Query Parameters
 
@@ -249,7 +249,7 @@ Calls can be accessed by their UUID.
 
 ### HTTP Request
 
-`GET https://retreaver.com/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof&company_id=1`
+`GET https://api.retreaver.com/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof&company_id=1`
 
 
 
@@ -289,7 +289,7 @@ Provides a complete list of Affiliates.
 
 ### HTTP Request
 
-`GET https://retreaver.com/affiliates.xml?api_key=woofwoofwoof&company_id=1`
+`GET https://api.retreaver.com/affiliates.xml?api_key=woofwoofwoof&company_id=1`
 
 
 ## Get a specific Affiliate by your ID
@@ -438,7 +438,7 @@ curl "https://api.retreaver.com/targets.json?api_key=woofwoofwoof&company_id=1"
 
 ### HTTP Request
 
-`GET https://retreaver.com/targets.json?api_key=woofwoofwoof&company_id=1`
+`GET https://api.retreaver.com/targets.json?api_key=woofwoofwoof&company_id=1`
 
 
 ## Get a specific Target
@@ -989,7 +989,7 @@ List all the Campaigns in your Account.
 
 ### HTTP Request
 
-`GET https://retreaver.com/campaigns.json?api_key=woofwoofwoof&company_id=1`
+`GET https://api.retreaver.com/campaigns.json?api_key=woofwoofwoof&company_id=1`
 
 
 ## Get a specific Campaign
@@ -1051,7 +1051,7 @@ Get a campaign by your ID.
 
 ### HTTP Request
 
-`GET https://retreaver.com/campaigns/cid/0044.json?api_key=woofwoofwoof&company_id=1`
+`GET https://api.retreaver.com/campaigns/cid/0044.json?api_key=woofwoofwoof&company_id=1`
 
 
 
@@ -1340,7 +1340,7 @@ Get all Numbers belonging to the Company.
 
 ### HTTP Request
 
-`GET https://retreaver.com/numbers.json?api_key=woofwoofwoof&company_id=1`
+`GET https://api.retreaver.com/numbers.json?api_key=woofwoofwoof&company_id=1`
 
 
 ### Parameters
@@ -1411,7 +1411,7 @@ Get a Number by our internal ID.
 
 ### HTTP Request
 
-`GET https://retreaver.com/numbers/5.json?api_key=woofwoofwoof&company_id=1`
+`GET https://api.retreaver.com/numbers/5.json?api_key=woofwoofwoof&company_id=1`
 
 
 ## Create a Number
@@ -1696,7 +1696,7 @@ Returns all the Number Pools you have in our system.
 
 ### HTTP Request
 
-`GET https://retreaver.com/number_pools.json?api_key=woofwoofwoof&company_id=1`
+`GET https://api.retreaver.com/number_pools.json?api_key=woofwoofwoof&company_id=1`
 
 ### Parameters
 
@@ -1740,7 +1740,7 @@ Returns a single Number Pool based on our internal ID.
 
 ### HTTP Request
 
-`GET https://retreaver.com/number_pools/1.json?api_key=woofwoofwoof&company_id=1`
+`GET https://api.retreaver.com/number_pools/1.json?api_key=woofwoofwoof&company_id=1`
 
 
 ## Create a Number Pool
@@ -1934,7 +1934,7 @@ You should always pass in the <code>company_id</code> parameter when requesting 
 
 ### HTTP Request
 
-`GET https://retreaver.com/company.json?api_key=woofwoofwoof`
+`GET https://api.retreaver.com/company.json?api_key=woofwoofwoof`
 
 
 ## Get a specific Company
@@ -1962,7 +1962,7 @@ Returns the Company matching our internal ID.
 
 ### HTTP Request
 
-`GET https://retreaver.com/companies/1.json?api_key=woofwoofwoof`
+`GET https://api.retreaver.com/companies/1.json?api_key=woofwoofwoof`
 
 
 ## Get all Companies
@@ -1991,7 +1991,7 @@ Provides a complete list of Companies accessible via your Account.
 
 ### HTTP Request
 
-`GET https://retreaver.com/companies.json?api_key=woofwoofwoof`
+`GET https://api.retreaver.com/companies.json?api_key=woofwoofwoof`
 
 
 ## Create a Company
@@ -2145,7 +2145,7 @@ Provides a complete list of Contacts.
 
 ### HTTP Request
 
-`GET https://retreaver.com/contacts.json?api_key=woofwoofwoof&company_id=1`
+`GET https://api.retreaver.com/contacts.json?api_key=woofwoofwoof&company_id=1`
 
 
 ## Get a Specific Contact by ID
@@ -2590,7 +2590,7 @@ Provides a complete list of Static Numbers.
 
 ### HTTP Request
 
-`GET https://retreaver.com/static_caller_numbers.json?api_key=woofwoofwoof&company_id=1`
+`GET https://api.retreaver.com/static_caller_numbers.json?api_key=woofwoofwoof&company_id=1`
 
 
 ## Create a Static Caller Number
