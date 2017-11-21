@@ -602,7 +602,7 @@ You should <strong>never, ever expose your Retreaver Core API key publicly</stro
 </span></code></pre>
 <p>Provides access to the call log. The call log contains all the Calls which have been made through Numbers under your control.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET https://retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+<p><code>GET https://api.retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -691,7 +691,7 @@ created, and then paginate through all your calls.</p>
 </span></code></pre>
 <p>Calls can be accessed by their UUID.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
-<p><code>GET https://retreaver.com/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+<p><code>GET https://api.retreaver.com/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h1 id='affiliates'>Affiliates</h1>
 <p>Entering Affiliates into our system allows you to attribute calls back to the Affiliate who created them, and to update any external tracking systems. </p>
 
@@ -715,7 +715,7 @@ created, and then paginate through all your calls.</p>
 </code></pre>
 <p>Provides a complete list of Affiliates.</p>
 <h3 id='http-request-5'>HTTP Request</h3>
-<p><code>GET https://retreaver.com/affiliates.xml?api_key=woofwoofwoof&amp;company_id=1</code></p>
+<p><code>GET https://api.retreaver.com/affiliates.xml?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h2 id='get-a-specific-affiliate-by-your-id'>Get a specific Affiliate by your ID</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/affiliates/afid/0002.json?api_key=woofwoofwoof&amp;company_id=1"</span>
 </code></pre>
 <p>Finds an Affiliate by AFID.</p>
@@ -841,7 +841,7 @@ You must replace <code>0002</code> with the afid of the Affiliate you want to de
    </span><span class="p">}</span><span class="w">
 </span><span class="p">}]</span><span class="w">
 </span></code></pre><h3 id='http-request-9'>HTTP Request</h3>
-<p><code>GET https://retreaver.com/targets.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+<p><code>GET https://api.retreaver.com/targets.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h2 id='get-a-specific-target'>Get a specific Target</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/targets/6588.json?api_key=woofwoofwoof&amp;company_id=1"</span>
 </code></pre>
 <blockquote>
@@ -1633,7 +1633,7 @@ You must replace <code>22592</code> with the Retreaver ID of the Target you want
 </span></code></pre>
 <p>List all the Campaigns in your Account.</p>
 <h3 id='http-request-17'>HTTP Request</h3>
-<p><code>GET https://retreaver.com/campaigns.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+<p><code>GET https://api.retreaver.com/campaigns.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h2 id='get-a-specific-campaign'>Get a specific Campaign</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/campaigns/cid/0044.json?api_key=woofwoofwoof&amp;company_id=1"</span>
 </code></pre>
 <blockquote>
@@ -1685,7 +1685,7 @@ You must replace <code>22592</code> with the Retreaver ID of the Target you want
 </span></code></pre>
 <p>Get a campaign by your ID.</p>
 <h3 id='http-request-18'>HTTP Request</h3>
-<p><code>GET https://retreaver.com/campaigns/cid/0044.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+<p><code>GET https://api.retreaver.com/campaigns/cid/0044.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h2 id='create-a-campaign'>Create a Campaign</h2><pre class="highlight shell tab-shell"><code>curl -s <span class="se">\</span>
     -X POST <span class="se">\</span>
     https://api.retreaver.com/campaigns.json <span class="se">\</span>
@@ -2061,7 +2061,7 @@ You must replace <code>0044</code> with the cid of the Campaign you want to upda
 </span></code></pre>
 <p>Get all Numbers belonging to the Company.</p>
 <h3 id='http-request-21'>HTTP Request</h3>
-<p><code>GET https://retreaver.com/numbers.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+<p><code>GET https://api.retreaver.com/numbers.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h3 id='parameters-5'>Parameters</h3>
 <table><thead>
 <tr>
@@ -2137,7 +2137,7 @@ You must replace <code>0044</code> with the cid of the Campaign you want to upda
 </span></code></pre>
 <p>Get a Number by our internal ID.</p>
 <h3 id='http-request-22'>HTTP Request</h3>
-<p><code>GET https://retreaver.com/numbers/5.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+<p><code>GET https://api.retreaver.com/numbers/5.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h2 id='create-a-number'>Create a Number</h2><pre class="highlight shell tab-shell"><code>curl -s <span class="se">\</span>
     -X POST <span class="se">\</span>
     https://api.retreaver.com/numbers.json <span class="se">\</span>
@@ -2520,7 +2520,7 @@ you want to track many different attributes.</p>
 </span></code></pre>
 <p>Returns all the Number Pools you have in our system.</p>
 <h3 id='http-request-25'>HTTP Request</h3>
-<p><code>GET https://retreaver.com/number_pools.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+<p><code>GET https://api.retreaver.com/number_pools.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h3 id='parameters-7'>Parameters</h3>
 <table><thead>
 <tr>
@@ -2565,7 +2565,7 @@ you want to track many different attributes.</p>
 </span></code></pre>
 <p>Returns a single Number Pool based on our internal ID.</p>
 <h3 id='http-request-26'>HTTP Request</h3>
-<p><code>GET https://retreaver.com/number_pools/1.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+<p><code>GET https://api.retreaver.com/number_pools/1.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h2 id='create-a-number-pool'>Create a Number Pool</h2><pre class="highlight shell tab-shell"><code>curl -s <span class="se">\</span>
     -X POST <span class="se">\</span>
     https://api.retreaver.com/number_pools.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1 <span class="se">\</span>
@@ -2770,7 +2770,7 @@ This will also delete all Numbers associated with this Number Pool!
 You should always pass in the <code>company_id</code> parameter when requesting other objects, because switching Companies in the web interface will also switch Companies in the API.
 </aside>
 <h3 id='http-request-29'>HTTP Request</h3>
-<p><code>GET https://retreaver.com/company.json?api_key=woofwoofwoof</code></p>
+<p><code>GET https://api.retreaver.com/company.json?api_key=woofwoofwoof</code></p>
 <h2 id='get-a-specific-company'>Get a specific Company</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/companies/1.json?api_key=woofwoofwoof"</span>
 </code></pre>
 <blockquote>
@@ -2789,7 +2789,7 @@ You should always pass in the <code>company_id</code> parameter when requesting 
 </span></code></pre>
 <p>Returns the Company matching our internal ID.</p>
 <h3 id='http-request-30'>HTTP Request</h3>
-<p><code>GET https://retreaver.com/companies/1.json?api_key=woofwoofwoof</code></p>
+<p><code>GET https://api.retreaver.com/companies/1.json?api_key=woofwoofwoof</code></p>
 <h2 id='get-all-companies'>Get all Companies</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/companies.json?api_key=woofwoofwoof"</span>
 </code></pre>
 <blockquote>
@@ -2808,7 +2808,7 @@ You should always pass in the <code>company_id</code> parameter when requesting 
 </span></code></pre>
 <p>Provides a complete list of Companies accessible via your Account.</p>
 <h3 id='http-request-31'>HTTP Request</h3>
-<p><code>GET https://retreaver.com/companies.json?api_key=woofwoofwoof</code></p>
+<p><code>GET https://api.retreaver.com/companies.json?api_key=woofwoofwoof</code></p>
 <h2 id='create-a-company'>Create a Company</h2><pre class="highlight shell tab-shell"><code>curl -s <span class="se">\</span>
     -X POST <span class="se">\</span>
     https://api.retreaver.com/companies.json <span class="se">\</span>
@@ -2938,7 +2938,7 @@ You must replace <code>2</code> with the Retreaver ID of the Company you want to
 </span></code></pre>
 <p>Provides a complete list of Contacts.</p>
 <h3 id='http-request-35'>HTTP Request</h3>
-<p><code>GET https://retreaver.com/contacts.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+<p><code>GET https://api.retreaver.com/contacts.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h2 id='get-a-specific-contact-by-id'>Get a Specific Contact by ID</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/contacts/2.json?api_key=woofwoofwoof&amp;company_id=1"</span>
 </code></pre>
 <blockquote>
@@ -3281,7 +3281,7 @@ prompt the caller for the caller&#39;s real number, or will randomize the Caller
 </span></code></pre>
 <p>Provides a complete list of Static Numbers.</p>
 <h3 id='http-request-48'>HTTP Request</h3>
-<p><code>GET https://retreaver.com/static_caller_numbers.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+<p><code>GET https://api.retreaver.com/static_caller_numbers.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h2 id='create-a-static-caller-number'>Create a Static Caller Number</h2><pre class="highlight shell tab-shell"><code>curl -s <span class="se">\</span>
     -X POST <span class="se">\</span>
     https://api.retreaver.com/static_caller_numbers.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1 <span class="se">\</span>
