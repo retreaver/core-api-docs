@@ -679,6 +679,8 @@ inverted | boolean | false | | Open hours become closed! Closed become open! Oh 
 
 ### Valid Time Zones
 
+[Need to map IANA time zones to our format?](https://gist.github.com/jaygen/f6caa3305ec812344cc81175843f5ab0)
+
 &nbsp; | &nbsp; | &nbsp; | &nbsp; | &nbsp;
 ---------------- | ------ | ------ | ------ | ------
 International Date Line West|Midway Island|American Samoa|Hawaii|Alaska
