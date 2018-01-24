@@ -228,6 +228,12 @@
                     <a href="#multi-format" class="toc-h2 toc-link" data-title="Multi-format">Multi-format</a>
                   </li>
                   <li>
+                    <a href="#nomenclature" class="toc-h2 toc-link" data-title="Nomenclature">Nomenclature</a>
+                  </li>
+                  <li>
+                    <a href="#our-ids-vs-customer-ids" class="toc-h2 toc-link" data-title="Our IDs vs Customer IDs">Our IDs vs Customer IDs</a>
+                  </li>
+                  <li>
                     <a href="#paginated" class="toc-h2 toc-link" data-title="Paginated">Paginated</a>
                   </li>
                   <li>
@@ -504,6 +510,70 @@ our <a href="https://github.com/retreaver/retreaver-js">Retreaver.js</a> library
 <td>xml</td>
 </tr>
 </tbody></table>
+<h2 id='nomenclature'>Nomenclature</h2>
+<p>Retreaver has gone through many revisions and currently uses two new sets of terms to refer to objects. Please note, this API uses our Old nomenclature.</p>
+
+<table><thead>
+<tr>
+<th>Old</th>
+<th>Performance Marketing Edition</th>
+<th>Enterprise Edition</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Affiliate</td>
+<td>Publisher</td>
+<td>Source</td>
+</tr>
+<tr>
+<td>Target</td>
+<td>Buyer</td>
+<td>Contact Handler/Call Endpoint</td>
+</tr>
+<tr>
+<td>Target Group</td>
+<td>Buyer Group</td>
+<td>Handler Group</td>
+</tr>
+</tbody></table>
+<h2 id='our-ids-vs-customer-ids'>Our IDs vs Customer IDs</h2>
+<p>For convenience, some objects can be accessed both by the IDs set by our customers and by our internal IDs.</p>
+
+<p>Affiliates, Targets, and Campaigns can be accessed via customer editable IDs as &quot;afid&quot;, &quot;tid&quot;, and &quot;cid&quot; respectively.</p>
+
+<p>The &quot;id&quot; property in the JSON/XML document refers to our internal ID.</p>
+
+<table><thead>
+<tr>
+<th>Object</th>
+<th>Our Internal ID URL</th>
+<th>Customer Editable ID URL</th>
+<th>Customer Editable ID Accessor</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Affiliate</td>
+<td>/affiliates/{id}</td>
+<td>/affiliates/afid/{afid}</td>
+<td>afid</td>
+</tr>
+<tr>
+<td>Target</td>
+<td>/targets/{id}</td>
+<td>/targets/tid/{tid}</td>
+<td>tid</td>
+</tr>
+<tr>
+<td>Campaign</td>
+<td>/campaigns/{id}</td>
+<td>/campaigns/cid/{cid}</td>
+<td>cid</td>
+</tr>
+</tbody></table>
+
+<p>These URLs work with GET, PUT, and DELETE HTTP verbs.</p>
+
+<p>Please note, in many sections of the documentation below, we are referring to the Customer Editable ID URL.</p>
 <h2 id='paginated'>Paginated</h2>
 <p>Retreaver is a RESTful paginated API that returns 25 results per page. Each relevant index response will have a <a href="https://www.w3.org/wiki/LinkHeader">Link HTTP header</a> present.</p>
 
