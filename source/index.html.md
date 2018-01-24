@@ -45,6 +45,36 @@ JSON   | application/json | json
 XML    | text/xml         | xml
 
 
+## Nomenclature
+
+Retreaver has gone through many revisions and currently uses two new sets of terms to refer to objects. Please note, this API uses our Old nomenclature.
+
+Old          | Performance Marketing Edition | Enterprise Edition
+------------ | ----------------------------- | ------------------
+Affiliate    | Publisher                     | Source
+Target       | Buyer                         | Contact Handler/Call Endpoint
+Target Group | Buyer Group                   | Handler Group
+
+
+## Our IDs vs Customer IDs
+
+For convenience, some objects can be accessed both by the IDs set by our customers and by our internal IDs.
+
+Affiliates, Targets, and Campaigns can be accessed via customer editable IDs as "afid", "tid", and "cid" respectively.
+
+The "id" property in the JSON/XML document refers to our internal ID.
+
+Object    | Our Internal ID URL | Customer Editable ID URL | Customer Editable ID Accessor
+--------- | ------------------- | ------------------------ | -----------------------------
+Affiliate | /affiliates/{id}    | /affiliates/afid/{afid}  | afid
+Target    | /targets/{id}       | /targets/tid/{tid}       | tid
+Campaign  | /campaigns/{id}     | /campaigns/cid/{cid}     | cid
+
+These URLs work with GET, PUT, and DELETE HTTP verbs.
+
+Please note, in many sections of the documentation below, we are referring to the Customer Editable ID URL.
+                                    
+
 ## Paginated
 
 Retreaver is a RESTful paginated API that returns 25 results per page. Each relevant index response will have a [Link HTTP header](https://www.w3.org/wiki/LinkHeader) present.
