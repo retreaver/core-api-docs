@@ -9,6 +9,7 @@ toc_footers:
   - <a href='https://support.retreaver.com/'>Knowledge Base</a>
 
 includes:
+  - target_groups
   - errors
 
 search: true
