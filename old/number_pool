@@ -9,7 +9,7 @@
 
 <p><strong>Resource URL</strong>
 @note http://callpixels.com/number_pools/1.format</p>
-<pre class="highlight plaintext"><code>JSON
+<div class="highlight"><pre class="highlight plaintext"><code>JSON
 {
     "number_pool": {
         "id": 1,
@@ -27,7 +27,7 @@
         "reserve_size": 1
     }
 }
-</code></pre><h1 id='get-number_pools-for-cid-0002-afid-0033'>GET number_pools/for/cid/0002/afid/0033</h1>
+</code></pre></div><h1 id='get-number_pools-for-cid-0002-afid-0033'>GET number_pools/for/cid/0002/afid/0033</h1>
 <p>Searches for number pools matching the provided criteria. The afid portion is optional.</p>
 
 <p><strong>Resource URL</strong>

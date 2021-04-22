@@ -56,7 +56,7 @@ JSON
         &quot;updated_at&quot;: &quot;2012-05-07T15:44:39Z&quot;
     }
 }</p>
-<pre class="highlight plaintext"><code>
+<div class="highlight"><pre class="highlight plaintext"><code>
 # DELETE /companies/2
 
 Deletes the given company. You must delete any numbers the company has first.
@@ -73,7 +73,7 @@ Updates the given company.
 
 **Request**
 http://callpixels.com/companies/1.json?api_key=FromMyAccountPage
-</code></pre>
+</code></pre></div>
 <p>JSON
 {&quot;company&quot;:{&quot;name&quot;:&quot;CallPixels.com&quot;}}
 ~~~~</p>

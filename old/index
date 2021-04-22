@@ -9,11 +9,11 @@
 <p>In order to receive more results, you will need to include a ?page=x query parameter.</p>
 
 <p>A HTTP <em>Link</em> header will be included in the response, providing a link to the first, previous, last, and next pages where appropriate.</p>
-<pre class="highlight plaintext"><code>HTTP
+<div class="highlight"><pre class="highlight plaintext"><code>HTTP
 GET /calls.json?page=3
 HTTP/1.1 200 OK
 Link: &lt;http://callpixels.com/calls.json?page=1&gt;; rel="first", &lt;http://callpixels.com/calls.json?apage=2&gt;; rel="prev", &lt;http://callpixels/calls.json?page=49&gt;; rel="last", &lt;http://callpixels.com/calls.json?page=4&gt;; rel="next"
-</code></pre>
+</code></pre></div>
 <p>In order to faciliate a smooth transition, requests without a <em>page</em> query parameter will behave as normal until January 7th 2014.</p>
 <h1 id='affiliate-network-integration-guides-04-13'>Affiliate Network Integration Guides (04/13)</h1>
 <p>If you are looking to integrate CallPixels with your affiliate network, please follow our <a href="https://s3.amazonaws.com/callpixels/CallPixels+Deep_Integration_V1.1.0.pdf">Deep Integration Guide</a> (pdf). The API does not give full access to all the features on CallPixels and is currently being maintained to support existing users. We also have information on our replacement tokens available in our <a href="https://s3.amazonaws.com/callpixels/CallPixels+Implementation+Guide_Webhooks_Timers_V1.0.2.pdf">Webhooks and Timers Guide</a> (pdf).
@@ -24,9 +24,9 @@ We recommend following these guides as the methods described will continue to be
 <p>Generally, Object parameters must be nested in a named node in the root object.</p>
 
 <p>For example, if you are updating an Affiliate, you will have to pass...</p>
-<pre class="highlight plaintext"><code>JSON
+<div class="highlight"><pre class="highlight plaintext"><code>JSON
 {"affiliate":{"first_name":"John"}}
-</code></pre>
+</code></pre></div>
 <p>You must also set an appropriate HTTP Content-Type header if you&#39;re posting JSON...</p>
 
 <p>Content-Type: application/json
@@ -35,9 +35,9 @@ We recommend following these guides as the methods described will continue to be
 <p>Content-Type: text/xml</p>
 
 <p>You must also pass your API Key, and if you&#39;re a reseller, the Company ID that you are managing.</p>
-<pre class="highlight plaintext"><code>JSON
+<div class="highlight"><pre class="highlight plaintext"><code>JSON
 {"affiliate":{"first_name":"John"},"api_key":"FromMyAccountPage","company_id":9}
-</code></pre>
+</code></pre></div>
 <p><strong>Failure to include the company_id will have bad results for resellers.</strong></p>
 <h2 id='api-key'>API Key</h2>
 <p>Get your API Key from the My Account page under the upper right corner User menu. Click Show at the bottom of the My Account page, and send that API key along with your requests. If you need to, you can reset your API key on that page.</p>

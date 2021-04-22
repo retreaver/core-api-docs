@@ -16,7 +16,7 @@
 @note http://callpixels.com/calls/addcf985-017e-4962-be34-cf5d55e74afc.format</p>
 
 <p><strong>Response</strong></p>
-<pre class="highlight plaintext"><code>JSON
+<div class="highlight"><pre class="highlight plaintext"><code>JSON
 {
    "call":{
       "uuid":"addcf985-017e-4962-be34-cf5d55e74afc",
@@ -40,4 +40,4 @@
       "recording_url":"http://callpixels.com/recordings/87d43a5f5c88041687f9fd1bb6a58d6f/call_17192096019_1342303189.mp3"
    }
 }
-</code></pre>
+</code></pre></div>

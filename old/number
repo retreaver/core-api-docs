@@ -8,7 +8,7 @@
 
 <p><strong>Resource URL</strong>
 @note http://callpixels.com/numbers/1.format</p>
-<pre class="highlight plaintext"><code>JSON
+<div class="highlight"><pre class="highlight plaintext"><code>JSON
 {
    "number":{
       "id":5,
@@ -52,7 +52,7 @@
       ]
    }
 }
-</code></pre><h1 id='get-numbers-for-cid-0002-afid-0033-sid-sub_id'>GET numbers/for/cid/0002/afid/0033/sid/sub_id</h1>
+</code></pre></div><h1 id='get-numbers-for-cid-0002-afid-0033-sid-sub_id'>GET numbers/for/cid/0002/afid/0033/sid/sub_id</h1>
 <p>Searches for numbers matching the provided criteria.</p>
 
 <p><strong>Resource URL</strong>
