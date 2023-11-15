@@ -199,7 +199,7 @@ Parameter | Default | Description
 created_at_start | -4712-01-01T00:00:00+00:00 | Return any Calls that were created after this date.
 created_at_end | 4712-01-01T00:00:00+00:00 | Return any Calls that were created before this date.
 order | desc | `asc` or `desc`, for ascending or descending.
-sort_by | created_at | `created_at` or `updated_at`, Calls will be sorted by this value. If you only want recently updated Calls, sort by updated_at. 
+sort_by | created_at | `created_at` or `updated_at`, Calls will be sorted by this value. If you only want recently updated Calls, sort by `updated_at`. Note that calls sorted by `updated_at` will forcefully be returned in `desc` order even if order parameter is `asc`.
 
 ## Enumerate through all calls
  
