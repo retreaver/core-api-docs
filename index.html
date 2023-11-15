@@ -821,7 +821,7 @@ You should <strong>never, ever expose your Retreaver Core API key publicly</stro
 <tr>
 <td>sort_by</td>
 <td>created_at</td>
-<td><code>created_at</code> or <code>updated_at</code>, Calls will be sorted by this value. If you only want recently updated Calls, sort by updated_at.</td>
+<td><code>created_at</code> or <code>updated_at</code>, Calls will be sorted by this value. If you only want recently updated Calls, sort by <code>updated_at</code>. Note that calls sorted by <code>updated_at</code> will forcefully be returned in <code>desc</code> order even if order parameter is <code>asc</code>.</td>
 </tr>
 </tbody></table>
 <h2 id='enumerate-through-all-calls'>Enumerate through all calls</h2>
