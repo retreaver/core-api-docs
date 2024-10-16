@@ -29,7 +29,7 @@ The API can be used to automate core business processes, but does not currently 
 
 ## Version
 
-This is our *unversioned* API and for sake of clarity we'll refer to it henceforth as: 
+This is our *unversioned* API and for sake of clarity we'll refer to it henceforth as:
 
 `Retreaver Core API`
 
@@ -74,7 +74,7 @@ Campaign  | /campaigns/{id}     | /campaigns/cid/{cid}     | cid
 These URLs work with GET, PUT, and DELETE HTTP verbs.
 
 Please note, in many sections of the documentation below, we are referring to the Customer Editable ID URL.
-                                    
+
 
 ## Paginated
 
@@ -202,15 +202,15 @@ order | desc | `asc` or `desc`, for ascending or descending.
 sort_by | created_at | `created_at` or `updated_at`, Calls will be sorted by this value. If you only want recently updated Calls, sort by `updated_at`. Note that calls sorted by `updated_at` will forcefully be returned in `desc` order even if order parameter is `asc`.
 
 ## Enumerate through all calls
- 
+
  > First page...
- 
+
 ```shell
 curl "https://api.retreaver.com/calls.json?api_key=woofwoofwoof&company_id=1&sort_by=created_at&order=asc&page=1"
 ```
 
 > Second page...
- 
+
 ```shell
 curl "https://api.retreaver.com/calls.json?api_key=woofwoofwoof&company_id=1&sort_by=created_at&order=asc&page=2"
 ```
@@ -287,7 +287,7 @@ Calls can be accessed by their UUID.
 
 # Affiliates
 
-Entering Affiliates into our system allows you to attribute calls back to the Affiliate who created them, and to update any external tracking systems. 
+Entering Affiliates into our system allows you to attribute calls back to the Affiliate who created them, and to update any external tracking systems.
 
 If you're not in affiliate marketing, Affiliate objects can be used for whatever source attribution is relevant. Affiliates exist for your reference.
 
@@ -702,7 +702,7 @@ We'll only attempt to route calls to your target during its Business Hours. Thes
 
 Parameter | Type | Default | Required | Description
 --------- | ---- | ------- | -------- | -----------
-day_of_week | integer | | required | A zero-indexed day of the week, with 0 being Sunday and 6 being Saturday. 
+day_of_week | integer | | required | A zero-indexed day of the week, with 0 being Sunday and 6 being Saturday.
 work_day | boolean | true | | Whether or not the target is open on this day.
 time_open | integer | 0 | | The 24 hour time the target opens, formatted `HHMM`.
 time_close | integer | 2400 | | The 24 hour time the target closes, formatted `HHMM`.
@@ -743,7 +743,7 @@ Adelaide|Canberra|Melbourne|Sydney|Brisbane
 Hobart|Vladivostok|Guam|Port Moresby|Magadan
 Solomon Is.|New Caledonia|Fiji|Kamchatka|Marshall Is.
 Auckland|Wellington|Nuku'alofa|Tokelau Is.|Chatham Is.
-Samoa| | | | | 
+Samoa| | | | |
 
 
 ## Update a Target
@@ -872,7 +872,7 @@ curl -s \
  -H "Content-Type: application/json" \
  -d '{"target": { \
          "hard_cap_attributes": { \
-             "cap": 100 \ 
+             "cap": 100 \
              } \
          }' \
      }'
@@ -1165,7 +1165,7 @@ curl -s \
 }
 ```
 
-Create a new Campaign. 
+Create a new Campaign.
 
 
 ### HTTP Request
@@ -1183,10 +1183,10 @@ Parameter | Type | Default | Required | Description
 --------- | ---- | ------- | -------- | -----------
 cid | string | Random 8 characters |   | Your internal campaign ID that will be referenced in the future.
 name | string |  |  | A name for the campaign for your reference.
-dedupe_seconds | integer | 0 (Disabled) |  | Prevent a repeat caller from causing any Connect (timer.seconds == 0) or Sale (timer.seconds > 0) timer from firing within n seconds. Does not affect < 0 second timers. 
+dedupe_seconds | integer | 0 (Disabled) |  | Prevent a repeat caller from causing any Connect (timer.seconds == 0) or Sale (timer.seconds > 0) timer from firing within n seconds. Does not affect < 0 second timers.
 affiliate_can_pull_number | boolean | false | |  Allow affiliates to access this campaign via our LinkTrust integration.
 record_calls | boolean | true | | Toggles call recording on and off.
-message | string |  |  | *Text-to-speech*  A message you want read aloud to the caller when they dial your number. Make sure to tell them to press one to continue.  
+message | string |  |  | *Text-to-speech*  A message you want read aloud to the caller when they dial your number. Make sure to tell them to press one to continue.
 voice_gender | string | Male |  | *Text-to-speech*  Male or Female, the gender of the text-to-speech voice you want.
 message_file | file |  |  | *Audio File* An audio file you would like played for the caller when they dial your number. Use this field with multipart/form-data submissions.
 message_file_b64_data | string |  |  | *Audio File* A Base64-encoded audio file. Only use this field if you're not using the message_file field.
@@ -1544,12 +1544,12 @@ afid | string | | required | The affiliate ID this number belongs to. If not fou
 cid | string | | required | The campaign ID this number belongs to. You must set up the campaign before creating a number for it.
 sid | string | | |  The SubID this number belongs to.
 destroy_nested | boolean | false | | When set, causes existing timers and menu_options on this number to be destroyed.
-    
+
 ### Optional Parameters
-    
+
 Parameter | Type | Default | Required | Description
---------- | ---- | ------- | -------- | -----------    
-message | string |  |  | *Text-to-speech*  A message you want read aloud to the caller when they dial your number. Make sure to tell them to press one to continue.  
+--------- | ---- | ------- | -------- | -----------
+message | string |  |  | *Text-to-speech*  A message you want read aloud to the caller when they dial your number. Make sure to tell them to press one to continue.
 voice_gender | string | Male |  | *Text-to-speech*  Male or Female, the gender of the text-to-speech voice you want.
 message_file | file |  |  | *Audio File* An audio file you would like played for the caller when they dial your number. Use this field with multipart/form-data submissions.
 message_file_b64_data | string |  |  | *Audio File* A Base64-encoded audio file. Only use this field if you're not using the message_file field.
@@ -1557,8 +1557,8 @@ message_file_b64_filename | string | |  | *Audio File* The original file name fo
 repeat | integer | 4 |  | The number of times to repeat the greeting.
 timers_attributes | array | | | An array of timers.
 menu_options_attributes | array | | | An array of menu options.
-  
-  
+
+
 **Nested Attribute: Timer**
 
 Only include Timers if you want to override the Campaign settings. For more information on Timers, see [Campaign](#create-a-campaign).
@@ -1685,14 +1685,14 @@ You must replace <code>79</code> with the Retreaver ID of the Number you want to
 curl -X DELETE https://api.retreaver.com/numbers/79.json?api_key=woofwoofwoof&company_id=1
 ```
 
-Deletes the given number. Numbers will be deprovisioned within 24 hours. Do not delete Numbers if you are porting them to another provider, 
+Deletes the given number. Numbers will be deprovisioned within 24 hours. Do not delete Numbers if you are porting them to another provider,
 until you have confirmed that the port has completed.
 
 
 
 # Number Pools
 
-Number Pools are used to dynamically assign Numbers whenever a user visits your website. Number Pools are used in lieu of static Numbers when 
+Number Pools are used to dynamically assign Numbers whenever a user visits your website. Number Pools are used in lieu of static Numbers when
 you want to track many different attributes.
 
 
@@ -1786,10 +1786,10 @@ curl -s \
     -d '{ \
             "number_pool": { \
                 "cid": "111", \
-        		"max_pool_size": 100, \           
-        		"hide_embedded_access": true, \
-        		"google_analytics": true \
-            } \                             
+                "max_pool_size": 100, \
+                "hide_embedded_access": true, \
+                "google_analytics": true \
+            } \
         }'
 ```
 
@@ -1843,14 +1843,14 @@ Creates a new Number Pool.
 Parameter | Type | Default | Required | Description
 --------- | ---- | ------- | -------- | -----------
 cid | string | | required | The campaign ID this number pool belongs to. You must set up the campaign before creating a number pool for it.
-type | string | Toll-free | | Toll-free or Local, the type of number that is desired for this number pool. 
+type | string | Toll-free | | Toll-free or Local, the type of number that is desired for this number pool.
 country | string| US | | For Local number pools only, the 2 character country code for the country you would like the numbers to be in. Possible values: US CA AT BE DK FI FR GB IE IT NL PL SE
 afid | string | | | The affiliate ID this number pool belongs to. You must set up the affiliate before you create the number pool.
 max_pool_size | integer | 10 | | The maximum number of numbers you want in this number pool.
 buffer_seconds | integer | 0 | | The number of seconds for a number to retain its assignment after the visitor has left your site.
-hide_embedded_access | boolean | false | | When true, will not show the embedded affiliate phone number management interface for this campaign. 
-google_analytics | boolean | false | | Enables our Google Analytics integration. Incompatible with number pools that have an assigned affiliate. 
-reserve_size | integer | 1 | | The number of numbers to pre-provision and hold in reserve. Allows numbers to be instantly assigned and helps avoid delays in provisioning numbers.  
+hide_embedded_access | boolean | false | | When true, will not show the embedded affiliate phone number management interface for this campaign.
+google_analytics | boolean | false | | Enables our Google Analytics integration. Incompatible with number pools that have an assigned affiliate.
+reserve_size | integer | 1 | | The number of numbers to pre-provision and hold in reserve. Allows numbers to be instantly assigned and helps avoid delays in provisioning numbers.
 
 
 
@@ -2074,7 +2074,7 @@ Parameter | Type | Default | Required | Description
 --------- | ---- | ------- | -------- | -----------
 name | string |  | required | The company name.
 default_click_url | string | | | The default click URL to set as a Timer @ 0 seconds when creating a campaign.
-default_sale_url | string | | | The default sale URL to set as a Timer @ 90 seconds when creating a campaign 
+default_sale_url | string | | | The default sale URL to set as a Timer @ 90 seconds when creating a campaign
 
 
 ## Update a Company
@@ -2328,8 +2328,8 @@ curl -s \
     }
 }
 ```
-                                                   
-Changes any attributes you have passed in on the Contact. To change a Contact Number, you must pass in the ID of the 
+
+Changes any attributes you have passed in on the Contact. To change a Contact Number, you must pass in the ID of the
 existing Contact Number, or see [below](#update-a-contact-number-by-phone-number) for an easier method.
 
 
@@ -2510,93 +2510,192 @@ Easily updates a Contact Number.
 
 `{"contact_number":{"number":"+18005551234"}}`
 
+
 # Suppressed Numbers
 
-Check and modify whether or not a Contact Number is blocked by your Suppression List.
+Manage the company's Suppressed Numbers, including creating, updating, deleting, and retrieving suppressed numbers.
 
-<aside class="warning">
+<aside  class="notice">
 Suppressed Numbers exist regardless of whether or not there is a corresponding Contact Number or Contact.
 </aside>
 
-## Check whether or not you have any Suppressed Numbers
+## Check whether or not the company has any Suppressed Numbers
+
+ Returns a boolean value (```true ```/```false```) whether the Company has any suppressed numbers.
 
 ```shell
-curl https://api.retreaver.com/suppression_list/check.json?api_key=woofwoofwoof&company_id=1
+curl https://api.retreaver.com/suppressed_numbers/check.json?api_key=woofwoofwoof&company_id=1
 ```
 
 > The above command returns JSON structured like this:
 
-
 ```json
-{"suppression_list":true}
+{ "suppressed_numbers_exist": true }
 ```
 
 Returns true if the Company has any numbers suppressed.
 
-
 ### HTTP Request
 
-`GET https://api.retreaver.com/suppression_list/check.json?api_key=woofwoofwoof&company_id=1`
+`GET https://api.retreaver.com/suppressed_numbers/check.json?api_key=woofwoofwoof&company_id=1`
 
+## Get all Suppressed Numbers for a Company
 
-## Delete a Contact Number from the Suppression List by phone number
+Get information about all of the numbers that are currently suppressed in a company.
 
 ```shell
-curl -X DELETE https://api.retreaver.com/contact_numbers/+18668987878/suppressed_number.json?api_key=woofwoofwoof&company_id=1
+curl https://api.retreaver.com/suppressed_numbers.json?api_key=woofwoofwoof&company_id=1
 ```
 
-Removes the Contact Number from your Suppression List.
+> The above command returns JSON structured like this:
+
+<aside class="notice">
+    The Campaign ID `cid` will be returned only if the Suppressed Number is associated with a Campaign.
+</aside>
+
+```json
+[
+  {
+    "suppressed_number": {
+      "id": 18996945,
+      "number": "+13213749611",
+      "created_at": "2024-09-30T21:09:54.769Z",
+      "can_resubscribe": true,
+      "company_id": 1,
+      "cid": 159
+    }
+  },
+  {
+    "suppressed_number": {
+      "id": 18996946,
+      "number": "+13216065590",
+      "created_at": "2024-09-30T21:09:54.769Z",
+      "can_resubscribe": true,
+      "company_id": 1,
+      "cid": 111
+    }
+  },
+  {
+    "suppressed_number": {
+      "id": 18996947,
+      "number": "+13216437667",
+      "created_at": "2024-09-30T21:09:54.769Z",
+      "can_resubscribe": true,
+      "company_id": 1,
+    }
+  }
+]
+```
 
 ### HTTP Request
 
+`GET https://api.retreaver.com/suppressed_numbers.json?api_key=woofwoofwoof&company_id=1`
 
-`DELETE https://api.retreaver.com/contact_numbers/+18668987878/suppressed_number.json?api_key=woofwoofwoof&company_id=1`
+## Get a specific Suppressed Number
 
+Returns information about the Suppressed Number in the company, by the provided number. The number should be in the format: `+13216065590`
 
-## Suppress a Contact Number by phone number
+```shell
+curl https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key=woofwoofwoof&company_id=1
+```
+
+> The above command returns JSON structured like this:
+
+<aside class="notice">
+    The Campaign ID `cid` will be returned only if the Suppressed Number is associated with a Campaign.
+</aside>
+
+```json
+{
+  "suppressed_number": {
+    "id": 18996946,
+    "number": "+13216065590",
+    "created_at": "2024-09-30T21:09:54.769Z",
+    "can_resubscribe": true,
+    "company_id": 1,
+    "cid": 111
+  }
+}
+```
+
+### HTTP Request
+
+`GET https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key=woofwoofwoof&company_id=1`
+
+## Delete a number from the company's Suppressed Numbers
+
+Deletes the provided  number  from the company's suppressed numbers. The number should be in the format: `+13216065590`
+
+```shell
+curl -X DELETE https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key=woofwoofwoof&company_id=1
+```
+
+### HTTP Request
+
+`DELETE https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key=woofwoofwoof&company_id=1`
+
+## Create a Suppressed Number for a Company
+
+Adds a number to the company's Suppressed Numbers. The `can_resubscribe` value toggles whether or not the caller can unblock themselves by pressing 7 if there is a "Caller Blocked" Prompt on the Campaign/Number they are calling.
+
+The entire body of the post is optional, simply posting to `https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key=woofwoofwoof&company_id=1` would block `+13216065590`; `can_resubscribe` is `true` by default. The intended use case is to allow callers to restore contact with a company after choosing to be routed to a "Add caller to suppressed numbers and hang up" routing option.
 
 ```shell
 curl -s \
     -X POST \
-    https://api.retreaver.com/contact_numbers/+18668987878/suppressed_number.json?api_key=woofwoofwoof&company_id=1 \
+    https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key=woofwoofwoof&company_id=1 \
     -H "Content-Type: application/json" \
-    -d '{"suppressed_number":{"can_resubscribe":false}}'
+    -d '{"suppressed_number": {"can_resubscribe": false}}'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-    "suppressed_number": {
-        "id": 502997,
-        "number": "+18668987878",
-        "can_resubscribe": false,
-        "created_at": "2013-10-02T14:36:14.166-04:00"
-    }
+  "id": 18996958,
+  "company_id": 1,
+  "affiliate_id": null,
+  "campaign_id": null,
+  "number": "+13216065590",
+  "created_at": "2024-10-11T08:50:59.981Z",
+  "updated_at": "2024-10-11T08:50:59.981Z",
+  "can_resubscribe": false
 }
 ```
 
-Adds a Contact Number to the Company's Suppression List. The `can_resubscribe` value toggles whether or not the contact
-can unblock themselves by pressing 7 if there is a "Caller Blocked" Prompt on the Campaign/Number they are calling.
-
-The entire body of the post is optional, simply posting to 
-`https://api.retreaver.com/contact_numbers/+18668987878/suppressed_number.json?api_key=woofwoofwoof&company_id=1`
-would block +18668987878; `can_resubscribe` is `true` by default. The intended use case is to allow callers to restore 
-contact with a company after choosing to be routed to a "add caller to suppression list and hang up" routing option.
-
 ### HTTP Request
 
-`POST https://api.retreaver.com/contact_numbers/+18668987878/suppressed_number.json?api_key=woofwoofwoof&company_id=1`
+`POST https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key=woofwoofwoof&company_id=1`
 
 `Content-Type: application/json`
 
-`{"suppressed_number":{"can_resubscribe":false}}`
+`{"suppressed_number": {"can_resubscribe": false}}`
+
+## Update a Suppressed Number for a Company
+
+By sending a `PUT` request you can update properties such as `can_resubscribe` and `campaign_id` for an already created Suppressed Number. The number should be in the format: `+13216065590`.
+
+```shell
+curl -s \
+    -X POST \
+    https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key=woofwoofwoof&company_id=1 \
+    -H "Content-Type: application/json" \
+    -d '{"suppressed_number": {"can_resubscribe": false}}'
+```
+
+### HTTP request
+
+`PUT http://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key=woofwoofwoof&company_id=1`
+
+`Content-Type: application/json`
+
+`{"can_resubscribe": false, "campaign_id": "116dc0f6"}`
 
 
 # Static Caller Numbers
 
-Static Caller Numbers are used to tell Retreaver that calls from a certain CallerID should be handled separately. Use 
-Static Caller Numbers when you have a call center sending you many calls with the same CallerID. Retreaver will either 
+Static Caller Numbers are used to tell Retreaver that calls from a certain CallerID should be handled separately. Use
+Static Caller Numbers when you have a call center sending you many calls with the same CallerID. Retreaver will either
 prompt the caller for the caller's real number, or will randomize the CallerID for use with our call control API.
 
 ## Get all Static Caller Numbers
@@ -2644,7 +2743,7 @@ Creates a Static Caller Number.
 
 `Content-Type: application/json`
 
-`{"static_caller_number":{"number":"+18668987878"}}`
+`{"static_caller_number": {"number": "+18668987878"}}`
 
 
 ### Parameters
@@ -2665,3 +2764,88 @@ Removes the Static Caller Number.
 ### HTTP Request
 
 `DELETE https://api.retreaver.com/static_caller_numbers/1234.json?api_key=woofwoofwoof&company_id=1`
+
+
+# DEPRECATED ROUTES
+
+## Check whether or not you have any Suppressed Numbers
+
+<aside class="warning">
+    This route is no longer supported. Please use <a href="https://retreaver.github.io/core-api-docs/#check-whether-or-not-you-have-any-suppressed-numbers">the updated route</a> for all future requests.
+</aside>
+
+```shell
+curl https://api.retreaver.com/suppression_list/check.json?api_key=woofwoofwoof&company_id=1
+```
+
+> The above command returns JSON structured like this:
+
+
+```json
+{"suppression_list":true}
+```
+
+Returns true if the Company has any numbers suppressed.
+
+### HTTP Request
+
+`GET https://api.retreaver.com/suppression_list/check.json?api_key=woofwoofwoof&company_id=1`
+
+## Delete a Contact Number from the Suppression List by phone number
+
+<aside class="warning">
+    This route is no longer supported. Please use <a href="https://retreaver.github.io/core-api-docs/#check-whether-or-not-you-have-any-suppressed-numbers">the updated route</a> for all future requests.
+</aside>
+
+```shell
+curl -X DELETE https://api.retreaver.com/contact_numbers/+18668987878/suppressed_number.json?api_key=woofwoofwoof&company_id=1
+```
+
+Removes the Contact Number from your Suppression List.
+
+### HTTP Request
+
+`DELETE https://api.retreaver.com/contact_numbers/+18668987878/suppressed_number.json?api_key=woofwoofwoof&company_id=1`
+
+## Suppress a Contact Number by phone number
+
+<aside class="warning">
+    This route is no longer supported. Please use <a href="https://retreaver.github.io/core-api-docs/#check-whether-or-not-you-have-any-suppressed-numbers">the updated route</a> for all future requests.
+</aside>
+
+```shell
+curl -s \
+    -X POST \
+    https://api.retreaver.com/contact_numbers/+18668987878/suppressed_number.json?api_key=woofwoofwoof&company_id=1 \
+    -H "Content-Type: application/json" \
+    -d '{"suppressed_number":{"can_resubscribe":false}}'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "suppressed_number": {
+        "id": 502997,
+        "number": "+18668987878",
+        "can_resubscribe": false,
+        "created_at": "2013-10-02T14:36:14.166-04:00"
+    }
+}
+```
+
+Adds a Contact Number to the Company's Suppression List. The `can_resubscribe` value toggles whether or not the contact
+can unblock themselves by pressing 7 if there is a "Caller Blocked" Prompt on the Campaign/Number they are calling.
+
+The entire body of the post is optional, simply posting to
+`https://api.retreaver.com/contact_numbers/+18668987878/suppressed_number.json?api_key=woofwoofwoof&company_id=1`
+would block +18668987878; `can_resubscribe` is `true` by default. The intended use case is to allow callers to restore
+contact with a company after choosing to be routed to a "add caller to suppression list and hang up" routing option.
+
+### HTTP Request
+
+`POST https://api.retreaver.com/contact_numbers/+18668987878/suppressed_number.json?api_key=woofwoofwoof&company_id=1`
+
+`Content-Type: application/json`
+
+`{"suppressed_number": {"can_resubscribe": false}}`
