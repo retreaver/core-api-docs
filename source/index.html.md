@@ -2771,7 +2771,7 @@ Removes the Static Caller Number.
 ## Check whether or not you have any Suppressed Numbers
 
 <aside class="warning">
-    This route is no longer supported. Please use <a href="https://retreaver.github.io/core-api-docs/#check-whether-or-not-you-have-any-suppressed-numbers">the updated route</a> for all future requests.
+    This route is no longer supported. Please use <a href="https://retreaver.github.io/core-api-docs/#check-whether-or-not-the-company-has-any-suppressed-numbers">the updated route</a> for all future requests.
 </aside>
 
 ```shell
@@ -2794,7 +2794,7 @@ Returns true if the Company has any numbers suppressed.
 ## Delete a Contact Number from the Suppression List by phone number
 
 <aside class="warning">
-    This route is no longer supported. Please use <a href="https://retreaver.github.io/core-api-docs/#check-whether-or-not-you-have-any-suppressed-numbers">the updated route</a> for all future requests.
+    This route is no longer supported. Please use <a href="https://retreaver.github.io/core-api-docs/#delete-a-number-from-the-company-39-s-suppressed-numbers">the updated route</a> for all future requests.
 </aside>
 
 ```shell
@@ -2810,7 +2810,7 @@ Removes the Contact Number from your Suppression List.
 ## Suppress a Contact Number by phone number
 
 <aside class="warning">
-    This route is no longer supported. Please use <a href="https://retreaver.github.io/core-api-docs/#check-whether-or-not-you-have-any-suppressed-numbers">the updated route</a> for all future requests.
+    This route is no longer supported. Please use <a href="https://retreaver.github.io/core-api-docs/#create-a-suppressed-number-for-a-company">the updated route</a> for all future requests.
 </aside>
 
 ```shell
