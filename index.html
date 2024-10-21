@@ -524,13 +524,22 @@
             <a href="#suppressed-numbers" class="toc-h1 toc-link" data-title="Suppressed Numbers">Suppressed Numbers</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#check-whether-or-not-you-have-any-suppressed-numbers" class="toc-h2 toc-link" data-title="Check whether or not you have any Suppressed Numbers">Check whether or not you have any Suppressed Numbers</a>
+                    <a href="#check-whether-or-not-the-company-has-any-suppressed-numbers" class="toc-h2 toc-link" data-title="Check whether or not the company has any Suppressed Numbers">Check whether or not the company has any Suppressed Numbers</a>
                   </li>
                   <li>
-                    <a href="#delete-a-contact-number-from-the-suppression-list-by-phone-number" class="toc-h2 toc-link" data-title="Delete a Contact Number from the Suppression List by phone number">Delete a Contact Number from the Suppression List by phone number</a>
+                    <a href="#get-all-suppressed-numbers-for-a-company" class="toc-h2 toc-link" data-title="Get all Suppressed Numbers for a Company">Get all Suppressed Numbers for a Company</a>
                   </li>
                   <li>
-                    <a href="#suppress-a-contact-number-by-phone-number" class="toc-h2 toc-link" data-title="Suppress a Contact Number by phone number">Suppress a Contact Number by phone number</a>
+                    <a href="#get-a-specific-suppressed-number" class="toc-h2 toc-link" data-title="Get a specific Suppressed Number">Get a specific Suppressed Number</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-number-from-the-company-39-s-suppressed-numbers" class="toc-h2 toc-link" data-title="Delete a number from the company's Suppressed Numbers">Delete a number from the company's Suppressed Numbers</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-suppressed-number-for-a-company" class="toc-h2 toc-link" data-title="Create a Suppressed Number for a Company">Create a Suppressed Number for a Company</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-suppressed-number-for-a-company" class="toc-h2 toc-link" data-title="Update a Suppressed Number for a Company">Update a Suppressed Number for a Company</a>
                   </li>
               </ul>
           </li>
@@ -545,6 +554,20 @@
                   </li>
                   <li>
                     <a href="#delete-a-static-caller-number" class="toc-h2 toc-link" data-title="Delete a Static Caller Number">Delete a Static Caller Number</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#deprecated-routes" class="toc-h1 toc-link" data-title="DEPRECATED ROUTES">DEPRECATED ROUTES</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#check-whether-or-not-you-have-any-suppressed-numbers" class="toc-h2 toc-link" data-title="Check whether or not you have any Suppressed Numbers">Check whether or not you have any Suppressed Numbers</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-contact-number-from-the-suppression-list-by-phone-number" class="toc-h2 toc-link" data-title="Delete a Contact Number from the Suppression List by phone number">Delete a Contact Number from the Suppression List by phone number</a>
+                  </li>
+                  <li>
+                    <a href="#suppress-a-contact-number-by-phone-number" class="toc-h2 toc-link" data-title="Suppress a Contact Number by phone number">Suppress a Contact Number by phone number</a>
                   </li>
               </ul>
           </li>
@@ -606,7 +629,7 @@ our <a href="https://github.com/retreaver/retreaver-js">Retreaver.js</a> library
 
 <p><em>Please note: We&#39;re currently working on a better, versioned replacement for this API. But don&#39;t worry, this API isn&#39;t going away.</em></p>
 <h2 id='version'>Version</h2>
-<p>This is our <em>unversioned</em> API and for sake of clarity we&#39;ll refer to it henceforth as: </p>
+<p>This is our <em>unversioned</em> API and for sake of clarity we&#39;ll refer to it henceforth as:</p>
 
 <p><code>Retreaver Core API</code></p>
 <h2 id='multi-format'>Multi-format</h2>
@@ -885,7 +908,7 @@ created, and then paginate through all your calls.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET https://api.retreaver.com/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h1 id='affiliates'>Affiliates</h1>
-<p>Entering Affiliates into our system allows you to attribute calls back to the Affiliate who created them, and to update any external tracking systems. </p>
+<p>Entering Affiliates into our system allows you to attribute calls back to the Affiliate who created them, and to update any external tracking systems.</p>
 
 <p>If you&#39;re not in affiliate marketing, Affiliate objects can be used for whatever source attribution is relevant. Affiliates exist for your reference.</p>
 <h2 id='get-all-affiliates'>Get all Affiliates</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/affiliates.xml?api_key=woofwoofwoof&amp;company_id=1"</span>
@@ -1693,7 +1716,7 @@ You must replace <code>22592</code> with the Retreaver ID of the Target you want
  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
  <span class="nt">-d</span> <span class="s1">'{"target": { \
          "hard_cap_attributes": { \
-             "cap": 100 \ 
+             "cap": 100 \
              } \
          }'</span> <span class="se">\</span>
      <span class="o">}</span><span class="s1">'
@@ -1952,7 +1975,7 @@ You must replace <code>22592</code> with the Retreaver ID of the Target you want
    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Create a new Campaign. </p>
+<p>Create a new Campaign.</p>
 <h3 id='http-request-19'>HTTP Request</h3>
 <p><code>POST https://api.retreaver.com/campaigns.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -2684,10 +2707,10 @@ You must replace <code>79</code> with the Retreaver ID of the Number you want to
 <p><code>{&quot;number&quot;:{&quot;afid&quot;:&quot;0005&quot;}}</code></p>
 <h2 id='remove-a-number'>Remove a Number</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE https://api.retreaver.com/numbers/79.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1
 </code></pre></div>
-<p>Deletes the given number. Numbers will be deprovisioned within 24 hours. Do not delete Numbers if you are porting them to another provider, 
+<p>Deletes the given number. Numbers will be deprovisioned within 24 hours. Do not delete Numbers if you are porting them to another provider,
 until you have confirmed that the port has completed.</p>
 <h1 id='number-pools'>Number Pools</h1>
-<p>Number Pools are used to dynamically assign Numbers whenever a user visits your website. Number Pools are used in lieu of static Numbers when 
+<p>Number Pools are used to dynamically assign Numbers whenever a user visits your website. Number Pools are used in lieu of static Numbers when
 you want to track many different attributes.</p>
 <h2 id='get-all-number-pools'>Get all Number Pools</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/number_pools.json?api_key=woofwoofwoof&amp;company_id=1"</span>
 </code></pre></div>
@@ -2767,10 +2790,10 @@ you want to track many different attributes.</p>
     <span class="nt">-d</span> <span class="s1">'{ \
             "number_pool": { \
                 "cid": "111", \
-                "max_pool_size": 100, \           
+                "max_pool_size": 100, \
                 "hide_embedded_access": true, \
                 "google_analytics": true \
-            } \                             
+            } \
         }'</span>
 </code></pre></div>
 <blockquote>
@@ -3289,7 +3312,7 @@ You must replace <code>2</code> with the Retreaver ID of the Company you want to
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>Changes any attributes you have passed in on the Contact. To change a Contact Number, you must pass in the ID of the 
+<p>Changes any attributes you have passed in on the Contact. To change a Contact Number, you must pass in the ID of the
 existing Contact Number, or see <a href="#update-a-contact-number-by-phone-number">below</a> for an easier method.</p>
 <h3 id='http-request-38'>HTTP Request</h3>
 <p><code>PUT https://api.retreaver.com/contacts/2.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
@@ -3405,60 +3428,140 @@ existing Contact Number, or see <a href="#update-a-contact-number-by-phone-numbe
 
 <p><code>{&quot;contact_number&quot;:{&quot;number&quot;:&quot;+18005551234&quot;}}</code></p>
 <h1 id='suppressed-numbers'>Suppressed Numbers</h1>
-<p>Check and modify whether or not a Contact Number is blocked by your Suppression List.</p>
+<p>Manage the company&#39;s Suppressed Numbers, including creating, updating, deleting, and retrieving suppressed numbers.</p>
 
-<aside class="warning">
+<aside  class="notice">
 Suppressed Numbers exist regardless of whether or not there is a corresponding Contact Number or Contact.
 </aside>
-<h2 id='check-whether-or-not-you-have-any-suppressed-numbers'>Check whether or not you have any Suppressed Numbers</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.retreaver.com/suppression_list/check.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1
+<h2 id='check-whether-or-not-the-company-has-any-suppressed-numbers'>Check whether or not the company has any Suppressed Numbers</h2>
+<p>Returns a boolean value (<code>true</code>/<code>false</code>) whether the Company has any suppressed numbers.</p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.retreaver.com/suppressed_numbers/check.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="nl">"suppression_list"</span><span class="p">:</span><span class="kc">true</span><span class="p">}</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="nl">"suppressed_numbers_exist"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Returns true if the Company has any numbers suppressed.</p>
 <h3 id='http-request-45'>HTTP Request</h3>
-<p><code>GET https://api.retreaver.com/suppression_list/check.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
-<h2 id='delete-a-contact-number-from-the-suppression-list-by-phone-number'>Delete a Contact Number from the Suppression List by phone number</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE https://api.retreaver.com/contact_numbers/+18668987878/suppressed_number.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1
+<p><code>GET https://api.retreaver.com/suppressed_numbers/check.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+<h2 id='get-all-suppressed-numbers-for-a-company'>Get all Suppressed Numbers for a Company</h2>
+<p>Get information about all of the numbers that are currently suppressed in a company.</p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.retreaver.com/suppressed_numbers.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1
 </code></pre></div>
-<p>Removes the Contact Number from your Suppression List.</p>
-<h3 id='http-request-46'>HTTP Request</h3>
-<p><code>DELETE https://api.retreaver.com/contact_numbers/+18668987878/suppressed_number.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
-<h2 id='suppress-a-contact-number-by-phone-number'>Suppress a Contact Number by phone number</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-s</span> <span class="se">\</span>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+
+<aside class="notice">
+    The Campaign ID `cid` will be returned only if the Suppressed Number is associated with a Campaign.
+</aside>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"suppressed_number"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">18996945</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+13213749611"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-09-30T21:09:54.769Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"can_resubscribe"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"company_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"cid"</span><span class="p">:</span><span class="w"> </span><span class="mi">159</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"suppressed_number"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">18996946</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+13216065590"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-09-30T21:09:54.769Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"can_resubscribe"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"company_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"cid"</span><span class="p">:</span><span class="w"> </span><span class="mi">111</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"suppressed_number"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">18996947</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+13216437667"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-09-30T21:09:54.769Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"can_resubscribe"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"company_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div><h3 id='http-request-46'>HTTP Request</h3>
+<p><code>GET https://api.retreaver.com/suppressed_numbers.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+<h2 id='get-a-specific-suppressed-number'>Get a specific Suppressed Number</h2>
+<p>Returns information about the Suppressed Number in the company, by the provided number. The number should be in the format: <code>+13216065590</code></p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+
+<aside class="notice">
+    The Campaign ID `cid` will be returned only if the Suppressed Number is associated with a Campaign.
+</aside>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"suppressed_number"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">18996946</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+13216065590"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-09-30T21:09:54.769Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"can_resubscribe"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"company_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"cid"</span><span class="p">:</span><span class="w"> </span><span class="mi">111</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='http-request-47'>HTTP Request</h3>
+<p><code>GET https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+<h2 id='delete-a-number-from-the-company-39-s-suppressed-numbers'>Delete a number from the company&#39;s Suppressed Numbers</h2>
+<p>Deletes the provided  number  from the company&#39;s suppressed numbers. The number should be in the format: <code>+13216065590</code></p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1
+</code></pre></div><h3 id='http-request-48'>HTTP Request</h3>
+<p><code>DELETE https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+<h2 id='create-a-suppressed-number-for-a-company'>Create a Suppressed Number for a Company</h2>
+<p>Adds a number to the company&#39;s Suppressed Numbers. The <code>can_resubscribe</code> value toggles whether or not the caller can unblock themselves by pressing 7 if there is a &quot;Caller Blocked&quot; Prompt on the Campaign/Number they are calling.</p>
+
+<p>The entire body of the post is optional, simply posting to <code>https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key=woofwoofwoof&amp;company_id=1</code> would block <code>+13216065590</code>; <code>can_resubscribe</code> is <code>true</code> by default. The intended use case is to allow callers to restore contact with a company after choosing to be routed to a &quot;Add caller to suppressed numbers and hang up&quot; routing option.</p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-s</span> <span class="se">\</span>
     <span class="nt">-X</span> POST <span class="se">\</span>
-    https://api.retreaver.com/contact_numbers/+18668987878/suppressed_number.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1 <span class="se">\</span>
+    https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1 <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    <span class="nt">-d</span> <span class="s1">'{"suppressed_number":{"can_resubscribe":false}}'</span>
+    <span class="nt">-d</span> <span class="s1">'{"suppressed_number": {"can_resubscribe": false}}'</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"suppressed_number"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">502997</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+18668987878"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"can_resubscribe"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-10-02T14:36:14.166-04:00"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">18996958</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"company_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"affiliate_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+13216065590"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-10-11T08:50:59.981Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-10-11T08:50:59.981Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"can_resubscribe"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>Adds a Contact Number to the Company&#39;s Suppression List. The <code>can_resubscribe</code> value toggles whether or not the contact
-can unblock themselves by pressing 7 if there is a &quot;Caller Blocked&quot; Prompt on the Campaign/Number they are calling.</p>
-
-<p>The entire body of the post is optional, simply posting to 
-<code>https://api.retreaver.com/contact_numbers/+18668987878/suppressed_number.json?api_key=woofwoofwoof&amp;company_id=1</code>
-would block +18668987878; <code>can_resubscribe</code> is <code>true</code> by default. The intended use case is to allow callers to restore 
-contact with a company after choosing to be routed to a &quot;add caller to suppression list and hang up&quot; routing option.</p>
-<h3 id='http-request-47'>HTTP Request</h3>
-<p><code>POST https://api.retreaver.com/contact_numbers/+18668987878/suppressed_number.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+</span></code></pre></div><h3 id='http-request-49'>HTTP Request</h3>
+<p><code>POST https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
 <p><code>Content-Type: application/json</code></p>
 
-<p><code>{&quot;suppressed_number&quot;:{&quot;can_resubscribe&quot;:false}}</code></p>
+<p><code>{&quot;suppressed_number&quot;: {&quot;can_resubscribe&quot;: false}}</code></p>
+<h2 id='update-a-suppressed-number-for-a-company'>Update a Suppressed Number for a Company</h2>
+<p>By sending a <code>PUT</code> request you can update properties such as <code>can_resubscribe</code> and <code>campaign_id</code> for an already created Suppressed Number. The number should be in the format: <code>+13216065590</code>.</p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-s</span> <span class="se">\</span>
+    <span class="nt">-X</span> POST <span class="se">\</span>
+    https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1 <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'{"suppressed_number": {"can_resubscribe": false}}'</span>
+</code></pre></div><h3 id='http-request-50'>HTTP request</h3>
+<p><code>PUT http://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+
+<p><code>Content-Type: application/json</code></p>
+
+<p><code>{&quot;can_resubscribe&quot;: false, &quot;campaign_id&quot;: &quot;116dc0f6&quot;}</code></p>
 <h1 id='static-caller-numbers'>Static Caller Numbers</h1>
-<p>Static Caller Numbers are used to tell Retreaver that calls from a certain CallerID should be handled separately. Use 
-Static Caller Numbers when you have a call center sending you many calls with the same CallerID. Retreaver will either 
+<p>Static Caller Numbers are used to tell Retreaver that calls from a certain CallerID should be handled separately. Use
+Static Caller Numbers when you have a call center sending you many calls with the same CallerID. Retreaver will either
 prompt the caller for the caller&#39;s real number, or will randomize the CallerID for use with our call control API.</p>
 <h2 id='get-all-static-caller-numbers'>Get all Static Caller Numbers</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/static_caller_numbers.json?api_key=woofwoofwoof&amp;company_id=1"</span>
 </code></pre></div>
@@ -3474,7 +3577,7 @@ prompt the caller for the caller&#39;s real number, or will randomize the Caller
 </span><span class="p">}]</span><span class="w">
 </span></code></pre></div>
 <p>Provides a complete list of Static Numbers.</p>
-<h3 id='http-request-48'>HTTP Request</h3>
+<h3 id='http-request-51'>HTTP Request</h3>
 <p><code>GET https://api.retreaver.com/static_caller_numbers.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h2 id='create-a-static-caller-number'>Create a Static Caller Number</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-s</span> <span class="se">\</span>
     <span class="nt">-X</span> POST <span class="se">\</span>
@@ -3483,12 +3586,12 @@ prompt the caller for the caller&#39;s real number, or will randomize the Caller
     <span class="nt">-d</span> <span class="s1">'{"static_caller_number":{"number":"+18668987878"}}'</span>
 </code></pre></div>
 <p>Creates a Static Caller Number.</p>
-<h3 id='http-request-49'>HTTP Request</h3>
+<h3 id='http-request-52'>HTTP Request</h3>
 <p><code>POST https://api.retreaver.com/static_caller_numbers.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
 <p><code>Content-Type: application/json</code></p>
 
-<p><code>{&quot;static_caller_number&quot;:{&quot;number&quot;:&quot;+18668987878&quot;}}</code></p>
+<p><code>{&quot;static_caller_number&quot;: {&quot;number&quot;: &quot;+18668987878&quot;}}</code></p>
 <h3 id='parameters-11'>Parameters</h3>
 <table><thead>
 <tr>
@@ -3510,8 +3613,66 @@ prompt the caller for the caller&#39;s real number, or will randomize the Caller
 <h2 id='delete-a-static-caller-number'>Delete a Static Caller Number</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE https://api.retreaver.com/static_caller_numbers/1234.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1
 </code></pre></div>
 <p>Removes the Static Caller Number.</p>
-<h3 id='http-request-50'>HTTP Request</h3>
+<h3 id='http-request-53'>HTTP Request</h3>
 <p><code>DELETE https://api.retreaver.com/static_caller_numbers/1234.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+<h1 id='deprecated-routes'>DEPRECATED ROUTES</h1><h2 id='check-whether-or-not-you-have-any-suppressed-numbers'>Check whether or not you have any Suppressed Numbers</h2>
+<aside class="warning">
+    This route is no longer supported. Please use <a href="https://retreaver.github.io/core-api-docs/#check-whether-or-not-you-have-any-suppressed-numbers">the updated route</a> for all future requests.
+</aside>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl https://api.retreaver.com/suppression_list/check.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="nl">"suppression_list"</span><span class="p">:</span><span class="kc">true</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Returns true if the Company has any numbers suppressed.</p>
+<h3 id='http-request-54'>HTTP Request</h3>
+<p><code>GET https://api.retreaver.com/suppression_list/check.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+<h2 id='delete-a-contact-number-from-the-suppression-list-by-phone-number'>Delete a Contact Number from the Suppression List by phone number</h2>
+<aside class="warning">
+    This route is no longer supported. Please use <a href="https://retreaver.github.io/core-api-docs/#check-whether-or-not-you-have-any-suppressed-numbers">the updated route</a> for all future requests.
+</aside>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE https://api.retreaver.com/contact_numbers/+18668987878/suppressed_number.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1
+</code></pre></div>
+<p>Removes the Contact Number from your Suppression List.</p>
+<h3 id='http-request-55'>HTTP Request</h3>
+<p><code>DELETE https://api.retreaver.com/contact_numbers/+18668987878/suppressed_number.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+<h2 id='suppress-a-contact-number-by-phone-number'>Suppress a Contact Number by phone number</h2>
+<aside class="warning">
+    This route is no longer supported. Please use <a href="https://retreaver.github.io/core-api-docs/#check-whether-or-not-you-have-any-suppressed-numbers">the updated route</a> for all future requests.
+</aside>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-s</span> <span class="se">\</span>
+    <span class="nt">-X</span> POST <span class="se">\</span>
+    https://api.retreaver.com/contact_numbers/+18668987878/suppressed_number.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1 <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'{"suppressed_number":{"can_resubscribe":false}}'</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"suppressed_number"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">502997</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+18668987878"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"can_resubscribe"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2013-10-02T14:36:14.166-04:00"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Adds a Contact Number to the Company&#39;s Suppression List. The <code>can_resubscribe</code> value toggles whether or not the contact
+can unblock themselves by pressing 7 if there is a &quot;Caller Blocked&quot; Prompt on the Campaign/Number they are calling.</p>
+
+<p>The entire body of the post is optional, simply posting to
+<code>https://api.retreaver.com/contact_numbers/+18668987878/suppressed_number.json?api_key=woofwoofwoof&amp;company_id=1</code>
+would block +18668987878; <code>can_resubscribe</code> is <code>true</code> by default. The intended use case is to allow callers to restore
+contact with a company after choosing to be routed to a &quot;add caller to suppression list and hang up&quot; routing option.</p>
+<h3 id='http-request-56'>HTTP Request</h3>
+<p><code>POST https://api.retreaver.com/contact_numbers/+18668987878/suppressed_number.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+
+<p><code>Content-Type: application/json</code></p>
+
+<p><code>{&quot;suppressed_number&quot;: {&quot;can_resubscribe&quot;: false}}</code></p>
 <h1 id='target-groups'>Target Groups</h1>
 <p>Target Groups group Target objects and can be used in Campaign/Number routing settings, allowing you to easily manage
 how calls are routed.</p>
