@@ -19,7 +19,7 @@ NOTE: created_at_start must be before created_at_end and the two must be smaller
 
 ## Tag Value Report
 ```shell
-CURL "https://api.retreaver.com/api/v1/reports.json?api_key=dDjLx-Gj6yADS6ErxFPy&facet=tag_value&domain=calls&created_at_start=2024-10-25&created_at_end=2024-10-28"`
+curl "https://api.retreaver.com/api/v1/reports.json?api_key=woofwoofwoof&facet=tag_value&domain=calls&created_at_start=2024-10-25&created_at_end=2024-10-28"
 ```
 
 > The above command returns JSON structured like this:
@@ -61,11 +61,11 @@ CURL "https://api.retreaver.com/api/v1/reports.json?api_key=dDjLx-Gj6yADS6ErxFPy
 
 Get a report for all calls between 2024-10-25 and 2024-10-28 faceted by tag_value name.
 
-`GET https://api.retreaver.com/api/v1/reports.json?api_key=dDjLx-Gj6yADS6ErxFPy&facet=tag_value&domain=calls&created_at_start=2024-10-25&created_at_end=2024-10-28`
+`GET https://api.retreaver.com/api/v1/reports.json?api_key=woofwoofwoof&facet=tag_value&domain=calls&created_at_start=2024-10-25&created_at_end=2024-10-28`
 
 Parameter | Value
 --------- | -------
-api_key | dDjLx-Gj6yADS6ErxFPy
+api_key | woofwoofwoof
 domain | calls
 facet | tag_value
 created_at_start | 2024-10-25
@@ -73,7 +73,7 @@ created_at_end | 2024-10-28
 
 ## Tag Value Name Report
 ```shell
-CURL "https://api.retreaver.com/api/v1/reports.json?...&tag_value_key=utm_campaign"`
+curl "https://api.retreaver.com/api/v1/reports.json?...&tag_value_key=utm_campaign"
 ```
 
 > The above command returns JSON structured like this:
@@ -153,7 +153,7 @@ tag_value_key | utm_campaign
 
 ## Not all tag values are indexed
 ```shell
-CURL "https://api.retreaver.com/api/v1/reports.json?...&tag_value_key=unindexed_tag_value"`
+curl "https://api.retreaver.com/api/v1/reports.json?...&tag_value_key=unindexed_tag_value"
 ```
 
 > The above command returns JSON structured like this:

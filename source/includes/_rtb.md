@@ -1,7 +1,7 @@
 # RTB
 
 ## RTB Query Parameters
-`POST https://rtb.rtb.retreaver.com/rtbs.json?....`
+`POST https://rtb.retreaver.com/rtbs.json?....`
 
 Parameter | Mandatory | Description
 --------- | ------- | -----------
@@ -18,7 +18,7 @@ If you want you can use body params to send the parameters into `rtb`.
 
 ```shell
 curl --request POST \
-  --url https://retreaver.com/rtbs.json \
+  --url https://rtb.retreaver.com/rtbs.json \
   --data '{
 	"key": "7fc40342-f0a0-4e8f-bf09-b3887eedcb4a",
 	"publisher_id": "retreaver_pub",
@@ -47,7 +47,7 @@ curl -X POST "https://rtb.retreaver.com/rtbs.json?key=7fc40342-f0a0-4e8f-bf09-b3
 
 ### HTTP Request
 
-`POST https://rtb.retreaver.com/rtbs.json?key=7fc40342-f0a0-4e8f-bf09-b3887eedcb4a&publisher_id=retreaver_pub&caller_number=+18558485518&caller_zip=12344&age=25.`
+`POST https://rtb.retreaver.com/rtbs.json?key=7fc40342-f0a0-4e8f-bf09-b3887eedcb4a&publisher_id=retreaver_pub&caller_number=+18558485518&caller_zip=12344&age=25`
 
 ### Query Parameters
 
