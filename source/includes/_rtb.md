@@ -1,7 +1,7 @@
 # RTB
 
 ## RTB Query Parameters
-`POST https://rtb.retreaver.com/rtbs.json?....`
+`POST https://rtb.retreaver.com/rtbs.json?key=7fc40342-f0a0-4e8f-bf09-b3887eedcb4a&publisher_id=retreaver_pub&caller_number=+18558485518`
 
 Parameter | Mandatory | Description
 --------- | ------- | -----------
@@ -64,7 +64,7 @@ age | 25
 ## Place a bid on a static inbound number.
 
 ```shell
-curl -X POST "https://rtb.retreaver.com/rtbs.json?....&inbound_number=+12029795452"
+curl -X POST "https://rtb.retreaver.com/rtbs.json?key=7fc40342-f0a0-4e8f-bf09-b3887eedcb4a&publisher_id=retreaver_pub&caller_number=+18558485518&inbound_number=+12029795452"
 ```
 
 > The above command returns JSON structured like this:
@@ -84,15 +84,17 @@ If you do not want to use a number pool and provide rtb using a static number yo
 
 ### HTTP Request
 
-`POST "https://rtb.retreaver.com/rtbs.json?....&inbound_number=+12029795452"`
+`POST "https://rtb.retreaver.com/rtbs.json?key=7fc40342-f0a0-4e8f-bf09-b3887eedcb4a&publisher_id=retreaver_pub&caller_number=+18558485518&inbound_number=+12029795452"`
 
 ### Query Parameters
 
-The redundant parameters from the previous example are omitted. Please view the previous example.
-
 Parameter | Value
 --------- | -------
-... | ...
+key | 7fc40342-f0a0-4e8f-bf09-b3887eedcb4a
+publisher_id | retreaver_pub
+caller_number | +18558485518
+caller_zip | 12344
+age | 25
 inbound_number | +12029795452
 
 
