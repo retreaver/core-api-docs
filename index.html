@@ -4214,7 +4214,7 @@ attribute provided so that you don&#39;t have to track which Targets are in each
 
 <p><code>Content-Type: application/json</code></p>
 <h1 id='rtb'>RTB</h1><h2 id='rtb-query-parameters'>RTB Query Parameters</h2>
-<p><code>POST https://rtb.retreaver.com/rtbs.json?....</code></p>
+<p><code>POST https://rtb.retreaver.com/rtbs.json?key=7fc40342-f0a0-4e8f-bf09-b3887eedcb4a&amp;publisher_id=retreaver_pub&amp;caller_number=+18558485518</code></p>
 
 <table><thead>
 <tr>
@@ -4301,7 +4301,7 @@ attribute provided so that you don&#39;t have to track which Targets are in each
 <td>25</td>
 </tr>
 </tbody></table>
-<h2 id='place-a-bid-on-a-static-inbound-number'>Place a bid on a static inbound number.</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"https://rtb.retreaver.com/rtbs.json?....&amp;inbound_number=+12029795452"</span>
+<h2 id='place-a-bid-on-a-static-inbound-number'>Place a bid on a static inbound number.</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"https://rtb.retreaver.com/rtbs.json?key=7fc40342-f0a0-4e8f-bf09-b3887eedcb4a&amp;publisher_id=retreaver_pub&amp;caller_number=+18558485518&amp;inbound_number=+12029795452"</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -4317,10 +4317,8 @@ attribute provided so that you don&#39;t have to track which Targets are in each
 </span></code></pre></div>
 <p>If you do not want to use a number pool and provide rtb using a static number you own in retreaver you, must provide it:</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>POST &quot;https://rtb.retreaver.com/rtbs.json?....&amp;inbound_number=+12029795452&quot;</code></p>
+<p><code>POST &quot;https://rtb.retreaver.com/rtbs.json?key=7fc40342-f0a0-4e8f-bf09-b3887eedcb4a&amp;publisher_id=retreaver_pub&amp;caller_number=+18558485518&amp;inbound_number=+12029795452&quot;</code></p>
 <h3 id='query-parameters-2'>Query Parameters</h3>
-<p>The redundant parameters from the previous example are omitted. Please view the previous example.</p>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4328,8 +4326,24 @@ attribute provided so that you don&#39;t have to track which Targets are in each
 </tr>
 </thead><tbody>
 <tr>
-<td>...</td>
-<td>...</td>
+<td>key</td>
+<td>7fc40342-f0a0-4e8f-bf09-b3887eedcb4a</td>
+</tr>
+<tr>
+<td>publisher_id</td>
+<td>retreaver_pub</td>
+</tr>
+<tr>
+<td>caller_number</td>
+<td>+18558485518</td>
+</tr>
+<tr>
+<td>caller_zip</td>
+<td>12344</td>
+</tr>
+<tr>
+<td>age</td>
+<td>25</td>
 </tr>
 <tr>
 <td>inbound_number</td>
@@ -4390,7 +4404,7 @@ Retreaver Ping Shield will cache the first <code>rtb</code> and shield you from 
 <tr>
 <td>facet</td>
 <td>Yes</td>
-<td>One of: [&#39;publisher&#39;, &#39;buyer&#39;, &#39;campaign&#39;, &#39;number&#39;, &#39;daily&#39;, &#39;tag_value&#39;]</td>
+<td>One of: [&#39;publisher&#39;, &#39;buyer&#39;, &#39;campaign&#39;, &#39;number&#39;, &#39;daily&#39;, &#39;tag_value&#39;]. This is the object that you will want to generate a report for.</td>
 </tr>
 <tr>
 <td>created_at_start</td>
@@ -4489,7 +4503,7 @@ Retreaver Ping Shield will cache the first <code>rtb</code> and shield you from 
 <td>2024-10-28</td>
 </tr>
 </tbody></table>
-<h2 id='tag-value-name-report'>Tag Value Name Report</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/api/v1/reports.json?...&amp;tag_value_key=utm_campaign"</span>
+<h2 id='tag-value-name-report'>Tag Value Name Report</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/api/v1/reports.json?api_key=woofwoofwoof&amp;facet=tag_value&amp;domain=calls&amp;created_at_start=2024-10-25&amp;created_at_end=2024-10-28&amp;tag_value_key=utm_campaign"</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -4555,9 +4569,7 @@ Retreaver Ping Shield will cache the first <code>rtb</code> and shield you from 
 </span></code></pre></div>
 <p>Get a report for all calls between 2024-10-25 and 2024-10-28 faceted by the tag &#39;utm_campaign&#39;.</p>
 
-<p><code>GET https://api.retreaver.com/api/v1/reports.json?...&amp;tag_value_key=utm_campaign</code></p>
-
-<p>The redundant parameters from the previous example are omitted. Please view the previous example.</p>
+<p><code>GET https://api.retreaver.com/api/v1/reports.json?api_key=woofwoofwoof&amp;facet=tag_value&amp;domain=calls&amp;created_at_start=2024-10-25&amp;created_at_end=2024-10-28&amp;tag_value_key=utm_campaign</code></p>
 
 <table><thead>
 <tr>
@@ -4566,15 +4578,31 @@ Retreaver Ping Shield will cache the first <code>rtb</code> and shield you from 
 </tr>
 </thead><tbody>
 <tr>
-<td>...</td>
-<td>...</td>
+<td>api_key</td>
+<td>woofwoofwoof</td>
+</tr>
+<tr>
+<td>domain</td>
+<td>calls</td>
+</tr>
+<tr>
+<td>facet</td>
+<td>tag_value</td>
+</tr>
+<tr>
+<td>created_at_start</td>
+<td>2024-10-25</td>
+</tr>
+<tr>
+<td>created_at_end</td>
+<td>2024-10-28</td>
 </tr>
 <tr>
 <td>tag_value_key</td>
 <td>utm_campaign</td>
 </tr>
 </tbody></table>
-<h2 id='not-all-tag-values-are-indexed'>Not all tag values are indexed</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/api/v1/reports.json?...&amp;tag_value_key=unindexed_tag_value"</span>
+<h2 id='not-all-tag-values-are-indexed'>Not all tag values are indexed</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/api/v1/reports.json?api_key=woofwoofwoof&amp;facet=tag_value&amp;domain=calls&amp;created_at_start=2024-10-25&amp;created_at_end=2024-10-28&amp;tag_value_key=unindexed_tag_value"</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -4587,9 +4615,7 @@ Retreaver Ping Shield will cache the first <code>rtb</code> and shield you from 
 </span></code></pre></div>
 <p>To reduce the noise from billions of uninteresting values, we only report the values for Tags explicitly created for the company along with a few system Tags. To see a report on the values of &#39;unindexed_tag_value&#39;, please visit the Tags page and create a tag with key &#39;unindexed_tag_value&#39;. We will start indexing it from today. Let us know if you would like us to re-index past calls.</p>
 
-<p><code>GET https://api.retreaver.com/api/v1/reports.json?...&amp;tag_value_key=unindexed_tag_value</code></p>
-
-<p>The redundant parameters from the previous example are omitted. Please view the previous example.</p>
+<p><code>GET https://api.retreaver.com/api/v1/reports.json?api_key=woofwoofwoof&amp;facet=tag_value&amp;domain=calls&amp;created_at_start=2024-10-25&amp;created_at_end=2024-10-28&amp;tag_value_key=unindexed_tag_value</code></p>
 
 <table><thead>
 <tr>
@@ -4598,8 +4624,24 @@ Retreaver Ping Shield will cache the first <code>rtb</code> and shield you from 
 </tr>
 </thead><tbody>
 <tr>
-<td>...</td>
-<td>...</td>
+<td>api_key</td>
+<td>woofwoofwoof</td>
+</tr>
+<tr>
+<td>domain</td>
+<td>calls</td>
+</tr>
+<tr>
+<td>facet</td>
+<td>tag_value</td>
+</tr>
+<tr>
+<td>created_at_start</td>
+<td>2024-10-25</td>
+</tr>
+<tr>
+<td>created_at_end</td>
+<td>2024-10-28</td>
 </tr>
 <tr>
 <td>tag_value_key</td>
