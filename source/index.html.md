@@ -132,7 +132,7 @@ If you suspect your API key has been publicly exposed, [reset it](https://suppor
 
 Or, more precisely, phone calls.
 
-## Get recent Calls
+## V1 - Get recent Calls
 
 ```shell
 curl "https://api.retreaver.com/calls.json?api_key=woofwoofwoof&company_id=1"
@@ -197,14 +197,20 @@ Provides access to the call log. The call log contains all the Calls which have 
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-created_at_start | -4712-01-01T00:00:00+00:00 | Return any Calls that were created after this date.
-created_at_end | 4712-01-01T00:00:00+00:00 | Return any Calls that were created before this date.
-order | desc | `asc` or `desc`, for ascending or descending.
-sort_by | created_at | `created_at` or `updated_at`, Calls will be sorted by this value. If you only want recently updated Calls, sort by `updated_at`. Note that calls sorted by `updated_at` will forcefully be returned in `desc` order even if order parameter is `asc`.
+Parameter | Format | Default | Description
+--------- | ------- | ------- | -----------
+company_id | `123456` |  | Return any Calls associated to the specific company IF you have access to that company.
+created_at_start | `YYYY-MM-DDTHH:MM:SS+HH:MM` | -4712-01-01T00:00:00+00:00 | Return any Calls that were created after this date.
+created_at_end | `YYYY-MM-DDTHH:MM:SS+HH:MM` | 4712-01-01T00:00:00+00:00 | Return any Calls that were created before this date.
+sort_by | `created_at` or `updated_at` | `created_at` | Calls will be sorted by this value. If you only want recently updated Calls, sort by `updated_at`. Note that calls sorted by `updated_at` will forcefully be returned in `desc` order even if order parameter is `asc`.
+order | `asc` or `desc` | `desc` | Calls will be sorted in ascending or descending order of their `sort_by` column.
+caller | `%2B13015236555` | | Return only calls from the specified caller number.
+client_afid | `123456` | | Return calls for an affiliate.
+client_cid | `123456` | | Return calls for a specific campaign.
+client_tid | `123456` | | Return calls for a specific target.
+sub_id | `123456` | | Return calls for a affiliate Sub ID.
 
-## Enumerate through all calls
+## V1 - Enumerate through all calls
 
  > First page...
 
@@ -230,7 +236,7 @@ created, and then paginate through all your calls.
 `https://api.retreaver.com/calls.json?api_key=woofwoofwoof&company_id=1&sort_by=created_at&order=asc&page=2`
 
 
-## Enumerate through Calls in a specific date/time range.
+## V1 - Enumerate through Calls in a specific date/time range.
 
 ```shell
 curl "https://api.retreaver.com/calls.json?api_key=woofwoofwoof&company_id=1&created_at_start=2016-01-01T00:00:00+00:00&created_at_end=2016-01-02T00:00:00+00:00&page=1"
@@ -244,7 +250,7 @@ The timestamp should be formatted according to [rfc3339](https://validator.w3.or
 
 `GET https://api.retreaver.com/calls.json?api_key=woofwoofwoof&company_id=1&created_at_start=2016-01-01T00:00:00+00:00&created_at_end=2016-01-02T00:00:00+00:00&page=1`
 
-## Get a specific Call
+## V1 - Get a specific Call
 
 ```shell
 curl "https://api.retreaver.com/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof&company_id=1"
@@ -283,8 +289,509 @@ Calls can be accessed by their UUID.
 
 ### HTTP Request
 
-`GET https://api.retreaver.com/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof&company_id=1`
+`GET https://api.retreaver.com/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof`
 
+
+## V2 - Get recent Calls  <span style="color:red;">EXPERIMENTAL</span>
+
+```shell
+curl "https://canary.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "call": {
+      "uuid": "f1abfb78-ab8a-4146-9946-8169fbcc6d6c",
+      "caller": "+13015236555",
+      "caller_number_sent": null,
+      "caller_zip": "28379",
+      "caller_state": "NC",
+      "caller_city": "Rockingham",
+      "caller_country": "US",
+      "dialed_call_duration": 2,
+      "total_duration": 14,
+      "ivr_duration": 7,
+      "hold_duration": 5,
+      "status": "finished",
+      "start_time": "2024-11-04T16:52:18.034Z",
+      "forwarded_time": "2024-11-04T16:52:25.423Z",
+      "end_time": "2024-11-04T16:52:32.882Z",
+      "cid": "1",
+      "afid": null,
+      "sid": null,
+      "dialed_number": "+12263399112",
+      "revenue": 5.0,
+      "payout": 5.0,
+      "postback_value": null,
+      "network_sale_timer_fired": null,
+      "affiliate_sale_timer_fired": null,
+      "target_sale_timer_fired": null,
+      "hung_up_by": "caller",
+      "duplicate": false,
+      "payable_duplicate": false,
+      "receivable_duplicate": false,
+      "callpixels_target_id": 27449,
+      "system_target_id": 27449,
+      "system_campaign_id": 9872,
+      "system_affiliate_id": null,
+      "fired_pixels_count": 4,
+      "charge_total": "0.08",
+      "keys_pressed": [
+        "1"
+      ],
+      "repeat": true,
+      "affiliate_repeat": false,
+      "target_repeat": true,
+      "number_repeat": true,
+      "visitor_url": "https://example.com",
+      "company_id": 2,
+      "conversions_determined_at": "2024-11-04T16:52:54.744Z",
+      "updated_at": "2024-11-04T16:53:00.756Z",
+      "created_at": "2024-11-04T16:52:18.177Z",
+      "billable_minutes": 1,
+      "upstream_call_uuid": null,
+      "downstream_call_uuids": [],
+      "target_group": {
+        "id": 1639,
+        "name": "Retreaver Team"
+      },
+      "recording_url": "https://example.com",
+      "number": "+18886064349",
+      "converted": true,
+      "payable": true,
+      "receivable": true,
+      "conversion_seconds": null,
+      "tid": null,
+      "tags": {
+        "attempt": "0192f817-6fdc-f8b3-eb07-526dd16e2ade,0192f817-9147-eee3-25ea-e189df86dc6e",
+        "geo": "301,us,us-28379,us-nc",
+        "id": "0192f817-6fdc-f8b3-eb07-526dd16e2ade,0192f817-9147-eee3-25ea-e189df86dc6e",
+        "request_id": "0192f817-6fdc-f8b3-eb07-526dd16e2ade,0192f817-9147-eee3-25ea-e189df86dc6e",
+        "status": "success",
+        "system_target_id": "27449"
+      },
+      "fired_pixels": [
+        {
+          "fired_pixel": {
+            "url": "https://example.com",
+            "fire_order": 1,
+            "batch_uuid": "39d94d6b-639a-486b-bb21-dbba5949dd2e",
+            "created_at": "2024-11-04T16:52:55.182Z",
+            "fired_at": null,
+            "status": "new",
+            "webhook_name": null
+          }
+        },
+        {
+          "fired_pixel": {
+            "url": "https://example.com",
+            "fire_order": 0,
+            "batch_uuid": "343ccf9b-b3a1-4cd3-b2de-a351dcf40661",
+            "created_at": "2024-11-04T16:52:26.948Z",
+            "fired_at": "2024-11-04T16:52:26.947Z",
+            "status": "fired",
+            "webhook_name": "Test Webhook"
+          }
+        },
+        {
+          "fired_pixel": {
+            "url": "https://example.com",
+            "fire_order": 0,
+            "batch_uuid": "4ef5f708-aa5f-4918-9790-ffbe890a517d",
+            "created_at": "2024-11-04T16:52:27.154Z",
+            "fired_at": "2024-11-04T16:52:27.087Z",
+            "status": "fired",
+            "webhook_name": "Test Webhook"
+          }
+        },
+        {
+          "fired_pixel": {
+            "url": "https://example.com",
+            "fire_order": 0,
+            "batch_uuid": "982e0d22-dd8e-4476-8e89-d967285a6929",
+            "created_at": "2024-11-04T16:52:18.589Z",
+            "fired_at": "2024-11-04T16:52:18.533Z",
+            "status": "fired",
+            "webhook_name": "Test Webhook"
+          }
+        }
+      ],
+      "via": "inbound-dial",
+      "rescued": false,
+      "campaign_id": 9872,
+      "campaign_name": "Retreaver Main - Sales & Support",
+      "number_id": 4906092,
+      "target_id": 27449,
+      "affiliate_name": null,
+      "connected": true,
+      "profit_gross": "-0.08",
+      "profit_net": 0.0,
+      "target_name": "Taylor Anderson - Sales - +12263399112",
+      "time_to_call_in_seconds": -168096.165018,
+      "time_to_connect_in_seconds": 12,
+      "total_cost": "0.08"
+    }
+  },
+  {
+    "call": {
+      "uuid": "f6e88162-c6f9-4dd5-9739-652bdfc86874",
+      "caller": "+13015236555",
+      "caller_number_sent": null,
+      "caller_zip": "28379",
+      "caller_state": "NC",
+      "caller_city": "Rockingham",
+      "caller_country": "US",
+      "dialed_call_duration": 0,
+      "total_duration": 31,
+      "ivr_duration": 14,
+      "hold_duration": 17,
+      "status": "finished",
+      "start_time": "2024-11-04T16:51:41.815Z",
+      "forwarded_time": null,
+      "end_time": "2024-11-04T16:52:14.092Z",
+      "cid": "1",
+      "afid": null,
+      "sid": null,
+      "dialed_number": "+16477159443",
+      "revenue": null,
+      "payout": null,
+      "postback_value": null,
+      "network_sale_timer_fired": null,
+      "affiliate_sale_timer_fired": null,
+      "target_sale_timer_fired": null,
+      "hung_up_by": "caller",
+      "duplicate": false,
+      "payable_duplicate": false,
+      "receivable_duplicate": false,
+      "callpixels_target_id": null,
+      "system_target_id": null,
+      "system_campaign_id": 9872,
+      "system_affiliate_id": null,
+      "fired_pixels_count": 5,
+      "charge_total": "0.07",
+      "keys_pressed": [
+        "1"
+      ],
+      "repeat": true,
+      "affiliate_repeat": false,
+      "target_repeat": null,
+      "number_repeat": true,
+      "visitor_url": "https://example.com",
+      "company_id": 2,
+      "conversions_determined_at": "2024-11-04T16:52:37.091Z",
+      "updated_at": "2024-11-04T16:52:37.170Z",
+      "created_at": "2024-11-04T16:51:41.969Z",
+      "billable_minutes": 1,
+      "upstream_call_uuid": null,
+      "downstream_call_uuids": [],
+      "target_group": {},
+      "number": "+18886064349",
+      "converted": false,
+      "payable": false,
+      "receivable": false,
+      "conversion_seconds": null,
+      "tid": null,
+      "tags": {
+        "attempt": "0192f816-e1ec-0db1-d23a-40362aa6bb75,0192f816-ff94-522c-ee88-7011550a8066",
+        "geo": "301,us,us-28379,us-nc",
+        "request_id": "0192f816-e1ec-0db1-d23a-40362aa6bb75,0192f816-ff94-522c-ee88-7011550a8066",
+        "status": "success"
+      },
+      "fired_pixels": [
+        {
+          "fired_pixel": {
+            "url": "https://example.com",
+            "fire_order": 1,
+            "batch_uuid": "e2a0b1ff-99bb-469d-9feb-c0f4bb8312e4",
+            "created_at": "2024-11-04T16:52:37.296Z",
+            "fired_at": null,
+            "status": "new",
+            "webhook_name": null
+          }
+        },
+        {
+          "fired_pixel": {
+            "url": "https://example.com",
+            "fire_order": 0,
+            "batch_uuid": "35ef3cf1-771b-46cf-9a32-514c61e21530",
+            "created_at": "2024-11-04T16:51:42.267Z",
+            "fired_at": "2024-11-04T16:51:42.197Z",
+            "status": "fired",
+            "webhook_name": "Test Webhook"
+          }
+        },
+        {
+          "fired_pixel": {
+            "url": "https://example.com",
+            "fire_order": 0,
+            "batch_uuid": "48553bc2-e979-432e-9d21-e78870175e7a",
+            "created_at": "2024-11-04T16:51:50.561Z",
+            "fired_at": "2024-11-04T16:51:50.560Z",
+            "status": "fired",
+            "webhook_name": "Test Webhook"
+          }
+        },
+        {
+          "fired_pixel": {
+            "url": "https://example.com",
+            "fire_order": 0,
+            "batch_uuid": "6c0ca9ce-1b07-4216-8a95-dacd98a29230",
+            "created_at": "2024-11-04T16:51:49.728Z",
+            "fired_at": "2024-11-04T16:51:49.728Z",
+            "status": "fired",
+            "webhook_name": "Test Webhook"
+          }
+        },
+        {
+          "fired_pixel": {
+            "url": "https://example.com",
+            "fire_order": 0,
+            "batch_uuid": "80871747-a08e-4ed9-9868-195ee2717663",
+            "created_at": "2024-11-04T16:51:49.851Z",
+            "fired_at": "2024-11-04T16:51:49.787Z",
+            "status": "fired",
+            "webhook_name": "Test Webhook"
+          }
+        }
+      ],
+      "via": "inbound-dial",
+      "rescued": false,
+      "campaign_id": 9872,
+      "campaign_name": "Retreaver Main - Sales & Support",
+      "number_id": 4906092,
+      "target_id": null,
+      "affiliate_name": null,
+      "connected": false,
+      "profit_gross": "-0.07",
+      "profit_net": 0,
+      "target_name": null,
+      "time_to_call_in_seconds": -168132.372964,
+      "time_to_connect_in_seconds": 31,
+      "total_cost": "0.07"
+    }
+  }
+]
+```
+
+Provides access to the call log. The call log contains all the Calls which have been made through Numbers under your control.
+
+### HTTP Request
+
+`GET https://canary.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof`
+
+### Query Parameters
+
+Parameter | Format | Default | Description
+--------- | ------- | ------- | -----------
+company_id | `123456` |  | Return any Calls associated to the specific company IF you have access to that company.
+created_at_start | `YYYY-MM-DDTHH:MM:SS+HH:MM` | -4712-01-01T00:00:00+00:00 | Return any Calls that were created after this date.
+created_at_end | `YYYY-MM-DDTHH:MM:SS+HH:MM` | 4712-01-01T00:00:00+00:00 | Return any Calls that were created before this date.
+sort_by | `created_at` or `updated_at` | `created_at` | Calls will be sorted by this value. If you only want recently updated Calls, sort by `updated_at`. Note that calls sorted by `updated_at` will forcefully be returned in `desc` order even if order parameter is `asc`.
+order | `asc` or `desc` | `desc` | Calls will be sorted in ascending or descending order of their `sort_by` column.
+caller | `%2B13015236555` | | Return only calls from the specified caller number.
+client_afid | `123456` | | Return calls for an affiliate.
+client_cid | `123456` | | Return calls for a specific campaign.
+client_tid | `123456` | | Return calls for a specific target.
+sub_id | `123456` | | Return calls for a affiliate Sub ID.
+
+## V2 - Enumerate through all calls  <span style="color:red;">EXPERIMENTAL</span>
+
+ > First page...
+
+```shell
+curl "https://canary.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&page=1"
+```
+
+> Second page...
+
+```shell
+curl "https://canary.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&page=2"
+```
+
+> etc...
+
+To fetch all Calls on your Account, use the `sort_by` and `order` params to return your Calls in the order they were
+created, and then paginate through all your calls.
+
+### HTTP Request
+
+`https://canary.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&company_id=1&sort_by=created_at&order=asc&page=1`
+
+`https://canary.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&company_id=1&sort_by=created_at&order=asc&page=2`
+
+
+## V2 - Enumerate through Calls in a specific date/time range.  <span style="color:red;">EXPERIMENTAL</span>
+
+```shell
+curl "https://api.retreaver.com/calls.json?api_key=woofwoofwoof&company_id=1&created_at_start=2016-01-01T00:00:00+00:00&created_at_end=2016-01-02T00:00:00+00:00&page=1"
+```
+
+By passing in `created_at_start` and `created_at_end` parameters, you can control the start and end time of Calls returned.
+
+The timestamp should be formatted according to [rfc3339](https://validator.w3.org/feed/docs/error/InvalidRFC3339Date.html)
+
+### HTTP Request
+
+`GET https://canary.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&company_id=1&created_at_start=2016-01-01T00:00:00+00:00&created_at_end=2016-01-02T00:00:00+00:00&page=1`
+
+## V2 - Get a specific Call  <span style="color:red;">EXPERIMENTAL</span>
+
+```shell
+curl "https://canary.retreaver.com/api/v2/calls/94079290-93f3-4527-9e78-88653aaf3c49.json?api_key=woofwoofwoof"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "call": {
+    "uuid": "94079290-93f3-4527-9e78-88653aaf3c49",
+    "caller": "+13015236555",
+    "caller_number_sent": null,
+    "caller_zip": "28379",
+    "caller_state": "NC",
+    "caller_city": "Rockingham",
+    "caller_country": "US",
+    "dialed_call_duration": 0,
+    "total_duration": 43,
+    "ivr_duration": 26,
+    "hold_duration": 17,
+    "status": "finished",
+    "start_time": "2024-11-04T16:46:10.400Z",
+    "forwarded_time": null,
+    "end_time": "2024-11-04T16:46:54.037Z",
+    "cid": "1",
+    "afid": null,
+    "sid": null,
+    "dialed_number": "+16477159443",
+    "revenue": null,
+    "payout": null,
+    "postback_value": null,
+    "network_sale_timer_fired": null,
+    "affiliate_sale_timer_fired": null,
+    "target_sale_timer_fired": null,
+    "hung_up_by": "caller",
+    "duplicate": false,
+    "payable_duplicate": false,
+    "receivable_duplicate": false,
+    "callpixels_target_id": null,
+    "system_target_id": null,
+    "system_campaign_id": 9872,
+    "system_affiliate_id": null,
+    "fired_pixels_count": 5,
+    "charge_total": "0.07",
+    "keys_pressed": [
+      "1"
+    ],
+    "repeat": true,
+    "affiliate_repeat": false,
+    "target_repeat": null,
+    "number_repeat": true,
+    "visitor_url": "https://example.com",
+    "company_id": 2,
+    "conversions_determined_at": "2024-11-04T16:47:14.698Z",
+    "updated_at": "2024-11-04T16:47:14.944Z",
+    "created_at": "2024-11-04T16:46:10.547Z",
+    "billable_minutes": 1,
+    "upstream_call_uuid": null,
+    "downstream_call_uuids": [],
+    "target_group": {},
+    "number": "+18886064349",
+    "converted": false,
+    "payable": false,
+    "receivable": false,
+    "conversion_seconds": null,
+    "tid": null,
+    "tags": {
+      "geo": "301,us,us-28379,us-nc",
+      "request_id": "0192f811-d35d-85a4-7722-b3e39a2b3b6e,0192f812-0a4b-ab38-b471-e8332fac7ceb",
+      "robodial_blacklist": "0",
+      "status": "success"
+    },
+    "fired_pixels": [
+      {
+        "fired_pixel": {
+          "url": "https://example.com",
+          "fire_order": 1,
+          "batch_uuid": "8530a03a-a661-4247-b80c-d4f3e4a52802",
+          "created_at": "2024-11-04T16:47:15.071Z",
+          "fired_at": null,
+          "status": "new",
+          "webhook_name": null
+        }
+      },
+      {
+        "fired_pixel": {
+          "url": "https://example.com",
+          "fire_order": 0,
+          "batch_uuid": "dce85836-8b98-4b03-91f6-b29ca9494aa9",
+          "created_at": "2024-11-04T16:46:10.937Z",
+          "fired_at": "2024-11-04T16:46:10.793Z",
+          "status": "fired",
+          "webhook_name": "Webhook 1"
+        }
+      },
+      {
+        "fired_pixel": {
+          "url": "https://example.com",
+          "fire_order": 0,
+          "batch_uuid": "c1b0c797-00bc-43ae-a5c4-4f58b2aa9278",
+          "created_at": "2024-11-04T16:46:24.788Z",
+          "fired_at": "2024-11-04T16:46:24.787Z",
+          "status": "fired",
+          "webhook_name": "Webhook 2"
+        }
+      },
+      {
+        "fired_pixel": {
+          "url": "https://example.com",
+          "fire_order": 0,
+          "batch_uuid": "3c117e83-6d94-43fa-971b-25e3599e59f9",
+          "created_at": "2024-11-04T16:46:24.920Z",
+          "fired_at": "2024-11-04T16:46:24.849Z",
+          "status": "fired",
+          "webhook_name": "Webhook 3"
+        }
+      },
+      {
+        "fired_pixel": {
+          "url": "https://example.com",
+          "fire_order": 0,
+          "batch_uuid": "7023c382-a52c-42f1-9339-a69e03942d5d",
+          "created_at": "2024-11-04T16:46:25.874Z",
+          "fired_at": "2024-11-04T16:46:25.873Z",
+          "status": "fired",
+          "webhook_name": "Webhook 4"
+        }
+      }
+    ],
+    "via": "inbound-dial",
+    "rescued": false,
+    "campaign_id": 9872,
+    "campaign_name": "Retreaver Main - Sales & Support",
+    "number_id": 4906092,
+    "target_id": null,
+    "affiliate_name": null,
+    "connected": false,
+    "profit_gross": "-0.07",
+    "profit_net": 0,
+    "target_name": null,
+    "time_to_call_in_seconds": -168463.79409,
+    "time_to_connect_in_seconds": 43,
+    "total_cost": "0.07"
+  }
+}
+```
+
+Calls can be accessed by their UUID.
+
+
+### HTTP Request
+
+`GET https://canary.retreaver.com/api/v2/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof&company_id=1`
 
 
 
