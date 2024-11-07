@@ -430,7 +430,7 @@ curl "https://canary.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof"
       "profit_gross": "-0.08",
       "profit_net": 0.0,
       "target_name": "Taylor Anderson - Sales - +12263399112",
-      "time_to_call_in_seconds": -168096.165018,
+      "time_to_call_in_seconds": 168096,
       "time_to_connect_in_seconds": 12,
       "total_cost": "0.08"
     }
@@ -568,7 +568,7 @@ curl "https://canary.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof"
       "profit_gross": "-0.07",
       "profit_net": 0,
       "target_name": null,
-      "time_to_call_in_seconds": -168132.372964,
+      "time_to_call_in_seconds": 168132,
       "time_to_connect_in_seconds": 31,
       "total_cost": "0.07"
     }
@@ -577,6 +577,25 @@ curl "https://canary.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof"
 ```
 
 Provides access to the call log. The call log contains all the Calls which have been made through Numbers under your control.
+
+### What's new in V2?
+
+In addition to all of the attributes, that were returned by V1, this version also returns the following fields:
+
+attribute | Format  | Description
+--------- |  ------- | -----------
+affiliate_name | `"abcdef"` | The full name of the affiliate that sent the call.
+campaign_id | `123456` | The ID of the campaign the call was sent to.
+campaign_name | `"abcdef"` | The name of the campaign the call was sent to.
+connected | `true` or `false` | Whether the caller was successfully connected to a target.
+number_id | `123456` | The ID of the number that the call was received on.
+profit_gross | `0.00` | The gross profit on the call. This is calculated based on the following formula: `(revenue of the call) - (payout of the call) - (total cost of the call)`
+profit_net | `0.00` | The net profit on the call. This is calculated based on the following formula: `(revenue of the call) - (payout of the call)`
+target_id | `123456` | The target that the caller was connected to.
+target_name | `"John Doe"` | The full name of the target that the caller was connected to.
+time_to_call_in_seconds | `10` | The time it took for the caller to actually make the call.
+time_to_connect_in_seconds | `10` | The time it took for the caller to get connected to a buyer. This is calculated based on the following formula: `(IVR duration of the call) + (hold duration of the call)`
+total_cost | `0.00` | The total cost of the call.
 
 ### HTTP Request
 
@@ -779,7 +798,7 @@ curl "https://canary.retreaver.com/api/v2/calls/94079290-93f3-4527-9e78-88653aaf
     "profit_gross": "-0.07",
     "profit_net": 0,
     "target_name": null,
-    "time_to_call_in_seconds": -168463.79409,
+    "time_to_call_in_seconds": 168463,
     "time_to_connect_in_seconds": 43,
     "total_cost": "0.07"
   }
