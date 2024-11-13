@@ -335,16 +335,28 @@
             <a href="#calls" class="toc-h1 toc-link" data-title="Calls">Calls</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-recent-calls" class="toc-h2 toc-link" data-title="Get recent Calls">Get recent Calls</a>
+                    <a href="#v1-get-recent-calls" class="toc-h2 toc-link" data-title="V1 - Get recent Calls">V1 - Get recent Calls</a>
                   </li>
                   <li>
-                    <a href="#enumerate-through-all-calls" class="toc-h2 toc-link" data-title="Enumerate through all calls">Enumerate through all calls</a>
+                    <a href="#v1-enumerate-through-all-calls" class="toc-h2 toc-link" data-title="V1 - Enumerate through all calls">V1 - Enumerate through all calls</a>
                   </li>
                   <li>
-                    <a href="#enumerate-through-calls-in-a-specific-date-time-range" class="toc-h2 toc-link" data-title="Enumerate through Calls in a specific date/time range.">Enumerate through Calls in a specific date/time range.</a>
+                    <a href="#v1-enumerate-through-calls-in-a-specific-date-time-range" class="toc-h2 toc-link" data-title="V1 - Enumerate through Calls in a specific date/time range.">V1 - Enumerate through Calls in a specific date/time range.</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-call" class="toc-h2 toc-link" data-title="Get a specific Call">Get a specific Call</a>
+                    <a href="#v1-get-a-specific-call" class="toc-h2 toc-link" data-title="V1 - Get a specific Call">V1 - Get a specific Call</a>
+                  </li>
+                  <li>
+                    <a href="#v2-get-recent-calls-experimental" class="toc-h2 toc-link" data-title="V2 - Get recent Calls  EXPERIMENTAL">V2 - Get recent Calls  <span style="color:red;">EXPERIMENTAL</span></a>
+                  </li>
+                  <li>
+                    <a href="#v2-enumerate-through-all-calls-experimental" class="toc-h2 toc-link" data-title="V2 - Enumerate through all calls  EXPERIMENTAL">V2 - Enumerate through all calls  <span style="color:red;">EXPERIMENTAL</span></a>
+                  </li>
+                  <li>
+                    <a href="#v2-enumerate-through-calls-in-a-specific-date-time-range-experimental" class="toc-h2 toc-link" data-title="V2 - Enumerate through Calls in a specific date/time range.  EXPERIMENTAL">V2 - Enumerate through Calls in a specific date/time range.  <span style="color:red;">EXPERIMENTAL</span></a>
+                  </li>
+                  <li>
+                    <a href="#v2-get-a-specific-call-experimental" class="toc-h2 toc-link" data-title="V2 - Get a specific Call  EXPERIMENTAL">V2 - Get a specific Call  <span style="color:red;">EXPERIMENTAL</span></a>
                   </li>
               </ul>
           </li>
@@ -800,7 +812,7 @@ You should <strong>never, ever expose your Retreaver Core API key publicly</stro
 <p>If you suspect your API key has been publicly exposed, <a href="https://support.retreaver.com/faq/how-do-i-get-my-api-key/">reset it</a>.</p>
 <h1 id='calls'>Calls</h1>
 <p>Or, more precisely, phone calls.</p>
-<h2 id='get-recent-calls'>Get recent Calls</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1"</span>
+<h2 id='v1-get-recent-calls'>V1 - Get recent Calls</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1"</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -859,32 +871,73 @@ You should <strong>never, ever expose your Retreaver Core API key publicly</stro
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Format</th>
 <th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
+<td>company_id</td>
+<td><code>123456</code></td>
+<td></td>
+<td>Return any Calls associated to the specific company IF you have access to that company.</td>
+</tr>
+<tr>
 <td>created_at_start</td>
+<td><code>YYYY-MM-DDTHH:MM:SS+HH:MM</code></td>
 <td>-4712-01-01T00:00:00+00:00</td>
 <td>Return any Calls that were created after this date.</td>
 </tr>
 <tr>
 <td>created_at_end</td>
+<td><code>YYYY-MM-DDTHH:MM:SS+HH:MM</code></td>
 <td>4712-01-01T00:00:00+00:00</td>
 <td>Return any Calls that were created before this date.</td>
 </tr>
 <tr>
-<td>order</td>
-<td>desc</td>
-<td><code>asc</code> or <code>desc</code>, for ascending or descending.</td>
+<td>sort_by</td>
+<td><code>created_at</code> or <code>updated_at</code></td>
+<td><code>created_at</code></td>
+<td>Calls will be sorted by this value. If you only want recently updated Calls, sort by <code>updated_at</code>. Note that calls sorted by <code>updated_at</code> will forcefully be returned in <code>desc</code> order even if order parameter is <code>asc</code>.</td>
 </tr>
 <tr>
-<td>sort_by</td>
-<td>created_at</td>
-<td><code>created_at</code> or <code>updated_at</code>, Calls will be sorted by this value. If you only want recently updated Calls, sort by <code>updated_at</code>. Note that calls sorted by <code>updated_at</code> will forcefully be returned in <code>desc</code> order even if order parameter is <code>asc</code>.</td>
+<td>order</td>
+<td><code>asc</code> or <code>desc</code></td>
+<td><code>desc</code></td>
+<td>Calls will be sorted in ascending or descending order of their <code>sort_by</code> column.</td>
+</tr>
+<tr>
+<td>caller</td>
+<td><code>%2B13015236555</code></td>
+<td></td>
+<td>Return only calls from the specified caller number.</td>
+</tr>
+<tr>
+<td>client_afid</td>
+<td><code>123456</code></td>
+<td></td>
+<td>Return calls for an affiliate.</td>
+</tr>
+<tr>
+<td>client_cid</td>
+<td><code>123456</code></td>
+<td></td>
+<td>Return calls for a specific campaign.</td>
+</tr>
+<tr>
+<td>client_tid</td>
+<td><code>123456</code></td>
+<td></td>
+<td>Return calls for a specific target.</td>
+</tr>
+<tr>
+<td>sub_id</td>
+<td><code>123456</code></td>
+<td></td>
+<td>Return calls for a affiliate Sub ID.</td>
 </tr>
 </tbody></table>
-<h2 id='enumerate-through-all-calls'>Enumerate through all calls</h2>
+<h2 id='v1-enumerate-through-all-calls'>V1 - Enumerate through all calls</h2>
 <blockquote>
 <p>First page...</p>
 </blockquote>
@@ -905,14 +958,14 @@ created, and then paginate through all your calls.</p>
 <p><code>https://api.retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;sort_by=created_at&amp;order=asc&amp;page=1</code></p>
 
 <p><code>https://api.retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;sort_by=created_at&amp;order=asc&amp;page=2</code></p>
-<h2 id='enumerate-through-calls-in-a-specific-date-time-range'>Enumerate through Calls in a specific date/time range.</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;created_at_start=2016-01-01T00:00:00+00:00&amp;created_at_end=2016-01-02T00:00:00+00:00&amp;page=1"</span>
+<h2 id='v1-enumerate-through-calls-in-a-specific-date-time-range'>V1 - Enumerate through Calls in a specific date/time range.</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;created_at_start=2016-01-01T00:00:00+00:00&amp;created_at_end=2016-01-02T00:00:00+00:00&amp;page=1"</span>
 </code></pre></div>
 <p>By passing in <code>created_at_start</code> and <code>created_at_end</code> parameters, you can control the start and end time of Calls returned.</p>
 
 <p>The timestamp should be formatted according to <a href="https://validator.w3.org/feed/docs/error/InvalidRFC3339Date.html">rfc3339</a></p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code>GET https://api.retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;created_at_start=2016-01-01T00:00:00+00:00&amp;created_at_end=2016-01-02T00:00:00+00:00&amp;page=1</code></p>
-<h2 id='get-a-specific-call'>Get a specific Call</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof&amp;company_id=1"</span>
+<h2 id='v1-get-a-specific-call'>V1 - Get a specific Call</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof&amp;company_id=1"</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -943,7 +996,605 @@ created, and then paginate through all your calls.</p>
 </span></code></pre></div>
 <p>Calls can be accessed by their UUID.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
-<p><code>GET https://api.retreaver.com/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+<p><code>GET https://api.retreaver.com/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof</code></p>
+<h2 id='v2-get-recent-calls-experimental'>V2 - Get recent Calls  <span style="color:red;">EXPERIMENTAL</span></h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://canary.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"call"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f1abfb78-ab8a-4146-9946-8169fbcc6d6c"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"caller"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+13015236555"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"caller_number_sent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"caller_zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"28379"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"caller_state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NC"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"caller_city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rockingham"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"caller_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dialed_call_duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"total_duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"ivr_duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"hold_duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"finished"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:52:18.034Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"forwarded_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:52:25.423Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"end_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:52:32.882Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"afid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"sid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dialed_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+12263399112"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"revenue"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"payout"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"postback_value"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"network_sale_timer_fired"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"affiliate_sale_timer_fired"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"target_sale_timer_fired"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"hung_up_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"caller"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"duplicate"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"payable_duplicate"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"receivable_duplicate"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"callpixels_target_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">27449</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"system_target_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">27449</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"system_campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9872</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"system_affiliate_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"fired_pixels_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"charge_total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.08"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"keys_pressed"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"1"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"repeat"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"affiliate_repeat"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"target_repeat"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"number_repeat"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"visitor_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"company_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"conversions_determined_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:52:54.744Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:53:00.756Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:52:18.177Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"billable_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"upstream_call_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"downstream_call_uuids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="nl">"target_group"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1639</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Retreaver Team"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"recording_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+18886064349"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"converted"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"payable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"receivable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"conversion_seconds"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"tid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"attempt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0192f817-6fdc-f8b3-eb07-526dd16e2ade,0192f817-9147-eee3-25ea-e189df86dc6e"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"geo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"301,us,us-28379,us-nc"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0192f817-6fdc-f8b3-eb07-526dd16e2ade,0192f817-9147-eee3-25ea-e189df86dc6e"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"request_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0192f817-6fdc-f8b3-eb07-526dd16e2ade,0192f817-9147-eee3-25ea-e189df86dc6e"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"system_target_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27449"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"fired_pixels"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"fired_pixel"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fire_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"batch_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"39d94d6b-639a-486b-bb21-dbba5949dd2e"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:52:55.182Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fired_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"webhook_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"fired_pixel"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fire_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"batch_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"343ccf9b-b3a1-4cd3-b2de-a351dcf40661"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:52:26.948Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fired_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:52:26.947Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fired"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"webhook_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test Webhook"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"fired_pixel"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fire_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"batch_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4ef5f708-aa5f-4918-9790-ffbe890a517d"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:52:27.154Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fired_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:52:27.087Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fired"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"webhook_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test Webhook"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"fired_pixel"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fire_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"batch_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"982e0d22-dd8e-4476-8e89-d967285a6929"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:52:18.589Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fired_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:52:18.533Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fired"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"webhook_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test Webhook"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"via"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inbound-dial"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"rescued"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9872</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"campaign_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Retreaver Main - Sales &amp; Support"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"number_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4906092</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"target_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">27449</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"affiliate_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"connected"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"profit_gross"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.08"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"profit_net"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"target_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Taylor Anderson - Sales - +12263399112"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"time_to_call_in_seconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">168096</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"time_to_connect_in_seconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.08"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"call"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f6e88162-c6f9-4dd5-9739-652bdfc86874"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"caller"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+13015236555"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"caller_number_sent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"caller_zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"28379"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"caller_state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NC"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"caller_city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rockingham"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"caller_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dialed_call_duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"total_duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">31</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"ivr_duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"hold_duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"finished"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:51:41.815Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"forwarded_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"end_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:52:14.092Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"afid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"sid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dialed_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+16477159443"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"revenue"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"payout"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"postback_value"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"network_sale_timer_fired"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"affiliate_sale_timer_fired"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"target_sale_timer_fired"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"hung_up_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"caller"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"duplicate"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"payable_duplicate"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"receivable_duplicate"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"callpixels_target_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"system_target_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"system_campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9872</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"system_affiliate_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"fired_pixels_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"charge_total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.07"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"keys_pressed"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"1"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"repeat"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"affiliate_repeat"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"target_repeat"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"number_repeat"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"visitor_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"company_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"conversions_determined_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:52:37.091Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:52:37.170Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:51:41.969Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"billable_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"upstream_call_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"downstream_call_uuids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="nl">"target_group"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+      </span><span class="nl">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+18886064349"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"converted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"payable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"receivable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"conversion_seconds"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"tid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"attempt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0192f816-e1ec-0db1-d23a-40362aa6bb75,0192f816-ff94-522c-ee88-7011550a8066"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"geo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"301,us,us-28379,us-nc"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"request_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0192f816-e1ec-0db1-d23a-40362aa6bb75,0192f816-ff94-522c-ee88-7011550a8066"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"fired_pixels"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"fired_pixel"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fire_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"batch_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e2a0b1ff-99bb-469d-9feb-c0f4bb8312e4"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:52:37.296Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fired_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"webhook_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"fired_pixel"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fire_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"batch_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35ef3cf1-771b-46cf-9a32-514c61e21530"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:51:42.267Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fired_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:51:42.197Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fired"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"webhook_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test Webhook"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"fired_pixel"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fire_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"batch_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"48553bc2-e979-432e-9d21-e78870175e7a"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:51:50.561Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fired_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:51:50.560Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fired"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"webhook_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test Webhook"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"fired_pixel"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fire_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"batch_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6c0ca9ce-1b07-4216-8a95-dacd98a29230"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:51:49.728Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fired_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:51:49.728Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fired"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"webhook_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test Webhook"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"fired_pixel"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fire_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"batch_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"80871747-a08e-4ed9-9868-195ee2717663"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:51:49.851Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"fired_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:51:49.787Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fired"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"webhook_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test Webhook"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nl">"via"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inbound-dial"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"rescued"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9872</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"campaign_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Retreaver Main - Sales &amp; Support"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"number_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4906092</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"target_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"affiliate_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"connected"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"profit_gross"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.07"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"profit_net"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"target_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"time_to_call_in_seconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">168132</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"time_to_connect_in_seconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">31</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.07"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div>
+<p>Provides access to the call log. The call log contains all the Calls which have been made through Numbers under your control.</p>
+<h3 id='what-39-s-new-in-v2'>What&#39;s new in V2?</h3>
+<p>In addition to all of the attributes, that were returned by V1, this version also returns the following fields:</p>
+
+<table><thead>
+<tr>
+<th>attribute</th>
+<th>Format</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>affiliate_name</td>
+<td><code>&quot;abcdef&quot;</code></td>
+<td>The full name of the affiliate that sent the call.</td>
+</tr>
+<tr>
+<td>campaign_id</td>
+<td><code>123456</code></td>
+<td>The ID of the campaign the call was sent to.</td>
+</tr>
+<tr>
+<td>campaign_name</td>
+<td><code>&quot;abcdef&quot;</code></td>
+<td>The name of the campaign the call was sent to.</td>
+</tr>
+<tr>
+<td>connected</td>
+<td><code>true</code> or <code>false</code></td>
+<td>Whether the caller was successfully connected to a target.</td>
+</tr>
+<tr>
+<td>number_id</td>
+<td><code>123456</code></td>
+<td>The ID of the number that the call was received on.</td>
+</tr>
+<tr>
+<td>profit_gross</td>
+<td><code>0.00</code></td>
+<td>The gross profit on the call. This is calculated based on the following formula: <code>(revenue of the call) - (payout of the call) - (total cost of the call)</code></td>
+</tr>
+<tr>
+<td>profit_net</td>
+<td><code>0.00</code></td>
+<td>The net profit on the call. This is calculated based on the following formula: <code>(revenue of the call) - (payout of the call)</code></td>
+</tr>
+<tr>
+<td>target_id</td>
+<td><code>123456</code></td>
+<td>The target that the caller was connected to.</td>
+</tr>
+<tr>
+<td>target_name</td>
+<td><code>&quot;John Doe&quot;</code></td>
+<td>The full name of the target that the caller was connected to.</td>
+</tr>
+<tr>
+<td>time_to_call_in_seconds</td>
+<td><code>10</code></td>
+<td>The time it took for the caller to actually make the call.</td>
+</tr>
+<tr>
+<td>time_to_connect_in_seconds</td>
+<td><code>10</code></td>
+<td>The time it took for the caller to get connected to a buyer. This is calculated based on the following formula: <code>(IVR duration of the call) + (hold duration of the call)</code></td>
+</tr>
+<tr>
+<td>total_cost</td>
+<td><code>0.00</code></td>
+<td>The total cost of the call.</td>
+</tr>
+</tbody></table>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>GET https://canary.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof</code></p>
+<h3 id='query-parameters-2'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Format</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>company_id</td>
+<td><code>123456</code></td>
+<td></td>
+<td>Return any Calls associated to the specific company IF you have access to that company.</td>
+</tr>
+<tr>
+<td>created_at_start</td>
+<td><code>YYYY-MM-DDTHH:MM:SS+HH:MM</code></td>
+<td>-4712-01-01T00:00:00+00:00</td>
+<td>Return any Calls that were created after this date.</td>
+</tr>
+<tr>
+<td>created_at_end</td>
+<td><code>YYYY-MM-DDTHH:MM:SS+HH:MM</code></td>
+<td>4712-01-01T00:00:00+00:00</td>
+<td>Return any Calls that were created before this date.</td>
+</tr>
+<tr>
+<td>sort_by</td>
+<td><code>created_at</code> or <code>updated_at</code></td>
+<td><code>created_at</code></td>
+<td>Calls will be sorted by this value. If you only want recently updated Calls, sort by <code>updated_at</code>. Note that calls sorted by <code>updated_at</code> will forcefully be returned in <code>desc</code> order even if order parameter is <code>asc</code>.</td>
+</tr>
+<tr>
+<td>order</td>
+<td><code>asc</code> or <code>desc</code></td>
+<td><code>desc</code></td>
+<td>Calls will be sorted in ascending or descending order of their <code>sort_by</code> column.</td>
+</tr>
+<tr>
+<td>caller</td>
+<td><code>%2B13015236555</code></td>
+<td></td>
+<td>Return only calls from the specified caller number.</td>
+</tr>
+<tr>
+<td>client_afid</td>
+<td><code>123456</code></td>
+<td></td>
+<td>Return calls for an affiliate.</td>
+</tr>
+<tr>
+<td>client_cid</td>
+<td><code>123456</code></td>
+<td></td>
+<td>Return calls for a specific campaign.</td>
+</tr>
+<tr>
+<td>client_tid</td>
+<td><code>123456</code></td>
+<td></td>
+<td>Return calls for a specific target.</td>
+</tr>
+<tr>
+<td>sub_id</td>
+<td><code>123456</code></td>
+<td></td>
+<td>Return calls for a affiliate Sub ID.</td>
+</tr>
+</tbody></table>
+<h2 id='v2-enumerate-through-all-calls-experimental'>V2 - Enumerate through all calls  <span style="color:red;">EXPERIMENTAL</span></h2>
+<blockquote>
+<p>First page...</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://canary.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&amp;page=1"</span>
+</code></pre></div>
+<blockquote>
+<p>Second page...</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://canary.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&amp;page=2"</span>
+</code></pre></div>
+<blockquote>
+<p>etc...</p>
+</blockquote>
+
+<p>To fetch all Calls on your Account, use the <code>sort_by</code> and <code>order</code> params to return your Calls in the order they were
+created, and then paginate through all your calls.</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>https://canary.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;sort_by=created_at&amp;order=asc&amp;page=1</code></p>
+
+<p><code>https://canary.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;sort_by=created_at&amp;order=asc&amp;page=2</code></p>
+<h2 id='v2-enumerate-through-calls-in-a-specific-date-time-range-experimental'>V2 - Enumerate through Calls in a specific date/time range.  <span style="color:red;">EXPERIMENTAL</span></h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;created_at_start=2016-01-01T00:00:00+00:00&amp;created_at_end=2016-01-02T00:00:00+00:00&amp;page=1"</span>
+</code></pre></div>
+<p>By passing in <code>created_at_start</code> and <code>created_at_end</code> parameters, you can control the start and end time of Calls returned.</p>
+
+<p>The timestamp should be formatted according to <a href="https://validator.w3.org/feed/docs/error/InvalidRFC3339Date.html">rfc3339</a></p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>GET https://canary.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;created_at_start=2016-01-01T00:00:00+00:00&amp;created_at_end=2016-01-02T00:00:00+00:00&amp;page=1</code></p>
+<h2 id='v2-get-a-specific-call-experimental'>V2 - Get a specific Call  <span style="color:red;">EXPERIMENTAL</span></h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://canary.retreaver.com/api/v2/calls/94079290-93f3-4527-9e78-88653aaf3c49.json?api_key=woofwoofwoof"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"call"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"94079290-93f3-4527-9e78-88653aaf3c49"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"caller"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+13015236555"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"caller_number_sent"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"caller_zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"28379"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"caller_state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NC"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"caller_city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Rockingham"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"caller_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"dialed_call_duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"total_duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">43</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"ivr_duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">26</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"hold_duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"finished"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"start_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:46:10.400Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"forwarded_time"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"end_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:46:54.037Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"cid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"afid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"sid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"dialed_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+16477159443"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"revenue"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"payout"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"postback_value"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"network_sale_timer_fired"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"affiliate_sale_timer_fired"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"target_sale_timer_fired"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"hung_up_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"caller"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"duplicate"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"payable_duplicate"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"receivable_duplicate"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"callpixels_target_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"system_target_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"system_campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9872</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"system_affiliate_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"fired_pixels_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"charge_total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.07"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"keys_pressed"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"1"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"repeat"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"affiliate_repeat"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"target_repeat"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"number_repeat"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"visitor_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"company_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"conversions_determined_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:47:14.698Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:47:14.944Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:46:10.547Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"billable_minutes"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"upstream_call_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"downstream_call_uuids"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"target_group"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+    </span><span class="nl">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+18886064349"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"converted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"payable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"receivable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"conversion_seconds"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"tid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"geo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"301,us,us-28379,us-nc"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"request_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0192f811-d35d-85a4-7722-b3e39a2b3b6e,0192f812-0a4b-ab38-b471-e8332fac7ceb"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"robodial_blacklist"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"fired_pixels"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"fired_pixel"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"fire_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"batch_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8530a03a-a661-4247-b80c-d4f3e4a52802"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:47:15.071Z"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"fired_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"webhook_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"fired_pixel"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"fire_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"batch_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dce85836-8b98-4b03-91f6-b29ca9494aa9"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:46:10.937Z"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"fired_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:46:10.793Z"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fired"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"webhook_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Webhook 1"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"fired_pixel"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"fire_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"batch_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c1b0c797-00bc-43ae-a5c4-4f58b2aa9278"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:46:24.788Z"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"fired_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:46:24.787Z"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fired"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"webhook_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Webhook 2"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"fired_pixel"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"fire_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"batch_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3c117e83-6d94-43fa-971b-25e3599e59f9"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:46:24.920Z"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"fired_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:46:24.849Z"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fired"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"webhook_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Webhook 3"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"fired_pixel"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://example.com"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"fire_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"batch_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7023c382-a52c-42f1-9339-a69e03942d5d"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:46:25.874Z"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"fired_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-11-04T16:46:25.873Z"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fired"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"webhook_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Webhook 4"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"via"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inbound-dial"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"rescued"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9872</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"campaign_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Retreaver Main - Sales &amp; Support"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"number_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4906092</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"target_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"affiliate_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"connected"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"profit_gross"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-0.07"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"profit_net"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"target_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"time_to_call_in_seconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">168463</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"time_to_connect_in_seconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">43</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"total_cost"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.07"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Calls can be accessed by their UUID.</p>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>GET https://canary.retreaver.com/api/v2/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h1 id='affiliates'>Affiliates</h1>
 <p>Entering Affiliates into our system allows you to attribute calls back to the Affiliate who created them, and to update any external tracking systems.</p>
 
@@ -966,12 +1617,12 @@ created, and then paginate through all your calls.</p>
 <span class="nt">&lt;/affiliates&gt;</span>
 </code></pre></div>
 <p>Provides a complete list of Affiliates.</p>
-<h3 id='http-request-5'>HTTP Request</h3>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code>GET https://api.retreaver.com/affiliates.xml?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h2 id='get-a-specific-affiliate-by-your-id'>Get a specific Affiliate by your ID</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/affiliates/afid/0002.json?api_key=woofwoofwoof&amp;company_id=1"</span>
 </code></pre></div>
 <p>Finds an Affiliate by AFID.</p>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h3 id='http-request-10'>HTTP Request</h3>
 <p><code>GET https://api.retreaver.com/affiliates/afid/0002.xml?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h2 id='create-an-affiliate'>Create an Affiliate</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-s</span> <span class="se">\</span>
     <span class="nt">-X</span> POST <span class="se">\</span>
@@ -980,7 +1631,7 @@ created, and then paginate through all your calls.</p>
     <span class="nt">-d</span> <span class="s1">'{"affiliate":{"first_name":"Nancy", "last_name":"Drew", "afid":"0002"}}'</span>
 </code></pre></div>
 <p>Creates an Affiliate.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-11'>HTTP Request</h3>
 <p><code>POST https://api.retreaver.com/affiliates.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
 <p><code>Content-Type: application/json</code></p>
@@ -1050,7 +1701,7 @@ created, and then paginate through all your calls.</p>
 <aside class="notice">
 You must replace <code>0002</code> with the afid of the Affiliate you want to delete.
 </aside>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-12'>HTTP Request</h3>
 <p><code>PUT https://api.retreaver.com/affiliates/afid/0002.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
 <p><code>Content-Type: application/json</code></p>
@@ -1092,7 +1743,7 @@ You must replace <code>0002</code> with the afid of the Affiliate you want to de
      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jason Cell"</span><span class="w">
    </span><span class="p">}</span><span class="w">
 </span><span class="p">}]</span><span class="w">
-</span></code></pre></div><h3 id='http-request-9'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-13'>HTTP Request</h3>
 <p><code>GET https://api.retreaver.com/targets.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h2 id='get-a-specific-target'>Get a specific Target</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/targets/6588.json?api_key=woofwoofwoof&amp;company_id=1"</span>
 </code></pre></div>
@@ -1125,7 +1776,7 @@ You must replace <code>0002</code> with the afid of the Affiliate you want to de
      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jason Cell"</span><span class="w">
    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-10'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-14'>HTTP Request</h3>
 <p><code>GET https://api.retreaver.com/targets/6588.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h2 id='create-a-target'>Create a Target</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-s</span> <span class="se">\</span>
  <span class="nt">-X</span> POST <span class="se">\</span>
@@ -1270,7 +1921,7 @@ You must replace <code>0002</code> with the afid of the Affiliate you want to de
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Creates a new Target.</p>
-<h3 id='http-request-11'>HTTP Request</h3>
+<h3 id='http-request-15'>HTTP Request</h3>
 <p><code>POST https://api.retreaver.com/targets.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
 <p><code>Content-Type: application/json</code></p>
@@ -1694,7 +2345,7 @@ You must replace <code>0002</code> with the afid of the Affiliate you want to de
 <aside class="notice">
 You must replace <code>22592</code> with the Retreaver ID of the Target you want to delete.
 </aside>
-<h3 id='http-request-12'>HTTP Request</h3>
+<h3 id='http-request-16'>HTTP Request</h3>
 <p><code>PUT https://api.retreaver.com/targets/22592.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
 <p><code>Content-Type: application/json</code></p>
@@ -1703,7 +2354,7 @@ You must replace <code>22592</code> with the Retreaver ID of the Target you want
 <h2 id='remove-a-target'>Remove a Target</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE https://api.retreaver.com/targets/22592.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1
 </code></pre></div>
 <p>Deletes the given Target.</p>
-<h3 id='http-request-13'>HTTP Request</h3>
+<h3 id='http-request-17'>HTTP Request</h3>
 <p><code>DELETE https://api.retreaver.com/targets/22592.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h2 id='tagging-a-target'>Tagging a Target</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-s</span> <span class="se">\</span>
  <span class="nt">-X</span> PUT <span class="se">\</span>
@@ -1741,7 +2392,7 @@ You must replace <code>22592</code> with the Retreaver ID of the Target you want
 <p>The system will create/find whatever tags you have set given this input without you having to track tag IDs. You must include the full list of tags you want set any time a tag_list parameter is passed in. To clear the tags, just pass in a blank string.</p>
 
 <p>There is a limit of 100 tags added in this manner, but the system will automatically concatenate US zip <code>geo</code> tags.</p>
-<h3 id='http-request-14'>HTTP Request</h3>
+<h3 id='http-request-18'>HTTP Request</h3>
 <p><code>PUT https://api.retreaver.com/targets/22592.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
 <p><code>Content-Type: application/json</code></p>
@@ -1800,7 +2451,7 @@ You must replace <code>22592</code> with the Retreaver ID of the Target you want
 <p>The other types of Cap reset periodically as expected.</p>
 
 <p>You can modify these Caps by updating your Target with nested objects <code>hard_cap_attributes</code>, <code>hourly_cap_attributes</code>, <code>daily_cap_attributes</code>, and <code>monthly_cap_attributes</code>.</p>
-<h3 id='http-request-15'>HTTP Request</h3>
+<h3 id='http-request-19'>HTTP Request</h3>
 <p><code>PUT https://api.retreaver.com/targets/22592.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
 <p><code>Content-Type: application/json</code></p>
@@ -1830,7 +2481,7 @@ You must replace <code>22592</code> with the Retreaver ID of the Target you want
  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span>
 </code></pre></div>
 <p>Clears any Calls contributing to the given Target&#39;s hard cap, resetting it to 0. Returns HTTP 200 on success.</p>
-<h3 id='http-request-16'>HTTP Request</h3>
+<h3 id='http-request-20'>HTTP Request</h3>
 <p><code>POST https://api.retreaver.com/targets/22592/reset_cap.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
 <p><code>Content-Type: application/json</code></p>
@@ -1886,7 +2537,7 @@ You must replace <code>22592</code> with the Retreaver ID of the Target you want
 </span><span class="p">}]</span><span class="w">
 </span></code></pre></div>
 <p>List all the Campaigns in your Account.</p>
-<h3 id='http-request-17'>HTTP Request</h3>
+<h3 id='http-request-21'>HTTP Request</h3>
 <p><code>GET https://api.retreaver.com/campaigns.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h2 id='get-a-specific-campaign'>Get a specific Campaign</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/campaigns/cid/0044.json?api_key=woofwoofwoof&amp;company_id=1"</span>
 </code></pre></div>
@@ -1938,7 +2589,7 @@ You must replace <code>22592</code> with the Retreaver ID of the Target you want
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Get a campaign by your ID.</p>
-<h3 id='http-request-18'>HTTP Request</h3>
+<h3 id='http-request-22'>HTTP Request</h3>
 <p><code>GET https://api.retreaver.com/campaigns/cid/0044.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h2 id='create-a-campaign'>Create a Campaign</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-s</span> <span class="se">\</span>
     <span class="nt">-X</span> POST <span class="se">\</span>
@@ -2013,7 +2664,7 @@ You must replace <code>22592</code> with the Retreaver ID of the Target you want
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Create a new Campaign.</p>
-<h3 id='http-request-19'>HTTP Request</h3>
+<h3 id='http-request-23'>HTTP Request</h3>
 <p><code>POST https://api.retreaver.com/campaigns.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
 <p><code>Content-Type: application/json</code></p>
@@ -2251,7 +2902,7 @@ You must replace <code>22592</code> with the Retreaver ID of the Target you want
 <aside class="notice">
 You must replace <code>0044</code> with the cid of the Campaign you want to update.
 </aside>
-<h3 id='http-request-20'>HTTP Request</h3>
+<h3 id='http-request-24'>HTTP Request</h3>
 <p><code>PUT https://api.retreaver.com/campaigns/cid/0044.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
 <p><code>Content-Type: application/json</code></p>
@@ -2314,7 +2965,7 @@ You must replace <code>0044</code> with the cid of the Campaign you want to upda
 </span><span class="p">}]</span><span class="w">
 </span></code></pre></div>
 <p>Get all Numbers belonging to the Company.</p>
-<h3 id='http-request-21'>HTTP Request</h3>
+<h3 id='http-request-25'>HTTP Request</h3>
 <p><code>GET https://api.retreaver.com/numbers.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h3 id='parameters-5'>Parameters</h3>
 <table><thead>
@@ -2390,7 +3041,7 @@ You must replace <code>0044</code> with the cid of the Campaign you want to upda
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Get a Number by our internal ID.</p>
-<h3 id='http-request-22'>HTTP Request</h3>
+<h3 id='http-request-26'>HTTP Request</h3>
 <p><code>GET https://api.retreaver.com/numbers/5.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h2 id='create-a-number'>Create a Number</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-s</span> <span class="se">\</span>
     <span class="nt">-X</span> POST <span class="se">\</span>
@@ -2461,7 +3112,7 @@ You must replace <code>0044</code> with the cid of the Campaign you want to upda
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Creates a new phone Number.</p>
-<h3 id='http-request-23'>HTTP Request</h3>
+<h3 id='http-request-27'>HTTP Request</h3>
 <p><code>POST https://api.retreaver.com/numbers.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
 <p><code>Content-Type: application/json</code></p>
@@ -2736,7 +3387,7 @@ You must replace <code>0044</code> with the cid of the Campaign you want to upda
 <aside class="notice">
 You must replace <code>79</code> with the Retreaver ID of the Number you want to update.
 </aside>
-<h3 id='http-request-24'>HTTP Request</h3>
+<h3 id='http-request-28'>HTTP Request</h3>
 <p><code>PUT https://api.retreaver.com/numbers/79.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
 <p><code>Content-Type: application/json</code></p>
@@ -2773,7 +3424,7 @@ you want to track many different attributes.</p>
  </span><span class="p">}]</span><span class="w">
 </span></code></pre></div>
 <p>Returns all the Number Pools you have in our system.</p>
-<h3 id='http-request-25'>HTTP Request</h3>
+<h3 id='http-request-29'>HTTP Request</h3>
 <p><code>GET https://api.retreaver.com/number_pools.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h3 id='parameters-7'>Parameters</h3>
 <table><thead>
@@ -2818,7 +3469,7 @@ you want to track many different attributes.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Returns a single Number Pool based on our internal ID.</p>
-<h3 id='http-request-26'>HTTP Request</h3>
+<h3 id='http-request-30'>HTTP Request</h3>
 <p><code>GET https://api.retreaver.com/number_pools/1.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h2 id='create-a-number-pool'>Create a Number Pool</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-s</span> <span class="se">\</span>
     <span class="nt">-X</span> POST <span class="se">\</span>
@@ -2865,7 +3516,7 @@ you want to track many different attributes.</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Creates a new Number Pool.</p>
-<h3 id='http-request-27'>HTTP Request</h3>
+<h3 id='http-request-31'>HTTP Request</h3>
 <p><code>POST https://api.retreaver.com/number_pools.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
 <p><code>Content-Type: application/json</code></p>
@@ -2987,7 +3638,7 @@ you want to track many different attributes.</p>
 <aside class="notice">
 You must replace <code>49</code> with the Retreaver ID of the Number Pool you want to update.
 </aside>
-<h3 id='http-request-28'>HTTP Request</h3>
+<h3 id='http-request-32'>HTTP Request</h3>
 <p><code>PUT https://api.retreaver.com/number_pools/49.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
 <p><code>Content-Type: application/json</code></p>
@@ -3023,7 +3674,7 @@ This will also delete all Numbers associated with this Number Pool!
 <aside class="warning">
 You should always pass in the <code>company_id</code> parameter when requesting other objects, because switching Companies in the web interface will also switch Companies in the API.
 </aside>
-<h3 id='http-request-29'>HTTP Request</h3>
+<h3 id='http-request-33'>HTTP Request</h3>
 <p><code>GET https://api.retreaver.com/company.json?api_key=woofwoofwoof</code></p>
 <h2 id='get-a-specific-company'>Get a specific Company</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/companies/1.json?api_key=woofwoofwoof"</span>
 </code></pre></div>
@@ -3042,7 +3693,7 @@ You should always pass in the <code>company_id</code> parameter when requesting 
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Returns the Company matching our internal ID.</p>
-<h3 id='http-request-30'>HTTP Request</h3>
+<h3 id='http-request-34'>HTTP Request</h3>
 <p><code>GET https://api.retreaver.com/companies/1.json?api_key=woofwoofwoof</code></p>
 <h2 id='get-all-companies'>Get all Companies</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/companies.json?api_key=woofwoofwoof"</span>
 </code></pre></div>
@@ -3061,7 +3712,7 @@ You should always pass in the <code>company_id</code> parameter when requesting 
  </span><span class="p">}]</span><span class="w">
 </span></code></pre></div>
 <p>Provides a complete list of Companies accessible via your Account.</p>
-<h3 id='http-request-31'>HTTP Request</h3>
+<h3 id='http-request-35'>HTTP Request</h3>
 <p><code>GET https://api.retreaver.com/companies.json?api_key=woofwoofwoof</code></p>
 <h2 id='create-a-company'>Create a Company</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-s</span> <span class="se">\</span>
     <span class="nt">-X</span> POST <span class="se">\</span>
@@ -3088,7 +3739,7 @@ You should always pass in the <code>company_id</code> parameter when requesting 
 <aside class="info">
 The Companies you create each have their own Accounts and payment settings.
 </aside>
-<h3 id='http-request-32'>HTTP Request</h3>
+<h3 id='http-request-36'>HTTP Request</h3>
 <p><code>POST https://api.retreaver.com/companies.json?api_key=woofwoofwoof</code></p>
 
 <p><code>Content-Type: application/json</code></p>
@@ -3151,7 +3802,7 @@ The Companies you create each have their own Accounts and payment settings.
 <aside class="notice">
 You must replace <code>2</code> with the Retreaver ID of the Company you want to update.
 </aside>
-<h3 id='http-request-33'>HTTP Request</h3>
+<h3 id='http-request-37'>HTTP Request</h3>
 <p><code>PUT https://api.retreaver.com/companies/2.json?api_key=woofwoofwoof</code></p>
 
 <p><code>Content-Type: application/json</code></p>
@@ -3160,7 +3811,7 @@ You must replace <code>2</code> with the Retreaver ID of the Company you want to
 <h2 id='remove-a-company'>Remove a Company</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE https://api.retreaver.com/companies/2.json?api_key<span class="o">=</span>woofwoofwoof
 </code></pre></div>
 <p>Deletes the given Company. You must delete any Numbers and Number Pools the Company has first.</p>
-<h3 id='http-request-34'>HTTP Request</h3>
+<h3 id='http-request-38'>HTTP Request</h3>
 <p><code>DELETE https://api.retreaver.com/companies/2.json?api_key=woofwoofwoof</code></p>
 <h1 id='contacts'>Contacts</h1>
 <p>Contacts allow you to tie individual Calls from many Contact Numbers back to one person. You can also tag Contacts, and calls from their Contact Numbers will automatically inherit the tags.</p>
@@ -3191,7 +3842,7 @@ You must replace <code>2</code> with the Retreaver ID of the Company you want to
 </span><span class="p">}]</span><span class="w">
 </span></code></pre></div>
 <p>Provides a complete list of Contacts.</p>
-<h3 id='http-request-35'>HTTP Request</h3>
+<h3 id='http-request-39'>HTTP Request</h3>
 <p><code>GET https://api.retreaver.com/contacts.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h2 id='get-a-specific-contact-by-id'>Get a Specific Contact by ID</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/contacts/2.json?api_key=woofwoofwoof&amp;company_id=1"</span>
 </code></pre></div>
@@ -3220,7 +3871,7 @@ You must replace <code>2</code> with the Retreaver ID of the Company you want to
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Finds a Contact by its Retreaver ID.</p>
-<h3 id='http-request-36'>HTTP Request</h3>
+<h3 id='http-request-40'>HTTP Request</h3>
 <p><code>GET https://api.retreaver.com/contacts/2.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h2 id='create-a-contact'>Create a Contact</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-s</span> <span class="se">\</span>
     <span class="nt">-X</span> POST <span class="se">\</span>
@@ -3253,7 +3904,7 @@ You must replace <code>2</code> with the Retreaver ID of the Company you want to
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Creates a Contact and associated Contact Number(s).</p>
-<h3 id='http-request-37'>HTTP Request</h3>
+<h3 id='http-request-41'>HTTP Request</h3>
 <p><code>POST https://api.retreaver.com/contacts.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
 <p><code>Content-Type: application/json</code></p>
@@ -3351,7 +4002,7 @@ You must replace <code>2</code> with the Retreaver ID of the Company you want to
 </span></code></pre></div>
 <p>Changes any attributes you have passed in on the Contact. To change a Contact Number, you must pass in the ID of the
 existing Contact Number, or see <a href="#update-a-contact-number-by-phone-number">below</a> for an easier method.</p>
-<h3 id='http-request-38'>HTTP Request</h3>
+<h3 id='http-request-42'>HTTP Request</h3>
 <p><code>PUT https://api.retreaver.com/contacts/2.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
 <p><code>Content-Type: application/json</code></p>
@@ -3360,7 +4011,7 @@ existing Contact Number, or see <a href="#update-a-contact-number-by-phone-numbe
 <h2 id='remove-a-contact'>Remove a Contact</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE https://api.retreaver.com/contacts/2.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1
 </code></pre></div>
 <p>Deletes the given Contact and all Contact Numbers associated with it.</p>
-<h3 id='http-request-39'>HTTP Request</h3>
+<h3 id='http-request-43'>HTTP Request</h3>
 <p><code>DELETE https://api.retreaver.com/contacts/2.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h2 id='get-a-specific-contact-by-phone-number'>Get a specific Contact by phone number</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/contact_numbers/+18001234567/contact.json?api_key=woofwoofwoof&amp;company_id=1"</span>
 </code></pre></div>
@@ -3389,7 +4040,7 @@ existing Contact Number, or see <a href="#update-a-contact-number-by-phone-numbe
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Finds a Contact by phone number.</p>
-<h3 id='http-request-40'>HTTP Request</h3>
+<h3 id='http-request-44'>HTTP Request</h3>
 <p><code>GET https://api.retreaver.com/contact_numbers/+18001234567/contact.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h2 id='update-a-contact-by-phone-number'>Update a Contact by phone number</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-s</span> <span class="se">\</span>
     <span class="nt">-X</span> PUT <span class="se">\</span>
@@ -3422,7 +4073,7 @@ existing Contact Number, or see <a href="#update-a-contact-number-by-phone-numbe
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Updates a Contact by phone number.</p>
-<h3 id='http-request-41'>HTTP Request</h3>
+<h3 id='http-request-45'>HTTP Request</h3>
 <p><code>PUT https://api.retreaver.com/contact_numbers/+18001234567/contact.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
 <p><code>Content-Type: application/json</code></p>
@@ -3431,14 +4082,14 @@ existing Contact Number, or see <a href="#update-a-contact-number-by-phone-numbe
 <h2 id='delete-a-contact-by-phone-number'>Delete a Contact by phone number</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE https://api.retreaver.com/contact_numbers/+18001234567/contact.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1
 </code></pre></div>
 <p>Deletes the contact associated with the phone number and all other contact numbers associated with the contact.</p>
-<h3 id='http-request-42'>HTTP Request</h3>
+<h3 id='http-request-46'>HTTP Request</h3>
 <p><code>DELETE https://api.retreaver.com/contact_numbers/+18001234567/contact.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h1 id='contact-numbers'>Contact Numbers</h1>
 <p>A convenience API for removing and updating Contact Numbers.</p>
 <h2 id='delete-a-contact-number-from-a-contact-by-phone-number'>Delete a Contact Number from a Contact by phone number</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE https://api.retreaver.com/contact_numbers/+18668987878.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1
 </code></pre></div>
 <p>Deletes the contact number from the Contact it is associated with, as long as the Contact has more than one Contact Number.</p>
-<h3 id='http-request-43'>HTTP Request</h3>
+<h3 id='http-request-47'>HTTP Request</h3>
 <p><code>DELETE https://api.retreaver.com/contact_numbers/+18668987878.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h2 id='update-a-contact-number-by-phone-number'>Update a Contact Number by phone number</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-s</span> <span class="se">\</span>
     <span class="nt">-X</span> PUT <span class="se">\</span>
@@ -3458,7 +4109,7 @@ existing Contact Number, or see <a href="#update-a-contact-number-by-phone-numbe
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Easily updates a Contact Number.</p>
-<h3 id='http-request-44'>HTTP Request</h3>
+<h3 id='http-request-48'>HTTP Request</h3>
 <p><code>PUT https://api.retreaver.com/contact_numbers/+18001234567.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
 <p><code>Content-Type: application/json</code></p>
@@ -3480,7 +4131,7 @@ Suppressed Numbers exist regardless of whether or not there is a corresponding C
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="nl">"suppressed_numbers_exist"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Returns true if the Company has any numbers suppressed.</p>
-<h3 id='http-request-45'>HTTP Request</h3>
+<h3 id='http-request-49'>HTTP Request</h3>
 <p><code>GET https://api.retreaver.com/suppressed_numbers/check.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h2 id='get-all-suppressed-numbers-for-a-company'>Get all Suppressed Numbers for a Company</h2>
 <p>Get information about all of the numbers that are currently suppressed in a company.</p>
@@ -3524,7 +4175,7 @@ Suppressed Numbers exist regardless of whether or not there is a corresponding C
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre></div><h3 id='http-request-46'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-50'>HTTP Request</h3>
 <p><code>GET https://api.retreaver.com/suppressed_numbers.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h2 id='get-a-specific-suppressed-number'>Get a specific Suppressed Number</h2>
 <p>Returns information about the Suppressed Number in the company, by the provided number. The number should be in the format: <code>+13216065590</code></p>
@@ -3547,12 +4198,12 @@ Suppressed Numbers exist regardless of whether or not there is a corresponding C
     </span><span class="nl">"cid"</span><span class="p">:</span><span class="w"> </span><span class="mi">111</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-47'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-51'>HTTP Request</h3>
 <p><code>GET https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h2 id='delete-a-number-from-the-company-39-s-suppressed-numbers'>Delete a number from the company&#39;s Suppressed Numbers</h2>
 <p>Deletes the provided  number  from the company&#39;s suppressed numbers. The number should be in the format: <code>+13216065590</code></p>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1
-</code></pre></div><h3 id='http-request-48'>HTTP Request</h3>
+</code></pre></div><h3 id='http-request-52'>HTTP Request</h3>
 <p><code>DELETE https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h2 id='create-a-suppressed-number-for-a-company'>Create a Suppressed Number for a Company</h2>
 <p>Adds a number to the company&#39;s Suppressed Numbers. The <code>can_resubscribe</code> value toggles whether or not the caller can unblock themselves by pressing 7 if there is a &quot;Caller Blocked&quot; Prompt on the Campaign/Number they are calling.</p>
@@ -3577,7 +4228,7 @@ Suppressed Numbers exist regardless of whether or not there is a corresponding C
   </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-10-11T08:50:59.981Z"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"can_resubscribe"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request-49'>HTTP Request</h3>
+</span></code></pre></div><h3 id='http-request-53'>HTTP Request</h3>
 <p><code>POST https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
 <p><code>Content-Type: application/json</code></p>
@@ -3590,7 +4241,7 @@ Suppressed Numbers exist regardless of whether or not there is a corresponding C
     https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1 <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
     <span class="nt">-d</span> <span class="s1">'{"suppressed_number": {"can_resubscribe": false}}'</span>
-</code></pre></div><h3 id='http-request-50'>HTTP request</h3>
+</code></pre></div><h3 id='http-request-54'>HTTP request</h3>
 <p><code>PUT http://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
 <p><code>Content-Type: application/json</code></p>
@@ -3614,7 +4265,7 @@ prompt the caller for the caller&#39;s real number, or will randomize the Caller
 </span><span class="p">}]</span><span class="w">
 </span></code></pre></div>
 <p>Provides a complete list of Static Numbers.</p>
-<h3 id='http-request-51'>HTTP Request</h3>
+<h3 id='http-request-55'>HTTP Request</h3>
 <p><code>GET https://api.retreaver.com/static_caller_numbers.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h2 id='create-a-static-caller-number'>Create a Static Caller Number</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-s</span> <span class="se">\</span>
     <span class="nt">-X</span> POST <span class="se">\</span>
@@ -3623,7 +4274,7 @@ prompt the caller for the caller&#39;s real number, or will randomize the Caller
     <span class="nt">-d</span> <span class="s1">'{"static_caller_number":{"number":"+18668987878"}}'</span>
 </code></pre></div>
 <p>Creates a Static Caller Number.</p>
-<h3 id='http-request-52'>HTTP Request</h3>
+<h3 id='http-request-56'>HTTP Request</h3>
 <p><code>POST https://api.retreaver.com/static_caller_numbers.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
 <p><code>Content-Type: application/json</code></p>
@@ -3650,7 +4301,7 @@ prompt the caller for the caller&#39;s real number, or will randomize the Caller
 <h2 id='delete-a-static-caller-number'>Delete a Static Caller Number</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE https://api.retreaver.com/static_caller_numbers/1234.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1
 </code></pre></div>
 <p>Removes the Static Caller Number.</p>
-<h3 id='http-request-53'>HTTP Request</h3>
+<h3 id='http-request-57'>HTTP Request</h3>
 <p><code>DELETE https://api.retreaver.com/static_caller_numbers/1234.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h1 id='target-groups'>Target Groups</h1>
 <p>Target Groups group Target objects and can be used in Campaign/Number routing settings, allowing you to easily manage
