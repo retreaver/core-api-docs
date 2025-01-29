@@ -2479,11 +2479,14 @@ curl "https://api.retreaver.com/company.json?api_key=woofwoofwoof"
 {
     "company": {
         "id": 1,
-        "name": "CallPixels",
-        "default_click_url": "http://callpixels.com/?a=[affiliate_id]&c=[campaign_id]&cp=js&s1=[sub_id]",
-        "default_sale_url": "http://callpixels.com/p.ashx?o=[campaign_id]&t=[call_log_id]-[caller_id]-[called_number]-[call_duration]-[call_recording_url]",
-        "created_at": "2012-04-15T05:44:10Z",
-        "updated_at": "2012-05-07T15:32:44Z"
+        "name": "Retreaver",
+        "created_at": "2012-04-17T22:58:17.000Z",
+        "updated_at": "2024-12-19T11:00:37.896Z",
+        "embedded_key": "6e1a3c121f83dad4c0bef78414b9e597",
+        "per_number": "1.0",
+        "use_global_suppression_list": true,
+        "balance": "100.0",
+        "owner_user_name": "Alice Bob"
     }
 }
 ```
@@ -2511,11 +2514,14 @@ curl "https://api.retreaver.com/companies/1.json?api_key=woofwoofwoof"
 {
     "company": {
         "id": 1,
-        "name": "CallPixels",
-        "default_click_url": "http://callpixels.com/?a=[affiliate_id]&c=[campaign_id]&cp=js&s1=[sub_id]",
-        "default_sale_url": "http://callpixels.com/p.ashx?o=[campaign_id]&t=[call_log_id]-[caller_id]-[called_number]-[call_duration]-[call_recording_url]",
-        "created_at": "2012-04-15T05:44:10Z",
-        "updated_at": "2012-05-07T15:32:44Z"
+        "name": "Retreaver",
+        "created_at": "2012-04-17T22:58:17.000Z",
+        "updated_at": "2024-12-19T11:00:37.896Z",
+        "embedded_key": "6e1a3c121f83dad4c0bef78414b9e597",
+        "per_number": "1.0",
+        "use_global_suppression_list": true,
+        "balance": "100.0",
+        "owner_user_name": "Alice Bob"
     }
 }
 ```
@@ -2536,16 +2542,34 @@ curl "https://api.retreaver.com/companies.json?api_key=woofwoofwoof"
 > The above command returns JSON structured like this:
 
 ```json
-[{
-     "company": {
-         "id": 1,
-         "name": "CallPixels",
-         "default_click_url": "http://callpixels.com/?a=[affiliate_id]&c=[campaign_id]&cp=js&s1=[sub_id]",
-         "default_sale_url": "http://callpixels.com/p.ashx?o=[campaign_id]&t=[call_log_id]-[caller_id]-[called_number]-[call_duration]-[call_recording_url]",
-         "created_at": "2012-04-15T05:44:10Z",
-         "updated_at": "2012-05-07T15:32:44Z"
-     }
- }]
+[
+    {
+        "company": {
+            "id": 1,
+            "name": "Foo Corp",
+            "created_at": "2015-10-08T15:23:31.777Z",
+            "updated_at": "2016-09-15T02:55:46.690Z",
+            "embedded_key": "6e1a3c121f83dad4c0bef78414b9e597",
+            "per_number": "1.0",
+            "use_global_suppression_list": true,
+            "balance": "200.0",
+            "owner_user_name": "Alice Bob"
+        }
+    },
+    {
+        "company": {
+            "id": 2,
+            "name": "Example Co",
+            "created_at": "2015-10-11T17:18:22.675Z",
+            "updated_at": "2016-09-15T02:55:46.708Z",
+            "embedded_key": "6e1a3c121f83dad4c0bef78414b9e597",
+            "per_number": "1.0",
+            "use_global_suppression_list": true,
+            "balance": "100.0",
+            "owner_user_name": "Charlie Smith"
+        }
+    }
+ ]
 ```
 
 Provides a complete list of Companies accessible via your Account.
@@ -2563,21 +2587,24 @@ curl -s \
     -X POST \
     https://api.retreaver.com/companies.json \
     -H "Content-Type: application/json" \
-    -d '{"company":{"name":"CallPixels.com"}}'
+    -d '{"company":{"name":"Retreaver"}}'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-     "company": {
-         "id": 1,
-         "name": "CallPixels",
-         "default_click_url": "http://callpixels.com/?a=[affiliate_id]&c=[campaign_id]&cp=js&s1=[sub_id]",
-         "default_sale_url": "http://callpixels.com/p.ashx?o=[campaign_id]&t=[call_log_id]-[caller_id]-[called_number]-[call_duration]-[call_recording_url]",
-         "created_at": "2012-04-15T05:44:10Z",
-         "updated_at": "2012-05-07T15:32:44Z"
-     }
+    "company": {
+        "id": 1,
+        "name": "Retreaver",
+        "created_at": "2025-01-28T12:18:44.131Z",
+        "updated_at": "2025-01-28T12:18:44.131Z",
+        "embedded_key": "6e1a3c121f83dad4c0bef78414b9e597",
+        "per_number": "1.0",
+        "use_global_suppression_list": true,
+        "balance": "100.0",
+        "owner_user_name": "Alice Bob"
+    }
 }
 ```
 
@@ -2602,8 +2629,6 @@ The Companies you create each have their own Accounts and payment settings.
 Parameter | Type | Default | Required | Description
 --------- | ---- | ------- | -------- | -----------
 name | string |  | required | The company name.
-default_click_url | string | | | The default click URL to set as a Timer @ 0 seconds when creating a campaign.
-default_sale_url | string | | | The default sale URL to set as a Timer @ 90 seconds when creating a campaign
 
 
 ## Update a Company
@@ -2611,7 +2636,7 @@ default_sale_url | string | | | The default sale URL to set as a Timer @ 90 seco
 ```shell
 curl -s \
     -X PUT \
-    https://api.retreaver.com/companies/2.json \
+    https://api.retreaver.com/companies/1.json \
     -H "Content-Type: application/json" \
     -d '{"company":{"name":"Retreaver"}}'
 ```
@@ -2620,14 +2645,17 @@ curl -s \
 
 ```json
 {
-     "company": {
-         "id": 2,
-         "name": "Retreaver",
-         "default_click_url": "http://callpixels.com/?a=[affiliate_id]&c=[campaign_id]&cp=js&s1=[sub_id]",
-         "default_sale_url": "http://callpixels.com/p.ashx?o=[campaign_id]&t=[call_log_id]-[caller_id]-[called_number]-[call_duration]-[call_recording_url]",
-         "created_at": "2012-04-15T05:44:10Z",
-         "updated_at": "2012-05-07T15:32:44Z"
-     }
+    "company": {
+        "id": 1,
+        "name": "Retreaver",
+        "created_at": "2025-01-28T12:18:44.131Z",
+        "updated_at": "2025-01-28T12:34:27.103Z",
+        "embedded_key": "6e1a3c121f83dad4c0bef78414b9e597",
+        "per_number": "1.0",
+        "use_global_suppression_list": true,
+        "balance": "100.0",
+        "owner_user_name": "Alice Bob"
+    }
 }
 ```
 
