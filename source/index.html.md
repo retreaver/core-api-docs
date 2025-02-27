@@ -295,7 +295,7 @@ Calls can be accessed by their UUID.
 ## V2 - Get recent Calls  <span style="color:red;">EXPERIMENTAL</span>
 
 ```shell
-curl "https://canary.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof"
+curl "https://api.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof"
 ```
 
 > The above command returns JSON structured like this:
@@ -599,7 +599,7 @@ total_cost | `0.00` | The total cost of the call.
 
 ### HTTP Request
 
-`GET https://canary.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof`
+`GET https://api.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof`
 
 ### Query Parameters
 
@@ -621,13 +621,13 @@ sub_id | `123456` | | Return calls for a affiliate Sub ID.
  > First page...
 
 ```shell
-curl "https://canary.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&page=1"
+curl "https://api.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&page=1"
 ```
 
 > Second page...
 
 ```shell
-curl "https://canary.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&page=2"
+curl "https://api.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&page=2"
 ```
 
 > etc...
@@ -637,9 +637,9 @@ created, and then paginate through all your calls.
 
 ### HTTP Request
 
-`https://canary.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&company_id=1&sort_by=created_at&order=asc&page=1`
+`https://api.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&company_id=1&sort_by=created_at&order=asc&page=1`
 
-`https://canary.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&company_id=1&sort_by=created_at&order=asc&page=2`
+`https://api.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&company_id=1&sort_by=created_at&order=asc&page=2`
 
 
 ## V2 - Enumerate through Calls in a specific date/time range.  <span style="color:red;">EXPERIMENTAL</span>
@@ -654,12 +654,12 @@ The timestamp should be formatted according to [rfc3339](https://validator.w3.or
 
 ### HTTP Request
 
-`GET https://canary.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&company_id=1&created_at_start=2016-01-01T00:00:00+00:00&created_at_end=2016-01-02T00:00:00+00:00&page=1`
+`GET https://api.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&company_id=1&created_at_start=2016-01-01T00:00:00+00:00&created_at_end=2016-01-02T00:00:00+00:00&page=1`
 
 ## V2 - Get a specific Call  <span style="color:red;">EXPERIMENTAL</span>
 
 ```shell
-curl "https://canary.retreaver.com/api/v2/calls/94079290-93f3-4527-9e78-88653aaf3c49.json?api_key=woofwoofwoof"
+curl "https://api.retreaver.com/api/v2/calls/94079290-93f3-4527-9e78-88653aaf3c49.json?api_key=woofwoofwoof"
 ```
 
 > The above command returns JSON structured like this:
@@ -810,7 +810,7 @@ Calls can be accessed by their UUID.
 
 ### HTTP Request
 
-`GET https://canary.retreaver.com/api/v2/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof&company_id=1`
+`GET https://api.retreaver.com/api/v2/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof&company_id=1`
 
 
 
