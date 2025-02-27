@@ -653,6 +653,21 @@
                   <li>
                     <a href="#suppress-a-contact-number-by-phone-number" class="toc-h2 toc-link" data-title="Suppress a Contact Number by phone number">Suppress a Contact Number by phone number</a>
                   </li>
+                  <li>
+                    <a href="#get-the-active-company-deprecated" class="toc-h2 toc-link" data-title="Get the active Company - DEPRECATED">Get the active Company - DEPRECATED</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-specific-company-deprecated" class="toc-h2 toc-link" data-title="Get a specific Company - DEPRECATED">Get a specific Company - DEPRECATED</a>
+                  </li>
+                  <li>
+                    <a href="#get-all-companies-deprecated" class="toc-h2 toc-link" data-title="Get all Companies - DEPRECATED">Get all Companies - DEPRECATED</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-company-deprecated" class="toc-h2 toc-link" data-title="Create a Company - DEPRECATED">Create a Company - DEPRECATED</a>
+                  </li>
+                  <li>
+                    <a href="#update-a-company-deprecated" class="toc-h2 toc-link" data-title="Update a Company - DEPRECATED">Update a Company - DEPRECATED</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -997,7 +1012,7 @@ created, and then paginate through all your calls.</p>
 <p>Calls can be accessed by their UUID.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET https://api.retreaver.com/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof</code></p>
-<h2 id='v2-get-recent-calls-experimental'>V2 - Get recent Calls  <span style="color:red;">EXPERIMENTAL</span></h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://canary.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof"</span>
+<h2 id='v2-get-recent-calls-experimental'>V2 - Get recent Calls  <span style="color:red;">EXPERIMENTAL</span></h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof"</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -1349,7 +1364,7 @@ created, and then paginate through all your calls.</p>
 </tr>
 </tbody></table>
 <h3 id='http-request-5'>HTTP Request</h3>
-<p><code>GET https://canary.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof</code></p>
+<p><code>GET https://api.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof</code></p>
 <h3 id='query-parameters-2'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -1424,12 +1439,12 @@ created, and then paginate through all your calls.</p>
 <blockquote>
 <p>First page...</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://canary.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&amp;page=1"</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&amp;page=1"</span>
 </code></pre></div>
 <blockquote>
 <p>Second page...</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://canary.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&amp;page=2"</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&amp;page=2"</span>
 </code></pre></div>
 <blockquote>
 <p>etc...</p>
@@ -1438,17 +1453,17 @@ created, and then paginate through all your calls.</p>
 <p>To fetch all Calls on your Account, use the <code>sort_by</code> and <code>order</code> params to return your Calls in the order they were
 created, and then paginate through all your calls.</p>
 <h3 id='http-request-6'>HTTP Request</h3>
-<p><code>https://canary.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;sort_by=created_at&amp;order=asc&amp;page=1</code></p>
+<p><code>https://api.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;sort_by=created_at&amp;order=asc&amp;page=1</code></p>
 
-<p><code>https://canary.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;sort_by=created_at&amp;order=asc&amp;page=2</code></p>
+<p><code>https://api.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;sort_by=created_at&amp;order=asc&amp;page=2</code></p>
 <h2 id='v2-enumerate-through-calls-in-a-specific-date-time-range-experimental'>V2 - Enumerate through Calls in a specific date/time range.  <span style="color:red;">EXPERIMENTAL</span></h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;created_at_start=2016-01-01T00:00:00+00:00&amp;created_at_end=2016-01-02T00:00:00+00:00&amp;page=1"</span>
 </code></pre></div>
 <p>By passing in <code>created_at_start</code> and <code>created_at_end</code> parameters, you can control the start and end time of Calls returned.</p>
 
 <p>The timestamp should be formatted according to <a href="https://validator.w3.org/feed/docs/error/InvalidRFC3339Date.html">rfc3339</a></p>
 <h3 id='http-request-7'>HTTP Request</h3>
-<p><code>GET https://canary.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;created_at_start=2016-01-01T00:00:00+00:00&amp;created_at_end=2016-01-02T00:00:00+00:00&amp;page=1</code></p>
-<h2 id='v2-get-a-specific-call-experimental'>V2 - Get a specific Call  <span style="color:red;">EXPERIMENTAL</span></h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://canary.retreaver.com/api/v2/calls/94079290-93f3-4527-9e78-88653aaf3c49.json?api_key=woofwoofwoof"</span>
+<p><code>GET https://api.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;created_at_start=2016-01-01T00:00:00+00:00&amp;created_at_end=2016-01-02T00:00:00+00:00&amp;page=1</code></p>
+<h2 id='v2-get-a-specific-call-experimental'>V2 - Get a specific Call  <span style="color:red;">EXPERIMENTAL</span></h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/api/v2/calls/94079290-93f3-4527-9e78-88653aaf3c49.json?api_key=woofwoofwoof"</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -1594,7 +1609,7 @@ created, and then paginate through all your calls.</p>
 </span></code></pre></div>
 <p>Calls can be accessed by their UUID.</p>
 <h3 id='http-request-8'>HTTP Request</h3>
-<p><code>GET https://canary.retreaver.com/api/v2/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+<p><code>GET https://api.retreaver.com/api/v2/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h1 id='affiliates'>Affiliates</h1>
 <p>Entering Affiliates into our system allows you to attribute calls back to the Affiliate who created them, and to update any external tracking systems.</p>
 
@@ -3661,11 +3676,14 @@ This will also delete all Numbers associated with this Number Pool!
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CallPixels"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"default_click_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://callpixels.com/?a=[affiliate_id]&amp;c=[campaign_id]&amp;cp=js&amp;s1=[sub_id]"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"default_sale_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://callpixels.com/p.ashx?o=[campaign_id]&amp;t=[call_log_id]-[caller_id]-[called_number]-[call_duration]-[call_recording_url]"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-04-15T05:44:10Z"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-05-07T15:32:44Z"</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Retreaver"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-04-17T22:58:17.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-12-19T11:00:37.896Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"embedded_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6e1a3c121f83dad4c0bef78414b9e597"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"per_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"use_global_suppression_list"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.0"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"owner_user_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Alice Bob"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
@@ -3684,11 +3702,14 @@ You should always pass in the <code>company_id</code> parameter when requesting 
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="nl">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CallPixels"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"default_click_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://callpixels.com/?a=[affiliate_id]&amp;c=[campaign_id]&amp;cp=js&amp;s1=[sub_id]"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"default_sale_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://callpixels.com/p.ashx?o=[campaign_id]&amp;t=[call_log_id]-[caller_id]-[called_number]-[call_duration]-[call_recording_url]"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-04-15T05:44:10Z"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-05-07T15:32:44Z"</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Retreaver"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-04-17T22:58:17.000Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-12-19T11:00:37.896Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"embedded_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6e1a3c121f83dad4c0bef78414b9e597"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"per_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"use_global_suppression_list"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.0"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"owner_user_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Alice Bob"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
@@ -3700,16 +3721,34 @@ You should always pass in the <code>company_id</code> parameter when requesting 
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[{</span><span class="w">
-     </span><span class="nl">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-         </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-         </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CallPixels"</span><span class="p">,</span><span class="w">
-         </span><span class="nl">"default_click_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://callpixels.com/?a=[affiliate_id]&amp;c=[campaign_id]&amp;cp=js&amp;s1=[sub_id]"</span><span class="p">,</span><span class="w">
-         </span><span class="nl">"default_sale_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://callpixels.com/p.ashx?o=[campaign_id]&amp;t=[call_log_id]-[caller_id]-[called_number]-[call_duration]-[call_recording_url]"</span><span class="p">,</span><span class="w">
-         </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-04-15T05:44:10Z"</span><span class="p">,</span><span class="w">
-         </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-05-07T15:32:44Z"</span><span class="w">
-     </span><span class="p">}</span><span class="w">
- </span><span class="p">}]</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Foo Corp"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-08T15:23:31.777Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-09-15T02:55:46.690Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"embedded_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6e1a3c121f83dad4c0bef78414b9e597"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"per_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"use_global_suppression_list"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200.0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"owner_user_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Alice Bob"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example Co"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-11T17:18:22.675Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-09-15T02:55:46.708Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"embedded_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6e1a3c121f83dad4c0bef78414b9e597"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"per_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"use_global_suppression_list"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"owner_user_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Charlie Smith"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+ </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 <p>Provides a complete list of Companies accessible via your Account.</p>
 <h3 id='http-request-35'>HTTP Request</h3>
@@ -3718,20 +3757,23 @@ You should always pass in the <code>company_id</code> parameter when requesting 
     <span class="nt">-X</span> POST <span class="se">\</span>
     https://api.retreaver.com/companies.json <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    <span class="nt">-d</span> <span class="s1">'{"company":{"name":"CallPixels.com"}}'</span>
+    <span class="nt">-d</span> <span class="s1">'{"company":{"name":"Retreaver"}}'</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-     </span><span class="nl">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-         </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-         </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CallPixels"</span><span class="p">,</span><span class="w">
-         </span><span class="nl">"default_click_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://callpixels.com/?a=[affiliate_id]&amp;c=[campaign_id]&amp;cp=js&amp;s1=[sub_id]"</span><span class="p">,</span><span class="w">
-         </span><span class="nl">"default_sale_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://callpixels.com/p.ashx?o=[campaign_id]&amp;t=[call_log_id]-[caller_id]-[called_number]-[call_duration]-[call_recording_url]"</span><span class="p">,</span><span class="w">
-         </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-04-15T05:44:10Z"</span><span class="p">,</span><span class="w">
-         </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-05-07T15:32:44Z"</span><span class="w">
-     </span><span class="p">}</span><span class="w">
+    </span><span class="nl">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Retreaver"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-01-28T12:18:44.131Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-01-28T12:18:44.131Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"embedded_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6e1a3c121f83dad4c0bef78414b9e597"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"per_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"use_global_suppression_list"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.0"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"owner_user_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Alice Bob"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Creates a Company.</p>
@@ -3762,24 +3804,10 @@ The Companies you create each have their own Accounts and payment settings.
 <td>required</td>
 <td>The company name.</td>
 </tr>
-<tr>
-<td>default_click_url</td>
-<td>string</td>
-<td></td>
-<td></td>
-<td>The default click URL to set as a Timer @ 0 seconds when creating a campaign.</td>
-</tr>
-<tr>
-<td>default_sale_url</td>
-<td>string</td>
-<td></td>
-<td></td>
-<td>The default sale URL to set as a Timer @ 90 seconds when creating a campaign</td>
-</tr>
 </tbody></table>
 <h2 id='update-a-company'>Update a Company</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-s</span> <span class="se">\</span>
     <span class="nt">-X</span> PUT <span class="se">\</span>
-    https://api.retreaver.com/companies/2.json <span class="se">\</span>
+    https://api.retreaver.com/companies/1.json <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
     <span class="nt">-d</span> <span class="s1">'{"company":{"name":"Retreaver"}}'</span>
 </code></pre></div>
@@ -3787,14 +3815,17 @@ The Companies you create each have their own Accounts and payment settings.
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-     </span><span class="nl">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-         </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-         </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Retreaver"</span><span class="p">,</span><span class="w">
-         </span><span class="nl">"default_click_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://callpixels.com/?a=[affiliate_id]&amp;c=[campaign_id]&amp;cp=js&amp;s1=[sub_id]"</span><span class="p">,</span><span class="w">
-         </span><span class="nl">"default_sale_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://callpixels.com/p.ashx?o=[campaign_id]&amp;t=[call_log_id]-[caller_id]-[called_number]-[call_duration]-[call_recording_url]"</span><span class="p">,</span><span class="w">
-         </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-04-15T05:44:10Z"</span><span class="p">,</span><span class="w">
-         </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-05-07T15:32:44Z"</span><span class="w">
-     </span><span class="p">}</span><span class="w">
+    </span><span class="nl">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Retreaver"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-01-28T12:18:44.131Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-01-28T12:34:27.103Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"embedded_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6e1a3c121f83dad4c0bef78414b9e597"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"per_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.0"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"use_global_suppression_list"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.0"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"owner_user_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Alice Bob"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Updates the given Company with any attributes you have passed in.</p>
@@ -5357,6 +5388,177 @@ contact with a company after choosing to be routed to a &quot;add caller to supp
 <p><code>Content-Type: application/json</code></p>
 
 <p><code>{&quot;suppressed_number&quot;: {&quot;can_resubscribe&quot;: false}}</code></p>
+<h2 id='get-the-active-company-deprecated'>Get the active Company - DEPRECATED</h2>
+<aside class="warning">
+    This route is no longer supported. Please use <a href="https://retreaver.github.io/core-api-docs/#get-the-active-company">the updated route</a> for all future requests.
+</aside>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/company.json?api_key=woofwoofwoof"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CallPixels"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"default_click_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://callpixels.com/?a=[affiliate_id]&amp;c=[campaign_id]&amp;cp=js&amp;s1=[sub_id]"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"default_sale_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://callpixels.com/p.ashx?o=[campaign_id]&amp;t=[call_log_id]-[caller_id]-[called_number]-[call_duration]-[call_recording_url]"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-04-15T05:44:10Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-05-07T15:32:44Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Returns the currently active Company. This is the Company that will be modified if a request is sent in without a specific company_id.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>GET https://api.retreaver.com/company.json?api_key=woofwoofwoof</code></p>
+<h2 id='get-a-specific-company-deprecated'>Get a specific Company - DEPRECATED</h2>
+<aside class="warning">
+    This route is no longer supported. Please use <a href="https://retreaver.github.io/core-api-docs/#get-a-specific-company">the updated route</a> for all future requests.
+</aside>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/companies/1.json?api_key=woofwoofwoof"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CallPixels"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"default_click_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://callpixels.com/?a=[affiliate_id]&amp;c=[campaign_id]&amp;cp=js&amp;s1=[sub_id]"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"default_sale_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://callpixels.com/p.ashx?o=[campaign_id]&amp;t=[call_log_id]-[caller_id]-[called_number]-[call_duration]-[call_recording_url]"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-04-15T05:44:10Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-05-07T15:32:44Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Returns the Company matching our internal ID.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>GET https://api.retreaver.com/companies/1.json?api_key=woofwoofwoof</code></p>
+<h2 id='get-all-companies-deprecated'>Get all Companies - DEPRECATED</h2>
+<aside class="warning">
+    This route is no longer supported. Please use <a href="https://retreaver.github.io/core-api-docs/#get-all-companies">the updated route</a> for all future requests.
+</aside>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/companies.json?api_key=woofwoofwoof"</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[{</span><span class="w">
+     </span><span class="nl">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+         </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CallPixels"</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"default_click_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://callpixels.com/?a=[affiliate_id]&amp;c=[campaign_id]&amp;cp=js&amp;s1=[sub_id]"</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"default_sale_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://callpixels.com/p.ashx?o=[campaign_id]&amp;t=[call_log_id]-[caller_id]-[called_number]-[call_duration]-[call_recording_url]"</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-04-15T05:44:10Z"</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-05-07T15:32:44Z"</span><span class="w">
+     </span><span class="p">}</span><span class="w">
+ </span><span class="p">}]</span><span class="w">
+</span></code></pre></div>
+<p>Provides a complete list of Companies accessible via your Account.</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>GET https://api.retreaver.com/companies.json?api_key=woofwoofwoof</code></p>
+<h2 id='create-a-company-deprecated'>Create a Company - DEPRECATED</h2>
+<aside class="warning">
+    This route is no longer supported. Please use <a href="https://retreaver.github.io/core-api-docs/#create-a-company">the updated route</a> for all future requests.
+</aside>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-s</span> <span class="se">\</span>
+    <span class="nt">-X</span> POST <span class="se">\</span>
+    https://api.retreaver.com/companies.json <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'{"company":{"name":"CallPixels.com"}}'</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+     </span><span class="nl">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+         </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CallPixels"</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"default_click_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://callpixels.com/?a=[affiliate_id]&amp;c=[campaign_id]&amp;cp=js&amp;s1=[sub_id]"</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"default_sale_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://callpixels.com/p.ashx?o=[campaign_id]&amp;t=[call_log_id]-[caller_id]-[called_number]-[call_duration]-[call_recording_url]"</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-04-15T05:44:10Z"</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-05-07T15:32:44Z"</span><span class="w">
+     </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Creates a Company.</p>
+
+<aside class="info">
+    The Companies you create each have their own Accounts and payment settings.
+</aside>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>POST https://api.retreaver.com/companies.json?api_key=woofwoofwoof</code></p>
+
+<p><code>Content-Type: application/json</code></p>
+
+<p><code>{&quot;company&quot;:{&quot;name&quot;:&quot;CallPixels.com&quot;}}</code></p>
+<h3 id='parameters'>Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td></td>
+<td>required</td>
+<td>The company name.</td>
+</tr>
+<tr>
+<td>default_click_url</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>The default click URL to set as a Timer @ 0 seconds when creating a campaign.</td>
+</tr>
+<tr>
+<td>default_sale_url</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>The default sale URL to set as a Timer @ 90 seconds when creating a campaign</td>
+</tr>
+</tbody></table>
+<h2 id='update-a-company-deprecated'>Update a Company - DEPRECATED</h2>
+<aside class="warning">
+    This route is no longer supported. Please use <a href="https://retreaver.github.io/core-api-docs/#update-a-company">the updated route</a> for all future requests.
+</aside>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-s</span> <span class="se">\</span>
+    <span class="nt">-X</span> PUT <span class="se">\</span>
+    https://api.retreaver.com/companies/2.json <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'{"company":{"name":"Retreaver"}}'</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+     </span><span class="nl">"company"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+         </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Retreaver"</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"default_click_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://callpixels.com/?a=[affiliate_id]&amp;c=[campaign_id]&amp;cp=js&amp;s1=[sub_id]"</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"default_sale_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://callpixels.com/p.ashx?o=[campaign_id]&amp;t=[call_log_id]-[caller_id]-[called_number]-[call_duration]-[call_recording_url]"</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-04-15T05:44:10Z"</span><span class="p">,</span><span class="w">
+         </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-05-07T15:32:44Z"</span><span class="w">
+     </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Updates the given Company with any attributes you have passed in.</p>
+
+<aside class="notice">
+    You must replace <code>2</code> with the Retreaver ID of the Company you want to update.
+</aside>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>PUT https://api.retreaver.com/companies/2.json?api_key=woofwoofwoof</code></p>
+
+<p><code>Content-Type: application/json</code></p>
+
+<p><code>{&quot;company&quot;:{&quot;name&quot;:&quot;Retreaver&quot;}}</code></p>
 <h1 id='errors'>Errors</h1>
 <p>The Retreaver Core API uses the following error codes:</p>
 
