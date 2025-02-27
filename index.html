@@ -347,16 +347,16 @@
                     <a href="#v1-get-a-specific-call" class="toc-h2 toc-link" data-title="V1 - Get a specific Call">V1 - Get a specific Call</a>
                   </li>
                   <li>
-                    <a href="#v2-get-recent-calls-experimental" class="toc-h2 toc-link" data-title="V2 - Get recent Calls  EXPERIMENTAL">V2 - Get recent Calls  <span style="color:red;">EXPERIMENTAL</span></a>
+                    <a href="#v2-get-recent-calls" class="toc-h2 toc-link" data-title="V2 - Get recent Calls">V2 - Get recent Calls</a>
                   </li>
                   <li>
-                    <a href="#v2-enumerate-through-all-calls-experimental" class="toc-h2 toc-link" data-title="V2 - Enumerate through all calls  EXPERIMENTAL">V2 - Enumerate through all calls  <span style="color:red;">EXPERIMENTAL</span></a>
+                    <a href="#v2-enumerate-through-all-calls" class="toc-h2 toc-link" data-title="V2 - Enumerate through all calls">V2 - Enumerate through all calls</a>
                   </li>
                   <li>
-                    <a href="#v2-enumerate-through-calls-in-a-specific-date-time-range-experimental" class="toc-h2 toc-link" data-title="V2 - Enumerate through Calls in a specific date/time range.  EXPERIMENTAL">V2 - Enumerate through Calls in a specific date/time range.  <span style="color:red;">EXPERIMENTAL</span></a>
+                    <a href="#v2-enumerate-through-calls-in-a-specific-date-time-range" class="toc-h2 toc-link" data-title="V2 - Enumerate through Calls in a specific date/time range.">V2 - Enumerate through Calls in a specific date/time range.</a>
                   </li>
                   <li>
-                    <a href="#v2-get-a-specific-call-experimental" class="toc-h2 toc-link" data-title="V2 - Get a specific Call  EXPERIMENTAL">V2 - Get a specific Call  <span style="color:red;">EXPERIMENTAL</span></a>
+                    <a href="#v2-get-a-specific-call" class="toc-h2 toc-link" data-title="V2 - Get a specific Call">V2 - Get a specific Call</a>
                   </li>
               </ul>
           </li>
@@ -1012,7 +1012,7 @@ created, and then paginate through all your calls.</p>
 <p>Calls can be accessed by their UUID.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code>GET https://api.retreaver.com/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof</code></p>
-<h2 id='v2-get-recent-calls-experimental'>V2 - Get recent Calls  <span style="color:red;">EXPERIMENTAL</span></h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof"</span>
+<h2 id='v2-get-recent-calls'>V2 - Get recent Calls</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof"</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -1435,7 +1435,7 @@ created, and then paginate through all your calls.</p>
 <td>Return calls for a affiliate Sub ID.</td>
 </tr>
 </tbody></table>
-<h2 id='v2-enumerate-through-all-calls-experimental'>V2 - Enumerate through all calls  <span style="color:red;">EXPERIMENTAL</span></h2>
+<h2 id='v2-enumerate-through-all-calls'>V2 - Enumerate through all calls</h2>
 <blockquote>
 <p>First page...</p>
 </blockquote>
@@ -1456,14 +1456,14 @@ created, and then paginate through all your calls.</p>
 <p><code>https://api.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;sort_by=created_at&amp;order=asc&amp;page=1</code></p>
 
 <p><code>https://api.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;sort_by=created_at&amp;order=asc&amp;page=2</code></p>
-<h2 id='v2-enumerate-through-calls-in-a-specific-date-time-range-experimental'>V2 - Enumerate through Calls in a specific date/time range.  <span style="color:red;">EXPERIMENTAL</span></h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;created_at_start=2016-01-01T00:00:00+00:00&amp;created_at_end=2016-01-02T00:00:00+00:00&amp;page=1"</span>
+<h2 id='v2-enumerate-through-calls-in-a-specific-date-time-range'>V2 - Enumerate through Calls in a specific date/time range.</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;created_at_start=2016-01-01T00:00:00+00:00&amp;created_at_end=2016-01-02T00:00:00+00:00&amp;page=1"</span>
 </code></pre></div>
 <p>By passing in <code>created_at_start</code> and <code>created_at_end</code> parameters, you can control the start and end time of Calls returned.</p>
 
 <p>The timestamp should be formatted according to <a href="https://validator.w3.org/feed/docs/error/InvalidRFC3339Date.html">rfc3339</a></p>
 <h3 id='http-request-7'>HTTP Request</h3>
 <p><code>GET https://api.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;created_at_start=2016-01-01T00:00:00+00:00&amp;created_at_end=2016-01-02T00:00:00+00:00&amp;page=1</code></p>
-<h2 id='v2-get-a-specific-call-experimental'>V2 - Get a specific Call  <span style="color:red;">EXPERIMENTAL</span></h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/api/v2/calls/94079290-93f3-4527-9e78-88653aaf3c49.json?api_key=woofwoofwoof"</span>
+<h2 id='v2-get-a-specific-call'>V2 - Get a specific Call</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/api/v2/calls/94079290-93f3-4527-9e78-88653aaf3c49.json?api_key=woofwoofwoof"</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
