@@ -292,7 +292,7 @@ Calls can be accessed by their UUID.
 `GET https://api.retreaver.com/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof`
 
 
-## V2 - Get recent Calls  <span style="color:red;">EXPERIMENTAL</span>
+## V2 - Get recent Calls
 
 ```shell
 curl "https://api.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof"
@@ -616,7 +616,7 @@ client_cid | `123456` | | Return calls for a specific campaign.
 client_tid | `123456` | | Return calls for a specific target.
 sub_id | `123456` | | Return calls for a affiliate Sub ID.
 
-## V2 - Enumerate through all calls  <span style="color:red;">EXPERIMENTAL</span>
+## V2 - Enumerate through all calls
 
  > First page...
 
@@ -642,7 +642,7 @@ created, and then paginate through all your calls.
 `https://api.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&company_id=1&sort_by=created_at&order=asc&page=2`
 
 
-## V2 - Enumerate through Calls in a specific date/time range.  <span style="color:red;">EXPERIMENTAL</span>
+## V2 - Enumerate through Calls in a specific date/time range.
 
 ```shell
 curl "https://api.retreaver.com/calls.json?api_key=woofwoofwoof&company_id=1&created_at_start=2016-01-01T00:00:00+00:00&created_at_end=2016-01-02T00:00:00+00:00&page=1"
@@ -656,7 +656,7 @@ The timestamp should be formatted according to [rfc3339](https://validator.w3.or
 
 `GET https://api.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&company_id=1&created_at_start=2016-01-01T00:00:00+00:00&created_at_end=2016-01-02T00:00:00+00:00&page=1`
 
-## V2 - Get a specific Call  <span style="color:red;">EXPERIMENTAL</span>
+## V2 - Get a specific Call
 
 ```shell
 curl "https://api.retreaver.com/api/v2/calls/94079290-93f3-4527-9e78-88653aaf3c49.json?api_key=woofwoofwoof"
