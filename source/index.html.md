@@ -812,71 +812,91 @@ Calls can be accessed by their UUID.
 
 `GET https://api.retreaver.com/api/v2/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof&company_id=1`
 
+## Call Data Writing
 
-## V2 - Create Tag Values on a Call
+Retreaver users can create data posting links that give publishers the ability to apply tags to an inbound caller using call data writing, these tags can be applied at any time, either before or after a call has been processed within a Retreaver campaign.
 
-Creates tag values on a Call.
+Call data writing is typically used when you need to apply tags to calls before connecting the caller to a campaign, or before transferring the call to another agent.
 
-### Authorization
+Check our guide: <a href="https://help.retreaver.com/hc/en-us/articles/360034356152-Publisher-Data-Posting-Applying-Tags-to-Calls-using-Call-Data-Writing">Applying Tags to Calls using Call Data Writing</a>
 
-"call_key" must be provided to authorize the changes to the Call.
+### Available on retreaverdata.com domain
 
-One way to receive the "call_key" is through a webhook.
-Create a Start Webhook for the Campaign and use the [call_key] replacement token to send the call_key to your servers.
+Note that all requests must be made to <strong>retreaverdata.com</strong>.
+
+### Methods
+
+Requests could be made through POST and GET
+
+When using GET place the params in the URL
+
+> GET
 
 ```bash
-curl -X POST "https://api.retreaver.com/api/v2/calls/addcf985-017e-4962-be34-cf5d55e74afc/tag_values" \
+curl "https://reteaverdata.com/data_writing/:postback_key_uuid?caller_number=:caller_number&age=39&utm_campaign=auto"
+```
+
+> POST
+
+```bash
+curl -X POST "https://reteaverdata.com/data_writing" \
   -H "Content-Type: application/json" \
   -d '{
-    "call_key": :call_key,
-    "tag_values": {
-      "age": "39",
-      "utm_campaign": "auto"
-    }
+    "key": postback_key_uuid,
+    "caller_number": :caller_number,
+    "age": "39",
+    "utm_campaign": "auto"
   }'
 ```
 
-> Example Response
+> Example Response with call_uuid
 
 ```json
-
-[
-  {
-    "tag_value":{
-      "key":"age","value":"39"
-    }
+{
+  "tag_values": {
+    "age":"39",
+    "utm_campaign":"auto"
   },
-  {
-    "tag_value":{
-      "key":"utm_campaign","value":"auto"
-    }
-  }
-]
+  "call_uuid":"9b653cf0-4835-493b-860c-aed9b7af2a4a",
+  "status":"completed call found, tags applied"
+}
 ```
 
+> Example Response with caller_number
+
+```json
+{
+  "tag_values": {
+    "age":"39",
+    "utm_campaign":"auto"
+  },
+  "caller_number":"+3569878933094",
+  "status":"call not found, tags stored"
+}
+```
 
 ### HTTP Request
 
-`POST https://api.retreaver.com/api/v2/calls/:uuid/tag_values?call_key=:call_key`
+`POST/GET https://retreaverdata.com/data_writing`
 
-### URL Parameters
+### Parameters
 
-| Parameter | Description            |
-|----------|------------------------|
-| `uuid`   | The UUID of the call   |
+| Parameter      | Type       | Required | Description                                  |
+|----------------|------------|----------|----------------------------------------------|
+| key            | string     | Yes      | The UUID of the Postback Key used to authorize this change |
+| caller_number  | string     | Optional | The caller number of the Call for which the tags should be applied. This or a call_uuid should be provider |
+| call_uuid      | string     | Optional | The uuid of the Call for which the tags should be applied. This or a caller_number should be provided. |
+| :tag_key       | string     | Optional | Dynamic key:value pairs in the form of '?key1=value1&key2=value2' |
 
+### Call not found
 
-### Body Parameters
+The DataWriting API allows for tags to be send before a call comes in. When the Call is not found the tags are stored
+and will be applied when a Call from the caller number is received.
 
-| Parameter      | Type              | Required | Description                                  |
-|----------------|-------------------|----------|----------------------------------------------|
-| `call_key`     | string            | Yes      | Authorization key used for modifying the call|
-| tag_values     | object            | Yes      | A dynamic key-value map of tags. Keys and values are both strings.
+### Call found
 
+When a Call is found the tags are applied. Not that when the Call is already routed the tags will be applied to the call, but will not be consider for routing, as the call is already routed.
 
-### Notes on Response
-
-Only Tag Values that were create will be returned. If there already is a Tag with the specified value on the call then a new TagValue will not be created.
 
 # Affiliates
 
