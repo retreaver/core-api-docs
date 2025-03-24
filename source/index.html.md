@@ -813,6 +813,70 @@ Calls can be accessed by their UUID.
 `GET https://api.retreaver.com/api/v2/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof&company_id=1`
 
 
+## V2 - Create Tag Values on a Call
+
+Creates tag values on a Call.
+
+### Authorization
+
+"call_key" must be provided to authorize the changes to the Call.
+
+One way to receive the "call_key" is through a webhook.
+Create a Start Webhook for the Campaign and use the [call_key] replacement token to send the call_key to your servers.
+
+```bash
+curl -X POST "https://api.retreaver.com/api/v2/calls/addcf985-017e-4962-be34-cf5d55e74afc/tag_values" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "call_key": :call_key,
+    "tag_values": {
+      "age": "39",
+      "utm_campaign": "auto"
+    }
+  }'
+```
+
+> Example Response
+
+```json
+
+[
+  {
+    "tag_value":{
+      "key":"age","value":"39"
+    }
+  },
+  {
+    "tag_value":{
+      "key":"utm_campaign","value":"auto"
+    }
+  }
+]
+```
+
+
+### HTTP Request
+
+`POST https://api.retreaver.com/api/v2/calls/:uuid/tag_values?call_key=:call_key`
+
+### URL Parameters
+
+| Parameter | Description            |
+|----------|------------------------|
+| `uuid`   | The UUID of the call   |
+
+
+### Body Parameters
+
+| Parameter      | Type              | Required | Description                                  |
+|----------------|-------------------|----------|----------------------------------------------|
+| `call_key`     | string            | Yes      | Authorization key used for modifying the call|
+| tag_values     | object            | Yes      | A dynamic key-value map of tags. Keys and values are both strings.
+
+
+### Notes on Response
+
+Only Tag Values that were create will be returned. If there already is a Tag with the specified value on the call then a new TagValue will not be created.
 
 # Affiliates
 
