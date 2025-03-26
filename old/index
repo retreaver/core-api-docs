@@ -2,7 +2,7 @@
 
 <p>View our documentation on the APIs for Affiliates, Campaigns, Numbers, and Calls.</p>
 <h1 id='api-updates-mailing-list'>API Updates Mailing List</h1>
-<p>If you are implementing our API, please subscribe to our <a href="http://eepurl.com/vba4b">API update list</a> so we can inform you of changes and new versions. </p>
+<p>If you are implementing our API, please subscribe to our <a href="http://eepurl.com/vba4b">API update list</a> so we can inform you of changes and new versions.</p>
 <h1 id='api-pagination-12-13'>API Pagination (12/13)</h1>
 <p>As of January 7 2014, requests to the index pages for resources will be limited to 25 results.</p>
 

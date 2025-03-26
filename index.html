@@ -5176,6 +5176,11 @@ Retreaver Ping Shield will cache the first <code>rtb</code> and shield you from 
 <td>The api_key used to authenticate this request.</td>
 </tr>
 <tr>
+<td>company_id</td>
+<td>No</td>
+<td>Return reports associated to the specific company IF you have access to that company. If left blank it will default to the current company associated with the user using the api_key.</td>
+</tr>
+<tr>
 <td>domain</td>
 <td>Yes</td>
 <td>The domain of the report. Currently only &#39;calls&#39;</td>
@@ -5183,7 +5188,7 @@ Retreaver Ping Shield will cache the first <code>rtb</code> and shield you from 
 <tr>
 <td>facet</td>
 <td>Yes</td>
-<td>One of: [&#39;publisher&#39;, &#39;buyer&#39;, &#39;campaign&#39;, &#39;number&#39;, &#39;daily&#39;, &#39;tag_value&#39;]. This is the object that you will want to generate a report for.</td>
+<td>One of: [&#39;publisher&#39;, &#39;buyer&#39;, &#39;campaign&#39;, &#39;number&#39;, &#39;daily&#39;, &#39;tag_value&#39;, &#39;state&#39;]. This is the object that you will want to generate a report for.</td>
 </tr>
 <tr>
 <td>created_at_start</td>
@@ -5213,7 +5218,7 @@ Retreaver Ping Shield will cache the first <code>rtb</code> and shield you from 
 </tbody></table>
 
 <p>NOTE: created_at_start must be before created_at_end and the two must be smaller that 2 years apart.</p>
-<h2 id='tag-value-report'>Tag Value Report</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/api/v1/reports.json?api_key=woofwoofwoof&amp;facet=tag_value&amp;domain=calls&amp;created_at_start=2024-10-25&amp;created_at_end=2024-10-28"</span>
+<h2 id='tag-value-report'>Tag Value Report</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/api/v1/reports.json?api_key=woofwoofwoof&amp;company_id=1&amp;facet=tag_value&amp;domain=calls&amp;created_at_start=2024-10-25&amp;created_at_end=2024-10-28"</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -5253,7 +5258,7 @@ Retreaver Ping Shield will cache the first <code>rtb</code> and shield you from 
 </span></code></pre></div>
 <p>Get a report for all calls between 2024-10-25 and 2024-10-28 faceted by tag_value name.</p>
 
-<p><code>GET https://api.retreaver.com/api/v1/reports.json?api_key=woofwoofwoof&amp;facet=tag_value&amp;domain=calls&amp;created_at_start=2024-10-25&amp;created_at_end=2024-10-28</code></p>
+<p><code>GET https://api.retreaver.com/api/v1/reports.json?api_key=woofwoofwoof&amp;company_id=1&amp;facet=tag_value&amp;domain=calls&amp;created_at_start=2024-10-25&amp;created_at_end=2024-10-28</code></p>
 
 <table><thead>
 <tr>
@@ -5264,6 +5269,10 @@ Retreaver Ping Shield will cache the first <code>rtb</code> and shield you from 
 <tr>
 <td>api_key</td>
 <td>woofwoofwoof</td>
+</tr>
+<tr>
+<td>company_id</td>
+<td>1</td>
 </tr>
 <tr>
 <td>domain</td>
@@ -5282,7 +5291,7 @@ Retreaver Ping Shield will cache the first <code>rtb</code> and shield you from 
 <td>2024-10-28</td>
 </tr>
 </tbody></table>
-<h2 id='tag-value-name-report'>Tag Value Name Report</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/api/v1/reports.json?api_key=woofwoofwoof&amp;facet=tag_value&amp;domain=calls&amp;created_at_start=2024-10-25&amp;created_at_end=2024-10-28&amp;tag_value_key=utm_campaign"</span>
+<h2 id='tag-value-name-report'>Tag Value Name Report</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/api/v1/reports.json?api_key=woofwoofwoof&amp;company_id=1&amp;facet=tag_value&amp;domain=calls&amp;created_at_start=2024-10-25&amp;created_at_end=2024-10-28&amp;tag_value_key=utm_campaign"</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -5348,7 +5357,7 @@ Retreaver Ping Shield will cache the first <code>rtb</code> and shield you from 
 </span></code></pre></div>
 <p>Get a report for all calls between 2024-10-25 and 2024-10-28 faceted by the tag &#39;utm_campaign&#39;.</p>
 
-<p><code>GET https://api.retreaver.com/api/v1/reports.json?api_key=woofwoofwoof&amp;facet=tag_value&amp;domain=calls&amp;created_at_start=2024-10-25&amp;created_at_end=2024-10-28&amp;tag_value_key=utm_campaign</code></p>
+<p><code>GET https://api.retreaver.com/api/v1/reports.json?api_key=woofwoofwoof&amp;company_id=1&amp;facet=tag_value&amp;domain=calls&amp;created_at_start=2024-10-25&amp;created_at_end=2024-10-28&amp;tag_value_key=utm_campaign</code></p>
 
 <table><thead>
 <tr>
@@ -5359,6 +5368,10 @@ Retreaver Ping Shield will cache the first <code>rtb</code> and shield you from 
 <tr>
 <td>api_key</td>
 <td>woofwoofwoof</td>
+</tr>
+<tr>
+<td>company_id</td>
+<td>1</td>
 </tr>
 <tr>
 <td>domain</td>
@@ -5381,7 +5394,7 @@ Retreaver Ping Shield will cache the first <code>rtb</code> and shield you from 
 <td>utm_campaign</td>
 </tr>
 </tbody></table>
-<h2 id='not-all-tag-values-are-indexed'>Not all tag values are indexed</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/api/v1/reports.json?api_key=woofwoofwoof&amp;facet=tag_value&amp;domain=calls&amp;created_at_start=2024-10-25&amp;created_at_end=2024-10-28&amp;tag_value_key=unindexed_tag_value"</span>
+<h2 id='not-all-tag-values-are-indexed'>Not all tag values are indexed</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.retreaver.com/api/v1/reports.json?api_key=woofwoofwoof&amp;company_id=1&amp;facet=tag_value&amp;domain=calls&amp;created_at_start=2024-10-25&amp;created_at_end=2024-10-28&amp;tag_value_key=unindexed_tag_value"</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -5394,7 +5407,7 @@ Retreaver Ping Shield will cache the first <code>rtb</code> and shield you from 
 </span></code></pre></div>
 <p>To reduce the noise from billions of uninteresting values, we only report the values for Tags explicitly created for the company along with a few system Tags. To see a report on the values of &#39;unindexed_tag_value&#39;, please visit the Tags page and create a tag with key &#39;unindexed_tag_value&#39;. We will start indexing it from today. Let us know if you would like us to re-index past calls.</p>
 
-<p><code>GET https://api.retreaver.com/api/v1/reports.json?api_key=woofwoofwoof&amp;facet=tag_value&amp;domain=calls&amp;created_at_start=2024-10-25&amp;created_at_end=2024-10-28&amp;tag_value_key=unindexed_tag_value</code></p>
+<p><code>GET https://api.retreaver.com/api/v1/reports.json?api_key=woofwoofwoof&amp;company_id=1&amp;facet=tag_value&amp;domain=calls&amp;created_at_start=2024-10-25&amp;created_at_end=2024-10-28&amp;tag_value_key=unindexed_tag_value</code></p>
 
 <table><thead>
 <tr>
@@ -5405,6 +5418,10 @@ Retreaver Ping Shield will cache the first <code>rtb</code> and shield you from 
 <tr>
 <td>api_key</td>
 <td>woofwoofwoof</td>
+</tr>
+<tr>
+<td>company_id</td>
+<td>1</td>
 </tr>
 <tr>
 <td>domain</td>
