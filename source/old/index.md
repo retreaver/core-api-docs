@@ -5,7 +5,7 @@ View our documentation on the APIs for Affiliates, Campaigns, Numbers, and Calls
 API Updates Mailing List
 ========================
 
-If you are implementing our API, please subscribe to our [API update list](http://eepurl.com/vba4b) so we can inform you of changes and new versions. 
+If you are implementing our API, please subscribe to our [API update list](http://eepurl.com/vba4b) so we can inform you of changes and new versions.
 
 API Pagination (12/13)
 ======================
@@ -49,7 +49,7 @@ You must also set an appropriate HTTP Content-Type header if you're posting JSON
 
     Content-Type: application/json
 ... or XML.
-    
+
     Content-Type: text/xml
 
 You must also pass your API Key, and if you're a reseller, the Company ID that you are managing.
