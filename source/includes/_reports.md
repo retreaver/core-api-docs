@@ -7,8 +7,9 @@
 Parameter | Mandatory | Description
 --------- | ------- | -----------
 api_key | Yes | The api_key used to authenticate this request.
+company_id | No | Return reports associated to the specific company IF you have access to that company. If left blank it will default to the current company associated with the user using the api_key.
 domain | Yes | The domain of the report. Currently only 'calls'
-facet | Yes | One of: ['publisher', 'buyer', 'campaign', 'number', 'daily', 'tag_value']. This is the object that you will want to generate a report for.
+facet | Yes | One of: ['publisher', 'buyer', 'campaign', 'number', 'daily', 'tag_value', 'state']. This is the object that you will want to generate a report for.
 created_at_start | Yes |
 created_at_end | Yes |
 page | No
@@ -19,7 +20,7 @@ NOTE: created_at_start must be before created_at_end and the two must be smaller
 
 ## Tag Value Report
 ```shell
-curl "https://api.retreaver.com/api/v1/reports.json?api_key=woofwoofwoof&facet=tag_value&domain=calls&created_at_start=2024-10-25&created_at_end=2024-10-28"
+curl "https://api.retreaver.com/api/v1/reports.json?api_key=woofwoofwoof&company_id=1&facet=tag_value&domain=calls&created_at_start=2024-10-25&created_at_end=2024-10-28"
 ```
 
 > The above command returns JSON structured like this:
@@ -61,11 +62,12 @@ curl "https://api.retreaver.com/api/v1/reports.json?api_key=woofwoofwoof&facet=t
 
 Get a report for all calls between 2024-10-25 and 2024-10-28 faceted by tag_value name.
 
-`GET https://api.retreaver.com/api/v1/reports.json?api_key=woofwoofwoof&facet=tag_value&domain=calls&created_at_start=2024-10-25&created_at_end=2024-10-28`
+`GET https://api.retreaver.com/api/v1/reports.json?api_key=woofwoofwoof&company_id=1&facet=tag_value&domain=calls&created_at_start=2024-10-25&created_at_end=2024-10-28`
 
 Parameter | Value
 --------- | -------
 api_key | woofwoofwoof
+company_id | 1
 domain | calls
 facet | tag_value
 created_at_start | 2024-10-25
@@ -73,7 +75,7 @@ created_at_end | 2024-10-28
 
 ## Tag Value Name Report
 ```shell
-curl "https://api.retreaver.com/api/v1/reports.json?api_key=woofwoofwoof&facet=tag_value&domain=calls&created_at_start=2024-10-25&created_at_end=2024-10-28&tag_value_key=utm_campaign"
+curl "https://api.retreaver.com/api/v1/reports.json?api_key=woofwoofwoof&company_id=1&facet=tag_value&domain=calls&created_at_start=2024-10-25&created_at_end=2024-10-28&tag_value_key=utm_campaign"
 ```
 
 > The above command returns JSON structured like this:
@@ -141,11 +143,12 @@ curl "https://api.retreaver.com/api/v1/reports.json?api_key=woofwoofwoof&facet=t
 
 Get a report for all calls between 2024-10-25 and 2024-10-28 faceted by the tag 'utm_campaign'.
 
-`GET https://api.retreaver.com/api/v1/reports.json?api_key=woofwoofwoof&facet=tag_value&domain=calls&created_at_start=2024-10-25&created_at_end=2024-10-28&tag_value_key=utm_campaign`
+`GET https://api.retreaver.com/api/v1/reports.json?api_key=woofwoofwoof&company_id=1&facet=tag_value&domain=calls&created_at_start=2024-10-25&created_at_end=2024-10-28&tag_value_key=utm_campaign`
 
 Parameter | Value
 --------- | -------
 api_key | woofwoofwoof
+company_id | 1
 domain | calls
 facet | tag_value
 created_at_start | 2024-10-25
@@ -155,7 +158,7 @@ tag_value_key | utm_campaign
 
 ## Not all tag values are indexed
 ```shell
-curl "https://api.retreaver.com/api/v1/reports.json?api_key=woofwoofwoof&facet=tag_value&domain=calls&created_at_start=2024-10-25&created_at_end=2024-10-28&tag_value_key=unindexed_tag_value"
+curl "https://api.retreaver.com/api/v1/reports.json?api_key=woofwoofwoof&company_id=1&facet=tag_value&domain=calls&created_at_start=2024-10-25&created_at_end=2024-10-28&tag_value_key=unindexed_tag_value"
 ```
 
 > The above command returns JSON structured like this:
@@ -170,11 +173,12 @@ curl "https://api.retreaver.com/api/v1/reports.json?api_key=woofwoofwoof&facet=t
 
 To reduce the noise from billions of uninteresting values, we only report the values for Tags explicitly created for the company along with a few system Tags. To see a report on the values of 'unindexed_tag_value', please visit the Tags page and create a tag with key 'unindexed_tag_value'. We will start indexing it from today. Let us know if you would like us to re-index past calls.
 
-`GET https://api.retreaver.com/api/v1/reports.json?api_key=woofwoofwoof&facet=tag_value&domain=calls&created_at_start=2024-10-25&created_at_end=2024-10-28&tag_value_key=unindexed_tag_value`
+`GET https://api.retreaver.com/api/v1/reports.json?api_key=woofwoofwoof&company_id=1&facet=tag_value&domain=calls&created_at_start=2024-10-25&created_at_end=2024-10-28&tag_value_key=unindexed_tag_value`
 
 Parameter | Value
 --------- | -------
 api_key | woofwoofwoof
+company_id | 1
 domain | calls
 facet | tag_value
 created_at_start | 2024-10-25
