@@ -890,12 +890,20 @@ curl -X POST "https://reteaverdata.com/data_writing" \
 
 ### Call not found
 
-The DataWriting API allows for tags to be send before a call comes in. When the Call is not found the tags are stored
-and will be applied when a Call from the caller number is received.
+The DataWriting API allows for tags to be sent before a call comes in. When the call is not found the tags are stored
+and will be applied when a call from the caller number is received.
 
-### Call found
+### Completed call found
 
-When a Call is found the tags are applied. Not that when the Call is already routed the tags will be applied to the call, but will not be consider for routing, as the call is already routed.
+When a call is found and is completed the tags are applied.
+
+### In progress call found
+
+When a call is in progress, tags can be stored but may not be applied to the call immediately. Instead, they are typically applied the next time they are needed—usually when a routing decision must be made. If no further routing decisions occur while the call remains in progress, the tags are applied at the end of the call.
+
+As a result, it's possible to use the Data Writing API to set tags on an in-progress call, but not see them immediately reflected in the UI or API. They may only become visible once the call has ended.
+
+Note that if the call has already been routed, the tags will still be applied eventually—but since routing is complete, they will not influence the routing outcome.
 
 
 # Affiliates
