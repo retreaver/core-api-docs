@@ -536,6 +536,20 @@
               </ul>
           </li>
           <li>
+            <a href="#caller-lists" class="toc-h1 toc-link" data-title="Caller Lists">Caller Lists</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#access" class="toc-h2 toc-link" data-title="Access">Access</a>
+                  </li>
+                  <li>
+                    <a href="#adding-a-number-to-a-caller-list" class="toc-h2 toc-link" data-title="Adding a number to a caller list">Adding a number to a caller list</a>
+                  </li>
+                  <li>
+                    <a href="#deleting-a-number-from-caller-list" class="toc-h2 toc-link" data-title="Deleting a number from caller list">Deleting a number from caller list</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#suppressed-numbers" class="toc-h1 toc-link" data-title="Suppressed Numbers">Suppressed Numbers</a>
               <ul class="toc-list-h2">
                   <li>
@@ -4249,7 +4263,78 @@ existing Contact Number, or see <a href="#update-a-contact-number-by-phone-numbe
 <p><code>Content-Type: application/json</code></p>
 
 <p><code>{&quot;contact_number&quot;:{&quot;number&quot;:&quot;+18005551234&quot;}}</code></p>
-<h1 id='suppressed-numbers'>Suppressed Numbers</h1>
+<h1 id='caller-lists'>Caller Lists</h1>
+<p>Manage the caller lists on a Target. Add an remove numbers to the callers lists.</p>
+
+<p>A Caller List allows you to associate a list of caller numbers with a target and use these caller number when making routing decision.
+A common use case is a &quot;suppressed&quot; numbers list where certain calls should not be send to this target.</p>
+
+<p>Another common use case is &quot;a book of business&quot; numbers list where a target has certain clients and they should only receive calls
+when the caller is on their book of business.</p>
+<h2 id='access'>Access</h2>
+<p>To use the API a postback key should be issued from the type &quot;Caller List Management&quot;</p>
+<h2 id='adding-a-number-to-a-caller-list'>Adding a number to a caller list</h2>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>target_id</td>
+<td>required</td>
+<td>the id of the target on Retreaver</td>
+</tr>
+<tr>
+<td>name</td>
+<td>required</td>
+<td>the name of the list on this Target</td>
+</tr>
+<tr>
+<td>key</td>
+<td>required</td>
+<td>the postback_key UUID</td>
+</tr>
+<tr>
+<td>caller_number.number</td>
+<td>required</td>
+<td>A phone number in <a href="https://en.wikipedia.org/wiki/E.164">E.164 format</a>.</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s1">'http://localhost:3000/targets/:target_id/caller_lists/:name/caller_numbers?key=:postback_key_uuid'</span> <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer :postback_key_secret_key"</span>
+    <span class="nt">-d</span> <span class="s1">'{"caller_number":  { "number": "+15855752507" }}'</span>
+</code></pre></div><h2 id='deleting-a-number-from-caller-list'>Deleting a number from caller list</h2>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>key</td>
+<td>uuid</td>
+<td>null</td>
+<td>required</td>
+<td>the postback_key UUID</td>
+</tr>
+<tr>
+<td>number</td>
+<td>string</td>
+<td>null</td>
+<td>required</td>
+<td>A phone number in <a href="https://en.wikipedia.org/wiki/E.164">E.164 format</a>.</td>
+</tr>
+</tbody></table>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE <span class="s1">'http://localhost:3000/targets/:target_id/caller_lists/:name/caller_numbers/+15855752507?key=:postback_key_uuid'</span> <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer :postback_key_secret_key"</span>
+</code></pre></div><h1 id='suppressed-numbers'>Suppressed Numbers</h1>
 <p>Manage the company&#39;s Suppressed Numbers, including creating, updating, deleting, and retrieving suppressed numbers.</p>
 
 <aside  class="notice">
