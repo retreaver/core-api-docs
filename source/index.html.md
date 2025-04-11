@@ -3160,6 +3160,50 @@ Easily updates a Contact Number.
 `{"contact_number":{"number":"+18005551234"}}`
 
 
+# Caller Lists
+
+Manage the caller lists on a Target. Add an remove numbers to the callers lists.
+
+A Caller List allows you to associate a list of caller numbers with a target and use these caller number when making routing decision.
+A common use case is a "suppressed" numbers list where certain calls should not be send to this target.
+
+Another common use case is "a book of business" numbers list where a target has certain clients and they should only receive calls
+when the caller is on their book of business.
+
+## Access
+
+To use the API a postback key should be issued from the type "Caller List Management"
+
+## Adding a number to a caller list
+
+Parameter | Required | Description
+--------- | ---- | ------- | -------- | -----------
+target_id | required | the id of the target on Retreaver
+name      | required | the name of the list on this Target
+key       | required | the postback_key UUID
+caller_number.number  | required | A phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164).
+
+
+````shell
+curl -X POST 'http://localhost:3000/targets/:target_id/caller_lists/:name/caller_numbers?key=:postback_key_uuid' \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer :postback_key_secret_key"
+    -d '{"caller_number":  { "number": "+15855752507" }}'
+````
+
+## Deleting a number from caller list
+
+Parameter | Type | Default | Required | Description
+--------- | ---- | ------- | -------- | -----------
+key       | uuid | null    | required | the postback_key UUID
+number    | string | null    | required | A phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164).
+
+````shell
+curl -X DELETE 'http://localhost:3000/targets/:target_id/caller_lists/:name/caller_numbers/+15855752507?key=:postback_key_uuid' \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer :postback_key_secret_key"
+````
+
 # Suppressed Numbers
 
 Manage the company's Suppressed Numbers, including creating, updating, deleting, and retrieving suppressed numbers.
