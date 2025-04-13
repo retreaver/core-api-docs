@@ -3185,7 +3185,7 @@ caller_number.number  | required | A phone number in [E.164 format](https://en.w
 
 
 ````shell
-curl -X POST 'http://localhost:3000/targets/:target_id/caller_lists/:name/caller_numbers?key=:postback_key_uuid' \
+curl -X POST 'https://api.retreaver.com/targets/:target_id/caller_lists/:name/caller_numbers?key=:postback_key_uuid' \
     -H "Content-Type: application/json" \
     -H "Authorization: Bearer :postback_key_secret_key"
     -d '{"caller_number":  { "number": "+15855752507" }}'
@@ -3199,7 +3199,20 @@ key       | uuid | null    | required | the postback_key UUID
 number    | string | null    | required | A phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164).
 
 ````shell
-curl -X DELETE 'http://localhost:3000/targets/:target_id/caller_lists/:name/caller_numbers/+15855752507?key=:postback_key_uuid' \
+curl -X DELETE 'https://api.retreaver.com/targets/:target_id/caller_lists/:name/caller_numbers/+15855752507?key=:postback_key_uuid' \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer :postback_key_secret_key"
+````
+
+## Checking if a number is on a caller list
+
+Parameter | Type | Default | Required | Description
+--------- | ---- | ------- | -------- | -----------
+key       | uuid | null    | required | the postback_key UUID
+number    | string | null    | required | A phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164).
+
+````shell
+curl 'https://api.retreaver.com/targets/:target_id/caller_lists/:name/caller_numbers/+15855752507?key=:postback_key_uuid' \
     -H "Content-Type: application/json" \
     -H "Authorization: Bearer :postback_key_secret_key"
 ````
