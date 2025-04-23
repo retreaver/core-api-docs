@@ -3183,9 +3183,17 @@ name      | required | the name of the list on this Target
 key       | required | the postback_key UUID
 caller_number.number  | required | A phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164).
 
+## Response format
+
+API could respond in different formats. Use ".json/" for a json response or the "Accept: " header.
+If no format is provided the server will choose one json.
+
+## API versioning
+
+The endpoints are available under api.retreaver.com/api/v2 endpoings
 
 ````shell
-curl -X POST 'https://api.retreaver.com/targets/:target_id/caller_lists/:name/caller_numbers?key=:postback_key_uuid' \
+curl -X POST 'https://api.retreaver.com/targets/:target_id/caller_lists/:name/caller_numbers.json?key=:postback_key_uuid' \
     -H "Content-Type: application/json" \
     -H "Authorization: Bearer :postback_key_secret_key" \
     -d '{"caller_number":  { "number": "+15855752507" }}'
@@ -3199,8 +3207,7 @@ key       | uuid | null    | required | the postback_key UUID
 number    | string | null    | required | A phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164).
 
 ````shell
-curl -X DELETE 'https://api.retreaver.com/targets/:target_id/caller_lists/:name/caller_numbers/+15855752507?key=:postback_key_uuid' \
-    -H "Content-Type: application/json" \
+curl -X DELETE 'https://api.retreaver.com/targets/:target_id/caller_lists/:name/caller_numbers/+15855752507.json?key=:postback_key_uuid' \
     -H "Authorization: Bearer :postback_key_secret_key"
 ````
 
@@ -3212,8 +3219,7 @@ key       | uuid | null    | required | the postback_key UUID
 number    | string | null    | required | A phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164).
 
 ````shell
-curl 'https://api.retreaver.com/targets/:target_id/caller_lists/:name/caller_numbers/+15855752507?key=:postback_key_uuid' \
-    -H "Content-Type: application/json" \
+curl 'https://api.retreaver.com/targets/:target_id/caller_lists/:name/caller_numbers/+15855752507.json?key=:postback_key_uuid' \
     -H "Authorization: Bearer :postback_key_secret_key"
 ````
 
