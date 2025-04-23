@@ -3187,7 +3187,7 @@ caller_number.number  | required | A phone number in [E.164 format](https://en.w
 ````shell
 curl -X POST 'https://api.retreaver.com/targets/:target_id/caller_lists/:name/caller_numbers?key=:postback_key_uuid' \
     -H "Content-Type: application/json" \
-    -H "Authorization: Bearer :postback_key_secret_key"
+    -H "Authorization: Bearer :postback_key_secret_key" \
     -d '{"caller_number":  { "number": "+15855752507" }}'
 ````
 
