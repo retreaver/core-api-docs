@@ -3188,10 +3188,6 @@ caller_number.number  | required | A phone number in [E.164 format](https://en.w
 API could respond in different formats. Use ".json/" for a json response or the "Accept: " header.
 If no format is provided the server will choose one json.
 
-## API versioning
-
-The endpoints are available under api.retreaver.com/api/v2 endpoings
-
 ````shell
 curl -X POST 'https://api.retreaver.com/targets/:target_id/caller_lists/:name/caller_numbers.json?key=:postback_key_uuid' \
     -H "Content-Type: application/json" \
