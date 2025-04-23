@@ -4307,7 +4307,7 @@ when the caller is on their book of business.</p>
 </tbody></table>
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s1">'https://api.retreaver.com/targets/:target_id/caller_lists/:name/caller_numbers?key=:postback_key_uuid'</span> <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
-    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer :postback_key_secret_key"</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer :postback_key_secret_key"</span> <span class="se">\</span>
     <span class="nt">-d</span> <span class="s1">'{"caller_number":  { "number": "+15855752507" }}'</span>
 </code></pre></div><h2 id='deleting-a-number-from-caller-list'>Deleting a number from caller list</h2>
 <table><thead>
