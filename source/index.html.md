@@ -3189,10 +3189,10 @@ API could respond in different formats. Use ".json/" for a json response or the 
 If no format is provided the server will choose one json.
 
 ````shell
-curl -X POST 'https://api.retreaver.com/targets/:target_id/caller_lists/:name/caller_numbers.json?key=:postback_key_uuid' \
+curl -X POST 'https://api.retreaver.com/targets/:target_id/caller_lists/:name/caller_lists_numbers.json?key=:postback_key_uuid' \
     -H "Content-Type: application/json" \
     -H "Authorization: Bearer :postback_key_secret_key" \
-    -d '{"caller_number":  { "number": "+15855752507" }}'
+    -d '{"caller_lists_number":  { "number": "+15855752507" }}'
 ````
 
 ## Deleting a number from caller list
@@ -3203,7 +3203,7 @@ key       | uuid | null    | required | the postback_key UUID
 number    | string | null    | required | A phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164).
 
 ````shell
-curl -X DELETE 'https://api.retreaver.com/targets/:target_id/caller_lists/:name/caller_numbers/+15855752507.json?key=:postback_key_uuid' \
+curl -X DELETE 'https://api.retreaver.com/targets/:target_id/caller_lists/:name/caller_lists_numbers/+15855752507.json?key=:postback_key_uuid' \
     -H "Authorization: Bearer :postback_key_secret_key"
 ````
 
