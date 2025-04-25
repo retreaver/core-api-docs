@@ -4311,10 +4311,10 @@ when the caller is on their book of business.</p>
 <h2 id='response-format'>Response format</h2>
 <p>API could respond in different formats. Use &quot;.json/&quot; for a json response or the &quot;Accept: &quot; header.
 If no format is provided the server will choose one json.</p>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s1">'https://api.retreaver.com/targets/:target_id/caller_lists/:name/caller_numbers.json?key=:postback_key_uuid'</span> <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s1">'https://api.retreaver.com/targets/:target_id/caller_lists/:name/caller_lists_numbers.json?key=:postback_key_uuid'</span> <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Authorization: Bearer :postback_key_secret_key"</span> <span class="se">\</span>
-    <span class="nt">-d</span> <span class="s1">'{"caller_number":  { "number": "+15855752507" }}'</span>
+    <span class="nt">-d</span> <span class="s1">'{"caller_lists_number":  { "number": "+15855752507" }}'</span>
 </code></pre></div><h2 id='deleting-a-number-from-caller-list'>Deleting a number from caller list</h2>
 <table><thead>
 <tr>
@@ -4340,7 +4340,7 @@ If no format is provided the server will choose one json.</p>
 <td>A phone number in <a href="https://en.wikipedia.org/wiki/E.164">E.164 format</a>.</td>
 </tr>
 </tbody></table>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE <span class="s1">'https://api.retreaver.com/targets/:target_id/caller_lists/:name/caller_numbers/+15855752507.json?key=:postback_key_uuid'</span> <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE <span class="s1">'https://api.retreaver.com/targets/:target_id/caller_lists/:name/caller_lists_numbers/+15855752507.json?key=:postback_key_uuid'</span> <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Authorization: Bearer :postback_key_secret_key"</span>
 </code></pre></div><h2 id='checking-if-a-number-is-on-a-caller-list'>Checking if a number is on a caller list</h2>
 <table><thead>
