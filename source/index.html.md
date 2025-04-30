@@ -3174,50 +3174,117 @@ when the caller is on their book of business.
 
 To use the API a postback key should be issued from the type "Caller List Management"
 
-## Adding a number to a caller list
+## Caller List Number
+
+Manage a single number
+
+### Adding a single number to a caller list
+
+````shell
+curl -X POST 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name/caller_list_numbers.json?key=:postback_key_uuid' \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer :postback_key_secret_key" \
+    -d '{"caller_list_number":  { "number": "+15855752500" }}'
+````
 
 Parameter | Required | Description
 --------- | ---- | ------- | -------- | -----------
 target_id | required | the id of the target on Retreaver
 name      | required | the name of the list on this Target
 key       | required | the postback_key UUID
-caller_number.number  | required | A phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164).
+caller_list_number.number  | required | A phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164).
 
-## Response format
+
+### Response format
 
 API could respond in different formats. Use ".json/" for a json response or the "Accept: " header.
 If no format is provided the server will choose one json.
 
+
+### Deleting a single number from caller list
+
 ````shell
-curl -X POST 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name/caller_list_numbers.json?key=:postback_key_uuid' \
+curl -X DELETE 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name/caller_list_numbers/+15855752500.json?key=:postback_key_uuid' \
+    -H "Authorization: Bearer :postback_key_secret_key"
+````
+
+Parameter | Type | Default | Required | Description
+--------- | ---- | ------- | -------- | -----------
+key       | uuid | null    | required | the postback_key UUID
+number    | string | null    | required | A phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164).
+
+### Checking if a number is on a caller list
+
+````shell
+curl 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name/caller_list_numbers/+15855752500.json?key=:postback_key_uuid' \
+    -H "Authorization: Bearer :postback_key_secret_key"
+````
+
+Parameter | Type | Default | Required | Description
+--------- | ---- | ------- | -------- | -----------
+key       | uuid | null    | required | the postback_key UUID
+number    | string | null    | required | A phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164).
+
+
+## Caller List Uploads
+
+Mass update caller lists.
+
+### Add many numbers to a caller list
+
+```shell
+curl -X POST 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name/caller_list_uploads.json?key=:postback_key_uuid' \
     -H "Content-Type: application/json" \
     -H "Authorization: Bearer :postback_key_secret_key" \
-    -d '{"caller_list_number":  { "number": "+15855752507" }}'
-````
+    -d '{
+      "caller_list_upload":  {
+        "numbers": "+15855752500\n15855752501",
+      }
+    }'
+```
 
-## Deleting a number from caller list
+> The above command returns JSON structured like this:
 
-Parameter | Type | Default | Required | Description
+```json
+{
+  "caller_list_upload": {
+    "status": "Processing",
+    "created_at": "2025-04-30T13:29:40.100+03:00",
+    "error_messages": [],
+    "clear_before_upload": false,
+    "action": "add",
+    "csv_file_url": "https://retreaver.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBHUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--026fb3531e87edb843c5fb432b766e56d3f1a9db/numbers_fb99fc78?disposition=attachment"
+  }
+}
+```
+
+Parameter | Required | Description
 --------- | ---- | ------- | -------- | -----------
-key       | uuid | null    | required | the postback_key UUID
-number    | string | null    | required | A phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164).
+target_id | required | the id of the target on Retreaver
+name      | required | the name of the list on this Target
+key       | required | the postback_key UUID
+caller_list_upload.numbers  | required | A list of phone numbers, one number per line. Numbers could be in [E.164 format](https://en.wikipedia.org/wiki/E.164) or NANP (e.g without the country code). When the number is without the country code, it will be prefixed automatically with +1..
+caller_list_upload.action | optional | 'add' will add the numbers to the caller list. 'remove' will remove the numbers from the caller list
+caller_list_upload.clear_before_upload | optional | when 'true' the caller list will be cleared before the provided numbers are processed.
+
+
+
+### Remove many numbers to a caller list
+
+Same parameters as Add
 
 ````shell
-curl -X DELETE 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name/caller_list_numbers/+15855752507.json?key=:postback_key_uuid' \
-    -H "Authorization: Bearer :postback_key_secret_key"
+curl -X POST 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name/caller_list_uploads.json?key=:postback_key_uuid' \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer :postback_key_secret_key" \
+    -d '{
+      "caller_list_upload":  {
+        "action": "remove",
+        "numbers": "+15855752500\n15855752501",
+      }
+    }'
 ````
 
-## Checking if a number is on a caller list
-
-Parameter | Type | Default | Required | Description
---------- | ---- | ------- | -------- | -----------
-key       | uuid | null    | required | the postback_key UUID
-number    | string | null    | required | A phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164).
-
-````shell
-curl 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name/caller_list_numbers/+15855752507.json?key=:postback_key_uuid' \
-    -H "Authorization: Bearer :postback_key_secret_key"
-````
 
 # Suppressed Numbers
 
