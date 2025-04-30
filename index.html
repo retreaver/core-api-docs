@@ -542,16 +542,10 @@
                     <a href="#access" class="toc-h2 toc-link" data-title="Access">Access</a>
                   </li>
                   <li>
-                    <a href="#adding-a-number-to-a-caller-list" class="toc-h2 toc-link" data-title="Adding a number to a caller list">Adding a number to a caller list</a>
+                    <a href="#caller-list-number" class="toc-h2 toc-link" data-title="Caller List Number">Caller List Number</a>
                   </li>
                   <li>
-                    <a href="#response-format" class="toc-h2 toc-link" data-title="Response format">Response format</a>
-                  </li>
-                  <li>
-                    <a href="#deleting-a-number-from-caller-list" class="toc-h2 toc-link" data-title="Deleting a number from caller list">Deleting a number from caller list</a>
-                  </li>
-                  <li>
-                    <a href="#checking-if-a-number-is-on-a-caller-list" class="toc-h2 toc-link" data-title="Checking if a number is on a caller list">Checking if a number is on a caller list</a>
+                    <a href="#caller-list-uploads" class="toc-h2 toc-link" data-title="Caller List Uploads">Caller List Uploads</a>
                   </li>
               </ul>
           </li>
@@ -4279,7 +4273,13 @@ A common use case is a &quot;suppressed&quot; numbers list where certain calls s
 when the caller is on their book of business.</p>
 <h2 id='access'>Access</h2>
 <p>To use the API a postback key should be issued from the type &quot;Caller List Management&quot;</p>
-<h2 id='adding-a-number-to-a-caller-list'>Adding a number to a caller list</h2>
+<h2 id='caller-list-number'>Caller List Number</h2>
+<p>Manage a single number</p>
+<h3 id='adding-a-single-number-to-a-caller-list'>Adding a single number to a caller list</h3><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s1">'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name/caller_list_numbers.json?key=:postback_key_uuid'</span> <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer :postback_key_secret_key"</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'{"caller_list_number":  { "number": "+15855752500" }}'</span>
+</code></pre></div>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4303,72 +4303,142 @@ when the caller is on their book of business.</p>
 <td>the postback_key UUID</td>
 </tr>
 <tr>
-<td>caller_number.number</td>
+<td>caller_list_number.number</td>
 <td>required</td>
 <td>A phone number in <a href="https://en.wikipedia.org/wiki/E.164">E.164 format</a>.</td>
 </tr>
 </tbody></table>
-<h2 id='response-format'>Response format</h2>
+<h3 id='response-format'>Response format</h3>
 <p>API could respond in different formats. Use &quot;.json/&quot; for a json response or the &quot;Accept: &quot; header.
 If no format is provided the server will choose one json.</p>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s1">'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name/caller_list_numbers.json?key=:postback_key_uuid'</span> <span class="se">\</span>
+<h3 id='deleting-a-single-number-from-caller-list'>Deleting a single number from caller list</h3><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE <span class="s1">'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name/caller_list_numbers/+15855752500.json?key=:postback_key_uuid'</span> <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer :postback_key_secret_key"</span>
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>key</td>
+<td>uuid</td>
+<td>null</td>
+<td>required</td>
+<td>the postback_key UUID</td>
+</tr>
+<tr>
+<td>number</td>
+<td>string</td>
+<td>null</td>
+<td>required</td>
+<td>A phone number in <a href="https://en.wikipedia.org/wiki/E.164">E.164 format</a>.</td>
+</tr>
+</tbody></table>
+<h3 id='checking-if-a-number-is-on-a-caller-list'>Checking if a number is on a caller list</h3><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s1">'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name/caller_list_numbers/+15855752500.json?key=:postback_key_uuid'</span> <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer :postback_key_secret_key"</span>
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>key</td>
+<td>uuid</td>
+<td>null</td>
+<td>required</td>
+<td>the postback_key UUID</td>
+</tr>
+<tr>
+<td>number</td>
+<td>string</td>
+<td>null</td>
+<td>required</td>
+<td>A phone number in <a href="https://en.wikipedia.org/wiki/E.164">E.164 format</a>.</td>
+</tr>
+</tbody></table>
+<h2 id='caller-list-uploads'>Caller List Uploads</h2>
+<p>Mass update caller lists.</p>
+<h3 id='add-many-numbers-to-a-caller-list'>Add many numbers to a caller list</h3><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s1">'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name/caller_list_uploads.json?key=:postback_key_uuid'</span> <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Authorization: Bearer :postback_key_secret_key"</span> <span class="se">\</span>
-    <span class="nt">-d</span> <span class="s1">'{"caller_list_number":  { "number": "+15855752507" }}'</span>
-</code></pre></div><h2 id='deleting-a-number-from-caller-list'>Deleting a number from caller list</h2>
+    <span class="nt">-d</span> <span class="s1">'{
+      "caller_list_upload":  {
+        "numbers": "+15855752500\n15855752501",
+      }
+    }'</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"caller_list_upload"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Processing"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2025-04-30T13:29:40.100+03:00"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"error_messages"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"clear_before_upload"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"action"</span><span class="p">:</span><span class="w"> </span><span class="s2">"add"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"csv_file_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://retreaver.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBHUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--026fb3531e87edb843c5fb432b766e56d3f1a9db/numbers_fb99fc78?disposition=attachment"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
 <table><thead>
 <tr>
 <th>Parameter</th>
-<th>Type</th>
-<th>Default</th>
 <th>Required</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
+<td>target_id</td>
+<td>required</td>
+<td>the id of the target on Retreaver</td>
+</tr>
+<tr>
+<td>name</td>
+<td>required</td>
+<td>the name of the list on this Target</td>
+</tr>
+<tr>
 <td>key</td>
-<td>uuid</td>
-<td>null</td>
 <td>required</td>
 <td>the postback_key UUID</td>
 </tr>
 <tr>
-<td>number</td>
-<td>string</td>
-<td>null</td>
+<td>caller_list_upload.numbers</td>
 <td>required</td>
-<td>A phone number in <a href="https://en.wikipedia.org/wiki/E.164">E.164 format</a>.</td>
+<td>A list of phone numbers, one number per line. Numbers could be in <a href="https://en.wikipedia.org/wiki/E.164">E.164 format</a> or NANP (e.g without the country code). When the number is without the country code, it will be prefixed automatically with +1..</td>
+</tr>
+<tr>
+<td>caller_list_upload.action</td>
+<td>optional</td>
+<td>&#39;add&#39; will add the numbers to the caller list. &#39;remove&#39; will remove the numbers from the caller list</td>
+</tr>
+<tr>
+<td>caller_list_upload.clear_before_upload</td>
+<td>optional</td>
+<td>when &#39;true&#39; the caller list will be cleared before the provided numbers are processed.</td>
 </tr>
 </tbody></table>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE <span class="s1">'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name/caller_list_numbers/+15855752507.json?key=:postback_key_uuid'</span> <span class="se">\</span>
-    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer :postback_key_secret_key"</span>
-</code></pre></div><h2 id='checking-if-a-number-is-on-a-caller-list'>Checking if a number is on a caller list</h2>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Default</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>key</td>
-<td>uuid</td>
-<td>null</td>
-<td>required</td>
-<td>the postback_key UUID</td>
-</tr>
-<tr>
-<td>number</td>
-<td>string</td>
-<td>null</td>
-<td>required</td>
-<td>A phone number in <a href="https://en.wikipedia.org/wiki/E.164">E.164 format</a>.</td>
-</tr>
-</tbody></table>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s1">'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name/caller_list_numbers/+15855752507.json?key=:postback_key_uuid'</span> <span class="se">\</span>
-    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer :postback_key_secret_key"</span>
+<h3 id='remove-many-numbers-to-a-caller-list'>Remove many numbers to a caller list</h3>
+<p>Same parameters as Add</p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s1">'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name/caller_list_uploads.json?key=:postback_key_uuid'</span> <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer :postback_key_secret_key"</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'{
+      "caller_list_upload":  {
+        "action": "remove",
+        "numbers": "+15855752500\n15855752501",
+      }
+    }'</span>
 </code></pre></div><h1 id='suppressed-numbers'>Suppressed Numbers</h1>
 <p>Manage the company&#39;s Suppressed Numbers, including creating, updating, deleting, and retrieving suppressed numbers.</p>
 
