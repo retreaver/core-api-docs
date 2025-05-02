@@ -3252,7 +3252,7 @@ curl -X POST 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:
     "created_at": "2025-04-30T13:29:40.100+03:00",
     "error_messages": [],
     "clear_before_upload": false,
-    "action": "add",
+    "action": "create",
     "csv_file_url": "https://retreaver.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBHUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--026fb3531e87edb843c5fb432b766e56d3f1a9db/numbers_fb99fc78?disposition=attachment"
   }
 }
@@ -3279,7 +3279,7 @@ curl -X POST 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:
     -H "Authorization: Bearer :postback_key_secret_key" \
     -d '{
       "caller_list_upload":  {
-        "action": "remove",
+        "action": "delete",
         "numbers": "+15855752500\n15855752501",
       }
     }'
