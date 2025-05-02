@@ -3264,7 +3264,7 @@ target_id | required | the id of the target on Retreaver
 name      | required | the name of the list on this Target
 key       | required | the postback_key UUID
 caller_list_upload.numbers  | required | A list of phone numbers, one number per line. Numbers could be in [E.164 format](https://en.wikipedia.org/wiki/E.164) or NANP (e.g without the country code). When the number is without the country code, it will be prefixed automatically with +1..
-caller_list_upload.action | optional | 'add' will add the numbers to the caller list. 'remove' will remove the numbers from the caller list
+caller_list_upload.action | optional | 'create' will create numbers on the caller list. 'delete' will delete the numbers from the caller list
 caller_list_upload.clear_before_upload | optional | when 'true' the caller list will be cleared before the provided numbers are processed.
 
 
