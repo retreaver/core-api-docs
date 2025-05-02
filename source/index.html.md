@@ -3269,7 +3269,7 @@ caller_list_upload.clear_before_upload | optional | when 'true' the caller list 
 
 
 
-### Remove many numbers to a caller list
+### Remove many numbers from a caller list
 
 Same parameters as Add
 
