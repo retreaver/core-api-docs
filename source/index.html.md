@@ -3174,6 +3174,78 @@ when the caller is on their book of business.
 
 To use the API a postback key should be issued from the type "Caller List Management"
 
+## Caller List
+
+Caller lists are created on specific targets and companies
+
+Numbers could be manages on the caller list after creating them.
+
+### Create caller list
+
+Send a POST request
+
+```shell
+curl -X POST 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists.json?key=:postback_key_uuid' \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer :postback_key_secret_key" \
+    -d '{"caller_list":  { "name": "suppressed" }}'
+```
+
+Parameter | Required | Description
+--------- | ---- | -------
+target_id | required | the id of the target on Retreaver
+key       | required | the postback_key UUID
+caller_list.name      | required | the name of the list on this Target
+
+### Delete a caller list
+
+Send a DELETE request
+
+```shell
+curl -X DELETE 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name.json?key=:postback_key_uuid' \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer :postback_key_secret_key"
+```
+
+Parameter | Required | Description
+--------- | ---- | -------
+target_id | required | the id of the target on Retreaver
+key       | required | the postback_key UUID
+name      | required | the name of the list on this Target
+
+Deletes the caller list
+
+### Show caller list
+
+Send a GET request
+
+Shows the name of the caller list along with some metadata
+
+```shell
+curl 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name.json?key=:postback_key_uuid' \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer :postback_key_secret_key"
+```
+
+Parameter | Required | Description
+--------- | ---- | -------
+target_id | required | the id of the target on Retreaver
+key       | required | the postback_key UUID
+name      | required | the name of the list on this Target
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "caller_list": {
+    "name": "suppressed",
+    "caller_listable_type": "Target",
+    "caller_listable_id": 43103
+  }
+}
+```
+
+
 ## Caller List Number
 
 Manage a single number
