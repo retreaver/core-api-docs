@@ -542,6 +542,9 @@
                     <a href="#access" class="toc-h2 toc-link" data-title="Access">Access</a>
                   </li>
                   <li>
+                    <a href="#caller-list" class="toc-h2 toc-link" data-title="Caller List">Caller List</a>
+                  </li>
+                  <li>
                     <a href="#caller-list-number" class="toc-h2 toc-link" data-title="Caller List Number">Caller List Number</a>
                   </li>
                   <li>
@@ -4273,7 +4276,114 @@ A common use case is a &quot;suppressed&quot; numbers list where certain calls s
 when the caller is on their book of business.</p>
 <h2 id='access'>Access</h2>
 <p>To use the API a postback key should be issued from the type &quot;Caller List Management&quot;</p>
-<h2 id='caller-list-number'>Caller List Number</h2>
+<h2 id='caller-list'>Caller List</h2>
+<p>Caller lists are created on specific targets and companies</p>
+
+<p>Numbers could be manages on the caller list after creating them.</p>
+<h3 id='create-caller-list'>Create caller list</h3>
+<p>Send a POST request</p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s1">'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists.json?key=:postback_key_uuid'</span> <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer :postback_key_secret_key"</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'{"caller_list":  { "name": "suppressed" }}'</span>
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>target_id</td>
+<td>required</td>
+<td>the id of the target on Retreaver</td>
+</tr>
+<tr>
+<td>key</td>
+<td>required</td>
+<td>the postback_key UUID</td>
+</tr>
+<tr>
+<td>caller_list.name</td>
+<td>required</td>
+<td>the name of the list on this Target</td>
+</tr>
+</tbody></table>
+<h3 id='delete-a-caller-list'>Delete a caller list</h3>
+<p>Send a DELETE request</p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE <span class="s1">'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name.json?key=:postback_key_uuid'</span> <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer :postback_key_secret_key"</span>
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>target_id</td>
+<td>required</td>
+<td>the id of the target on Retreaver</td>
+</tr>
+<tr>
+<td>key</td>
+<td>required</td>
+<td>the postback_key UUID</td>
+</tr>
+<tr>
+<td>name</td>
+<td>required</td>
+<td>the name of the list on this Target</td>
+</tr>
+</tbody></table>
+
+<p>Deletes the caller list</p>
+<h3 id='show-caller-list'>Show caller list</h3>
+<p>Send a GET request</p>
+
+<p>Shows the name of the caller list along with some metadata</p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s1">'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name.json?key=:postback_key_uuid'</span> <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer :postback_key_secret_key"</span>
+</code></pre></div>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>target_id</td>
+<td>required</td>
+<td>the id of the target on Retreaver</td>
+</tr>
+<tr>
+<td>key</td>
+<td>required</td>
+<td>the postback_key UUID</td>
+</tr>
+<tr>
+<td>name</td>
+<td>required</td>
+<td>the name of the list on this Target</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"caller_list"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"suppressed"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"caller_listable_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Target"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"caller_listable_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">43103</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id='caller-list-number'>Caller List Number</h2>
 <p>Manage a single number</p>
 <h3 id='adding-a-single-number-to-a-caller-list'>Adding a single number to a caller list</h3><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s1">'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name/caller_list_numbers.json?key=:postback_key_uuid'</span> <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
