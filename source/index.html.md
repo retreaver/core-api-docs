@@ -615,6 +615,7 @@ client_afid | `123456` | | Return calls for an affiliate.
 client_cid | `123456` | | Return calls for a specific campaign.
 client_tid | `123456` | | Return calls for a specific target.
 sub_id | `123456` | | Return calls for a affiliate Sub ID.
+call_flow_events | true/false | false | Returns the call flow events of what happened during the call
 
 ## V2 - Enumerate through all calls
 
