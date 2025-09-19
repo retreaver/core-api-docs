@@ -625,19 +625,13 @@
               </ul>
           </li>
           <li>
-            <a href="#rtb" class="toc-h1 toc-link" data-title="RTB">RTB</a>
+            <a href="#real-time-bidding-rtb" class="toc-h1 toc-link" data-title="Real-Time Bidding (RTB)">Real-Time Bidding (RTB)</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#rtb-query-parameters" class="toc-h2 toc-link" data-title="RTB Query Parameters">RTB Query Parameters</a>
+                    <a href="#create-a-reservation" class="toc-h2 toc-link" data-title="Create a reservation">Create a reservation</a>
                   </li>
                   <li>
-                    <a href="#rtb-body-parameters" class="toc-h2 toc-link" data-title="RTB Body Parameters">RTB Body Parameters</a>
-                  </li>
-                  <li>
-                    <a href="#place-a-bid-and-tag-it-with-zip-code-and-age" class="toc-h2 toc-link" data-title="Place a bid and tag it with zip code and age.">Place a bid and tag it with zip code and age.</a>
-                  </li>
-                  <li>
-                    <a href="#place-a-bid-on-a-static-inbound-number" class="toc-h2 toc-link" data-title="Place a bid on a static inbound number.">Place a bid on a static inbound number.</a>
+                    <a href="#confirm-a-reservation" class="toc-h2 toc-link" data-title="Confirm a reservation">Confirm a reservation</a>
                   </li>
                   <li>
                     <a href="#retreaver-ping-shield" class="toc-h2 toc-link" data-title="Retreaver Ping Shield">Retreaver Ping Shield</a>
@@ -1453,6 +1447,12 @@ created, and then paginate through all your calls.</p>
 <td><code>123456</code></td>
 <td></td>
 <td>Return calls for a affiliate Sub ID.</td>
+</tr>
+<tr>
+<td>call_flow_events</td>
+<td>true/false</td>
+<td>false</td>
+<td>Returns the call flow events of what happened during the call</td>
 </tr>
 </tbody></table>
 <h2 id='v2-enumerate-through-all-calls'>V2 - Enumerate through all calls</h2>
@@ -5298,8 +5298,41 @@ attribute provided so that you don&#39;t have to track which Targets are in each
 <p><code>POST https://api.retreaver.com/target_groups/1/reset_cap.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
 <p><code>Content-Type: application/json</code></p>
-<h1 id='rtb'>RTB</h1><h2 id='rtb-query-parameters'>RTB Query Parameters</h2>
-<p><code>POST https://rtb.retreaver.com/rtbs.json?key=7fc40342-f0a0-4e8f-bf09-b3887eedcb4a&amp;publisher_id=retreaver_pub&amp;caller_number=+18558485518</code></p>
+<h1 id='real-time-bidding-rtb'>Real-Time Bidding (RTB)</h1>
+<p>The Retreaver Real-Time Bidding (RTB) API enables publishers to send requests to Retreaver and receive confirmation on whether a call buyer(endpoint) is available.</p>
+
+<p>Each response includes key details such as:</p>
+
+<p>The destination phone number to route the call to
+    The expected payout
+    The required duration (in seconds) of the call</p>
+
+<p>To learn more about the scenarios you can implement with the RTB API, see the guide:
+<a href="https://help.retreaver.com/hc/en-us/articles/27282552552340-Working-with-the-Retreaver-Real-Time-Bidding-API">Working with the Retreaver Real-Time Bidding API</a></p>
+<h2 id='create-a-reservation'>Create a reservation</h2>
+<blockquote>
+<p>Passing data as URL Params</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"https://rtb.retreaver.com/rtbs.json?"</span> <span class="se">\</span>
+  <span class="nt">-d</span> <span class="s2">"key=7fc40342-f0a0-4e8f-bf09-b3887eedcb41"</span> <span class="se">\</span>
+  <span class="nt">-d</span> <span class="s2">"publisher_id=retreaver_pub"</span> <span class="se">\</span>
+  <span class="nt">-d</span> <span class="s2">"caller_number=+18558485518"</span>
+</code></pre></div>
+<blockquote>
+<p>or as JSON Body</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"https://rtb.retreaver.com/rtbs.json"</span> <span class="se">\</span>
+  <span class="nt">-d</span> <span class="s1">'{
+    "key": "7fc40342-f0a0-4e8f-bf09-b3887eedcb41",
+    "publisher_id": "retreaver_pub",
+    "caller_number": "+18558485518"
+}'</span>
+</code></pre></div>
+<p>The request checks for availability and bidding, and then creates a reservation. This reservation is stored for a limited number of seconds.</p>
+
+<p>If additional requests are sent for the same caller number while the reservation is active, the API will return the same reservation. For more details, see the documentation on Retreaver Ping Shield.</p>
+
+<p>Note: A reservation can have different statuses. Creating a reservation does not necessarily mean that an agent is immediately available.</p>
 
 <table><thead>
 <tr>
@@ -5334,16 +5367,18 @@ attribute provided so that you don&#39;t have to track which Targets are in each
 <td>Providing additional query parameters will result in tagging the <code>rtb</code> with those additional values. Please view the examples below.</td>
 </tr>
 </tbody></table>
-<h2 id='rtb-body-parameters'>RTB Body Parameters</h2>
+
 <p>If you want you can use body params to send the parameters into <code>rtb</code>.</p>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--request</span> POST <span class="se">\</span>
-  <span class="nt">--url</span> https://rtb.retreaver.com/rtbs.json <span class="se">\</span>
-  <span class="nt">--data</span> <span class="s1">'{
-    "key": "7fc40342-f0a0-4e8f-bf09-b3887eedcb4a",
+<h3 id='pass-additional-data'>Pass additional data</h3>
+<p>Additional information could be passed along as params to the request. In this case &#39;age&#39; and &#39;caller_zip&#39;.</p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"https://rtb.retreaver.com/rtbs.json"</span> <span class="se">\</span>
+  <span class="nt">-d</span> <span class="s1">'{
+    "key": "7fc40342-f0a0-4e8f-bf09-b3887eedcb41",
     "publisher_id": "retreaver_pub",
-    "caller_number": "+18558485518"
+    "caller_number": "+18558485518",
+    "caller_zip": 12344,
+    "age": 25
 }'</span>
-</code></pre></div><h2 id='place-a-bid-and-tag-it-with-zip-code-and-age'>Place a bid and tag it with zip code and age.</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"https://rtb.retreaver.com/rtbs.json?key=7fc40342-f0a0-4e8f-bf09-b3887eedcb4a&amp;publisher_id=retreaver_pub&amp;caller_number=+18558485518&amp;caller_zip=12344&amp;age=25"</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -5356,9 +5391,7 @@ attribute provided so that you don&#39;t have to track which Targets are in each
     </span><span class="nl">"inbound_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+18772435010"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"expires_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-10-28T12:08:49.880Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><h3 id='http-request'>HTTP Request</h3>
-<p><code>POST https://rtb.retreaver.com/rtbs.json?key=7fc40342-f0a0-4e8f-bf09-b3887eedcb4a&amp;publisher_id=retreaver_pub&amp;caller_number=+18558485518&amp;caller_zip=12344&amp;age=25</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+</span></code></pre></div><h4 id='parameters'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -5367,7 +5400,7 @@ attribute provided so that you don&#39;t have to track which Targets are in each
 </thead><tbody>
 <tr>
 <td>key</td>
-<td>7fc40342-f0a0-4e8f-bf09-b3887eedcb4a</td>
+<td>7fc40342-f0a0-4e8f-bf09-b3887eedcb41</td>
 </tr>
 <tr>
 <td>publisher_id</td>
@@ -5386,7 +5419,13 @@ attribute provided so that you don&#39;t have to track which Targets are in each
 <td>25</td>
 </tr>
 </tbody></table>
-<h2 id='place-a-bid-on-a-static-inbound-number'>Place a bid on a static inbound number.</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"https://rtb.retreaver.com/rtbs.json?key=7fc40342-f0a0-4e8f-bf09-b3887eedcb4a&amp;publisher_id=retreaver_pub&amp;caller_number=+18558485518&amp;inbound_number=+12029795452"</span>
+<h3 id='place-a-bid-on-a-static-inbound-number'>Place a bid on a static inbound number.</h3><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"https://rtb.retreaver.com/rtbs.json"</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'{
+        "key": "7fc40342-f0a0-4e8f-bf09-b3887eedcb41",
+        "publisher_id": "retreaver_pub",
+        "caller_number": "+18558485518",
+        "inbound_number": "+12029795452"
+        }'</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -5401,9 +5440,7 @@ attribute provided so that you don&#39;t have to track which Targets are in each
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>If you do not want to use a number pool and provide rtb using a static number you own in retreaver you, must provide it:</p>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>POST &quot;https://rtb.retreaver.com/rtbs.json?key=7fc40342-f0a0-4e8f-bf09-b3887eedcb4a&amp;publisher_id=retreaver_pub&amp;caller_number=+18558485518&amp;inbound_number=+12029795452&quot;</code></p>
-<h3 id='query-parameters-2'>Query Parameters</h3>
+<h4 id='parameters-2'>Parameters</h4>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -5412,7 +5449,7 @@ attribute provided so that you don&#39;t have to track which Targets are in each
 </thead><tbody>
 <tr>
 <td>key</td>
-<td>7fc40342-f0a0-4e8f-bf09-b3887eedcb4a</td>
+<td>7fc40342-f0a0-4e8f-bf09-b3887eedcb41</td>
 </tr>
 <tr>
 <td>publisher_id</td>
@@ -5435,8 +5472,64 @@ attribute provided so that you don&#39;t have to track which Targets are in each
 <td>+12029795452</td>
 </tr>
 </tbody></table>
-<h2 id='retreaver-ping-shield'>Retreaver Ping Shield</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"https://rtb.retreaver.com/rtbs.json?key=7fc40342-f0a0-4e8f-bf09-b3887eedcb4a&amp;publisher_id=retreaver_pub&amp;caller_number=+18558485518"</span>
-curl <span class="nt">-X</span> POST <span class="s2">"https://rtb.retreaver.com/rtbs.json?key=7fc40342-f0a0-4e8f-bf09-b3887eedcb4a&amp;publisher_id=retreaver_pub&amp;caller_number=+18558485518"</span>
+<h2 id='confirm-a-reservation'>Confirm a reservation</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="s2">"https://rtb.retreaver.com/rtbs/c6e4ce37-9b49-46af-bd8e-16cb7753499d.json"</span> <span class="se">\</span>
+  <span class="nt">-d</span> <span class="s1">'{
+    "key": "7fc40342-f0a0-4e8f-bf09-b3887eedcb41",
+    "confirm": true
+}'</span>
+</code></pre></div>
+<blockquote>
+<p>the reservation is confirmed</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c6e4ce37-9b49-46af-bd8e-16cb7753499d"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"confirmed"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"retreaver_payout"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"retreaver_seconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"inbound_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+18772435010"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"expires_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-10-28T12:08:49.880Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>the reservation is &#39;no-target&#39; if it can not be confirmed</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c6e4ce37-9b49-46af-bd8e-16cb7753499d"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"no-target"</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Call buyers (endpoints) on Retreaver can be limited by various caps, such as Concurrency Cap, Hourly Cap, Weekly Cap, and Monthly Cap.</p>
+
+<p>When a reservation is created in Retreaver, it is not immediately counted against these caps. This is because most reservations do not result in actual calls.</p>
+
+<p>To apply a reservation to the caps, it must first be confirmed.</p>
+
+<aside class="notice">
+Reservations can be automatically applied to caps if this behavior is enabled on the postback key.
+
+Otherwise, they must be explicitly confirm by sending a PUT/PATCH request to the reservation URL with a confirm=true param.
+</aside>
+
+<aside class="notice">
+Important: It is possible that a reservation cannot be confirmed if the caps are filled in the time between creation and confirmation.
+</aside>
+
+<aside class="warning">
+When a reservation is confirmed, the publisher is <strong>expected to place the call</strong>. Failing to do so may lead to penalties in both the short and long term, since holding a reservation ties up an agent and wastes their time.
+</aside>
+<h2 id='retreaver-ping-shield'>Retreaver Ping Shield</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"https://rtb.retreaver.com/rtbs.json"</span> <span class="se">\</span>
+ <span class="nt">-d</span> <span class="s1">'{
+    "key": 7fc40342-f0a0-4e8f-bf09-b3887eedcb41"
+    "publisher_id": "retreaver_pub",
+    "caller_number": "+18558485518"
+ }'</span>
+
+curl <span class="nt">-X</span> POST <span class="s2">"https://rtb.retreaver.com/rtbs.json"</span> <span class="se">\</span>
+ <span class="nt">-d</span> <span class="s1">'{
+    "key": 7fc40342-f0a0-4e8f-bf09-b3887eedcb41"
+    "publisher_id": "retreaver_pub",
+    "caller_number": "+18558485518"
+ }'</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -5464,8 +5557,9 @@ curl <span class="nt">-X</span> POST <span class="s2">"https://rtb.retreaver.com
 <p>Note that the response is the same, but the second on has &#39;&quot;retreaver_ping_shield&quot;: true&#39; which indicates it has been shielded.</p>
 </blockquote>
 
-<p>If a publisher tries to get an <code>rtb</code> for the same caller_number more than one time in less than the time it takes to expire the first <code>rtb</code> we will deploy a <code>ping_shield</code>.
-Retreaver Ping Shield will cache the first <code>rtb</code> and shield you from pinging your buyers for the same caller.</p>
+<p>If a publisher sends multiple RTB requests for the same caller_number before the initial reservation expires, Retreaver Ping Shield will activate.</p>
+
+<p>Ping Shield caches the first response and prevents unnecessary processing of duplicate requests. This ensures that buyers are not pinged multiple times for the same caller on the same postback key, while still returning the original reservation to the publisher.</p>
 <h1 id='reports'>Reports</h1><h2 id='reports-parameters'>Reports Parameters</h2>
 <p><code>GET https://api.retreaver.com/api/v1/reports.json?....</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
