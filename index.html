@@ -5472,7 +5472,9 @@ attribute provided so that you don&#39;t have to track which Targets are in each
 <td>+12029795452</td>
 </tr>
 </tbody></table>
-<h2 id='confirm-a-reservation'>Confirm a reservation</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="s2">"https://rtb.retreaver.com/rtbs/c6e4ce37-9b49-46af-bd8e-16cb7753499d.json"</span> <span class="se">\</span>
+<h2 id='confirm-a-reservation'>Confirm a reservation</h2>
+<p><code>PUT/PATCH https://rtb.retreaver.com/rtbs/{reservation_uuid}</code></p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="s2">"https://rtb.retreaver.com/rtbs/c6e4ce37-9b49-46af-bd8e-16cb7753499d.json"</span> <span class="se">\</span>
   <span class="nt">-d</span> <span class="s1">'{
     "key": "7fc40342-f0a0-4e8f-bf09-b3887eedcb41",
     "confirm": true
@@ -5503,6 +5505,32 @@ attribute provided so that you don&#39;t have to track which Targets are in each
 <p>When a reservation is created in Retreaver, it is not immediately counted against these caps. This is because most reservations do not result in actual calls.</p>
 
 <p>To apply a reservation to the caps, it must first be confirmed.</p>
+
+<p>To confirm the resevration send a PUT/PATCH request</p>
+<h4 id='parameters-3'>Parameters</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>reservation_uuid</td>
+<td>c6e4ce37-9b49-46af-bd8e-16cb7753499d</td>
+<td>The reservation UUID that we are confirming. It is received from the first request when the reservation is created.</td>
+</tr>
+<tr>
+<td>key</td>
+<td>7fc40342-f0a0-4e8f-bf09-b3887eedcb41</td>
+<td>The postback key</td>
+</tr>
+<tr>
+<td>confirm</td>
+<td>true</td>
+<td>&#39;true&#39; will confirm the reservation</td>
+</tr>
+</tbody></table>
 
 <aside class="notice">
 Reservations can be automatically applied to caps if this behavior is enabled on the postback key.
