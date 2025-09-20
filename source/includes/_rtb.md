@@ -132,6 +132,9 @@ inbound_number | +12029795452
 
 ## Confirm a reservation
 
+
+`PUT/PATCH https://rtb.retreaver.com/rtbs/{reservation_uuid}`
+
 ```shell
 curl -X PUT "https://rtb.retreaver.com/rtbs/c6e4ce37-9b49-46af-bd8e-16cb7753499d.json" \
   -d '{
@@ -168,6 +171,16 @@ When a reservation is created in Retreaver, it is not immediately counted agains
 
 To apply a reservation to the caps, it must first be confirmed.
 
+To confirm the resevration send a PUT/PATCH request
+
+
+#### Parameters
+
+Parameter | Value   | Description
+--------- | ------- | ---------
+reservation_uuid | c6e4ce37-9b49-46af-bd8e-16cb7753499d | The reservation UUID that we are confirming. It is received from the first request when the reservation is created.
+key | 7fc40342-f0a0-4e8f-bf09-b3887eedcb41 | The postback key
+confirm | true | 'true' will confirm the reservation
 
 <aside class="notice">
 Reservations can be automatically applied to caps if this behavior is enabled on the postback key.
