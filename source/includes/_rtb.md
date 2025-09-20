@@ -139,7 +139,7 @@ inbound_number | +12029795452
 curl -X PUT "https://rtb.retreaver.com/rtbs/c6e4ce37-9b49-46af-bd8e-16cb7753499d.json" \
   -d '{
 	"key": "7fc40342-f0a0-4e8f-bf09-b3887eedcb41",
-	"confirm": true
+	"status": "confirmed"
 }'
 ```
 
@@ -180,16 +180,17 @@ Parameter | Value   | Description
 --------- | ------- | ---------
 reservation_uuid | c6e4ce37-9b49-46af-bd8e-16cb7753499d | The reservation UUID that we are confirming. It is received from the first request when the reservation is created.
 key | 7fc40342-f0a0-4e8f-bf09-b3887eedcb41 | The postback key
-confirm | true | 'true' will confirm the reservation
+status | "confirmed" | 'confirmed' will confirm the reservation
 
 <aside class="notice">
 Reservations can be automatically applied to caps if this behavior is enabled on the postback key.
 
-Otherwise, they must be explicitly confirm by sending a PUT/PATCH request to the reservation URL with a confirm=true param.
+Otherwise, they must be explicitly confirm by sending a PUT/PATCH request to the reservation URL with a status="confirmed" param.
 </aside>
 
 <aside class="notice">
 Important: It is possible that a reservation cannot be confirmed if the caps are filled in the time between creation and confirmation.
+Make sure you check the response from the request and see what the status is.
 </aside>
 
 
