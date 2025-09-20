@@ -5477,7 +5477,7 @@ attribute provided so that you don&#39;t have to track which Targets are in each
 <div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> PUT <span class="s2">"https://rtb.retreaver.com/rtbs/c6e4ce37-9b49-46af-bd8e-16cb7753499d.json"</span> <span class="se">\</span>
   <span class="nt">-d</span> <span class="s1">'{
     "key": "7fc40342-f0a0-4e8f-bf09-b3887eedcb41",
-    "confirm": true
+    "status": "confirmed"
 }'</span>
 </code></pre></div>
 <blockquote>
@@ -5526,20 +5526,21 @@ attribute provided so that you don&#39;t have to track which Targets are in each
 <td>The postback key</td>
 </tr>
 <tr>
-<td>confirm</td>
-<td>true</td>
-<td>&#39;true&#39; will confirm the reservation</td>
+<td>status</td>
+<td>&quot;confirmed&quot;</td>
+<td>&#39;confirmed&#39; will confirm the reservation</td>
 </tr>
 </tbody></table>
 
 <aside class="notice">
 Reservations can be automatically applied to caps if this behavior is enabled on the postback key.
 
-Otherwise, they must be explicitly confirm by sending a PUT/PATCH request to the reservation URL with a confirm=true param.
+Otherwise, they must be explicitly confirm by sending a PUT/PATCH request to the reservation URL with a status="confirmed" param.
 </aside>
 
 <aside class="notice">
 Important: It is possible that a reservation cannot be confirmed if the caps are filled in the time between creation and confirmation.
+Make sure you check the response from the request and see what the status is.
 </aside>
 
 <aside class="warning">
