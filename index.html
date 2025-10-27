@@ -548,6 +548,9 @@
                     <a href="#caller-list-number" class="toc-h2 toc-link" data-title="Caller List Number">Caller List Number</a>
                   </li>
                   <li>
+                    <a href="#caller-list-checks" class="toc-h2 toc-link" data-title="Caller List Checks">Caller List Checks</a>
+                  </li>
+                  <li>
                     <a href="#caller-list-uploads" class="toc-h2 toc-link" data-title="Caller List Uploads">Caller List Uploads</a>
                   </li>
               </ul>
@@ -4415,7 +4418,7 @@ when the caller is on their book of business.</p>
 <tr>
 <td>caller_list_number.number</td>
 <td>required</td>
-<td>A phone number in <a href="https://en.wikipedia.org/wiki/E.164">E.164 format</a>.</td>
+<td>A phone number in preferably in <a href="https://en.wikipedia.org/wiki/E.164">E.164 format</a>, but NANP format is also accepted</td>
 </tr>
 </tbody></table>
 <h3 id='response-format'>Response format</h3>
@@ -4445,7 +4448,7 @@ If no format is provided the server will choose one json.</p>
 <td>string</td>
 <td>null</td>
 <td>required</td>
-<td>A phone number in <a href="https://en.wikipedia.org/wiki/E.164">E.164 format</a>.</td>
+<td>A phone number in preferably in <a href="https://en.wikipedia.org/wiki/E.164">E.164 format</a>, but NANP format is also accepted</td>
 </tr>
 </tbody></table>
 <h3 id='checking-if-a-number-is-on-a-caller-list'>Checking if a number is on a caller list</h3><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s1">'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name/caller_list_numbers/+15855752500.json?key=:postback_key_uuid'</span> <span class="se">\</span>
@@ -4472,7 +4475,78 @@ If no format is provided the server will choose one json.</p>
 <td>string</td>
 <td>null</td>
 <td>required</td>
-<td>A phone number in <a href="https://en.wikipedia.org/wiki/E.164">E.164 format</a>.</td>
+<td>A phone number in preferably in <a href="https://en.wikipedia.org/wiki/E.164">E.164 format</a>, but NANP format is also accepted</td>
+</tr>
+</tbody></table>
+
+<p>If the caller number is on the list there will be an HTTP 200 response showing the number and the number metadata.
+When the caller number is not on the list there will be an HTTP 404 response and this caller number is not on the caller lists.
+When a status number of 200 is required even when the caller number is not present on the list then
+the endpoint for CallerListChecks could be used</p>
+<h2 id='caller-list-checks'>Caller List Checks</h2>
+<p>The Caller List Checks endpoint returns a JSON object indicating whether a phone number is present in the caller list.</p>
+
+<p>The preferred approach is to use the Caller List Number endpoint (GET <a href='#caller-list-number'> /.../caller_list_numbers/:number</a>). However, some platforms may not handle 404 Not Found responses correctly when a number does not exist. In such cases, the Caller List Checks endpoint provides an alternative — it always returns an HTTP 200 OK response with a status field describing the result.</p>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST <span class="s1">'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name/caller_list_checks.json?key=:postback_key_uuid'</span> <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer :postback_key_secret_key"</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'{"caller_list_check":  { "number": "+15855752500" }}'</span>
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"caller_list_check"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"present"</span><span class="p">,</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='create-caller-list-check'>Create Caller List Check</h3><h4 id='endpoint'>Endpoint</h4>
+<p>POST /api/v2/targets/:target_id/caller_lists/:name/caller_list_checks.json</p>
+<h4 id='description'>Description</h4>
+<p>Checks for a caller number</p>
+<h4 id='params'>Params</h4>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>target_id</td>
+<td>required</td>
+<td>the id of the target on Retreaver</td>
+</tr>
+<tr>
+<td>name</td>
+<td>required</td>
+<td>the name of the list on this Target</td>
+</tr>
+<tr>
+<td>key</td>
+<td>required</td>
+<td>the postback_key UUID</td>
+</tr>
+<tr>
+<td>caller_list_check[number]</td>
+<td>required</td>
+<td>A phone number in preferably in <a href="https://en.wikipedia.org/wiki/E.164">E.164 format</a>, but NANP format is also accepted</td>
+</tr>
+</tbody></table>
+<h4 id='response'>Response</h4>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+<th>Possible Values</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>caller_list_check[status]</code></td>
+<td>string</td>
+<td>Indicates the caller number presence status</td>
+<td><code>present</code>, <code>not-present</code></td>
 </tr>
 </tbody></table>
 <h2 id='caller-list-uploads'>Caller List Uploads</h2>
@@ -4729,7 +4803,7 @@ prompt the caller for the caller&#39;s real number, or will randomize the Caller
 <td>string</td>
 <td>null</td>
 <td>required</td>
-<td>A phone number in <a href="https://en.wikipedia.org/wiki/E.164">E.164 format</a>.</td>
+<td>A phone number in preferably in <a href="https://en.wikipedia.org/wiki/E.164">E.164 format</a>, but NANP format is also accepted</td>
 </tr>
 </tbody></table>
 <h2 id='delete-a-static-caller-number'>Delete a Static Caller Number</h2><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> DELETE https://api.retreaver.com/static_caller_numbers/1234.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1
