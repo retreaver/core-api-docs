@@ -3265,7 +3265,7 @@ Parameter | Required | Description
 target_id | required | the id of the target on Retreaver
 name      | required | the name of the list on this Target
 key       | required | the postback_key UUID
-caller_list_number.number  | required | A phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164).
+caller_list_number.number  | required | A phone number in preferably in [E.164 format](https://en.wikipedia.org/wiki/E.164), but NANP format is also accepted
 
 
 ### Response format
@@ -3284,7 +3284,7 @@ curl -X DELETE 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists
 Parameter | Type | Default | Required | Description
 --------- | ---- | ------- | -------- | -----------
 key       | uuid | null    | required | the postback_key UUID
-number    | string | null    | required | A phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164).
+number    | string | null    | required | A phone number in preferably in [E.164 format](https://en.wikipedia.org/wiki/E.164), but NANP format is also accepted
 
 ### Checking if a number is on a caller list
 
@@ -3296,8 +3296,60 @@ curl 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name/cal
 Parameter | Type | Default | Required | Description
 --------- | ---- | ------- | -------- | -----------
 key       | uuid | null    | required | the postback_key UUID
-number    | string | null    | required | A phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164).
+number    | string | null    | required | A phone number in preferably in [E.164 format](https://en.wikipedia.org/wiki/E.164), but NANP format is also accepted
 
+If the caller number is on the list there will be an HTTP 200 response showing the number and the number metadata.
+When the caller number is not on the list there will be an HTTP 404 response and this caller number is not on the caller lists.
+When a status number of 200 is required even when the caller number is not present on the list then
+the endpoint for CallerListChecks could be used
+
+## Caller List Checks
+
+The Caller List Checks endpoint returns a JSON object indicating whether a phone number is present in the caller list.
+
+The preferred approach is to use the Caller List Number endpoint (GET <a href='#caller-list-number'> /.../caller_list_numbers/:number</a>). However, some platforms may not handle 404 Not Found responses correctly when a number does not exist. In such cases, the Caller List Checks endpoint provides an alternative — it always returns an HTTP 200 OK response with a status field describing the result.
+
+````shell
+curl -X POST 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name/caller_list_checks.json?key=:postback_key_uuid' \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer :postback_key_secret_key" \
+    -d '{"caller_list_check":  { "number": "+15855752500" }}'
+````
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "caller_list_check": {
+        "status": "present",
+    }
+}
+```
+
+### Create Caller List Check
+
+#### Endpoint
+
+POST /api/v2/targets/:target_id/caller_lists/:name/caller_list_checks.json
+
+#### Description
+
+Checks for a caller number
+
+#### Params
+
+Parameter | Required | Description
+--------- | ---- | ------- | -------- | -----------
+target_id | required | the id of the target on Retreaver
+name      | required | the name of the list on this Target
+key       | required | the postback_key UUID
+caller_list_check[number]  | required | A phone number in preferably in [E.164 format](https://en.wikipedia.org/wiki/E.164), but NANP format is also accepted
+
+#### Response
+
+| Field | Type | Description | Possible Values |
+|-------|------|--------------|-----------------|
+| `caller_list_check[status]` | string | Indicates the caller number presence status | `present`, `not-present` |
 
 ## Caller List Uploads
 
@@ -3598,7 +3650,7 @@ Creates a Static Caller Number.
 
 Parameter | Type | Default | Required | Description
 --------- | ---- | ------- | -------- | -----------
-number | string | null | required | A phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164).
+number | string | null | required | A phone number in preferably in [E.164 format](https://en.wikipedia.org/wiki/E.164), but NANP format is also accepted
 
 
 ## Delete a Static Caller Number
