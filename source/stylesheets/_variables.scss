@@ -14,43 +14,110 @@ License for the specific language governing permissions and limitations
 under the License.
 */
 
-
 ////////////////////////////////////////////////////////////////////////////////
 // CUSTOMIZE SLATE
 ////////////////////////////////////////////////////////////////////////////////
 // Use these settings to help adjust the appearance of Slate
 
+// Brand colors
+$retreaver-blue: #02e5ff; // Retreaver brand color
+$retreaver-light: #ebebff; // Retreaver light color (text color)
+$retreaver-dark: #000017; // Retreaver dark color (background color)
+$retreaver-dark-bg: #1a1d21; // $retreaver-dark-bg: #0e0e1b;
+$retreaver-dark-offset: #23272f; // Retreaver dark color offsetting bg (card/modal/etc)
+$retreaver-gray: #5e5e74; // Dark gray often used in borders and text for marketing layout
+$retreaver-menal-gray: #4a4a58; // Menal gray used in some marketing components
+$accent: #626aef;
+$twilio-red-background: #de0b18;
+$tel-green-background: #31b887;
+
+// Bootstrap colors
+$primary: #0b6ffd; // Muted version of $retreaver-blue, better contrast
+$secondary: #9ba5bf; // Bootstrap default
+$success: #1fc88f; // Vivid green with good contrast
+$info: #02e5ff; // Logo blue, used here for accents
+$warning: #ffc107; // Bootstrap default
+$danger: #ff2400; // Warm red with strong visibility
+$light: #f8f9fa; // Bootstrap default
+$dark: #212529; // Bootstrap default
+
+// Bootstrap gray colors
+$gray-100: #f3f4f6; // off-white, readable on dark
+$gray-200: #e4e6ea; // soft UI gray
+$gray-300: #c5c9d0; // muted border highlight
+$gray-400: #9ca3b0; // placeholder, tertiary labels
+$gray-500: #6d7480; // secondary labels
+$gray-600: #4b535e; // light icons or subtle text
+$gray-700: #363c47; // form borders and outlines
+$gray-800: #23272f; // card background
+$gray-900: #15181e; // body background
+
+$body-bg: $gray-100;
+$white: #fff;
+$black: #000;
+$link-color: $primary;
+
+// Breadcrumbs
+$breadcrumb-bg: $gray-700;
+$breadcrumb-active-color: $gray-800;
+$breadcrumb-divider-color: $gray-600;
+
+// Forms
+$input-bg: $white; // BS5.2 sets input-bg to body-color which is grey
+$form-select-bg: $white;
+
+// Nav
+// This was previously using primary bg as active, set to gray as we use it on show pages for tabs
+$nav-link-color: $dark;
+$nav-pills-active-color: $black;
+$nav-pills-active: $light;
+$nav-pills-link-active-color: $black;
+$nav-pills-link-active-color: $link-color;
+$nav-pills-link-active-bg: $light;
+
+// Navbar
+$navbar-dark-color: $white; // We default to .navbar-dark
+
+// -----------------------------------------------------------------------------------
+// Dark mode defaults
+// BS dark vars https://github.com/twbs/bootstrap/blob/v5.3.3/scss/_variables-dark.scss
+// -----------------------------------------------------------------------------------
+
+// Body
+$body-color-dark: $gray-300;
+$body-bg-dark: $retreaver-dark-bg;
+$body-tertiary-bg-dark: #26262f; // Alternative background color for authentication pages
+
+$link-color-dark: #4591dd;
 
 // BACKGROUND COLORS
 ////////////////////
-$nav-bg: #2E3336 !default;
-$examples-bg: #2E3336 !default;
-$code-bg: #1E2224 !default;
-$code-annotation-bg: #191D1F !default;
-$nav-subitem-bg: #1E2224 !default;
-$nav-active-bg: #0F75D4 !default;
-$nav-active-parent-bg: #1E2224 !default; // parent links of the current section
-$lang-select-border: #000 !default;
-$lang-select-bg: #1E2224 !default;
+$nav-bg: $retreaver-dark-bg !default;
+$examples-bg: $gray-700 !default;
+$code-bg: $retreaver-dark !default;
+$code-annotation-bg: $retreaver-dark-offset !default;
+$nav-subitem-bg: $retreaver-dark-offset !default;
+$nav-active-bg: $primary !default;
+$nav-active-parent-bg: $retreaver-dark-offset !default; // parent links of the current section
+$lang-select-border: $retreaver-dark !default;
+$lang-select-bg: $retreaver-dark-offset !default;
 $lang-select-active-bg: $examples-bg !default; // feel free to change this to blue or something
-$lang-select-pressed-bg: #111 !default; // color of language tab bg when mouse is pressed
-$main-bg: #F3F7F9 !default;
-$aside-notice-bg: #8fbcd4 !default;
-$aside-warning-bg: #c97a7e !default;
-$aside-success-bg: #6ac174 !default;
-$search-notice-bg: #c97a7e !default;
-
+$lang-select-pressed-bg: $retreaver-dark !default; // color of language tab bg when mouse is pressed
+$main-bg: $body-bg !default;
+$aside-notice-bg: $info !default;
+$aside-warning-bg: $warning !default;
+$aside-success-bg: $success !default;
+$search-notice-bg: $danger !default;
 
 // TEXT COLORS
 ////////////////////
-$main-text: #333 !default; // main content text color
-$nav-text: #fff !default;
-$nav-active-text: #fff !default;
-$nav-active-parent-text: #fff !default; // parent links of the current section
-$lang-select-text: #fff !default; // color of unselected language tab text
-$lang-select-active-text: #fff !default; // color of selected language tab text
-$lang-select-pressed-text: #fff !default; // color of language tab text when mouse is pressed
-
+$main-text: $retreaver-dark !default; // main content text color
+$nav-text: $retreaver-light !default;
+$nav-active-text: $retreaver-light !default;
+$nav-active-parent-text: $retreaver-light !default; // parent links of the current section
+$lang-select-text: $retreaver-light !default; // color of unselected language tab text
+$lang-select-active-text: $retreaver-light !default; // color of selected language tab text
+$lang-select-pressed-text: $retreaver-light !default; // color of language tab text when mouse is pressed
 
 // SIZES
 ////////////////////
@@ -66,11 +133,10 @@ $h1-margin-bottom: 21px !default; // padding under the largest header tags
 $tablet-width: 930px !default; // min width before reverting to tablet size
 $phone-width: $tablet-width - $nav-width !default; // min width before reverting to mobile size
 
-
 // FONTS
 ////////////////////
 %default-font {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: "Inter", sans-serif;
   font-size: 14px;
 }
 
@@ -80,17 +146,17 @@ $phone-width: $tablet-width - $nav-width !default; // min width before reverting
 }
 
 %code-font {
-  font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
+  font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono",
+    "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace,
+    serif;
   font-size: 12px;
   line-height: 1.5;
 }
-
 
 // OTHER
 ////////////////////
 $nav-footer-border-color: #666 !default;
 $search-box-border-color: #666 !default;
-
 
 ////////////////////////////////////////////////////////////////////////////////
 // INTERNAL
@@ -98,6 +164,6 @@ $search-box-border-color: #666 !default;
 // These settings are probably best left alone.
 
 %break-words {
-    word-break: break-all;
-    hyphens: auto;
+  word-break: break-all;
+  hyphens: auto;
 }

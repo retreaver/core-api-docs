@@ -6,16 +6,16 @@
     This route is no longer supported. Please use <a href="https://retreaver.github.io/core-api-docs/#check-whether-or-not-the-company-has-any-suppressed-numbers">the updated route</a> for all future requests.
 </aside>
 
-```shell
+~~~shell
 curl https://api.retreaver.com/suppression_list/check.json?api_key=woofwoofwoof&company_id=1
-```
+~~~
 
 > The above command returns JSON structured like this:
 
 
-```json
+~~~json
 {"suppression_list":true}
-```
+~~~
 
 Returns true if the Company has any numbers suppressed.
 
@@ -29,9 +29,9 @@ Returns true if the Company has any numbers suppressed.
     This route is no longer supported. Please use <a href="https://retreaver.github.io/core-api-docs/#delete-a-number-from-the-company-39-s-suppressed-numbers">the updated route</a> for all future requests.
 </aside>
 
-```shell
+~~~shell
 curl -X DELETE https://api.retreaver.com/contact_numbers/+18668987878/suppressed_number.json?api_key=woofwoofwoof&company_id=1
-```
+~~~
 
 Removes the Contact Number from your Suppression List.
 
@@ -45,17 +45,17 @@ Removes the Contact Number from your Suppression List.
     This route is no longer supported. Please use <a href="https://retreaver.github.io/core-api-docs/#create-a-suppressed-number-for-a-company">the updated route</a> for all future requests.
 </aside>
 
-```shell
+~~~shell
 curl -s \
     -X POST \
     https://api.retreaver.com/contact_numbers/+18668987878/suppressed_number.json?api_key=woofwoofwoof&company_id=1 \
     -H "Content-Type: application/json" \
     -d '{"suppressed_number":{"can_resubscribe":false}}'
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
     "suppressed_number": {
         "id": 502997,
@@ -64,7 +64,7 @@ curl -s \
         "created_at": "2013-10-02T14:36:14.166-04:00"
     }
 }
-```
+~~~
 
 Adds a Contact Number to the Company's Suppression List. The `can_resubscribe` value toggles whether or not the contact
 can unblock themselves by pressing 7 if there is a "Caller Blocked" Prompt on the Campaign/Number they are calling.
@@ -89,13 +89,13 @@ contact with a company after choosing to be routed to a "add caller to suppressi
 </aside>
 
 
-```shell
+~~~shell
 curl "https://api.retreaver.com/company.json?api_key=woofwoofwoof"
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
     "company": {
         "id": 1,
@@ -106,7 +106,7 @@ curl "https://api.retreaver.com/company.json?api_key=woofwoofwoof"
         "updated_at": "2012-05-07T15:32:44Z"
     }
 }
-```
+~~~
 
 Returns the currently active Company. This is the Company that will be modified if a request is sent in without a specific company_id.
 
@@ -121,13 +121,13 @@ Returns the currently active Company. This is the Company that will be modified 
 </aside>
 
 
-```shell
+~~~shell
 curl "https://api.retreaver.com/companies/1.json?api_key=woofwoofwoof"
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
     "company": {
         "id": 1,
@@ -138,7 +138,7 @@ curl "https://api.retreaver.com/companies/1.json?api_key=woofwoofwoof"
         "updated_at": "2012-05-07T15:32:44Z"
     }
 }
-```
+~~~
 
 Returns the Company matching our internal ID.
 
@@ -153,13 +153,13 @@ Returns the Company matching our internal ID.
 </aside>
 
 
-```shell
+~~~shell
 curl "https://api.retreaver.com/companies.json?api_key=woofwoofwoof"
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 [{
      "company": {
          "id": 1,
@@ -170,7 +170,7 @@ curl "https://api.retreaver.com/companies.json?api_key=woofwoofwoof"
          "updated_at": "2012-05-07T15:32:44Z"
      }
  }]
-```
+~~~
 
 Provides a complete list of Companies accessible via your Account.
 
@@ -186,17 +186,17 @@ Provides a complete list of Companies accessible via your Account.
 </aside>
 
 
-```shell
+~~~shell
 curl -s \
     -X POST \
     https://api.retreaver.com/companies.json \
     -H "Content-Type: application/json" \
     -d '{"company":{"name":"CallPixels.com"}}'
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
      "company": {
          "id": 1,
@@ -207,7 +207,7 @@ curl -s \
          "updated_at": "2012-05-07T15:32:44Z"
      }
 }
-```
+~~~
 
 Creates a Company.
 
@@ -240,17 +240,17 @@ default_sale_url | string | | | The default sale URL to set as a Timer @ 90 seco
 </aside>
 
 
-```shell
+~~~shell
 curl -s \
     -X PUT \
     https://api.retreaver.com/companies/2.json \
     -H "Content-Type: application/json" \
     -d '{"company":{"name":"Retreaver"}}'
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
      "company": {
          "id": 2,
@@ -261,7 +261,7 @@ curl -s \
          "updated_at": "2012-05-07T15:32:44Z"
      }
 }
-```
+~~~
 
 Updates the given Company with any attributes you have passed in.
 

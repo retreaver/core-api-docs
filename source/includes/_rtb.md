@@ -15,23 +15,23 @@ To learn more about the scenarios you can implement with the RTB API, see the gu
 
 > Passing data as URL Params
 
-```shell
+~~~shell
 curl -X POST "https://rtb.retreaver.com/rtbs.json?" \
   -d "key=7fc40342-f0a0-4e8f-bf09-b3887eedcb41" \
   -d "publisher_id=retreaver_pub" \
   -d "caller_number=+18558485518"
-```
+~~~
 
 > or as JSON Body
 
-```shell
+~~~shell
 curl -X POST "https://rtb.retreaver.com/rtbs.json" \
   -d '{
 	"key": "7fc40342-f0a0-4e8f-bf09-b3887eedcb41",
 	"publisher_id": "retreaver_pub",
 	"caller_number": "+18558485518"
 }'
-```
+~~~
 
 
 The request checks for availability and bidding, and then creates a reservation. This reservation is stored for a limited number of seconds.
@@ -55,7 +55,7 @@ If you want you can use body params to send the parameters into `rtb`.
 
 Additional information could be passed along as params to the request. In this case 'age' and 'caller_zip'.
 
-```shell
+~~~shell
 curl -X POST "https://rtb.retreaver.com/rtbs.json" \
   -d '{
 	"key": "7fc40342-f0a0-4e8f-bf09-b3887eedcb41",
@@ -64,11 +64,11 @@ curl -X POST "https://rtb.retreaver.com/rtbs.json" \
 	"caller_zip": 12344,
 	"age": 25
 }'
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
 	"uuid": "c6e4ce37-9b49-46af-bd8e-16cb7753499d",
 	"status": "reserved",
@@ -77,7 +77,7 @@ curl -X POST "https://rtb.retreaver.com/rtbs.json" \
 	"inbound_number": "+18772435010",
 	"expires_at": "2024-10-28T12:08:49.880Z"
 }
-```
+~~~
 
 #### Parameters
 
@@ -93,7 +93,7 @@ age | 25
 
 ### Place a bid on a static inbound number.
 
-```shell
+~~~shell
 curl -X POST "https://rtb.retreaver.com/rtbs.json" \
  	-d '{
 		"key": "7fc40342-f0a0-4e8f-bf09-b3887eedcb41",
@@ -101,11 +101,11 @@ curl -X POST "https://rtb.retreaver.com/rtbs.json" \
 		"caller_number": "+18558485518",
 		"inbound_number": "+12029795452"
 		}'
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
 	"uuid": "c6e4ce37-9b49-46af-bd8e-16cb7753499d",
 	"status": "reserved",
@@ -114,7 +114,7 @@ curl -X POST "https://rtb.retreaver.com/rtbs.json" \
 	"inbound_number": "+18772435010",
 	"expires_at": "2024-10-28T12:08:49.880Z"
 }
-```
+~~~
 
 
 If you do not want to use a number pool and provide rtb using a static number you own in retreaver you, must provide it:
@@ -135,17 +135,17 @@ inbound_number | +12029795452
 
 `PUT/PATCH https://rtb.retreaver.com/rtbs/{reservation_uuid}`
 
-```shell
+~~~shell
 curl -X PUT "https://rtb.retreaver.com/rtbs/c6e4ce37-9b49-46af-bd8e-16cb7753499d.json" \
   -d '{
 	"key": "7fc40342-f0a0-4e8f-bf09-b3887eedcb41",
 	"status": "confirmed"
 }'
-```
+~~~
 
 > the reservation is confirmed
 
-```json
+~~~json
 {
 	"uuid": "c6e4ce37-9b49-46af-bd8e-16cb7753499d",
 	"status": "confirmed",
@@ -154,16 +154,16 @@ curl -X PUT "https://rtb.retreaver.com/rtbs/c6e4ce37-9b49-46af-bd8e-16cb7753499d
 	"inbound_number": "+18772435010",
 	"expires_at": "2024-10-28T12:08:49.880Z"
 }
-```
+~~~
 
 > the reservation is 'no-target' if it can not be confirmed
 
-```json
+~~~json
 {
 	"uuid": "c6e4ce37-9b49-46af-bd8e-16cb7753499d",
 	"status": "no-target",
 }
-```
+~~~
 
 Call buyers (endpoints) on Retreaver can be limited by various caps, such as Concurrency Cap, Hourly Cap, Weekly Cap, and Monthly Cap.
 
@@ -201,7 +201,7 @@ When a reservation is confirmed, the publisher is <strong>expected to place the 
 
 ## Retreaver Ping Shield
 
-```shell
+~~~shell
 curl -X POST "https://rtb.retreaver.com/rtbs.json" \
  -d '{
  	"key": 7fc40342-f0a0-4e8f-bf09-b3887eedcb41"
@@ -215,11 +215,11 @@ curl -X POST "https://rtb.retreaver.com/rtbs.json" \
  	"publisher_id": "retreaver_pub",
  	"caller_number": "+18558485518"
  }'
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
 	"uuid": "4454ffc8-c1b4-4420-81d2-4bbd1a1e132e",
 	"status": "reserved",
@@ -238,7 +238,7 @@ curl -X POST "https://rtb.retreaver.com/rtbs.json" \
 	"expires_at": "2024-10-28T12:29:04.397Z",
 	"retreaver_ping_shield": true
 }
-```
+~~~
 > Note that the response is the same, but the second on has '"retreaver_ping_shield": true' which indicates it has been shielded.
 
 If a publisher sends multiple RTB requests for the same caller_number before the initial reservation expires, Retreaver Ping Shield will activate.

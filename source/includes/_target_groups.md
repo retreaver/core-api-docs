@@ -6,13 +6,13 @@ how calls are routed.
 
 ## Get all Target Groups
 
-```shell
+~~~shell
 curl "https://api.retreaver.com/target_groups.json?api_key=woofwoofwoof&company_id=1"
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 [
   {
     "target_group": {
@@ -57,7 +57,7 @@ curl "https://api.retreaver.com/target_groups.json?api_key=woofwoofwoof&company_
     }
   }
 ]
-```
+~~~
 
 
 
@@ -69,13 +69,13 @@ curl "https://api.retreaver.com/target_groups.json?api_key=woofwoofwoof&company_
 ## Get a specific Target Group
 
 
-```shell
+~~~shell
 curl "https://api.retreaver.com/target_groups/1.json?api_key=woofwoofwoof&company_id=1"
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
   "target_group": {
     "id": 1,
@@ -118,7 +118,7 @@ curl "https://api.retreaver.com/target_groups/1.json?api_key=woofwoofwoof&compan
     ]
   }
 }
-```
+~~~
 
 
 ### HTTP Request
@@ -129,17 +129,17 @@ curl "https://api.retreaver.com/target_groups/1.json?api_key=woofwoofwoof&compan
 
 ## Create a Target Group
 
-```shell
+~~~shell
 curl -s \
  -X POST \
  https://api.retreaver.com/target_groups.json?api_key=woofwoofwoof&company_id=1 \
  -H "Content-Type: application/json" \
  -d '{"target_group":{"target_ids": [1, 2, 3], "name":"test", "concurrency_cap": 5}}'
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
   "target_group": {
     "id": 1,
@@ -182,7 +182,7 @@ curl -s \
     ]
   }
 }
-```
+~~~
 
 Creates a new Target Group.
 
@@ -209,17 +209,17 @@ behavior | integer | 1 | | 1 = Dial separately, 2 = Simuldial (dial all Targets 
 
 ## Update a Target Group
 
-```shell
+~~~shell
 curl -s \
  -X PUT \
  https://api.retreaver.com/target_groups/1.json \
  -H "Content-Type: application/json" \
  -d '{"target_group":{"name":"hello"}}'
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
   "target_group": {
     "id": 1,
@@ -262,7 +262,7 @@ curl -s \
     ]
   }
 }
-```
+~~~
 
 Changes any attributes you have passed in on the Target Group.
 
@@ -285,9 +285,9 @@ You must replace <code>1</code> with the Retreaver ID of the Target Group you wa
 ## Delete a Target Group
 
 
-```shell
+~~~shell
 curl -X DELETE https://api.retreaver.com/target_groups/1.json?api_key=woofwoofwoof&company_id=1
-```
+~~~
 
 Deletes the given Target Group.
 
@@ -298,17 +298,17 @@ Deletes the given Target Group.
 
 ## Replacing Targets in a Target Group
 
-```shell
+~~~shell
 curl -s \
  -X PUT \
  https://api.retreaver.com/target_groups/1.json \
  -H "Content-Type: application/json" \
  -d '{"target_group":{"target_ids":[5,6]}}'
-```
+~~~
 
 > Upon reloading the Target, the following JSON is returned with the given targets:
 
-```json
+~~~json
 {
   "target_group": {
     "id": 1,
@@ -350,7 +350,7 @@ curl -s \
     ]
   }
 }
-```
+~~~
 
 To replace which Targets are in a Target Group, pass in an array of Target IDs as `target_ids`. All existing Targets
 on the Target Group will be replaced with the Targets provided in this array.
@@ -372,17 +372,17 @@ each time. We also have 2 helper methods, below, for adding and removing Targets
 
 ## Adding Targets to a Target Group
 
-```shell
+~~~shell
 curl -s \
  -X PUT \
  https://api.retreaver.com/target_groups/1.json \
  -H "Content-Type: application/json" \
  -d '{"target_group":{"add_targets_by_id":[4]}}'
-```
+~~~
 
 > Upon reloading the Target, the following JSON is returned with Target ID 4 added:
 
-```json
+~~~json
 {
   "target_group": {
     "id": 1,
@@ -426,7 +426,7 @@ curl -s \
     ]
   }
 }
-```
+~~~
 
 To add Targets to a Target Group, pass in an array of Target IDs as `add_targets_by_id`. This is a helper
 attribute provided so that you don't have to track which Targets are in each Group.
@@ -445,17 +445,17 @@ attribute provided so that you don't have to track which Targets are in each Gro
 
 ## Removing Targets from a Target Group
 
-```shell
+~~~shell
 curl -s \
  -X PUT \
  https://api.retreaver.com/target_groups/1.json \
  -H "Content-Type: application/json" \
  -d '{"target_group":{"remove_targets_by_id":[1]}}'
-```
+~~~
 
 > Upon reloading the Target, the following JSON is returned with Target ID 1 removed:
 
-```json
+~~~json
 {
   "target_group": {
     "id": 1,
@@ -497,7 +497,7 @@ curl -s \
     ]
   }
 }
-```
+~~~
 
 To remove Targets from a Target Group, pass in an array of Target IDs as `remove_targets_by_id`. This is a helper 
 attribute provided so that you don't have to track which Targets are in each Group.
@@ -517,7 +517,7 @@ attribute provided so that you don't have to track which Targets are in each Gro
 ## Changing a Target Group's Caps
 
 
-```shell
+~~~shell
 curl -s \
  -X PUT \
  https://api.retreaver.com/target_groups/1.json \
@@ -528,11 +528,11 @@ curl -s \
              } \
          }' \
      }'
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
   "target_group": {
     "id": 1,
@@ -575,7 +575,7 @@ curl -s \
     ]
   }
 }
-```
+~~~
 
 
 There are 4 types of caps: Hard Cap, Hourly Cap, Daily Cap, and Monthly Cap. Hard cap is a hard limit, and once it is reached, Targets in the Target Group will not receive more Calls until the Cap is reset. This is useful when routing Calls to buyers that have insertion orders for a set number of leads.
@@ -602,12 +602,12 @@ cap | integer |  | required | The value for the cap.
 
 ## Resetting all Hard Caps on Targets in a Target Group
 
-```shell
+~~~shell
 curl -s \
  -X POST \
  https://api.retreaver.com/target_groups/1/reset_cap.json?api_key=woofwoofwoof&company_id=1 \
  -H "Content-Type: application/json"
-```
+~~~
 
 Clears any Calls contributing to the given Target Group's hard cap, resetting hard caps of all Targets within the Group to 0. Returns HTTP 200 on success.
 
