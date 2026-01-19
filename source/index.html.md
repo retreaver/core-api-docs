@@ -3253,12 +3253,12 @@ Manage a single number
 
 ### Adding a single number to a caller list
 
-~~~`shell
+~~~shell
 curl -X POST 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name/caller_list_numbers.json?key=:postback_key_uuid' \
     -H "Content-Type: application/json" \
     -H "Authorization: Bearer :postback_key_secret_key" \
     -d '{"caller_list_number":  { "number": "+15855752500" }}'
-~~~`
+~~~
 
 Parameter | Required | Description
 --------- | ---- | ------- | -------- | -----------
@@ -3276,10 +3276,10 @@ If no format is provided the server will choose one json.
 
 ### Deleting a single number from caller list
 
-~~~`shell
+~~~shell
 curl -X DELETE 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name/caller_list_numbers/+15855752500.json?key=:postback_key_uuid' \
     -H "Authorization: Bearer :postback_key_secret_key"
-~~~`
+~~~
 
 Parameter | Type | Default | Required | Description
 --------- | ---- | ------- | -------- | -----------
@@ -3288,10 +3288,10 @@ number    | string | null    | required | A phone number in preferably in [E.164
 
 ### Checking if a number is on a caller list
 
-~~~`shell
+~~~shell
 curl 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name/caller_list_numbers/+15855752500.json?key=:postback_key_uuid' \
     -H "Authorization: Bearer :postback_key_secret_key"
-~~~`
+~~~
 
 Parameter | Type | Default | Required | Description
 --------- | ---- | ------- | -------- | -----------
@@ -3309,12 +3309,12 @@ The Caller List Checks endpoint returns a JSON object indicating whether a phone
 
 The preferred approach is to use the Caller List Number endpoint (GET <a href='#caller-list-number'> /.../caller_list_numbers/:number</a>). However, some platforms may not handle 404 Not Found responses correctly when a number does not exist. In such cases, the Caller List Checks endpoint provides an alternative — it always returns an HTTP 200 OK response with a status field describing the result.
 
-~~~`shell
+~~~shell
 curl -X POST 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name/caller_list_checks.json?key=:postback_key_uuid' \
     -H "Content-Type: application/json" \
     -H "Authorization: Bearer :postback_key_secret_key" \
     -d '{"caller_list_check":  { "number": "+15855752500" }}'
-~~~`
+~~~
 
 > The above command returns JSON structured like this:
 
@@ -3398,7 +3398,7 @@ caller_list_upload.clear_before_upload | optional | when 'true' the caller list 
 
 Same parameters as Add
 
-~~~`shell
+~~~shell
 curl -X POST 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name/caller_list_uploads.json?key=:postback_key_uuid' \
     -H "Content-Type: application/json" \
     -H "Authorization: Bearer :postback_key_secret_key" \
@@ -3408,7 +3408,7 @@ curl -X POST 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:
         "numbers": "+15855752500\n15855752501",
       }
     }'
-~~~`
+~~~
 
 
 # Suppressed Numbers
@@ -3421,7 +3421,7 @@ Suppressed Numbers exist regardless of whether or not there is a corresponding C
 
 ## Check whether or not the company has any Suppressed Numbers
 
- Returns a boolean value (~~~true ~~~/~~~false~~~) whether the Company has any suppressed numbers.
+ Returns a boolean value (`true`/`false`) whether the Company has any suppressed numbers.
 
 ~~~shell
 curl https://api.retreaver.com/suppressed_numbers/check.json?api_key=woofwoofwoof&company_id=1
