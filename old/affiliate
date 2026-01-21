@@ -1,10 +1,14 @@
 <p>By entering your affiliates in our system, you can more easily manage your existing numbers. Affiliates exist for your reference.</p>
-<h1 id='get-affiliates'>GET /affiliates</h1>
+
+<h1 id="get-affiliates">GET /affiliates</h1>
+
 <p>Provides a complete list of affiliates.</p>
 
 <p><strong>Resource URL</strong>
 @note http://callpixels.com/affiliates.format</p>
-<h1 id='get-affiliates-afid-0002'>GET /affiliates/afid/0002</h1>
+
+<h1 id="get-affiliatesafid0002">GET /affiliates/afid/0002</h1>
+
 <p>Finds an affiliate by AFID.</p>
 
 <p><strong>Resource URL</strong>
@@ -13,7 +17,7 @@
 <p><strong>Response</strong>
 ~~~~
 XML
-&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;?xml version=”1.0” encoding=”UTF-8”?&gt;</p>
 <affiliates type="array">
   <affiliate>
     <afid>0002</afid>
@@ -23,41 +27,46 @@ XML
     <created-at type="datetime">2012-05-03T15:56:01Z</created-at>
   </affiliate>
 </affiliates>
-~~~~</p>
-<h1 id='post-affiliates'>POST /affiliates</h1>
-<p>Creates an affiliate.</p>
+<div class="highlight"><pre class="highlight plaintext"><code>
+# POST /affiliates
 
-<p><strong>Resource URL</strong>
-@note http://callpixels.com/affiliates.format</p>
-<h2 id='parameters'>Parameters</h2>
-<p>@param afid {string} The affiliate&#39;s AFID.
-@param [first_name] {string} The affiliate&#39;s first name, for your reference.
-@param [last_name] {string} The affiliate&#39;s last name, for your reference.</p>
+Creates an affiliate.
 
-<p><strong>Request</strong>
-~~~~
-JSON
-{&quot;affiliate&quot;:{&quot;first_name&quot;:&quot;Nancy&quot;, &quot;last_name&quot;:&quot;Drew&quot;, &quot;afid&quot;:&quot;0002&quot;}}
+**Resource URL**
+@note http://callpixels.com/affiliates.format
+
+##Parameters
+@param afid {string} The affiliate's AFID.
+@param [first_name] {string} The affiliate's first name, for your reference.
+@param [last_name] {string} The affiliate's last name, for your reference.
+
+**Request**
+</code></pre></div><p>JSON
+{“affiliate”:{“first_name”:”Nancy”, “last_name”:”Drew”, “afid”:”0002”}}
 ~~~~
 <strong>Response</strong>
 ~~~~
 JSON
 {
-  &quot;affiliate&quot;: {
-    &quot;afid&quot;: &quot;0002&quot;,
-    &quot;first_name&quot;: &quot;Nancy&quot;,
-    &quot;last_name&quot;: &quot;Drew&quot;,
-    &quot;updated_at&quot;: &quot;2012-05-03T15:56:01Z&quot;,
-    &quot;created_at&quot;: &quot;2012-05-03T15:56:01Z&quot;
+  “affiliate”: {
+    “afid”: “0002”,
+    “first_name”: “Nancy”,
+    “last_name”: “Drew”,
+    “updated_at”: “2012-05-03T15:56:01Z”,
+    “created_at”: “2012-05-03T15:56:01Z”
   }
 }
 ~~~~</p>
-<h1 id='delete-affiliates-afid-0002'>DELETE /affiliates/afid/0002</h1>
+
+<h1 id="delete-affiliatesafid0002">DELETE /affiliates/afid/0002</h1>
+
 <p>Deletes the given affiliate. You must delete any numbers the affiliate has before deleting the affiliate.</p>
 
 <p><strong>Resource URL</strong>
 @note http://callpixels.com/affiliates/afid/0002.format</p>
-<h1 id='put-affiliates-afid-0002'>PUT /affiliates/afid/0002</h1>
+
+<h1 id="put-affiliatesafid0002">PUT /affiliates/afid/0002</h1>
+
 <p>Updates the given affiliate.</p>
 
 <p><strong>Resource URL</strong>
@@ -67,19 +76,19 @@ JSON
 http://callpixels.com/affiliates/afid/007.json?api_key=FromMyAccountPage
 ~~~~
 JSON
-{&quot;affiliate&quot;:{&quot;first_name&quot;:&quot;James&quot;}}
+{“affiliate”:{“first_name”:”James”}}
 ~~~~</p>
 
 <p><strong>Response</strong>
 ~~~~
 JSON
 {
-  &quot;affiliate&quot;: {
-    &quot;afid&quot;: &quot;007&quot;,
-    &quot;first_name&quot;: &quot;James&quot;,
-    &quot;last_name&quot;: &quot;Bond&quot;,
-    &quot;updated_at&quot;: &quot;2012-05-03T20:20:03Z&quot;,
-    &quot;created_at&quot;: &quot;2012-05-03T14:29:37Z&quot;
+  “affiliate”: {
+    “afid”: “007”,
+    “first_name”: “James”,
+    “last_name”: “Bond”,
+    “updated_at”: “2012-05-03T20:20:03Z”,
+    “created_at”: “2012-05-03T14:29:37Z”
   }
 }
 ~~~~</p>

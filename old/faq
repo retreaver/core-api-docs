@@ -1,12 +1,12 @@
 <p><strong>Where do I get my API Key?</strong></p>
 
-<p>Your API Key is available at the bottom of the &quot;My Account&quot; page. Simply login to CallPixels.com, click your name in the upper right hand corner, and click My Account.</p>
+<p>Your API Key is available at the bottom of the “My Account” page. Simply login to CallPixels.com, click your name in the upper right hand corner, and click My Account.</p>
 
 <p>The API Key is not shown by default, click Show to reveal your Key.</p>
 
 <p><strong>Someone hacked my site, how do I reset my key?</strong></p>
 
-<p>Just click Reset Key on the bottom of the &quot;My Account&quot; page in the lower right. The old key will be disabled immediately and you will have to update your clients with the new key.</p>
+<p>Just click Reset Key on the bottom of the “My Account” page in the lower right. The old key will be disabled immediately and you will have to update your clients with the new key.</p>
 
 <p><strong>How can I test this without making a big program first?</strong></p>
 

@@ -1,14 +1,21 @@
-<h2 id='reseller-api'>Reseller API</h2><h1 id='get-company'>GET /company</h1>
+<h2 id="reseller-api">Reseller API</h2>
+
+<h1 id="get-company">GET /company</h1>
+
 <p>Returns the currently active company. This is the company that will be modified if a request is sent in without a specific company_id.</p>
 
 <p><strong>Resource URL</strong>
 @note http://callpixels.com/company.format</p>
-<h1 id='get-companies'>GET /companies</h1>
+
+<h1 id="get-companies">GET /companies</h1>
+
 <p>Provides a complete list of companies.</p>
 
 <p><strong>Resource URL</strong>
 @note http://callpixels.com/companies.format</p>
-<h1 id='get-companies-1'>GET /companies/1</h1>
+
+<h1 id="get-companies1">GET /companies/1</h1>
+
 <p>Returns the company matching our internal ID.</p>
 
 <p><strong>Resource URL</strong>
@@ -18,22 +25,25 @@
 ~~~~
 JSON
 {
-    &quot;company&quot;: {
-        &quot;id&quot;: 1,
-        &quot;name&quot;: &quot;CallPixels&quot;,
-        &quot;default_click_url&quot;: &quot;http://callpixels.com/?a=[affiliate_id]&amp;c=[campaign_id]&amp;cp=js&amp;s1=[sub_id]&quot;,
-        &quot;default_sale_url&quot;: &quot;http://callpixels.com/p.ashx?o=[campaign_id]&amp;t=[call_log_id]-[caller_id]-[called_number]-[call_duration]-[call_recording_url]&quot;,
-        &quot;created_at&quot;: &quot;2012-04-15T05:44:10Z&quot;,
-        &quot;updated_at&quot;: &quot;2012-05-07T15:32:44Z&quot;
+    “company”: {
+        “id”: 1,
+        “name”: “CallPixels”,
+        “default_click_url”: “http://callpixels.com/?a=[affiliate_id]&amp;c=[campaign_id]&amp;cp=js&amp;s1=[sub_id]”,
+        “default_sale_url”: “http://callpixels.com/p.ashx?o=[campaign_id]&amp;t=[call_log_id]-[caller_id]-[called_number]-[call_duration]-[call_recording_url]”,
+        “created_at”: “2012-04-15T05:44:10Z”,
+        “updated_at”: “2012-05-07T15:32:44Z”
     }
 }
 ~~~~</p>
-<h1 id='post-companies'>POST /companies</h1>
+
+<h1 id="post-companies">POST /companies</h1>
+
 <p>Creates a company. This is available to resellers only.</p>
 
 <p><strong>Resource URL</strong>
 @note http://callpixels.com/companies.format</p>
-<h2 id='parameters'>Parameters</h2>
+
+<h2 id="parameters">Parameters</h2>
 <p>@param name {string} The company name.
 @param [default_click_url] {string}
 @param [default_sale_url] {string}</p>
@@ -41,21 +51,22 @@ JSON
 <p><strong>Request</strong>
 ~~~~
 JSON
-{&quot;company&quot;:{&quot;name&quot;:&quot;CallPixels.com&quot;}}
+{“company”:{“name”:”CallPixels.com”}}
 ~~~~
 <strong>Response</strong>
 ~~~~
 JSON
 {
-    &quot;company&quot;: {
-        &quot;id&quot;: 2,
-        &quot;name&quot;: &quot;CallPixels.com&quot;,
-        &quot;default_click_url&quot;: null,
-        &quot;default_sale_url&quot;: null,
-        &quot;created_at&quot;: &quot;2012-05-07T15:44:39Z&quot;,
-        &quot;updated_at&quot;: &quot;2012-05-07T15:44:39Z&quot;
+    “company”: {
+        “id”: 2,
+        “name”: “CallPixels.com”,
+        “default_click_url”: null,
+        “default_sale_url”: null,
+        “created_at”: “2012-05-07T15:44:39Z”,
+        “updated_at”: “2012-05-07T15:44:39Z”
     }
 }</p>
+
 <div class="highlight"><pre class="highlight plaintext"><code>
 # DELETE /companies/2
 
@@ -73,22 +84,21 @@ Updates the given company.
 
 **Request**
 http://callpixels.com/companies/1.json?api_key=FromMyAccountPage
-</code></pre></div>
-<p>JSON
-{&quot;company&quot;:{&quot;name&quot;:&quot;CallPixels.com&quot;}}
+</code></pre></div><p>JSON
+{“company”:{“name”:”CallPixels.com”}}
 ~~~~</p>
 
 <p><strong>Response</strong>
 ~~~~
 JSON
 {
-    &quot;company&quot;: {
-        &quot;id&quot;: 1,
-        &quot;name&quot;: &quot;CallPixels.com&quot;,
-        &quot;default_click_url&quot;: &quot;http://callpixels.com/?a=[affiliate_id]&amp;c=[campaign_id]&amp;cp=js&amp;s1=[sub_id]&quot;,
-        &quot;default_sale_url&quot;: &quot;http://callpixels.com/p.ashx?o=[campaign_id]&amp;t=[call_log_id]-[caller_id]-[called_number]-[call_duration]-[call_recording_url]&quot;,
-        &quot;created_at&quot;: &quot;2012-04-15T05:44:10Z&quot;,
-        &quot;updated_at&quot;: &quot;2012-05-07T15:48:14Z&quot;
+    “company”: {
+        “id”: 1,
+        “name”: “CallPixels.com”,
+        “default_click_url”: “http://callpixels.com/?a=[affiliate_id]&amp;c=[campaign_id]&amp;cp=js&amp;s1=[sub_id]”,
+        “default_sale_url”: “http://callpixels.com/p.ashx?o=[campaign_id]&amp;t=[call_log_id]-[caller_id]-[called_number]-[call_duration]-[call_recording_url]”,
+        “created_at”: “2012-04-15T05:44:10Z”,
+        “updated_at”: “2012-05-07T15:48:14Z”
     }
 }
 ~~~~</p>
