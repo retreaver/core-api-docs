@@ -6,7 +6,7 @@ language_tabs:
 
 toc_footers:
   - <a href='https://retreaver.com/users/sign_up'>Sign Up for a Developer Key</a>
-  - <a href='https://support.retreaver.com/'>Knowledge Base</a>
+  - <a href='https://learn.retreaver.com/'>Knowledge Base</a>
 
 includes:
   - target_groups
@@ -97,10 +97,10 @@ Please note, for brevity, in appropriate places we have truncated the API output
 
 > To authorize, use this code:
 
-```shell
+~~~shell
 # With cURL, you can just pass the correct API key and company_id with each request.
 curl "https://api.retreaver.com/call.json?api_key=woofwoofwoof&company_id=1"
-```
+~~~
 
 > Make sure to replace `woofwoofwoof` with your API key.
 
@@ -134,13 +134,13 @@ Or, more precisely, phone calls.
 
 ## V1 - Get recent Calls
 
-```shell
+~~~shell
 curl "https://api.retreaver.com/calls.json?api_key=woofwoofwoof&company_id=1"
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 [{
    "call":{
       "uuid":"addcf985-017e-4962-be34-cf5d55e74afc",
@@ -187,7 +187,7 @@ curl "https://api.retreaver.com/calls.json?api_key=woofwoofwoof&company_id=1"
       "recording_url":"http://callpixels.com/recordings/87d43a5f5c88041687f9fd1bb6a58d6f/call_17192096019_1342303189.mp3"
    }
 }]
-```
+~~~
 
 Provides access to the call log. The call log contains all the Calls which have been made through Numbers under your control.
 
@@ -214,15 +214,15 @@ sub_id | `123456` | | Return calls for a affiliate Sub ID.
 
  > First page...
 
-```shell
+~~~shell
 curl "https://api.retreaver.com/calls.json?api_key=woofwoofwoof&company_id=1&sort_by=created_at&order=asc&page=1"
-```
+~~~
 
 > Second page...
 
-```shell
+~~~shell
 curl "https://api.retreaver.com/calls.json?api_key=woofwoofwoof&company_id=1&sort_by=created_at&order=asc&page=2"
-```
+~~~
 
 > etc...
 
@@ -238,9 +238,9 @@ created, and then paginate through all your calls.
 
 ## V1 - Enumerate through Calls in a specific date/time range.
 
-```shell
+~~~shell
 curl "https://api.retreaver.com/calls.json?api_key=woofwoofwoof&company_id=1&created_at_start=2016-01-01T00:00:00+00:00&created_at_end=2016-01-02T00:00:00+00:00&page=1"
-```
+~~~
 
 By passing in `created_at_start` and `created_at_end` parameters, you can control the start and end time of Calls returned.
 
@@ -252,13 +252,13 @@ The timestamp should be formatted according to [rfc3339](https://validator.w3.or
 
 ## V1 - Get a specific Call
 
-```shell
+~~~shell
 curl "https://api.retreaver.com/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof&company_id=1"
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
    "call":{
       "uuid":"addcf985-017e-4962-be34-cf5d55e74afc",
@@ -282,7 +282,7 @@ curl "https://api.retreaver.com/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?
       "recording_url":"http://callpixels.com/recordings/87d43a5f5c88041687f9fd1bb6a58d6f/call_17192096019_1342303189.mp3"
    }
 }
-```
+~~~
 
 Calls can be accessed by their UUID.
 
@@ -294,13 +294,13 @@ Calls can be accessed by their UUID.
 
 ## V2 - Get recent Calls
 
-```shell
+~~~shell
 curl "https://api.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof"
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 [
   {
     "call": {
@@ -574,7 +574,7 @@ curl "https://api.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof"
     }
   }
 ]
-```
+~~~
 
 Provides access to the call log. The call log contains all the Calls which have been made through Numbers under your control.
 
@@ -621,15 +621,15 @@ call_flow_events | true/false | false | Returns the call flow events of what hap
 
  > First page...
 
-```shell
+~~~shell
 curl "https://api.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&page=1"
-```
+~~~
 
 > Second page...
 
-```shell
+~~~shell
 curl "https://api.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&page=2"
-```
+~~~
 
 > etc...
 
@@ -645,9 +645,9 @@ created, and then paginate through all your calls.
 
 ## V2 - Enumerate through Calls in a specific date/time range.
 
-```shell
+~~~shell
 curl "https://api.retreaver.com/calls.json?api_key=woofwoofwoof&company_id=1&created_at_start=2016-01-01T00:00:00+00:00&created_at_end=2016-01-02T00:00:00+00:00&page=1"
-```
+~~~
 
 By passing in `created_at_start` and `created_at_end` parameters, you can control the start and end time of Calls returned.
 
@@ -659,13 +659,13 @@ The timestamp should be formatted according to [rfc3339](https://validator.w3.or
 
 ## V2 - Get a specific Call
 
-```shell
+~~~shell
 curl "https://api.retreaver.com/api/v2/calls/94079290-93f3-4527-9e78-88653aaf3c49.json?api_key=woofwoofwoof"
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
   "call": {
     "uuid": "94079290-93f3-4527-9e78-88653aaf3c49",
@@ -804,7 +804,7 @@ curl "https://api.retreaver.com/api/v2/calls/94079290-93f3-4527-9e78-88653aaf3c4
     "total_cost": "0.07"
   }
 }
-```
+~~~
 
 Calls can be accessed by their UUID.
 
@@ -833,13 +833,13 @@ When using GET place the params in the URL
 
 > GET
 
-```bash
+~~~bash
 curl "https://reteaverdata.com/data_writing/:postback_key_uuid?caller_number=:caller_number&age=39&utm_campaign=auto"
-```
+~~~
 
 > POST
 
-```bash
+~~~bash
 curl -X POST "https://reteaverdata.com/data_writing" \
   -H "Content-Type: application/json" \
   -d '{
@@ -848,11 +848,11 @@ curl -X POST "https://reteaverdata.com/data_writing" \
     "age": "39",
     "utm_campaign": "auto"
   }'
-```
+~~~
 
 > Example Response with call_uuid
 
-```json
+~~~json
 {
   "tag_values": {
     "age":"39",
@@ -861,11 +861,11 @@ curl -X POST "https://reteaverdata.com/data_writing" \
   "call_uuid":"9b653cf0-4835-493b-860c-aed9b7af2a4a",
   "status":"completed call found, tags applied"
 }
-```
+~~~
 
 > Example Response with caller_number
 
-```json
+~~~json
 {
   "tag_values": {
     "age":"39",
@@ -874,7 +874,7 @@ curl -X POST "https://reteaverdata.com/data_writing" \
   "caller_number":"+3569878933094",
   "status":"call not found, tags stored"
 }
-```
+~~~
 
 ### HTTP Request
 
@@ -917,13 +917,13 @@ If you're not in affiliate marketing, Affiliate objects can be used for whatever
 ## Get all Affiliates
 
 
-```shell
+~~~shell
 curl "https://api.retreaver.com/affiliates.xml?api_key=woofwoofwoof&company_id=1"
-```
+~~~
 
 > The above command returns XML structured like this:
 
-```xml
+~~~xml
 <?xml version="1.0" encoding="UTF-8"?>
 <affiliates type="array">
   <affiliate>
@@ -935,7 +935,7 @@ curl "https://api.retreaver.com/affiliates.xml?api_key=woofwoofwoof&company_id=1
     <created-at type="datetime">2012-05-03T15:56:01Z</created-at>
   </affiliate>
 </affiliates>
-```
+~~~
 
 
 Provides a complete list of Affiliates.
@@ -947,9 +947,9 @@ Provides a complete list of Affiliates.
 
 ## Get a specific Affiliate by your ID
 
-```shell
+~~~shell
 curl "https://api.retreaver.com/affiliates/afid/0002.json?api_key=woofwoofwoof&company_id=1"
-```
+~~~
 
 Finds an Affiliate by AFID.
 
@@ -961,13 +961,13 @@ Finds an Affiliate by AFID.
 
 ## Create an Affiliate
 
-```shell
+~~~shell
 curl -s \
     -X POST \
     https://api.retreaver.com/affiliates.json?api_key=woofwoofwoof&company_id=1 \
     -H "Content-Type: application/json" \
     -d '{"affiliate":{"first_name":"Nancy", "last_name":"Drew", "afid":"0002"}}'
-```
+~~~
 
 Creates an Affiliate.
 
@@ -993,17 +993,17 @@ company_name | string | null |   | Their company name.
 ## Update an Affiliate
 
 
-```shell
+~~~shell
 curl -s \
     -X PUT \
     https://api.retreaver.com/affiliates/afid/002.json \
     -H "Content-Type: application/json" \
     -d '{"affiliate":{"first_name":"Nathan"}}'
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
   "affiliate": {
     "afid": "002",
@@ -1014,7 +1014,7 @@ curl -s \
     "created_at": "2012-05-03T14:29:37Z"
   }
 }
-```
+~~~
 
 Changes any attributes you have passed in on the Affiliate.
 
@@ -1036,9 +1036,9 @@ You must replace <code>0002</code> with the afid of the Affiliate you want to de
 
 ## Remove an affiliate
 
-```shell
+~~~shell
 curl -X DELETE https://api.retreaver.com/affiliates/afid/0002.json?api_key=woofwoofwoof&company_id=1
-```
+~~~
 
 Deletes the given Affiliate. You must delete any Numbers the Affiliate has before deleting the Affiliate.
 
@@ -1052,13 +1052,13 @@ Targets are the destination phone numbers that calls are routed to, for instance
 
 ## Get all Targets
 
-```shell
+~~~shell
 curl "https://api.retreaver.com/targets.json?api_key=woofwoofwoof&company_id=1"
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 [{
    "target": {
      "id": 6588,
@@ -1085,7 +1085,7 @@ curl "https://api.retreaver.com/targets.json?api_key=woofwoofwoof&company_id=1"
      "name": "Jason Cell"
    }
 }]
-```
+~~~
 
 
 
@@ -1097,13 +1097,13 @@ curl "https://api.retreaver.com/targets.json?api_key=woofwoofwoof&company_id=1"
 ## Get a specific Target
 
 
-```shell
+~~~shell
 curl "https://api.retreaver.com/targets/6588.json?api_key=woofwoofwoof&company_id=1"
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
    "target": {
      "id": 6588,
@@ -1130,7 +1130,7 @@ curl "https://api.retreaver.com/targets/6588.json?api_key=woofwoofwoof&company_i
      "name": "Jason Cell"
    }
 }
-```
+~~~
 
 
 ### HTTP Request
@@ -1141,17 +1141,17 @@ curl "https://api.retreaver.com/targets/6588.json?api_key=woofwoofwoof&company_i
 
 ## Create a Target
 
-```shell
+~~~shell
 curl -s \
  -X POST \
  https://api.retreaver.com/targets.json?api_key=woofwoofwoof&company_id=1 \
  -H "Content-Type: application/json" \
  -d '{"target":{"number":"+18668987878", "name":"Retreaver Support"}}'
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
     "target": {
         "id": 22592,
@@ -1284,7 +1284,7 @@ curl -s \
         "tag_values": []
     }
 }
-```
+~~~
 
 Creates a new Target.
 
@@ -1370,17 +1370,17 @@ Samoa| | | | |
 
 ## Update a Target
 
-```shell
+~~~shell
 curl -s \
  -X PUT \
  https://api.retreaver.com/targets/22592.json \
  -H "Content-Type: application/json" \
  -d '{"target":{"paused":true}}'
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
     "target": {
         "id": 22592,
@@ -1395,7 +1395,7 @@ curl -s \
         "name": "Retreaver Support"
     }
 }
-```
+~~~
 
 Changes any attributes you have passed in on the Target.
 
@@ -1418,9 +1418,9 @@ You must replace <code>22592</code> with the Retreaver ID of the Target you want
 ## Remove a Target
 
 
-```shell
+~~~shell
 curl -X DELETE https://api.retreaver.com/targets/22592.json?api_key=woofwoofwoof&company_id=1
-```
+~~~
 
 Deletes the given Target.
 
@@ -1432,17 +1432,17 @@ Deletes the given Target.
 
 ## Tagging a Target
 
-```shell
+~~~shell
 curl -s \
  -X PUT \
  https://api.retreaver.com/targets/22592.json \
  -H "Content-Type: application/json" \
  -d '{"target":{"tag_list":"<<<calling_about:support>>>,<<<calling_about:other>>>"}}'
-```
+~~~
 
 > Upon reloading the Target, the following JSON is returned with the tags included:
 
-```json
+~~~json
 {
     "target": {
         "id": 22592,
@@ -1464,7 +1464,7 @@ curl -s \
         ]
     }
 }
-```
+~~~
 
 To set tags on a Target, pass in a comma delineated, triple-angle-bracket enclosed string of tags as the `tag_list` value.
 
@@ -1487,7 +1487,7 @@ There is a limit of 100 tags added in this manner, but the system will automatic
 ## Changing a Target's Caps
 
 
-```shell
+~~~shell
 curl -s \
  -X PUT \
  https://api.retreaver.com/targets/22592.json \
@@ -1498,11 +1498,11 @@ curl -s \
              } \
          }' \
      }'
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
     "target": {
         "id": 22592,
@@ -1536,7 +1536,7 @@ curl -s \
         ]
     }
 }
-```
+~~~
 
 
 There are 4 types of caps: Hard Cap, Hourly Cap, Daily Cap, and Monthly Cap. Hard cap is a hard limit, and once it is reached, the target will not receive more Calls until the Cap is reset. This is useful when routing Calls to buyers that have insertion orders for a set number of leads.
@@ -1563,12 +1563,12 @@ cap | integer |  | required | The value for the cap.
 
 ## Resetting a Hard Cap
 
-```shell
+~~~shell
 curl -s \
  -X POST \
  https://api.retreaver.com/targets/22592/reset_cap.json?api_key=woofwoofwoof&company_id=1 \
  -H "Content-Type: application/json"
-```
+~~~
 
 Clears any Calls contributing to the given Target's hard cap, resetting it to 0. Returns HTTP 200 on success.
 
@@ -1587,13 +1587,13 @@ By configuring a Campaign, you can reuse the settings of the Campaign when creat
 
 ## Get all Campaigns
 
-```shell
+~~~shell
 curl "https://api.retreaver.com/campaigns.json?api_key=woofwoofwoof&company_id=1"
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 [{
 "campaign":{
    "cid":"111",
@@ -1637,7 +1637,7 @@ curl "https://api.retreaver.com/campaigns.json?api_key=woofwoofwoof&company_id=1
    ]
 }
 }]
-```
+~~~
 
 List all the Campaigns in your Account.
 
@@ -1650,13 +1650,13 @@ List all the Campaigns in your Account.
 ## Get a specific Campaign
 
 
-```shell
+~~~shell
 curl "https://api.retreaver.com/campaigns/cid/0044.json?api_key=woofwoofwoof&company_id=1"
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
    "campaign":{
       "cid":"0044",
@@ -1700,7 +1700,7 @@ curl "https://api.retreaver.com/campaigns/cid/0044.json?api_key=woofwoofwoof&com
       ]
    }
 }
-```
+~~~
 
 Get a campaign by your ID.
 
@@ -1712,7 +1712,7 @@ Get a campaign by your ID.
 
 ## Create a Campaign
 
-```shell
+~~~shell
 curl -s \
     -X POST \
     https://api.retreaver.com/campaigns.json \
@@ -1737,11 +1737,11 @@ curl -s \
                 ] \
             } \
         }' \
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
    "campaign":{
       "cid":"0044",
@@ -1785,7 +1785,7 @@ curl -s \
       ]
    }
 }
-```
+~~~
 
 Create a new Campaign.
 
@@ -1842,17 +1842,17 @@ target_cid | string |  |  | A campaign ID to redirect the caller to. The campaig
 
 ## Update a Campaign
 
-```shell
+~~~shell
 curl -s \
     -X PUT \
     https://api.retreaver.com/campaigns/cid/0044.json \
     -H "Content-Type: application/json" \
     -d '{"campaign":{"name":"My Other Campaign"}}'
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
    "campaign":{
       "cid":"0044",
@@ -1896,7 +1896,7 @@ curl -s \
       ]
    }
 }
-```
+~~~
 
 Changes any attributes you have passed in on the Campaign.
 
@@ -1919,9 +1919,9 @@ You must replace <code>0044</code> with the cid of the Campaign you want to upda
 ## Remove a Campaign
 
 
-```shell
+~~~shell
 curl -X DELETE https://api.retreaver.com/campaigns/cid/0044.json?api_key=woofwoofwoof&company_id=1
-```
+~~~
 
 Delete a Campaign by CID. You must delete all the Numbers belonging to that Campaign first.
 
@@ -1938,13 +1938,13 @@ Numbers can be set to use the settings of an existing Campaign.
 
 ## Get all Numbers
 
-```shell
+~~~shell
 curl "https://api.retreaver.com/numbers.json?api_key=woofwoofwoof&company_id=1"
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 [{
     "number":{
        "id":5,
@@ -1988,7 +1988,7 @@ curl "https://api.retreaver.com/numbers.json?api_key=woofwoofwoof&company_id=1"
        ]
     }
 }]
-```
+~~~
 
 Get all Numbers belonging to the Company.
 
@@ -2010,13 +2010,13 @@ sid | null | Restrict results to Numbers that belong to the given SubID.
 ## Get a specific Number
 
 
-```shell
+~~~shell
 curl "https://api.retreaver.com/numbers/5.json?api_key=woofwoofwoof&company_id=1"
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
    "number":{
       "id":5,
@@ -2060,7 +2060,7 @@ curl "https://api.retreaver.com/numbers/5.json?api_key=woofwoofwoof&company_id=1
       ]
    }
 }
-```
+~~~
 
 Get a Number by our internal ID.
 
@@ -2071,17 +2071,17 @@ Get a Number by our internal ID.
 
 ## Create a Number
 
-```shell
+~~~shell
 curl -s \
     -X POST \
     https://api.retreaver.com/numbers.json \
     -H "Content-Type: application/json" \
     -d '{"number":{"type":"Toll-free","desired_text":"TEST","afid":"0002","cid":"0001","sid":"superaffiliate"}}'
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
    "number":{
       "id":79,
@@ -2140,7 +2140,7 @@ curl -s \
       ]
    }
 }
-```
+~~~
 
 Creates a new phone Number.
 
@@ -2211,17 +2211,17 @@ target_cid | string |  |  | A campaign ID to redirect the caller to. The campaig
 
 ## Update a Number
 
-```shell
+~~~shell
 curl -s \
     -X PUT \
     https://api.retreaver.com/numbers/79.json?api_key=woofwoofwoof&company_id=1 \
     -H "Content-Type: application/json" \
     -d '{"number":{"afid":"0005"}}'
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
    "number":{
       "id":79,
@@ -2280,7 +2280,7 @@ curl -s \
       ]
    }
 }
-```
+~~~
 
 Updates the Number with any attributes you have passed in.
 
@@ -2303,9 +2303,9 @@ You must replace <code>79</code> with the Retreaver ID of the Number you want to
 ## Remove a Number
 
 
-```shell
+~~~shell
 curl -X DELETE https://api.retreaver.com/numbers/79.json?api_key=woofwoofwoof&company_id=1
-```
+~~~
 
 Deletes the given number. Numbers will be deprovisioned within 24 hours. Do not delete Numbers if you are porting them to another provider,
 until you have confirmed that the port has completed.
@@ -2320,13 +2320,13 @@ you want to track many different attributes.
 
 ## Get all Number Pools
 
-```shell
+~~~shell
 curl "https://api.retreaver.com/number_pools.json?api_key=woofwoofwoof&company_id=1"
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 [{
      "number_pool": {
          "id": 1,
@@ -2344,7 +2344,7 @@ curl "https://api.retreaver.com/number_pools.json?api_key=woofwoofwoof&company_i
          "reserve_size": 1
      }
  }]
-```
+~~~
 
 Returns all the Number Pools you have in our system.
 
@@ -2364,13 +2364,13 @@ afid | null | Restrict results to Number Pools that belong to the given Affiliat
 ## Get a specific Number Pool
 
 
-```shell
+~~~shell
 curl "https://api.retreaver.com/number_pools/1.json?api_key=woofwoofwoof&company_id=1"
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
     "number_pool": {
         "id": 1,
@@ -2388,7 +2388,7 @@ curl "https://api.retreaver.com/number_pools/1.json?api_key=woofwoofwoof&company
         "reserve_size": 1
     }
 }
-```
+~~~
 
 Returns a single Number Pool based on our internal ID.
 
@@ -2400,7 +2400,7 @@ Returns a single Number Pool based on our internal ID.
 
 ## Create a Number Pool
 
-```shell
+~~~shell
 curl -s \
     -X POST \
     https://api.retreaver.com/number_pools.json?api_key=woofwoofwoof&company_id=1 \
@@ -2413,11 +2413,11 @@ curl -s \
                 "google_analytics": true \
             } \
         }'
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
     "number_pool": {
         "id": 49,
@@ -2445,7 +2445,7 @@ curl -s \
         ]
     }
 }
-```
+~~~
 
 
 Creates a new Number Pool.
@@ -2478,17 +2478,17 @@ reserve_size | integer | 1 | | The number of numbers to pre-provision and hold i
 
 ## Update a Number Pool
 
-```shell
+~~~shell
 curl -s \
     -X PUT \
     https://api.retreaver.com/number_pools/49.json \
     -H "Content-Type: application/json" \
     -d '{"number_pool":{"max_pool_size":"1000"}}'
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
     "number_pool": {
         "id": 49,
@@ -2516,7 +2516,7 @@ curl -s \
         ]
     }
 }
-```
+~~~
 
 Updates the Number Pool with any attributes you have passed in.
 
@@ -2539,9 +2539,9 @@ You must replace <code>49</code> with the Retreaver ID of the Number Pool you wa
 ## Remove a Number Pool
 
 
-```shell
+~~~shell
 curl -X DELETE https://api.retreaver.com/number_pools/49.json?api_key=woofwoofwoof&company_id=1
-```
+~~~
 
 Deletes the given Number Pool.
 
@@ -2562,13 +2562,13 @@ Company exists to allow resellers to separate their resources by Company. AFID a
 
 ## Get the active Company
 
-```shell
+~~~shell
 curl "https://api.retreaver.com/company.json?api_key=woofwoofwoof"
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
     "company": {
         "id": 1,
@@ -2582,7 +2582,7 @@ curl "https://api.retreaver.com/company.json?api_key=woofwoofwoof"
         "owner_user_name": "Alice Bob"
     }
 }
-```
+~~~
 
 Returns the currently active Company. This is the Company that will be modified if a request is sent in without a specific company_id.
 
@@ -2597,13 +2597,13 @@ You should always pass in the <code>company_id</code> parameter when requesting 
 
 ## Get a specific Company
 
-```shell
+~~~shell
 curl "https://api.retreaver.com/companies/1.json?api_key=woofwoofwoof"
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
     "company": {
         "id": 1,
@@ -2617,7 +2617,7 @@ curl "https://api.retreaver.com/companies/1.json?api_key=woofwoofwoof"
         "owner_user_name": "Alice Bob"
     }
 }
-```
+~~~
 
 Returns the Company matching our internal ID.
 
@@ -2628,13 +2628,13 @@ Returns the Company matching our internal ID.
 
 ## Get all Companies
 
-```shell
+~~~shell
 curl "https://api.retreaver.com/companies.json?api_key=woofwoofwoof"
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 [
     {
         "company": {
@@ -2663,7 +2663,7 @@ curl "https://api.retreaver.com/companies.json?api_key=woofwoofwoof"
         }
     }
  ]
-```
+~~~
 
 Provides a complete list of Companies accessible via your Account.
 
@@ -2675,17 +2675,17 @@ Provides a complete list of Companies accessible via your Account.
 
 ## Create a Company
 
-```shell
+~~~shell
 curl -s \
     -X POST \
     https://api.retreaver.com/companies.json \
     -H "Content-Type: application/json" \
     -d '{"company":{"name":"Retreaver"}}'
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
     "company": {
         "id": 1,
@@ -2699,7 +2699,7 @@ curl -s \
         "owner_user_name": "Alice Bob"
     }
 }
-```
+~~~
 
 Creates a Company.
 
@@ -2726,17 +2726,17 @@ name | string |  | required | The company name.
 
 ## Update a Company
 
-```shell
+~~~shell
 curl -s \
     -X PUT \
     https://api.retreaver.com/companies/1.json \
     -H "Content-Type: application/json" \
     -d '{"company":{"name":"Retreaver"}}'
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
     "company": {
         "id": 1,
@@ -2750,7 +2750,7 @@ curl -s \
         "owner_user_name": "Alice Bob"
     }
 }
-```
+~~~
 
 Updates the given Company with any attributes you have passed in.
 
@@ -2773,9 +2773,9 @@ You must replace <code>2</code> with the Retreaver ID of the Company you want to
 ## Remove a Company
 
 
-```shell
+~~~shell
 curl -X DELETE https://api.retreaver.com/companies/2.json?api_key=woofwoofwoof
-```
+~~~
 
 Deletes the given Company. You must delete any Numbers and Number Pools the Company has first.
 
@@ -2794,13 +2794,13 @@ Contacts allow you to tie individual Calls from many Contact Numbers back to one
 ## Get all Contacts
 
 
-```shell
+~~~shell
 curl "https://api.retreaver.com/contacts.json?api_key=woofwoofwoof&company_id=1"
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 [{
     "contact": {
         "id": 2,
@@ -2821,7 +2821,7 @@ curl "https://api.retreaver.com/contacts.json?api_key=woofwoofwoof&company_id=1"
         ]
     }
 }]
-```
+~~~
 
 
 Provides a complete list of Contacts.
@@ -2833,13 +2833,13 @@ Provides a complete list of Contacts.
 
 ## Get a Specific Contact by ID
 
-```shell
+~~~shell
 curl "https://api.retreaver.com/contacts/2.json?api_key=woofwoofwoof&company_id=1"
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
     "contact": {
         "id": 2,
@@ -2860,7 +2860,7 @@ curl "https://api.retreaver.com/contacts/2.json?api_key=woofwoofwoof&company_id=
         ]
     }
 }
-```
+~~~
 
 Finds a Contact by its Retreaver ID.
 
@@ -2872,17 +2872,17 @@ Finds a Contact by its Retreaver ID.
 
 ## Create a Contact
 
-```shell
+~~~shell
 curl -s \
     -X POST \
     https://api.retreaver.com/contacts.json \
     -H "Content-Type: application/json" \
     -d '{"contact":{"tag_list":"<<<name:Retreaver Support>>>","contact_numbers_attributes":[{"number":"8668987878", "description":"Landline"}]}}'
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
     "contact": {
         "id": 2,
@@ -2903,7 +2903,7 @@ curl -s \
         ]
     }
 }
-```
+~~~
 
 Creates a Contact and associated Contact Number(s).
 
@@ -2946,17 +2946,17 @@ There is a limit of 100 tags added in this manner, but the system will automatic
 ## Update a Contact
 
 
-```shell
+~~~shell
 curl -s \
     -X PUT \
     https://api.retreaver.com/contacts/2.json?api_key=woofwoofwoof&company_id=1 \
     -H "Content-Type: application/json" \
     -d '{"contact":{"contact_numbers_attributes":[{"id":2,"number":"+18001234567"}]}}'
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
     "contact": {
         "id": 2,
@@ -2977,7 +2977,7 @@ curl -s \
         ]
     }
 }
-```
+~~~
 
 Changes any attributes you have passed in on the Contact. To change a Contact Number, you must pass in the ID of the
 existing Contact Number, or see [below](#update-a-contact-number-by-phone-number) for an easier method.
@@ -2995,9 +2995,9 @@ existing Contact Number, or see [below](#update-a-contact-number-by-phone-number
 
 ## Remove a Contact
 
-```shell
+~~~shell
 curl -X DELETE https://api.retreaver.com/contacts/2.json?api_key=woofwoofwoof&company_id=1
-```
+~~~
 
 Deletes the given Contact and all Contact Numbers associated with it.
 
@@ -3010,13 +3010,13 @@ Deletes the given Contact and all Contact Numbers associated with it.
 
 ## Get a specific Contact by phone number
 
-```shell
+~~~shell
 curl "https://api.retreaver.com/contact_numbers/+18001234567/contact.json?api_key=woofwoofwoof&company_id=1"
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
     "contact": {
         "id": 2,
@@ -3037,7 +3037,7 @@ curl "https://api.retreaver.com/contact_numbers/+18001234567/contact.json?api_ke
         ]
     }
 }
-```
+~~~
 
 Finds a Contact by phone number.
 
@@ -3050,17 +3050,17 @@ Finds a Contact by phone number.
 ## Update a Contact by phone number
 
 
-```shell
+~~~shell
 curl -s \
     -X PUT \
     https://api.retreaver.com/contact_numbers/+18001234567/contact.json?api_key=woofwoofwoof&company_id=1 \
     -H "Content-Type: application/json" \
     -d '{"contact":{"tag_list":"<<<name:Invalid Number>>>"}}'
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
     "contact": {
         "id": 2,
@@ -3081,7 +3081,7 @@ curl -s \
         ]
     }
 }
-```
+~~~
 
 Updates a Contact by phone number.
 
@@ -3097,9 +3097,9 @@ Updates a Contact by phone number.
 
 ## Delete a Contact by phone number
 
-```shell
+~~~shell
 curl -X DELETE https://api.retreaver.com/contact_numbers/+18001234567/contact.json?api_key=woofwoofwoof&company_id=1
-```
+~~~
 
 Deletes the contact associated with the phone number and all other contact numbers associated with the contact.
 
@@ -3116,9 +3116,9 @@ A convenience API for removing and updating Contact Numbers.
 
 ## Delete a Contact Number from a Contact by phone number
 
-```shell
+~~~shell
 curl -X DELETE https://api.retreaver.com/contact_numbers/+18668987878.json?api_key=woofwoofwoof&company_id=1
-```
+~~~
 
 Deletes the contact number from the Contact it is associated with, as long as the Contact has more than one Contact Number.
 
@@ -3130,17 +3130,17 @@ Deletes the contact number from the Contact it is associated with, as long as th
 
 ## Update a Contact Number by phone number
 
-```shell
+~~~shell
 curl -s \
     -X PUT \
     https://api.retreaver.com/contact_numbers/+18001234567.json?api_key=woofwoofwoof&company_id=1 \
     -H "Content-Type: application/json" \
     -d '{"contact_number":{"number":"+18005551234"}}'
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
     "contact_number": {
         "number": "+18005551234",
@@ -3148,7 +3148,7 @@ curl -s \
         "id": 2
     }
 }
-```
+~~~
 
 Easily updates a Contact Number.
 
@@ -3185,12 +3185,12 @@ Numbers could be manages on the caller list after creating them.
 
 Send a POST request
 
-```shell
+~~~shell
 curl -X POST 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists.json?key=:postback_key_uuid' \
     -H "Content-Type: application/json" \
     -H "Authorization: Bearer :postback_key_secret_key" \
     -d '{"caller_list":  { "name": "suppressed" }}'
-```
+~~~
 
 Parameter | Required | Description
 --------- | ---- | -------
@@ -3202,11 +3202,11 @@ caller_list.name      | required | the name of the list on this Target
 
 Send a DELETE request
 
-```shell
+~~~shell
 curl -X DELETE 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name.json?key=:postback_key_uuid' \
     -H "Content-Type: application/json" \
     -H "Authorization: Bearer :postback_key_secret_key"
-```
+~~~
 
 Parameter | Required | Description
 --------- | ---- | -------
@@ -3222,11 +3222,11 @@ Send a GET request
 
 Shows the name of the caller list along with some metadata
 
-```shell
+~~~shell
 curl 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name.json?key=:postback_key_uuid' \
     -H "Content-Type: application/json" \
     -H "Authorization: Bearer :postback_key_secret_key"
-```
+~~~
 
 Parameter | Required | Description
 --------- | ---- | -------
@@ -3236,7 +3236,7 @@ name      | required | the name of the list on this Target
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
   "caller_list": {
     "name": "suppressed",
@@ -3244,7 +3244,7 @@ name      | required | the name of the list on this Target
     "caller_listable_id": 43103
   }
 }
-```
+~~~
 
 
 ## Caller List Number
@@ -3253,12 +3253,12 @@ Manage a single number
 
 ### Adding a single number to a caller list
 
-````shell
+~~~shell
 curl -X POST 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name/caller_list_numbers.json?key=:postback_key_uuid' \
     -H "Content-Type: application/json" \
     -H "Authorization: Bearer :postback_key_secret_key" \
     -d '{"caller_list_number":  { "number": "+15855752500" }}'
-````
+~~~
 
 Parameter | Required | Description
 --------- | ---- | ------- | -------- | -----------
@@ -3276,10 +3276,10 @@ If no format is provided the server will choose one json.
 
 ### Deleting a single number from caller list
 
-````shell
+~~~shell
 curl -X DELETE 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name/caller_list_numbers/+15855752500.json?key=:postback_key_uuid' \
     -H "Authorization: Bearer :postback_key_secret_key"
-````
+~~~
 
 Parameter | Type | Default | Required | Description
 --------- | ---- | ------- | -------- | -----------
@@ -3288,10 +3288,10 @@ number    | string | null    | required | A phone number in preferably in [E.164
 
 ### Checking if a number is on a caller list
 
-````shell
+~~~shell
 curl 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name/caller_list_numbers/+15855752500.json?key=:postback_key_uuid' \
     -H "Authorization: Bearer :postback_key_secret_key"
-````
+~~~
 
 Parameter | Type | Default | Required | Description
 --------- | ---- | ------- | -------- | -----------
@@ -3309,22 +3309,22 @@ The Caller List Checks endpoint returns a JSON object indicating whether a phone
 
 The preferred approach is to use the Caller List Number endpoint (GET <a href='#caller-list-number'> /.../caller_list_numbers/:number</a>). However, some platforms may not handle 404 Not Found responses correctly when a number does not exist. In such cases, the Caller List Checks endpoint provides an alternative — it always returns an HTTP 200 OK response with a status field describing the result.
 
-````shell
+~~~shell
 curl -X POST 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name/caller_list_checks.json?key=:postback_key_uuid' \
     -H "Content-Type: application/json" \
     -H "Authorization: Bearer :postback_key_secret_key" \
     -d '{"caller_list_check":  { "number": "+15855752500" }}'
-````
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
     "caller_list_check": {
         "status": "present",
     }
 }
-```
+~~~
 
 ### Create Caller List Check
 
@@ -3357,7 +3357,7 @@ Mass update caller lists.
 
 ### Add many numbers to a caller list
 
-```shell
+~~~shell
 curl -X POST 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name/caller_list_uploads.json?key=:postback_key_uuid' \
     -H "Content-Type: application/json" \
     -H "Authorization: Bearer :postback_key_secret_key" \
@@ -3366,11 +3366,11 @@ curl -X POST 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:
         "numbers": "+15855752500\n15855752501",
       }
     }'
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
   "caller_list_upload": {
     "status": "Processing",
@@ -3381,7 +3381,7 @@ curl -X POST 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:
     "csv_file_url": "https://retreaver.com/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBHUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--026fb3531e87edb843c5fb432b766e56d3f1a9db/numbers_fb99fc78?disposition=attachment"
   }
 }
-```
+~~~
 
 Parameter | Required | Description
 --------- | ---- | ------- | -------- | -----------
@@ -3398,7 +3398,7 @@ caller_list_upload.clear_before_upload | optional | when 'true' the caller list 
 
 Same parameters as Add
 
-````shell
+~~~shell
 curl -X POST 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name/caller_list_uploads.json?key=:postback_key_uuid' \
     -H "Content-Type: application/json" \
     -H "Authorization: Bearer :postback_key_secret_key" \
@@ -3408,7 +3408,7 @@ curl -X POST 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:
         "numbers": "+15855752500\n15855752501",
       }
     }'
-````
+~~~
 
 
 # Suppressed Numbers
@@ -3421,17 +3421,17 @@ Suppressed Numbers exist regardless of whether or not there is a corresponding C
 
 ## Check whether or not the company has any Suppressed Numbers
 
- Returns a boolean value (```true ```/```false```) whether the Company has any suppressed numbers.
+ Returns a boolean value (`true`/`false`) whether the Company has any suppressed numbers.
 
-```shell
+~~~shell
 curl https://api.retreaver.com/suppressed_numbers/check.json?api_key=woofwoofwoof&company_id=1
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 { "suppressed_numbers_exist": true }
-```
+~~~
 
 Returns true if the Company has any numbers suppressed.
 
@@ -3443,9 +3443,9 @@ Returns true if the Company has any numbers suppressed.
 
 Get information about all of the numbers that are currently suppressed in a company.
 
-```shell
+~~~shell
 curl https://api.retreaver.com/suppressed_numbers.json?api_key=woofwoofwoof&company_id=1
-```
+~~~
 
 > The above command returns JSON structured like this:
 
@@ -3453,7 +3453,7 @@ curl https://api.retreaver.com/suppressed_numbers.json?api_key=woofwoofwoof&comp
     The Campaign ID `cid` will be returned only if the Suppressed Number is associated with a Campaign.
 </aside>
 
-```json
+~~~json
 [
   {
     "suppressed_number": {
@@ -3485,7 +3485,7 @@ curl https://api.retreaver.com/suppressed_numbers.json?api_key=woofwoofwoof&comp
     }
   }
 ]
-```
+~~~
 
 ### HTTP Request
 
@@ -3495,9 +3495,9 @@ curl https://api.retreaver.com/suppressed_numbers.json?api_key=woofwoofwoof&comp
 
 Returns information about the Suppressed Number in the company, by the provided number. The number should be in the format: `+13216065590`
 
-```shell
+~~~shell
 curl https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key=woofwoofwoof&company_id=1
-```
+~~~
 
 > The above command returns JSON structured like this:
 
@@ -3505,7 +3505,7 @@ curl https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key=woof
     The Campaign ID `cid` will be returned only if the Suppressed Number is associated with a Campaign.
 </aside>
 
-```json
+~~~json
 {
   "suppressed_number": {
     "id": 18996946,
@@ -3516,7 +3516,7 @@ curl https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key=woof
     "cid": 111
   }
 }
-```
+~~~
 
 ### HTTP Request
 
@@ -3526,9 +3526,9 @@ curl https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key=woof
 
 Deletes the provided  number  from the company's suppressed numbers. The number should be in the format: `+13216065590`
 
-```shell
+~~~shell
 curl -X DELETE https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key=woofwoofwoof&company_id=1
-```
+~~~
 
 ### HTTP Request
 
@@ -3540,17 +3540,17 @@ Adds a number to the company's Suppressed Numbers. The `can_resubscribe` value t
 
 The entire body of the post is optional, simply posting to `https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key=woofwoofwoof&company_id=1` would block `+13216065590`; `can_resubscribe` is `true` by default. The intended use case is to allow callers to restore contact with a company after choosing to be routed to a "Add caller to suppressed numbers and hang up" routing option.
 
-```shell
+~~~shell
 curl -s \
     -X POST \
     https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key=woofwoofwoof&company_id=1 \
     -H "Content-Type: application/json" \
     -d '{"suppressed_number": {"can_resubscribe": false}}'
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 {
   "id": 18996958,
   "company_id": 1,
@@ -3561,7 +3561,7 @@ curl -s \
   "updated_at": "2024-10-11T08:50:59.981Z",
   "can_resubscribe": false
 }
-```
+~~~
 
 ### HTTP Request
 
@@ -3575,13 +3575,13 @@ curl -s \
 
 By sending a `PUT` request you can update properties such as `can_resubscribe` and `campaign_id` for an already created Suppressed Number. The number should be in the format: `+13216065590`.
 
-```shell
+~~~shell
 curl -s \
     -X POST \
     https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key=woofwoofwoof&company_id=1 \
     -H "Content-Type: application/json" \
     -d '{"suppressed_number": {"can_resubscribe": false}}'
-```
+~~~
 
 ### HTTP request
 
@@ -3601,13 +3601,13 @@ prompt the caller for the caller's real number, or will randomize the CallerID f
 ## Get all Static Caller Numbers
 
 
-```shell
+~~~shell
 curl "https://api.retreaver.com/static_caller_numbers.json?api_key=woofwoofwoof&company_id=1"
-```
+~~~
 
 > The above command returns JSON structured like this:
 
-```json
+~~~json
 [{
     "static_caller_number": {
         "id": 1234,
@@ -3615,7 +3615,7 @@ curl "https://api.retreaver.com/static_caller_numbers.json?api_key=woofwoofwoof&
         "created_at": "2013-10-02T14:36:14.166-04:00"
     }
 }]
-```
+~~~
 
 
 Provides a complete list of Static Numbers.
@@ -3627,13 +3627,13 @@ Provides a complete list of Static Numbers.
 
 ## Create a Static Caller Number
 
-```shell
+~~~shell
 curl -s \
     -X POST \
     https://api.retreaver.com/static_caller_numbers.json?api_key=woofwoofwoof&company_id=1 \
     -H "Content-Type: application/json" \
     -d '{"static_caller_number":{"number":"+18668987878"}}'
-```
+~~~
 
 Creates a Static Caller Number.
 
@@ -3655,9 +3655,9 @@ number | string | null | required | A phone number in preferably in [E.164 forma
 
 ## Delete a Static Caller Number
 
-```shell
+~~~shell
 curl -X DELETE https://api.retreaver.com/static_caller_numbers/1234.json?api_key=woofwoofwoof&company_id=1
-```
+~~~
 
 Removes the Static Caller Number.
 

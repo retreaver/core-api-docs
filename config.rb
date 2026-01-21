@@ -2,7 +2,7 @@
 require './lib/unique_head.rb'
 
 # Markdown
-set :markdown_engine, :redcarpet
+set :markdown_engine, :kramdown
 set :markdown,
     fenced_code_blocks: true,
     smartypants: true,
@@ -19,6 +19,8 @@ set :css_dir, 'stylesheets'
 set :js_dir, 'javascripts'
 set :images_dir, 'images'
 set :fonts_dir, 'fonts'
+set :sass, load_paths: [File.join(root, 'source', 'stylesheets')]
+set :sass_assets_paths, [File.join(root, 'source', 'stylesheets')]
 
 # Activate the syntax highlighter
 activate :syntax
@@ -27,7 +29,7 @@ ready do
   require './lib/multilang.rb'
 end
 
-activate :sprockets
+activate :sprockets, supported_output_extensions: ['.js']
 
 activate :autoprefixer do |config|
   config.browsers = ['last 2 version', 'Firefox ESR']
