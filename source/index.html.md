@@ -2002,9 +2002,9 @@ Get all Numbers belonging to the Company.
 
 Parameter | Default | Description
 --------- | ------- | -----------
-cid | null | Restrict results to Numbers that belong to the given Campaign ID.
-afid | null | Restrict results to Numbers that belong to the given Affiliate ID.
-sid | null | Restrict results to Numbers that belong to the given SubID.
+client_cid | null | Restrict results to Numbers that belong to the given Campaign "CID". Note: CID is a hash (for example `07c5f595`) and is distinct from `campaign_id` which is a numerical ID.
+client_afid | null | Restrict results to Numbers that belong to the given Affiliate "AFID". Note: AFID is a hash (for example: `b687ad95`) and is distinct from `affiliate_id` which is a numerical ID.
+sub_id | null | Restrict results to Numbers that belong to the given SubID.
 
 
 ## Get a specific Number
