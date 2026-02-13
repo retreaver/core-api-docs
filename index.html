@@ -366,6 +366,9 @@
                     <a href="#v2---get-a-specific-call" class="toc-h2 toc-link" data-title="V2 - Get a specific Call">V2 - Get a specific Call</a>
                   </li>
                   <li>
+                    <a href="#v3---calls" class="toc-h2 toc-link" data-title="V3 - Calls">V3 - Calls</a>
+                  </li>
+                  <li>
                     <a href="#call-data-writing" class="toc-h2 toc-link" data-title="Call Data Writing">Call Data Writing</a>
                   </li>
               </ul>
@@ -1726,6 +1729,41 @@ created, and then paginate through all your calls.</p>
 
 <p><code>GET https://api.retreaver.com/api/v2/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
+<h2 id="v3---calls">V3 - Calls</h2>
+
+<p>V3 follows the same behavior as V2. Refer to it for specific calls and usage.</p>
+
+<p>Check below for the differences</p>
+
+<h3 id="whats-new-in-v3">What’s new in V3?</h3>
+
+<ol>
+  <li>When requesting a call the number property is no longer returned as string but as an object containing information
+about the number like its name and the string representation</li>
+</ol>
+
+<blockquote>
+  <p>V2</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"call"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+18886064349"</span><span class="p">,</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+  <p>V3</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"call"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"number"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"nubmer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+18886064349"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Publisher Joe Number"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
 <h2 id="call-data-writing">Call Data Writing</h2>
 
 <p>Retreaver users can create data posting links that give publishers the ability to apply tags to an inbound caller using call data writing, these tags can be applied at any time, either before or after a call has been processed within a Retreaver campaign.</p>
