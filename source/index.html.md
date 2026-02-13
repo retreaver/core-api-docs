@@ -813,6 +813,39 @@ Calls can be accessed by their UUID.
 
 `GET https://api.retreaver.com/api/v2/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof&company_id=1`
 
+## V3 - Calls
+
+V3 follows the same behavior as V2. Refer to it for specific calls and usage.
+
+Check below for the differences
+
+### What's new in V3?
+
+1. When requesting a call the number property is no longer returned as string but as an object containing information
+about the number like its name and the string representation
+
+> V2
+
+~~~json
+{
+  "call": {
+    "number": "+18886064349",
+  }
+}
+~~~
+
+> V3
+
+~~~json
+{
+  "call": {
+    "number": {
+      "nubmer": "+18886064349",
+      "name": "Publisher Joe Number"
+  }
+}
+~~~
+
 ## Call Data Writing
 
 Retreaver users can create data posting links that give publishers the ability to apply tags to an inbound caller using call data writing, these tags can be applied at any time, either before or after a call has been processed within a Retreaver campaign.
