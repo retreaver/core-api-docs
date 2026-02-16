@@ -840,7 +840,7 @@ about the number like its name and the string representation
 {
   "call": {
     "number": {
-      "nubmer": "+18886064349",
+      "number": "+18886064349",
       "name": "Publisher Joe Number"
   }
 }
