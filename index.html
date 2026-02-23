@@ -1012,6 +1012,18 @@ You should <strong>never, ever expose your Retreaver Core API key publicly</stro
       <td> </td>
       <td>Return calls for a affiliate Sub ID.</td>
     </tr>
+    <tr>
+      <td>include_fields</td>
+      <td><code>uuid,status,caller</code></td>
+      <td> </td>
+      <td>Comma-separated list of fields to include in each call object. Only the specified fields will be returned. If <code>exclude_fields</code> is also present, the <code>exclude_fields</code> param will be ignored.</td>
+    </tr>
+    <tr>
+      <td>exclude_fields</td>
+      <td><code>postback_value,tags</code></td>
+      <td> </td>
+      <td>Comma-separated list of fields to omit from each call object. All other fields will be returned. If <code>include_fields</code> is also present, the <code>exclude_fields</code> param will be ignored.</td>
+    </tr>
   </tbody>
 </table>
 
@@ -1533,6 +1545,18 @@ created, and then paginate through all your calls.</p>
       <td>true/false</td>
       <td>false</td>
       <td>Returns the call flow events of what happened during the call</td>
+    </tr>
+    <tr>
+      <td>include_fields</td>
+      <td><code>uuid,status,caller</code></td>
+      <td> </td>
+      <td>Comma-separated list of fields to include in each call object. Only the specified fields will be returned. If <code>exclude_fields</code> is also present, the <code>exclude_fields</code> param will be ignored.</td>
+    </tr>
+    <tr>
+      <td>exclude_fields</td>
+      <td><code>postback_value,tags</code></td>
+      <td> </td>
+      <td>Comma-separated list of fields to omit from each call object. All other fields will be returned. If <code>include_fields</code> is also present, the <code>exclude_fields</code> param will be ignored.</td>
     </tr>
   </tbody>
 </table>
