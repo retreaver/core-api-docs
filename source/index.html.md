@@ -92,6 +92,158 @@ By parsing the Link header, you can determine the last, next, and previous pages
 
 Please note, for brevity, in appropriate places we have truncated the API output by eliminating properties of certain objects. We're also trying to save some trees in case someone actually tries to print this.
 
+## Script Example: Exporting recently created calls via Retreaver API
+
+This here is an example script for getting started with the API. It moves through the last 2 hours of calls on the campaign.
+
+~~~ruby
+# Script Example: Exporting recently created calls via Retreaver API
+#
+# Description:
+# This script retrieves all calls from the last 2 hours using pagination.
+# It includes performance benchmarking to help estimate execution time.
+#
+# Performance Benchmarks:
+# - Sequential Processing: For an account with ~1.5k calls, the script takes
+#   approximately 35 seconds (16 requests at ~2s each).
+#
+# Optimizing Throughput:
+# - To improve performance, consider implementing parallel requests.
+# - Using 4 concurrent threads can reduce the execution time for 1.5k calls
+#   to roughly 10–15 seconds.
+# - Note: Please consult with the Retreaver team for current concurrency limits
+#   before implementing a high-thread-count solution.
+require 'net/http'
+require 'uri'
+require 'json'
+require 'benchmark'
+
+# Configuration
+API_KEY = "woofwoofwoof"
+COMPANY_ID = "1"
+
+# 2 hours in the past. Use iso8601 as a format
+# 2026-02-25T18:08:31Z
+# Note that the api accepts other params like
+# updated_at_end, updated_at_start, created_at_end
+# and that calls could be sorted in different ways. Consult the documentation.
+created_at_start = Time.at(Time.now.to_i-2*3600).utc.iso8601
+
+per_page = 100
+# We start with the base URL provided (requesting 100 per page)
+BASE_URL = "https://api.retreaver.com/calls.json?api_key=#{API_KEY}&created_at_start=#{created_at_start}&company_id=#{COMPANY_ID}&per_page=#{per_page}"
+
+def fetch_calls(url)
+  uri = URI.parse(url)
+  response = Net::HTTP.get_response(uri)
+
+  if response.is_a?(Net::HTTPSuccess)
+    # 1. Parse the JSON body
+    calls = JSON.parse(response.body)
+
+    # 2. Extract the 'next' link from the HTTP headers
+    # Header looks like: <url>; rel="last", <url>; rel="next"
+    link_header = response['Link']
+    next_url = nil
+
+    if link_header
+      links = link_header.split(',').map(&:strip)
+      next_link = links.find { |l| l.include?('rel="next"') }
+      next_url = next_link.match(/<(.*)>/)[1] if next_link
+    end
+
+    { calls: calls, next_url: next_url }
+  else
+    puts "Error: #{response.code} - #{response.message}"
+    nil
+  end
+end
+
+all_calls = []
+
+# Execution with Benchmarking
+time = Benchmark.realtime do
+  current_url = BASE_URL
+  total_calls = 0
+  page_count = 0
+
+  puts "Starting call retrieval..."
+
+  while current_url
+    page_count += 1
+    result = fetch_calls(current_url)
+
+    break unless result
+
+    all_calls.concat(result[:calls])
+    batch_size = result[:calls].length
+    total_calls += batch_size
+
+    puts "Page #{page_count}: Processed #{batch_size} calls (Total: #{total_calls})"
+
+    # Move to the next URL provided by the header
+    current_url = result[:next_url]
+
+    # Safety break if you want to test with just a few pages first
+    # break if page_count >= 5
+  end
+
+  puts "\nFinished! Total calls processed: #{total_calls}"
+end
+
+puts "Total time elapsed: #{time.round(2)} seconds"
+
+puts "\nAll data for calls available at 'all_calls' array with size #{all_calls}"
+
+~~~
+
+## Data Retrieval & Real-Time Sync
+1. Batch Retrieval (Polling)
+Retrieving a full day’s worth of data can take from a few seconds to several minutes, depending on call volume.
+
+Recommendation: For historical syncing, poll the API every 10 minutes to retrieve calls updated within that specific window.
+
+Note: A single call record may be updated multiple times as it progresses through different lifecycle stages. High-frequency polling ensures you capture these state changes.
+
+2. Real-Time Updates (Webhooks)
+For immediate synchronization, we recommend using Retreaver Webhooks. This shifts your integration from a "Pull" to a "Push" model, reducing overhead and latency.
+
+Workflow: Create a webhook that triggers at the end of a call (after all pixels have fired).
+
+Benefits: Instead of constantly polling, your system is instantly notified at key moments—such as when a call starts, when it ends, or during specific lifecycle events.
+
+## Benchmarks
+
+### Execution Logs: Sequence Processing - 19.23 seconds for ~772 calls
+
+Starting call retrieval...
+
+Page 1: Processed 100 calls (Total: 100) <br>
+Page 2: Processed 100 calls (Total: 200) <br>
+Page 3: Processed 100 calls (Total: 300) <br>
+Page 4: Processed 100 calls (Total: 400) <br>
+Page 5: Processed 100 calls (Total: 500) <br>
+Page 6: Processed 100 calls (Total: 600) <br>
+Page 7: Processed 100 calls (Total: 700) <br>
+Page 8: Processed 72 calls (Total: 772) <br>
+
+Finished! Total calls processed: 772
+Total time elapsed: 19.23 seconds
+
+### Execution Logs: Parallel Processing - 8.84 seconds for ~1000 calls in 4 threads
+
+Thread 3 finished Page 4  (100 calls) <br>
+Thread 0 finished Page 1  (100 calls) <br>
+Thread 1 finished Page 2  (100 calls) <br>
+Thread 2 finished Page 3  (100 calls) <br>
+Thread 0 finished Page 6  (100 calls) <br>
+Thread 3 finished Page 5  (100 calls) <br>
+Thread 1 finished Page 7  (100 calls) <br>
+Thread 2 finished Page 8  (100 calls) <br>
+Thread 3 finished Page 10 (39 calls) <br>
+Thread 0 finished Page 9  (100 calls) <br>
+
+Final Result: 939 calls processed in 8.84 seconds.
 
 # Authentication
 
