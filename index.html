@@ -333,6 +333,15 @@
                   <li>
                     <a href="#trees" class="toc-h2 toc-link" data-title="Trees">Trees</a>
                   </li>
+                  <li>
+                    <a href="#script-example-exporting-recently-created-calls-via-retreaver-api" class="toc-h2 toc-link" data-title="Script Example: Exporting recently created calls via Retreaver API">Script Example: Exporting recently created calls via Retreaver API</a>
+                  </li>
+                  <li>
+                    <a href="#data-retrieval--real-time-sync" class="toc-h2 toc-link" data-title="Data Retrieval &amp; Real-Time Sync">Data Retrieval &amp; Real-Time Sync</a>
+                  </li>
+                  <li>
+                    <a href="#benchmarks" class="toc-h2 toc-link" data-title="Benchmarks">Benchmarks</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -838,6 +847,161 @@ our <a href="https://github.com/retreaver/retreaver-js">Retreaver.js</a> library
 
 <p>Please note, for brevity, in appropriate places we have truncated the API output by eliminating properties of certain objects. We’re also trying to save some trees in case someone actually tries to print this.</p>
 
+<h2 id="script-example-exporting-recently-created-calls-via-retreaver-api">Script Example: Exporting recently created calls via Retreaver API</h2>
+
+<p>This here is an example script for getting started with the API. It moves through the last 2 hours of calls on the campaign.</p>
+
+<div class="highlight"><pre class="highlight ruby"><code><span class="c1"># Script Example: Exporting recently created calls via Retreaver API</span>
+<span class="c1">#</span>
+<span class="c1"># Description:</span>
+<span class="c1"># This script retrieves all calls from the last 2 hours using pagination.</span>
+<span class="c1"># It includes performance benchmarking to help estimate execution time.</span>
+<span class="c1">#</span>
+<span class="c1"># Performance Benchmarks:</span>
+<span class="c1"># - Sequential Processing: For an account with ~1.5k calls, the script takes</span>
+<span class="c1">#   approximately 35 seconds (16 requests at ~2s each).</span>
+<span class="c1">#</span>
+<span class="c1"># Optimizing Throughput:</span>
+<span class="c1"># - To improve performance, consider implementing parallel requests.</span>
+<span class="c1"># - Using 4 concurrent threads can reduce the execution time for 1.5k calls</span>
+<span class="c1">#   to roughly 10–15 seconds.</span>
+<span class="c1"># - Note: Please consult with the Retreaver team for current concurrency limits</span>
+<span class="c1">#   before implementing a high-thread-count solution.</span>
+<span class="nb">require</span> <span class="s1">'net/http'</span>
+<span class="nb">require</span> <span class="s1">'uri'</span>
+<span class="nb">require</span> <span class="s1">'json'</span>
+<span class="nb">require</span> <span class="s1">'benchmark'</span>
+
+<span class="c1"># Configuration</span>
+<span class="no">API_KEY</span> <span class="o">=</span> <span class="s2">"woofwoofwoof"</span>
+<span class="no">COMPANY_ID</span> <span class="o">=</span> <span class="s2">"1"</span>
+
+<span class="c1"># 2 hours in the past. Use iso8601 as a format</span>
+<span class="c1"># 2026-02-25T18:08:31Z</span>
+<span class="c1"># Note that the api accepts other params like</span>
+<span class="c1"># updated_at_end, updated_at_start, created_at_end</span>
+<span class="c1"># and that calls could be sorted in different ways. Consult the documentation.</span>
+<span class="n">created_at_start</span> <span class="o">=</span> <span class="no">Time</span><span class="p">.</span><span class="nf">at</span><span class="p">(</span><span class="no">Time</span><span class="p">.</span><span class="nf">now</span><span class="p">.</span><span class="nf">to_i</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="mi">3600</span><span class="p">).</span><span class="nf">utc</span><span class="p">.</span><span class="nf">iso8601</span>
+
+<span class="n">per_page</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="c1"># We start with the base URL provided (requesting 100 per page)</span>
+<span class="no">BASE_URL</span> <span class="o">=</span> <span class="s2">"https://api.retreaver.com/calls.json?api_key=</span><span class="si">#{</span><span class="no">API_KEY</span><span class="si">}</span><span class="s2">&amp;created_at_start=</span><span class="si">#{</span><span class="n">created_at_start</span><span class="si">}</span><span class="s2">&amp;company_id=</span><span class="si">#{</span><span class="no">COMPANY_ID</span><span class="si">}</span><span class="s2">&amp;per_page=</span><span class="si">#{</span><span class="n">per_page</span><span class="si">}</span><span class="s2">"</span>
+
+<span class="k">def</span> <span class="nf">fetch_calls</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+  <span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+  <span class="n">response</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">get_response</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span>
+
+  <span class="k">if</span> <span class="n">response</span><span class="p">.</span><span class="nf">is_a?</span><span class="p">(</span><span class="no">Net</span><span class="o">::</span><span class="no">HTTPSuccess</span><span class="p">)</span>
+    <span class="c1"># 1. Parse the JSON body</span>
+    <span class="n">calls</span> <span class="o">=</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">)</span>
+
+    <span class="c1"># 2. Extract the 'next' link from the HTTP headers</span>
+    <span class="c1"># Header looks like: &lt;url&gt;; rel="last", &lt;url&gt;; rel="next"</span>
+    <span class="n">link_header</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="s1">'Link'</span><span class="p">]</span>
+    <span class="n">next_url</span> <span class="o">=</span> <span class="kp">nil</span>
+
+    <span class="k">if</span> <span class="n">link_header</span>
+      <span class="n">links</span> <span class="o">=</span> <span class="n">link_header</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s1">','</span><span class="p">).</span><span class="nf">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:strip</span><span class="p">)</span>
+      <span class="n">next_link</span> <span class="o">=</span> <span class="n">links</span><span class="p">.</span><span class="nf">find</span> <span class="p">{</span> <span class="o">|</span><span class="n">l</span><span class="o">|</span> <span class="n">l</span><span class="p">.</span><span class="nf">include?</span><span class="p">(</span><span class="s1">'rel="next"'</span><span class="p">)</span> <span class="p">}</span>
+      <span class="n">next_url</span> <span class="o">=</span> <span class="n">next_link</span><span class="p">.</span><span class="nf">match</span><span class="p">(</span><span class="sr">/&lt;(.*)&gt;/</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">next_link</span>
+    <span class="k">end</span>
+
+    <span class="p">{</span> <span class="ss">calls: </span><span class="n">calls</span><span class="p">,</span> <span class="ss">next_url: </span><span class="n">next_url</span> <span class="p">}</span>
+  <span class="k">else</span>
+    <span class="nb">puts</span> <span class="s2">"Error: </span><span class="si">#{</span><span class="n">response</span><span class="p">.</span><span class="nf">code</span><span class="si">}</span><span class="s2"> - </span><span class="si">#{</span><span class="n">response</span><span class="p">.</span><span class="nf">message</span><span class="si">}</span><span class="s2">"</span>
+    <span class="kp">nil</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">all_calls</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Execution with Benchmarking</span>
+<span class="n">time</span> <span class="o">=</span> <span class="no">Benchmark</span><span class="p">.</span><span class="nf">realtime</span> <span class="k">do</span>
+  <span class="n">current_url</span> <span class="o">=</span> <span class="no">BASE_URL</span>
+  <span class="n">total_calls</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="n">page_count</span> <span class="o">=</span> <span class="mi">0</span>
+
+  <span class="nb">puts</span> <span class="s2">"Starting call retrieval..."</span>
+
+  <span class="k">while</span> <span class="n">current_url</span>
+    <span class="n">page_count</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">fetch_calls</span><span class="p">(</span><span class="n">current_url</span><span class="p">)</span>
+
+    <span class="k">break</span> <span class="k">unless</span> <span class="n">result</span>
+
+    <span class="n">all_calls</span><span class="p">.</span><span class="nf">concat</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="ss">:calls</span><span class="p">])</span>
+    <span class="n">batch_size</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="ss">:calls</span><span class="p">].</span><span class="nf">length</span>
+    <span class="n">total_calls</span> <span class="o">+=</span> <span class="n">batch_size</span>
+
+    <span class="nb">puts</span> <span class="s2">"Page </span><span class="si">#{</span><span class="n">page_count</span><span class="si">}</span><span class="s2">: Processed </span><span class="si">#{</span><span class="n">batch_size</span><span class="si">}</span><span class="s2"> calls (Total: </span><span class="si">#{</span><span class="n">total_calls</span><span class="si">}</span><span class="s2">)"</span>
+
+    <span class="c1"># Move to the next URL provided by the header</span>
+    <span class="n">current_url</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="ss">:next_url</span><span class="p">]</span>
+
+    <span class="c1"># Safety break if you want to test with just a few pages first</span>
+    <span class="c1"># break if page_count &gt;= 5</span>
+  <span class="k">end</span>
+
+  <span class="nb">puts</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">Finished! Total calls processed: </span><span class="si">#{</span><span class="n">total_calls</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+
+<span class="nb">puts</span> <span class="s2">"Total time elapsed: </span><span class="si">#{</span><span class="n">time</span><span class="p">.</span><span class="nf">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> seconds"</span>
+
+<span class="nb">puts</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">All data for calls available at 'all_calls' array with size </span><span class="si">#{</span><span class="n">all_calls</span><span class="si">}</span><span class="s2">"</span>
+
+</code></pre></div>
+<h2 id="data-retrieval--real-time-sync">Data Retrieval &amp; Real-Time Sync</h2>
+<ol>
+  <li>Batch Retrieval (Polling)
+Retrieving a full day’s worth of data can take from a few seconds to several minutes, depending on call volume.</li>
+</ol>
+
+<p>Recommendation: For historical syncing, poll the API every 10 minutes to retrieve calls updated within that specific window.</p>
+
+<p>Note: A single call record may be updated multiple times as it progresses through different lifecycle stages. High-frequency polling ensures you capture these state changes.</p>
+
+<ol>
+  <li>Real-Time Updates (Webhooks)
+For immediate synchronization, we recommend using Retreaver Webhooks. This shifts your integration from a “Pull” to a “Push” model, reducing overhead and latency.</li>
+</ol>
+
+<p>Workflow: Create a webhook that triggers at the end of a call (after all pixels have fired).</p>
+
+<p>Benefits: Instead of constantly polling, your system is instantly notified at key moments—such as when a call starts, when it ends, or during specific lifecycle events.</p>
+
+<h2 id="benchmarks">Benchmarks</h2>
+
+<h3 id="execution-logs-sequence-processing---1923-seconds-for-772-calls">Execution Logs: Sequence Processing - 19.23 seconds for ~772 calls</h3>
+
+<p>Starting call retrieval…</p>
+
+<p>Page 1: Processed 100 calls (Total: 100) <br />
+Page 2: Processed 100 calls (Total: 200) <br />
+Page 3: Processed 100 calls (Total: 300) <br />
+Page 4: Processed 100 calls (Total: 400) <br />
+Page 5: Processed 100 calls (Total: 500) <br />
+Page 6: Processed 100 calls (Total: 600) <br />
+Page 7: Processed 100 calls (Total: 700) <br />
+Page 8: Processed 72 calls (Total: 772) <br /></p>
+
+<p>Finished! Total calls processed: 772
+Total time elapsed: 19.23 seconds</p>
+
+<h3 id="execution-logs-parallel-processing---884-seconds-for-1000-calls-in-4-threads">Execution Logs: Parallel Processing - 8.84 seconds for ~1000 calls in 4 threads</h3>
+
+<p>Thread 3 finished Page 4  (100 calls) <br />
+Thread 0 finished Page 1  (100 calls) <br />
+Thread 1 finished Page 2  (100 calls) <br />
+Thread 2 finished Page 3  (100 calls) <br />
+Thread 0 finished Page 6  (100 calls) <br />
+Thread 3 finished Page 5  (100 calls) <br />
+Thread 1 finished Page 7  (100 calls) <br />
+Thread 2 finished Page 8  (100 calls) <br />
+Thread 3 finished Page 10 (39 calls) <br />
+Thread 0 finished Page 9  (100 calls) <br /></p>
+
+<p>Final Result: 939 calls processed in 8.84 seconds.</p>
+
 <h1 id="authentication">Authentication</h1>
 
 <blockquote>
@@ -1011,18 +1175,6 @@ You should <strong>never, ever expose your Retreaver Core API key publicly</stro
       <td><code>123456</code></td>
       <td> </td>
       <td>Return calls for a affiliate Sub ID.</td>
-    </tr>
-    <tr>
-      <td>include_fields[]</td>
-      <td><code>include_fields[]=uuid&amp;include_fields[]=status</code></td>
-      <td> </td>
-      <td>Array parameter. List of fields to include in each call object. Only the specified fields will be returned. If <code>exclude_fields[]</code> is also present, the <code>exclude_fields[]</code> param will be ignored.</td>
-    </tr>
-    <tr>
-      <td>exclude_fields[]</td>
-      <td><code>exclude_fields[]=postback_value&amp;exclude_fields[]=tags</code></td>
-      <td> </td>
-      <td>Array parameter. List of fields to omit from each call object. All other fields will be returned. If <code>include_fields[]</code> is also present, the <code>exclude_fields[]</code> param will be ignored.</td>
     </tr>
   </tbody>
 </table>
@@ -1545,18 +1697,6 @@ created, and then paginate through all your calls.</p>
       <td>true/false</td>
       <td>false</td>
       <td>Returns the call flow events of what happened during the call</td>
-    </tr>
-    <tr>
-      <td>include_fields[]</td>
-      <td><code>include_fields[]=uuid&amp;include_fields[]=status</code></td>
-      <td> </td>
-      <td>Array parameter. List of fields to include in each call object. Only the specified fields will be returned. If <code>exclude_fields[]</code> is also present, the <code>exclude_fields[]</code> param will be ignored.</td>
-    </tr>
-    <tr>
-      <td>exclude_fields[]</td>
-      <td><code>exclude_fields[]=postback_value&amp;exclude_fields[]=tags</code></td>
-      <td> </td>
-      <td>Array parameter. List of fields to omit from each call object. All other fields will be returned. If <code>include_fields[]</code> is also present, the <code>exclude_fields[]</code> param will be ignored.</td>
     </tr>
   </tbody>
 </table>
