@@ -99,9 +99,18 @@ This here is an example script for getting started with the API. It moves throug
 ~~~ruby
 # Script Example: Exporting recently created calls via Retreaver API
 #
+# Implemented in Ruby
+#
 # Description:
 # This script retrieves all calls from the last 2 hours using pagination.
 # It includes performance benchmarking to help estimate execution time.
+#
+# How to run:
+# 1. Save the script to a file retreaver_example.rb
+# 2. Make sure you have ruby installed
+# 3. Edit the file changing the API_KEY and COMPANY_ID
+# 4. Run with ruby
+#   $ ruby retreaver_example.rb
 #
 # Performance Benchmarks:
 # - Sequential Processing: For an account with ~1.5k calls, the script takes
