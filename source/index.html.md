@@ -209,8 +209,6 @@ client_afid | `123456` | | Return calls for an affiliate.
 client_cid | `123456` | | Return calls for a specific campaign.
 client_tid | `123456` | | Return calls for a specific target.
 sub_id | `123456` | | Return calls for a affiliate Sub ID.
-include_fields | `uuid,status,caller` | | Comma-separated list of fields to include in each call object. Only the specified fields will be returned. If `exclude_fields` is also present, the `exclude_fields` param will be ignored.
-exclude_fields | `postback_value,tags` | | Comma-separated list of fields to omit from each call object. All other fields will be returned. If `include_fields` is also present, the `exclude_fields` param will be ignored.
 
 ## V1 - Enumerate through all calls
 
@@ -618,8 +616,6 @@ client_cid | `123456` | | Return calls for a specific campaign.
 client_tid | `123456` | | Return calls for a specific target.
 sub_id | `123456` | | Return calls for a affiliate Sub ID.
 call_flow_events | true/false | false | Returns the call flow events of what happened during the call
-include_fields | `uuid,status,caller` | | Comma-separated list of fields to include in each call object. Only the specified fields will be returned. If `exclude_fields` is also present, the `exclude_fields` param will be ignored.
-exclude_fields | `postback_value,tags` | | Comma-separated list of fields to omit from each call object. All other fields will be returned. If `include_fields` is also present, the `exclude_fields` param will be ignored.
 
 ## V2 - Enumerate through all calls
 
