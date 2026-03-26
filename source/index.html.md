@@ -83,7 +83,7 @@ Please note, in many sections of the documentation below, we are referring to th
 
 Retreaver is a RESTful paginated API that returns 25 results per page. Each relevant index response will have a [Link HTTP header](https://www.w3.org/wiki/LinkHeader) present.
 
-`Link: <https://retreaver.com/calls.json?api_key=woofwoofwoof&company_id=1&sort_by=created_at&order=asc&page=6996>; rel="last", <https://retreaver.com/calls.json?api_key=woofwoofwoof&company_id=1&sort_by=created_at&order=asc&page=2>; rel="next"`
+`Link: <https://api.retreaver.com/calls.json?api_key=woofwoofwoof&company_id=1&sort_by=created_at&order=asc&page=6996>; rel="last", <https://api.retreaver.com/calls.json?api_key=woofwoofwoof&company_id=1&sort_by=created_at&order=asc&page=2>; rel="next"`
 
 By parsing the Link header, you can determine the last, next, and previous pages.
 
@@ -1007,6 +1007,39 @@ about the number like its name and the string representation
 }
 ~~~
 
+## V4 - Calls
+
+V4 follows the same behavior as V3. Refer to it for specific calls and usage.
+
+Check below for the differences
+
+### What's new in V4?
+
+1. When requesting a call the `campaign_id` property is no longer returned. We now return an object containing information
+about the campaign like its `id` and `name`
+
+> V2
+
+~~~json
+{
+  "call": {
+    "campaign_id": "12345",
+  }
+}
+~~~
+
+> V3
+
+~~~json
+{
+  "call": {
+    "campaign": {
+      "id": "12345",
+      "name": "Woof Woof"
+  }
+}
+~~~
+
 ## Call Data Writing
 
 Retreaver users can create data posting links that give publishers the ability to apply tags to an inbound caller using call data writing, these tags can be applied at any time, either before or after a call has been processed within a Retreaver campaign.
@@ -1357,7 +1390,7 @@ curl -s \
         "created_at": "2016-06-28T23:13:51.434Z",
         "updated_at": "2016-06-28T23:13:51.434Z",
         "object_key": "97bbce7555b96322e81155eb4b1ff5aa9a6a1ffc478a7ab21ed2e830483f0b20",
-        "tid": null,
+        "client_tid": null,
         "priority": 1,
         "weight": 1,
         "timeout_seconds": 30,
@@ -1500,7 +1533,7 @@ name | string | | | A descriptive moniker for this target so you'll know what it
 number | string | | required | Either a phone number or `sip:user@domain.com` formatted SIP endpoint. PSTN numbers should be [E.164 formatted](https://en.wikipedia.org/wiki/E.164).
 sip_username | string | | | The SIP username, if using SIP-authentication to call a SIP endpoint.
 sip_password | string | | | The SIP password, if using SIP-authentication to call a SIP endpoint.
-tid | string | | | Your own internal ID for this target.
+client_tid | string | | | Your own internal ID for this target.
 priority | integer | 1 | | The target with the lowest priority value gets considered first when routing calls to a set of targets.
 weight | integer | 1 | | When more than one target has the same priority, the cumulative weight of the targets being considered is used to randomize their order.
 timeout_seconds | integer | 30 | | The maximum number of seconds we'll wait while the target number is ringing before moving on.
