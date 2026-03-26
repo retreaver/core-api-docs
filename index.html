@@ -378,6 +378,9 @@
                     <a href="#v3---calls" class="toc-h2 toc-link" data-title="V3 - Calls">V3 - Calls</a>
                   </li>
                   <li>
+                    <a href="#v4---calls" class="toc-h2 toc-link" data-title="V4 - Calls">V4 - Calls</a>
+                  </li>
+                  <li>
                     <a href="#call-data-writing" class="toc-h2 toc-link" data-title="Call Data Writing">Call Data Writing</a>
                   </li>
               </ul>
@@ -839,7 +842,7 @@ our <a href="https://github.com/retreaver/retreaver-js">Retreaver.js</a> library
 
 <p>Retreaver is a RESTful paginated API that returns 25 results per page. Each relevant index response will have a <a href="https://www.w3.org/wiki/LinkHeader">Link HTTP header</a> present.</p>
 
-<p><code>Link: &lt;https://retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;sort_by=created_at&amp;order=asc&amp;page=6996&gt;; rel="last", &lt;https://retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;sort_by=created_at&amp;order=asc&amp;page=2&gt;; rel="next"</code></p>
+<p><code>Link: &lt;https://api.retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;sort_by=created_at&amp;order=asc&amp;page=6996&gt;; rel="last", &lt;https://api.retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;sort_by=created_at&amp;order=asc&amp;page=2&gt;; rel="next"</code></p>
 
 <p>By parsing the Link header, you can determine the last, next, and previous pages.</p>
 
@@ -1937,6 +1940,41 @@ about the number like its name and the string representation</li>
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
+<h2 id="v4---calls">V4 - Calls</h2>
+
+<p>V4 follows the same behavior as V3. Refer to it for specific calls and usage.</p>
+
+<p>Check below for the differences</p>
+
+<h3 id="whats-new-in-v4">What’s new in V4?</h3>
+
+<ol>
+  <li>When requesting a call the <code>campaign_id</code> property is no longer returned. We now return an object containing information
+about the campaign like its <code>id</code> and <code>name</code></li>
+</ol>
+
+<blockquote>
+  <p>V2</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"call"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+  <p>V3</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"call"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"campaign"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Woof Woof"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
 <h2 id="call-data-writing">Call Data Writing</h2>
 
 <p>Retreaver users can create data posting links that give publishers the ability to apply tags to an inbound caller using call data writing, these tags can be applied at any time, either before or after a call has been processed within a Retreaver campaign.</p>
@@ -2312,7 +2350,7 @@ You must replace <code>0002</code> with the afid of the Affiliate you want to de
         </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-28T23:13:51.434Z"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-28T23:13:51.434Z"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"object_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"97bbce7555b96322e81155eb4b1ff5aa9a6a1ffc478a7ab21ed2e830483f0b20"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"tid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"client_tid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nl">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="nl">"weight"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="nl">"timeout_seconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
@@ -2486,7 +2524,7 @@ You must replace <code>0002</code> with the afid of the Affiliate you want to de
       <td>The SIP password, if using SIP-authentication to call a SIP endpoint.</td>
     </tr>
     <tr>
-      <td>tid</td>
+      <td>client_tid</td>
       <td>string</td>
       <td> </td>
       <td> </td>
