@@ -1028,7 +1028,7 @@ about the campaign like its `id` and `name`
 }
 ~~~
 
-> V3
+> V4
 
 ~~~json
 {
