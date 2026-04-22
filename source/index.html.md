@@ -1309,7 +1309,8 @@ curl "https://api.retreaver.com/targets.json?api_key=woofwoofwoof&company_id=1"
      "time_zone": "Eastern Time (US & Canada)",
      "paused": false,
      "paused_at": null,
-     "name": "Jason Cell"
+     "name": "Jason Cell",
+     "target_group_ids": [1, 2]
    }
 }]
 ~~~
@@ -1354,7 +1355,8 @@ curl "https://api.retreaver.com/targets/6588.json?api_key=woofwoofwoof&company_i
      "time_zone": "Eastern Time (US & Canada)",
      "paused": false,
      "paused_at": null,
-     "name": "Jason Cell"
+     "name": "Jason Cell",
+     "target_group_ids": [1, 2]
    }
 }
 ~~~
@@ -1403,6 +1405,7 @@ curl -s \
         "paused": false,
         "paused_at": null,
         "name": "Retreaver Support",
+        "target_group_ids": [],
         "caps": [
             {
                 "id": 707900,
@@ -1619,7 +1622,8 @@ curl -s \
         "updated_at": "2016-06-28T23:30:00.529Z",
         "paused": true,
         "paused_at": "2016-06-28T23:30:01.251Z",
-        "name": "Retreaver Support"
+        "name": "Retreaver Support",
+        "target_group_ids": []
     }
 }
 ~~~
