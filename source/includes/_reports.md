@@ -18,6 +18,55 @@ tag_value_key | No | When faceting by tag_value you may want to provide a second
 
 NOTE: created_at_start must be before created_at_end and the two must be smaller that 2 years apart.
 
+## Buyer Calls In Progress Report
+~~~shell
+curl "https://api.retreaver.com/api/v1/reports.json?api_key=woofwoofwoof&company_id=1&facet=buyer&domain=calls&created_at_start=2026-04-22&created_at_end=2026-04-24"
+~~~
+
+> The above command returns JSON structured like this:
+
+~~~json
+{
+	"count": 2,
+	"count_total": 2,
+	"data": [
+		{
+			"id": 30417,
+			"facet_name": "Alex Johnson - +14155551234",
+			"total_calls": 5,
+			"in_progress_count": 2.0,
+			"...": "..."
+		},
+		{
+			"id": 27299,
+			"facet_name": "Power Axle - +16476695972",
+			"total_calls": 3,
+			"in_progress_count": 1.0,
+			"...": "..."
+		}
+	]
+}
+~~~
+
+Get a report for all calls faceted by buyer. The `in_progress_count` field indicates how many calls are currently active for each buyer.
+
+To get current in-progress calls, set `created_at_start` to today (or yesterday) and `created_at_end` to tomorrow.
+
+`GET https://api.retreaver.com/api/v1/reports.json?api_key=woofwoofwoof&company_id=1&facet=buyer&domain=calls&created_at_start=2026-04-22&created_at_end=2026-04-24`
+
+Parameter | Value
+--------- | -------
+api_key | woofwoofwoof
+company_id | 1
+domain | calls
+facet | buyer
+created_at_start | 2026-04-22
+created_at_end | 2026-04-24
+
+<aside class="warning">
+The Reports API response is cached and is not intended for realtime polling. For realtime call tracking, use <a target="_blank" href="https://learn.retreaver.com/guides/webhooks">webhooks</a> to receive notifications when calls start, end, convert, and other call lifecycle events.
+</aside>
+
 ## Tag Value Report
 ~~~shell
 curl "https://api.retreaver.com/api/v1/reports.json?api_key=woofwoofwoof&company_id=1&facet=tag_value&domain=calls&created_at_start=2024-10-25&created_at_end=2024-10-28"
