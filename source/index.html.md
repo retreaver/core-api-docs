@@ -1310,7 +1310,29 @@ curl "https://api.retreaver.com/targets.json?api_key=woofwoofwoof&company_id=1"
      "paused": false,
      "paused_at": null,
      "name": "Jason Cell",
-     "target_group_ids": [1, 2]
+     "target_group_ids": [1, 2],
+     "target_groups": [
+       {
+         "id": 1,
+         "name": "West Coast",
+         "target_ids": [6588],
+         "concurrency_cap": null,
+         "calls_in_progress": 0,
+         "behavior": 1,
+         "priority": null,
+         "weight": null
+       },
+       {
+         "id": 2,
+         "name": "East Coast",
+         "target_ids": [6588],
+         "concurrency_cap": null,
+         "calls_in_progress": 0,
+         "behavior": 1,
+         "priority": null,
+         "weight": null
+       }
+     ]
    }
 }]
 ~~~
@@ -1356,7 +1378,29 @@ curl "https://api.retreaver.com/targets/6588.json?api_key=woofwoofwoof&company_i
      "paused": false,
      "paused_at": null,
      "name": "Jason Cell",
-     "target_group_ids": [1, 2]
+     "target_group_ids": [1, 2],
+     "target_groups": [
+       {
+         "id": 1,
+         "name": "West Coast",
+         "target_ids": [6588],
+         "concurrency_cap": null,
+         "calls_in_progress": 0,
+         "behavior": 1,
+         "priority": null,
+         "weight": null
+       },
+       {
+         "id": 2,
+         "name": "East Coast",
+         "target_ids": [6588],
+         "concurrency_cap": null,
+         "calls_in_progress": 0,
+         "behavior": 1,
+         "priority": null,
+         "weight": null
+       }
+     ]
    }
 }
 ~~~
@@ -1406,6 +1450,7 @@ curl -s \
         "paused_at": null,
         "name": "Retreaver Support",
         "target_group_ids": [],
+        "target_groups": [],
         "caps": [
             {
                 "id": 707900,
@@ -1623,7 +1668,8 @@ curl -s \
         "paused": true,
         "paused_at": "2016-06-28T23:30:01.251Z",
         "name": "Retreaver Support",
-        "target_group_ids": []
+        "target_group_ids": [],
+        "target_groups": []
     }
 }
 ~~~
