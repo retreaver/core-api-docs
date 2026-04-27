@@ -23,6 +23,29 @@ curl "https://api.retreaver.com/target_groups.json?api_key=woofwoofwoof&company_
         2,
         3
       ],
+      "targets": [
+        {
+          "id": 1,
+          "number": "+18668987878",
+          "name": "Jason Cell",
+          "priority": 1,
+          "weight": 1
+        },
+        {
+          "id": 2,
+          "number": "+18005551234",
+          "name": "Office Line",
+          "priority": 1,
+          "weight": 1
+        },
+        {
+          "id": 3,
+          "number": "+18005555678",
+          "name": "Support Line",
+          "priority": 1,
+          "weight": 1
+        }
+      ],
       "concurrency_cap": null,
       "calls_in_progress": 0,
       "behavior": 1,
@@ -84,6 +107,29 @@ curl "https://api.retreaver.com/target_groups/1.json?api_key=woofwoofwoof&compan
       1,
       2,
       3
+    ],
+    "targets": [
+      {
+        "id": 1,
+        "number": "+18668987878",
+        "name": "Jason Cell",
+        "priority": 1,
+        "weight": 1
+      },
+      {
+        "id": 2,
+        "number": "+18005551234",
+        "name": "Office Line",
+        "priority": 1,
+        "weight": 1
+      },
+      {
+        "id": 3,
+        "number": "+18005555678",
+        "name": "Support Line",
+        "priority": 1,
+        "weight": 1
+      }
     ],
     "concurrency_cap": null,
     "calls_in_progress": 0,
@@ -148,6 +194,29 @@ curl -s \
       1,
       2,
       3
+    ],
+    "targets": [
+      {
+        "id": 1,
+        "number": "+18668987878",
+        "name": "Jason Cell",
+        "priority": 1,
+        "weight": 1
+      },
+      {
+        "id": 2,
+        "number": "+18005551234",
+        "name": "Office Line",
+        "priority": 1,
+        "weight": 1
+      },
+      {
+        "id": 3,
+        "number": "+18005555678",
+        "name": "Support Line",
+        "priority": 1,
+        "weight": 1
+      }
     ],
     "concurrency_cap": 5,
     "calls_in_progress": 0,
@@ -228,6 +297,29 @@ curl -s \
       1,
       2,
       3
+    ],
+    "targets": [
+      {
+        "id": 1,
+        "number": "+18668987878",
+        "name": "Jason Cell",
+        "priority": 1,
+        "weight": 1
+      },
+      {
+        "id": 2,
+        "number": "+18005551234",
+        "name": "Office Line",
+        "priority": 1,
+        "weight": 1
+      },
+      {
+        "id": 3,
+        "number": "+18005555678",
+        "name": "Support Line",
+        "priority": 1,
+        "weight": 1
+      }
     ],
     "concurrency_cap": 5,
     "calls_in_progress": 0,
@@ -317,6 +409,22 @@ curl -s \
       5,
       6
     ],
+    "targets": [
+      {
+        "id": 5,
+        "number": "+18005559999",
+        "name": "New Target A",
+        "priority": 1,
+        "weight": 1
+      },
+      {
+        "id": 6,
+        "number": "+18005558888",
+        "name": "New Target B",
+        "priority": 1,
+        "weight": 1
+      }
+    ],
     "concurrency_cap": 5,
     "calls_in_progress": 0,
     "behavior": 1,
@@ -393,6 +501,36 @@ curl -s \
       3,
       4
     ],
+    "targets": [
+      {
+        "id": 1,
+        "number": "+18668987878",
+        "name": "Jason Cell",
+        "priority": 1,
+        "weight": 1
+      },
+      {
+        "id": 2,
+        "number": "+18005551234",
+        "name": "Office Line",
+        "priority": 1,
+        "weight": 1
+      },
+      {
+        "id": 3,
+        "number": "+18005555678",
+        "name": "Support Line",
+        "priority": 1,
+        "weight": 1
+      },
+      {
+        "id": 4,
+        "number": "+18005557777",
+        "name": "Backup Line",
+        "priority": 1,
+        "weight": 1
+      }
+    ],
     "concurrency_cap": 5,
     "calls_in_progress": 0,
     "behavior": 1,
@@ -463,6 +601,22 @@ curl -s \
     "target_ids": [
       2,
       3
+    ],
+    "targets": [
+      {
+        "id": 2,
+        "number": "+18005551234",
+        "name": "Office Line",
+        "priority": 1,
+        "weight": 1
+      },
+      {
+        "id": 3,
+        "number": "+18005555678",
+        "name": "Support Line",
+        "priority": 1,
+        "weight": 1
+      }
     ],
     "concurrency_cap": 5,
     "calls_in_progress": 0,
@@ -541,6 +695,29 @@ curl -s \
       1,
       2,
       3
+    ],
+    "targets": [
+      {
+        "id": 1,
+        "number": "+18668987878",
+        "name": "Jason Cell",
+        "priority": 1,
+        "weight": 1
+      },
+      {
+        "id": 2,
+        "number": "+18005551234",
+        "name": "Office Line",
+        "priority": 1,
+        "weight": 1
+      },
+      {
+        "id": 3,
+        "number": "+18005555678",
+        "name": "Support Line",
+        "priority": 1,
+        "weight": 1
+      }
     ],
     "concurrency_cap": null,
     "calls_in_progress": 0,
