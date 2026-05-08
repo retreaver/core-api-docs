@@ -83,7 +83,7 @@ Please note, in many sections of the documentation below, we are referring to th
 
 Retreaver is a RESTful paginated API that returns 25 results per page. Each relevant index response will have a [Link HTTP header](https://www.w3.org/wiki/LinkHeader) present.
 
-`Link: <https://api.retreaver.com/calls.json?api_key=woofwoofwoof&company_id=1&sort_by=created_at&order=asc&page=6996>; rel="last", <https://api.retreaver.com/calls.json?api_key=woofwoofwoof&company_id=1&sort_by=created_at&order=asc&page=2>; rel="next"`
+`Link: <https://api.retreaver.com/api/v1/calls.json?api_key=woofwoofwoof&company_id=1&sort_by=created_at&order=asc&page=6996>; rel="last", <https://api.retreaver.com/api/v1/calls.json?api_key=woofwoofwoof&company_id=1&sort_by=created_at&order=asc&page=2>; rel="next"`
 
 By parsing the Link header, you can determine the last, next, and previous pages.
 
@@ -140,7 +140,7 @@ created_at_start = Time.at(Time.now.to_i-2*3600).utc.iso8601
 
 per_page = 100
 # We start with the base URL provided (requesting 100 per page)
-BASE_URL = "https://api.retreaver.com/calls.json?api_key=#{API_KEY}&created_at_start=#{created_at_start}&company_id=#{COMPANY_ID}&per_page=#{per_page}"
+BASE_URL = "https://api.retreaver.com/api/v1/calls.json?api_key=#{API_KEY}&created_at_start=#{created_at_start}&company_id=#{COMPANY_ID}&per_page=#{per_page}"
 
 def fetch_calls(url)
   uri = URI.parse(url)
@@ -296,7 +296,7 @@ Or, more precisely, phone calls.
 ## V1 - Get recent Calls
 
 ~~~shell
-curl "https://api.retreaver.com/calls.json?api_key=woofwoofwoof&company_id=1"
+curl "https://api.retreaver.com/api/v1/calls.json?api_key=woofwoofwoof&company_id=1"
 ~~~
 
 > The above command returns JSON structured like this:
@@ -354,7 +354,7 @@ Provides access to the call log. The call log contains all the Calls which have 
 
 ### HTTP Request
 
-`GET https://api.retreaver.com/calls.json?api_key=woofwoofwoof&company_id=1`
+`GET https://api.retreaver.com/api/v1/calls.json?api_key=woofwoofwoof&company_id=1`
 
 ### Query Parameters
 
@@ -376,13 +376,13 @@ sub_id | `123456` | | Return calls for a affiliate Sub ID.
  > First page...
 
 ~~~shell
-curl "https://api.retreaver.com/calls.json?api_key=woofwoofwoof&company_id=1&sort_by=created_at&order=asc&page=1"
+curl "https://api.retreaver.com/api/v1/calls.json?api_key=woofwoofwoof&company_id=1&sort_by=created_at&order=asc&page=1"
 ~~~
 
 > Second page...
 
 ~~~shell
-curl "https://api.retreaver.com/calls.json?api_key=woofwoofwoof&company_id=1&sort_by=created_at&order=asc&page=2"
+curl "https://api.retreaver.com/api/v1/calls.json?api_key=woofwoofwoof&company_id=1&sort_by=created_at&order=asc&page=2"
 ~~~
 
 > etc...
@@ -392,15 +392,15 @@ created, and then paginate through all your calls.
 
 ### HTTP Request
 
-`https://api.retreaver.com/calls.json?api_key=woofwoofwoof&company_id=1&sort_by=created_at&order=asc&page=1`
+`https://api.retreaver.com/api/v1/calls.json?api_key=woofwoofwoof&company_id=1&sort_by=created_at&order=asc&page=1`
 
-`https://api.retreaver.com/calls.json?api_key=woofwoofwoof&company_id=1&sort_by=created_at&order=asc&page=2`
+`https://api.retreaver.com/api/v1/calls.json?api_key=woofwoofwoof&company_id=1&sort_by=created_at&order=asc&page=2`
 
 
 ## V1 - Enumerate through Calls in a specific date/time range.
 
 ~~~shell
-curl "https://api.retreaver.com/calls.json?api_key=woofwoofwoof&company_id=1&created_at_start=2016-01-01T00:00:00+00:00&created_at_end=2016-01-02T00:00:00+00:00&page=1"
+curl "https://api.retreaver.com/api/v1/calls.json?api_key=woofwoofwoof&company_id=1&created_at_start=2016-01-01T00:00:00+00:00&created_at_end=2016-01-02T00:00:00+00:00&page=1"
 ~~~
 
 By passing in `created_at_start` and `created_at_end` parameters, you can control the start and end time of Calls returned.
@@ -409,12 +409,12 @@ The timestamp should be formatted according to [rfc3339](https://validator.w3.or
 
 ### HTTP Request
 
-`GET https://api.retreaver.com/calls.json?api_key=woofwoofwoof&company_id=1&created_at_start=2016-01-01T00:00:00+00:00&created_at_end=2016-01-02T00:00:00+00:00&page=1`
+`GET https://api.retreaver.com/api/v1/calls.json?api_key=woofwoofwoof&company_id=1&created_at_start=2016-01-01T00:00:00+00:00&created_at_end=2016-01-02T00:00:00+00:00&page=1`
 
 ## V1 - Get a specific Call
 
 ~~~shell
-curl "https://api.retreaver.com/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof&company_id=1"
+curl "https://api.retreaver.com/api/v1/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof&company_id=1"
 ~~~
 
 > The above command returns JSON structured like this:
@@ -450,7 +450,7 @@ Calls can be accessed by their UUID.
 
 ### HTTP Request
 
-`GET https://api.retreaver.com/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof`
+`GET https://api.retreaver.com/api/v1/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof`
 
 
 ## V2 - Get recent Calls
@@ -807,7 +807,7 @@ created, and then paginate through all your calls.
 ## V2 - Enumerate through Calls in a specific date/time range.
 
 ~~~shell
-curl "https://api.retreaver.com/calls.json?api_key=woofwoofwoof&company_id=1&created_at_start=2016-01-01T00:00:00+00:00&created_at_end=2016-01-02T00:00:00+00:00&page=1"
+curl "https://api.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&company_id=1&created_at_start=2016-01-01T00:00:00+00:00&created_at_end=2016-01-02T00:00:00+00:00&page=1"
 ~~~
 
 By passing in `created_at_start` and `created_at_end` parameters, you can control the start and end time of Calls returned.
@@ -1145,7 +1145,7 @@ If you're not in affiliate marketing, Affiliate objects can be used for whatever
 
 
 ~~~shell
-curl "https://api.retreaver.com/affiliates.xml?api_key=woofwoofwoof&company_id=1"
+curl "https://api.retreaver.com/api/v1/affiliates.xml?api_key=woofwoofwoof&company_id=1"
 ~~~
 
 > The above command returns XML structured like this:
@@ -1169,13 +1169,13 @@ Provides a complete list of Affiliates.
 
 ### HTTP Request
 
-`GET https://api.retreaver.com/affiliates.xml?api_key=woofwoofwoof&company_id=1`
+`GET https://api.retreaver.com/api/v1/affiliates.xml?api_key=woofwoofwoof&company_id=1`
 
 
 ## Get a specific Affiliate by your ID
 
 ~~~shell
-curl "https://api.retreaver.com/affiliates/afid/0002.json?api_key=woofwoofwoof&company_id=1"
+curl "https://api.retreaver.com/api/v1/affiliates/afid/0002.json?api_key=woofwoofwoof&company_id=1"
 ~~~
 
 Finds an Affiliate by AFID.
@@ -1183,7 +1183,7 @@ Finds an Affiliate by AFID.
 
 ### HTTP Request
 
-`GET https://api.retreaver.com/affiliates/afid/0002.xml?api_key=woofwoofwoof&company_id=1`
+`GET https://api.retreaver.com/api/v1/affiliates/afid/0002.xml?api_key=woofwoofwoof&company_id=1`
 
 
 ## Create an Affiliate
@@ -1191,7 +1191,7 @@ Finds an Affiliate by AFID.
 ~~~shell
 curl -s \
     -X POST \
-    https://api.retreaver.com/affiliates.json?api_key=woofwoofwoof&company_id=1 \
+    https://api.retreaver.com/api/v1/affiliates.json?api_key=woofwoofwoof&company_id=1 \
     -H "Content-Type: application/json" \
     -d '{"affiliate":{"first_name":"Nancy", "last_name":"Drew", "afid":"0002"}}'
 ~~~
@@ -1200,7 +1200,7 @@ Creates an Affiliate.
 
 ### HTTP Request
 
-`POST https://api.retreaver.com/affiliates.json?api_key=woofwoofwoof&company_id=1`
+`POST https://api.retreaver.com/api/v1/affiliates.json?api_key=woofwoofwoof&company_id=1`
 
 `Content-Type: application/json`
 
@@ -1223,7 +1223,7 @@ company_name | string | null |   | Their company name.
 ~~~shell
 curl -s \
     -X PUT \
-    https://api.retreaver.com/affiliates/afid/002.json \
+    https://api.retreaver.com/api/v1/affiliates/afid/002.json \
     -H "Content-Type: application/json" \
     -d '{"affiliate":{"first_name":"Nathan"}}'
 ~~~
@@ -1253,7 +1253,7 @@ You must replace <code>0002</code> with the afid of the Affiliate you want to de
 
 ### HTTP Request
 
-`PUT https://api.retreaver.com/affiliates/afid/0002.json?api_key=woofwoofwoof&company_id=1`
+`PUT https://api.retreaver.com/api/v1/affiliates/afid/0002.json?api_key=woofwoofwoof&company_id=1`
 
 `Content-Type: application/json`
 
@@ -1264,7 +1264,7 @@ You must replace <code>0002</code> with the afid of the Affiliate you want to de
 ## Remove an affiliate
 
 ~~~shell
-curl -X DELETE https://api.retreaver.com/affiliates/afid/0002.json?api_key=woofwoofwoof&company_id=1
+curl -X DELETE https://api.retreaver.com/api/v1/affiliates/afid/0002.json?api_key=woofwoofwoof&company_id=1
 ~~~
 
 Deletes the given Affiliate. You must delete any Numbers the Affiliate has before deleting the Affiliate.
