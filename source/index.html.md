@@ -1145,7 +1145,7 @@ If you're not in affiliate marketing, Affiliate objects can be used for whatever
 
 
 ~~~shell
-curl "https://api.retreaver.com/affiliates.xml?api_key=woofwoofwoof&company_id=1"
+curl "https://api.retreaver.com/api/v1/affiliates.xml?api_key=woofwoofwoof&company_id=1"
 ~~~
 
 > The above command returns XML structured like this:
@@ -1169,13 +1169,13 @@ Provides a complete list of Affiliates.
 
 ### HTTP Request
 
-`GET https://api.retreaver.com/affiliates.xml?api_key=woofwoofwoof&company_id=1`
+`GET https://api.retreaver.com/api/v1/affiliates.xml?api_key=woofwoofwoof&company_id=1`
 
 
 ## Get a specific Affiliate by your ID
 
 ~~~shell
-curl "https://api.retreaver.com/affiliates/afid/0002.json?api_key=woofwoofwoof&company_id=1"
+curl "https://api.retreaver.com/api/v1/affiliates/afid/0002.json?api_key=woofwoofwoof&company_id=1"
 ~~~
 
 Finds an Affiliate by AFID.
@@ -1183,7 +1183,7 @@ Finds an Affiliate by AFID.
 
 ### HTTP Request
 
-`GET https://api.retreaver.com/affiliates/afid/0002.xml?api_key=woofwoofwoof&company_id=1`
+`GET https://api.retreaver.com/api/v1/affiliates/afid/0002.xml?api_key=woofwoofwoof&company_id=1`
 
 
 ## Create an Affiliate
@@ -1191,7 +1191,7 @@ Finds an Affiliate by AFID.
 ~~~shell
 curl -s \
     -X POST \
-    https://api.retreaver.com/affiliates.json?api_key=woofwoofwoof&company_id=1 \
+    https://api.retreaver.com/api/v1/affiliates.json?api_key=woofwoofwoof&company_id=1 \
     -H "Content-Type: application/json" \
     -d '{"affiliate":{"first_name":"Nancy", "last_name":"Drew", "afid":"0002"}}'
 ~~~
@@ -1200,7 +1200,7 @@ Creates an Affiliate.
 
 ### HTTP Request
 
-`POST https://api.retreaver.com/affiliates.json?api_key=woofwoofwoof&company_id=1`
+`POST https://api.retreaver.com/api/v1/affiliates.json?api_key=woofwoofwoof&company_id=1`
 
 `Content-Type: application/json`
 
@@ -1223,7 +1223,7 @@ company_name | string | null |   | Their company name.
 ~~~shell
 curl -s \
     -X PUT \
-    https://api.retreaver.com/affiliates/afid/002.json \
+    https://api.retreaver.com/api/v1/affiliates/afid/002.json \
     -H "Content-Type: application/json" \
     -d '{"affiliate":{"first_name":"Nathan"}}'
 ~~~
@@ -1253,7 +1253,7 @@ You must replace <code>0002</code> with the afid of the Affiliate you want to de
 
 ### HTTP Request
 
-`PUT https://api.retreaver.com/affiliates/afid/0002.json?api_key=woofwoofwoof&company_id=1`
+`PUT https://api.retreaver.com/api/v1/affiliates/afid/0002.json?api_key=woofwoofwoof&company_id=1`
 
 `Content-Type: application/json`
 
@@ -1264,7 +1264,7 @@ You must replace <code>0002</code> with the afid of the Affiliate you want to de
 ## Remove an affiliate
 
 ~~~shell
-curl -X DELETE https://api.retreaver.com/affiliates/afid/0002.json?api_key=woofwoofwoof&company_id=1
+curl -X DELETE https://api.retreaver.com/api/v1/affiliates/afid/0002.json?api_key=woofwoofwoof&company_id=1
 ~~~
 
 Deletes the given Affiliate. You must delete any Numbers the Affiliate has before deleting the Affiliate.
