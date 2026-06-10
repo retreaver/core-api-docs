@@ -3440,21 +3440,58 @@ Easily updates a Contact Number.
 
 # Caller Lists
 
-Manage the caller lists on a Target. Add an remove numbers to the callers lists.
+Manage the caller lists on a Target or a Campaign. Add and remove numbers on the caller lists.
 
-A Caller List allows you to associate a list of caller numbers with a target and use these caller number when making routing decision.
-A common use case is a "suppressed" numbers list where certain calls should not be send to this target.
+A Caller List allows you to associate a list of caller numbers with a Target or a Campaign and use these caller numbers when making routing decisions.
+A common use case is a "suppressed" numbers list where certain calls should not be sent to this Target or Campaign.
 
-Another common use case is "a book of business" numbers list where a target has certain clients and they should only receive calls
+Another common use case is "a book of business" numbers list where a Target has certain clients and they should only receive calls
 when the caller is on their book of business.
+
+## Targets and Campaigns
+
+A caller list lives on either a Target or a Campaign. Everything in this section works the same way for both. Wherever the
+examples below use `/api/v2/targets/:target_id/...` you can use `/api/v2/campaigns/:campaign_id/...` instead and pass a Campaign id.
+
+| On a Target | On a Campaign |
+| ----------- | ------------- |
+| `/api/v2/targets/:target_id/caller_lists` | `/api/v2/campaigns/:campaign_id/caller_lists` |
+| `/api/v2/targets/:target_id/caller_lists/:name/caller_list_numbers` | `/api/v2/campaigns/:campaign_id/caller_lists/:name/caller_list_numbers` |
+
+The examples below use Targets, but the Campaign URLs behave identically. A list is created on, and scoped to, whichever object the
+URL points at — a Target list and a Campaign list are independent even when they share the same name.
 
 ## Access
 
-To use the API a postback key should be issued from the type "Caller List Management"
+To use the API a postback key should be issued from the type "Caller List Management". A key can be issued on a single Target, a
+single Campaign, or on the whole Company (a Company key can manage the lists on any Target or Campaign in that company).
+
+### Permissions
+
+The key must also be granted the permissions for the actions you want to perform. A key that is missing the required permission for a
+request will receive an HTTP `403 Forbidden` response. Permissions are set when the key is created or edited.
+
+| Permission | Allows |
+| ---------- | ------ |
+| `caller_list__show` | Read a caller list's name and metadata. **Required by every action below**, because the list has to be looked up first. |
+| `caller_list__index` | List the caller lists that exist on a Target or Campaign. |
+| `caller_list__create` | Create new caller lists. |
+| `caller_list__update` | Update a caller list's metadata, such as its name. |
+| `caller_list__delete` | Delete a caller list. |
+| `caller_list_number__show` | Read / check a single number on a list. |
+| `caller_list_number__index` | List (download) all the numbers on a list. |
+| `caller_list_number__create` | Add numbers to a list. |
+| `caller_list_number__delete` | Remove numbers from a list. |
+| `caller_list_upload__create` | Mass add / remove numbers through an upload. |
+| `caller_list_check__create` | Check whether a number is on a list and always get an HTTP `200` response. |
+
+Because every number, upload and check action loads the caller list first, the key needs `caller_list__show` **in addition to** the
+action-specific permission. For example, downloading the numbers on a list requires both `caller_list__show` and
+`caller_list_number__index`.
 
 ## Caller List
 
-Caller lists are created on specific targets and companies
+Caller lists are created on a specific Target or Campaign.
 
 Numbers could be manages on the caller list after creating them.
 
@@ -3526,7 +3563,48 @@ name      | required | the name of the list on this Target
 
 ## Caller List Number
 
-Manage a single number
+Manage the numbers on a caller list — add a number, remove a number, check a single number, or download the whole list.
+
+### Listing the numbers on a caller list
+
+Download all the numbers on a caller list as JSON, one page at a time. Use this to export a list or to keep a local copy in sync.
+
+The response is [paginated](#paginated) like the rest of the API — the body is a plain array and the page metadata is in the
+`Total`, `Per-Page` and `Link` response headers. The numbers are returned newest first.
+
+~~~shell
+curl 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name/caller_list_numbers.json?key=:postback_key_uuid&page=1&per_page=100' \
+    -H "Authorization: Bearer :postback_key_secret_key"
+~~~
+
+Parameter | Required | Description
+--------- | ---- | -------
+target_id | required | the id of the target on Retreaver
+name      | required | the name of the list on this Target
+key       | required | the postback_key UUID
+page      | optional | the page to fetch, starting at 1. Defaults to 1
+per_page  | optional | how many numbers to return per page, up to 100. Defaults to 25
+
+This action requires the `caller_list_number__index` permission (in addition to `caller_list__show`).
+
+> The above command returns JSON structured like this:
+
+~~~json
+[
+  { "caller_list_number": { "number": "+15855752500", "created_at": "2026-06-10T12:00:00.000Z" } },
+  { "caller_list_number": { "number": "+15855752501", "created_at": "2026-06-10T12:00:01.000Z" } }
+]
+~~~
+
+> and sets pagination headers like this:
+
+~~~
+Total: 2
+Per-Page: 100
+Link: <...caller_list_numbers.json?...&page=2>; rel="next", <...caller_list_numbers.json?...&page=5>; rel="last"
+~~~
+
+Follow the `Link` header's `rel="next"` to walk through every page until it is no longer present.
 
 ### Adding a single number to a caller list
 
