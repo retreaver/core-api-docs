@@ -6684,6 +6684,7 @@ attribute provided so that you don’t have to track which Targets are in each G
 <p>Each response includes key details such as:</p>
 
 <div class="highlight"><pre class="highlight plaintext"><code>The destination phone number to route the call to
+A SIP address to route the call to
 The expected payout
 The required duration (in seconds) of the call
 </code></pre></div>
@@ -6780,9 +6781,12 @@ The required duration (in seconds) of the call
 	</span><span class="nl">"retreaver_payout"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.0</span><span class="p">,</span><span class="w">
 	</span><span class="nl">"retreaver_seconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
 	</span><span class="nl">"inbound_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+18772435010"</span><span class="p">,</span><span class="w">
+	</span><span class="nl">"sip_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c6e4ce37-9b49-46af-bd8e-16cb7753499d@sip.rtb.retreaver.com"</span><span class="p">,</span><span class="w">
 	</span><span class="nl">"expires_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-10-28T12:08:49.880Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
+<p>Every <code>reserved</code> (and <code>confirmed</code>) response includes a <code>sip_address</code> alongside the <code>inbound_number</code>. The <code>sip_address</code> is a dynamic SIP destination unique to the reservation, and it is returned whether or not you provide a <code>caller_number</code>. Dial it to connect the call over SIP, or use the <code>inbound_number</code> to connect over PSTN — both route to the same reservation.</p>
+
 <h4 id="parameters">Parameters</h4>
 
 <table>
@@ -6836,6 +6840,7 @@ The required duration (in seconds) of the call
 	</span><span class="nl">"retreaver_payout"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.0</span><span class="p">,</span><span class="w">
 	</span><span class="nl">"retreaver_seconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
 	</span><span class="nl">"inbound_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+18772435010"</span><span class="p">,</span><span class="w">
+	</span><span class="nl">"sip_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c6e4ce37-9b49-46af-bd8e-16cb7753499d@sip.rtb.retreaver.com"</span><span class="p">,</span><span class="w">
 	</span><span class="nl">"expires_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-10-28T12:08:49.880Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
@@ -6898,6 +6903,7 @@ The required duration (in seconds) of the call
 	</span><span class="nl">"retreaver_payout"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.0</span><span class="p">,</span><span class="w">
 	</span><span class="nl">"retreaver_seconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
 	</span><span class="nl">"inbound_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+18772435010"</span><span class="p">,</span><span class="w">
+	</span><span class="nl">"sip_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c6e4ce37-9b49-46af-bd8e-16cb7753499d@sip.rtb.retreaver.com"</span><span class="p">,</span><span class="w">
 	</span><span class="nl">"expires_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-10-28T12:08:49.880Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
@@ -6988,6 +6994,7 @@ curl <span class="nt">-X</span> POST <span class="s2">"https://rtb.retreaver.com
 	</span><span class="nl">"retreaver_payout"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.0</span><span class="p">,</span><span class="w">
 	</span><span class="nl">"retreaver_seconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
 	</span><span class="nl">"inbound_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+18778955221"</span><span class="p">,</span><span class="w">
+	</span><span class="nl">"sip_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4454ffc8-c1b4-4420-81d2-4bbd1a1e132e@sip.rtb.retreaver.com"</span><span class="p">,</span><span class="w">
 	</span><span class="nl">"expires_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-10-28T12:29:04.397Z"</span><span class="p">,</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
@@ -6997,6 +7004,7 @@ curl <span class="nt">-X</span> POST <span class="s2">"https://rtb.retreaver.com
 	</span><span class="nl">"retreaver_payout"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.0</span><span class="p">,</span><span class="w">
 	</span><span class="nl">"retreaver_seconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
 	</span><span class="nl">"inbound_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+18778955221"</span><span class="p">,</span><span class="w">
+	</span><span class="nl">"sip_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4454ffc8-c1b4-4420-81d2-4bbd1a1e132e@sip.rtb.retreaver.com"</span><span class="p">,</span><span class="w">
 	</span><span class="nl">"expires_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-10-28T12:29:04.397Z"</span><span class="p">,</span><span class="w">
 	</span><span class="nl">"retreaver_ping_shield"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
