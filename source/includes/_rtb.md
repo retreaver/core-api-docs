@@ -5,6 +5,7 @@ The Retreaver Real-Time Bidding (RTB) API enables publishers to send requests to
 Each response includes key details such as:
 
 	The destination phone number to route the call to
+	A SIP address to route the call to
 	The expected payout
 	The required duration (in seconds) of the call
 
@@ -75,9 +76,12 @@ curl -X POST "https://rtb.retreaver.com/rtbs.json" \
 	"retreaver_payout": 5.0,
 	"retreaver_seconds": 10,
 	"inbound_number": "+18772435010",
+	"sip_address": "c6e4ce37-9b49-46af-bd8e-16cb7753499d@sip.rtb.retreaver.com",
 	"expires_at": "2024-10-28T12:08:49.880Z"
 }
 ~~~
+
+Every `reserved` (and `confirmed`) response includes a `sip_address` alongside the `inbound_number`. The `sip_address` is a dynamic SIP destination unique to the reservation, and it is returned whether or not you provide a `caller_number`. Dial it to connect the call over SIP, or use the `inbound_number` to connect over PSTN — both route to the same reservation.
 
 #### Parameters
 
@@ -112,6 +116,7 @@ curl -X POST "https://rtb.retreaver.com/rtbs.json" \
 	"retreaver_payout": 5.0,
 	"retreaver_seconds": 10,
 	"inbound_number": "+18772435010",
+	"sip_address": "c6e4ce37-9b49-46af-bd8e-16cb7753499d@sip.rtb.retreaver.com",
 	"expires_at": "2024-10-28T12:08:49.880Z"
 }
 ~~~
@@ -152,6 +157,7 @@ curl -X PUT "https://rtb.retreaver.com/rtbs/c6e4ce37-9b49-46af-bd8e-16cb7753499d
 	"retreaver_payout": 5.0,
 	"retreaver_seconds": 10,
 	"inbound_number": "+18772435010",
+	"sip_address": "c6e4ce37-9b49-46af-bd8e-16cb7753499d@sip.rtb.retreaver.com",
 	"expires_at": "2024-10-28T12:08:49.880Z"
 }
 ~~~
@@ -226,6 +232,7 @@ curl -X POST "https://rtb.retreaver.com/rtbs.json" \
 	"retreaver_payout": 5.0,
 	"retreaver_seconds": 10,
 	"inbound_number": "+18778955221",
+	"sip_address": "4454ffc8-c1b4-4420-81d2-4bbd1a1e132e@sip.rtb.retreaver.com",
 	"expires_at": "2024-10-28T12:29:04.397Z",
 }
 
@@ -235,6 +242,7 @@ curl -X POST "https://rtb.retreaver.com/rtbs.json" \
 	"retreaver_payout": 5.0,
 	"retreaver_seconds": 10,
 	"inbound_number": "+18778955221",
+	"sip_address": "4454ffc8-c1b4-4420-81d2-4bbd1a1e132e@sip.rtb.retreaver.com",
 	"expires_at": "2024-10-28T12:29:04.397Z",
 	"retreaver_ping_shield": true
 }
