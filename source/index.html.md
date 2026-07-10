@@ -28,11 +28,11 @@ our [Retreaver.js](https://github.com/retreaver/retreaver-js) library.
 
 The API can be used to automate core business processes, but does not currently support all functionality.
 
-The API is available at versioned paths (such as `/api/v1` and `/api/v2`) and at legacy versionless paths. Use the version shown in each endpoint below; versionless routes remain supported for resources that expose them.
+*Please note: We're currently working on a better, versioned replacement for this API. But don't worry, this API isn't going away.*
 
 ## Version
 
-For sake of clarity we'll refer to this collection of endpoints as:
+This is our *unversioned* API and for sake of clarity we'll refer to it henceforth as:
 
 `Retreaver Core API`
 

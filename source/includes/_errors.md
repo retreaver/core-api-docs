@@ -17,5 +17,3 @@ Error Code | Meaning
 429 | Too Many Requests -- Returned by certain rate-limited endpoints. Slow down. Highly concurrent requests are frowned upon.
 500 | Internal Server Error -- We had a problem with our server. Try again later.
 503 | Service Unavailable -- We're temporarily offline for maintenance. Please try again later.
-
-JSON error responses have the shape `{ "error": "..." }`.
