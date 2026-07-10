@@ -3668,7 +3668,7 @@ The preferred approach is to use the Caller List Number endpoint (GET <a href='#
 curl -X POST 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name/caller_list_checks.json?key=:postback_key_uuid' \
     -H "Content-Type: application/json" \
     -H "Authorization: Bearer :postback_key_secret_key" \
-    -d '{"number": "+15855752500"}'
+    -d '{"caller_list_check": {"number": "+15855752500"}}'
 ~~~
 
 > The above command returns JSON structured like this:
