@@ -1857,6 +1857,197 @@ Clears any Calls contributing to the given Target's hard cap, resetting it to 0.
 
 
 
+## Adding a Conversion to a Target
+
+~~~shell
+curl -s \
+ -X PUT \
+ "https://api.retreaver.com/targets/22592.json?api_key=woofwoofwoof&company_id=1" \
+ -H "Content-Type: application/json" \
+ -d '{"target":{"conversion_groups_attributes":[{"name":"50$ after 90s","conversion_type":"timer","conversions_attributes":[{"seconds":90,"revenue":50.0}]}]}}'
+~~~
+
+> The above command returns JSON structured like this:
+
+~~~json
+{
+    "target": {
+        "id": 22592,
+        "number": "+18668987878",
+        "name": "Retreaver Support",
+        "conversion_groups": [
+            {
+                "id": 256490,
+                "name": "50$ after 90s",
+                "dedupe_seconds": 0,
+                "eval_order": 0,
+                "postback": false,
+                "conversion_type": "timer",
+                "postback_uuid": null,
+                "tag_values": [],
+                "conversions": [
+                    {
+                        "id": 263254,
+                        "type": null,
+                        "seconds": 90,
+                        "revenue": 50.0,
+                        "payout": 0.0,
+                        "payout_modifier": null,
+                        "postback_timeout": 600,
+                        "match_trigger": null
+                    }
+                ]
+            }
+        ]
+    }
+}
+~~~
+
+Conversions on a Target are managed through nested Conversion Groups. Update your Target with a `conversion_groups_attributes` array, where each group holds its own nested `conversions_attributes` array.
+
+The example creates a timer Conversion named `50$ after 90s`: once a call to the Target lasts 90 seconds, the call is marked as converted and $50.00 of revenue is attributed to it.
+
+Passing a group in `conversion_groups_attributes` without an `id` always creates a new Conversion Group. To modify an existing group or its Conversions, include the `id` values returned when reading the Target.
+
+### Evaluation Order
+
+<aside class="warning">
+Adding more than one Conversion Group to a Target via the API is <strong>not recommended</strong>: it is hard to understand which group will win once evaluation order is taken into account. If a Target does have several Conversion Groups, a call only ever converts through one of them. The groups are evaluated in ascending `eval_order`, and the first group whose tags match the call is applied. Use at your own risk.
+</aside>
+
+
+### HTTP Request
+
+`PUT https://api.retreaver.com/targets/22592.json?api_key=woofwoofwoof&company_id=1`
+
+`Content-Type: application/json`
+
+`{"target":{"conversion_groups_attributes":[{"name":"50$ after 90s","conversion_type":"timer","conversions_attributes":[{"seconds":90,"revenue":50.0}]}]}}`
+
+### Conversion Group Parameters
+
+Parameter | Type | Default | Required | Description
+--------- | ---- | ------- | -------- | -----------
+id | integer | | see description | Required when updating an existing group. Omit to create a new one.
+name | string | Default Conversion Settings | optional | A label for the group, e.g. `50$ after 90s`.
+conversion_type | string | | required | `timer`
+conversions_attributes | array | | required | The Conversions belonging to this group.
+
+### Conversion Parameters
+
+Parameter | Type | Default | Required | Description
+--------- | ---- | ------- | -------- | -----------
+id | integer | | see description | Required when updating an existing Conversion. Omit to create a new one.
+seconds | integer | 90 | optional | Call duration in seconds required for a timer Conversion to convert.
+revenue | decimal | 0 | optional | The revenue attributed to the call when it converts.
+
+
+## Updating a Conversion on a Target
+
+~~~shell
+curl -s \
+ -X PUT \
+ "https://api.retreaver.com/targets/22592.json?api_key=woofwoofwoof&company_id=1" \
+ -H "Content-Type: application/json" \
+ -d '{"target":{"conversion_groups_attributes":[{"id":256490,"name":"75$ after 90s","conversions_attributes":[{"id":263254,"revenue":75.0}]}]}}'
+~~~
+
+> The above command returns JSON structured like this:
+
+~~~json
+{
+    "target": {
+        "id": 22592,
+        "number": "+18668987878",
+        "name": "Retreaver Support",
+        "conversion_groups": [
+            {
+                "id": 256490,
+                "name": "75$ after 90s",
+                "dedupe_seconds": 0,
+                "eval_order": 0,
+                "postback": false,
+                "conversion_type": "timer",
+                "postback_uuid": null,
+                "tag_values": [],
+                "conversions": [
+                    {
+                        "id": 263254,
+                        "type": null,
+                        "seconds": 90,
+                        "revenue": 75.0,
+                        "payout": 0.0,
+                        "payout_modifier": null,
+                        "postback_timeout": 600,
+                        "match_trigger": null
+                    }
+                ]
+            }
+        ]
+    }
+}
+~~~
+
+To update an existing Conversion Group or Conversion, include their `id` values along with only the attributes you want to change; anything left out keeps its current value. The example renames the group to `75$ after 90s` and raises the Conversion's revenue to $75.00.
+
+<aside class="warning">
+Providing <strong>both</strong> <code>conversion_group</code> and <code>conversion</code> <code>id</code> values is mandatory. Failing to do so will not update anything — instead a new Conversion, or a whole new Conversion Group with its own Conversion, will be created alongside the existing ones. Use at your own risk.
+</aside>
+
+### HTTP Request
+
+`PUT https://api.retreaver.com/targets/22592.json?api_key=woofwoofwoof&company_id=1`
+
+`Content-Type: application/json`
+
+`{"target":{"conversion_groups_attributes":[{"id":256490,"name":"75$ after 90s","conversions_attributes":[{"id":263254,"revenue":75.0}]}]}}`
+
+
+## Deleting a Conversion from a Target
+
+~~~shell
+curl -s \
+ -X PUT \
+ "https://api.retreaver.com/targets/22592.json?api_key=woofwoofwoof&company_id=1" \
+ -H "Content-Type: application/json" \
+ -d '{"target":{"conversion_groups_attributes":[{"id":256490,"_destroy":true}]}}'
+~~~
+
+> The above command returns JSON structured like this:
+
+~~~json
+{
+    "target": {
+        "id": 22592,
+        "number": "+18668987878",
+        "name": "Retreaver Support",
+        "conversion_groups": []
+    }
+}
+~~~
+
+To remove conversion settings from a Target, delete the whole Conversion Group: pass the group's `id` together with `"_destroy": true` inside `conversion_groups_attributes`.
+
+<aside class="warning">
+Always delete the entire Conversion Group. Do not delete individual Conversions out of a group.
+</aside>
+
+### HTTP Request
+
+`PUT https://api.retreaver.com/targets/22592.json?api_key=woofwoofwoof&company_id=1`
+
+`Content-Type: application/json`
+
+`{"target":{"conversion_groups_attributes":[{"id":256490,"_destroy":true}]}}`
+
+### Parameters
+
+Parameter | Type | Default | Required | Description
+--------- | ---- | ------- | -------- | -----------
+id | integer | | required | The `id` of the Conversion Group to delete.
+_destroy | boolean | false | required | Set to `true` to delete the group.
+
+
 # Campaigns
 
 By configuring a Campaign, you can reuse the settings of the Campaign when creating Numbers. Campaigns should be configured before creating Numbers.
