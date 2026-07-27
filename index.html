@@ -570,6 +570,9 @@
             <a href="#caller-lists" class="toc-h1 toc-link" data-title="Caller Lists">Caller Lists</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#targets-and-campaigns" class="toc-h2 toc-link" data-title="Targets and Campaigns">Targets and Campaigns</a>
+                  </li>
+                  <li>
                     <a href="#access" class="toc-h2 toc-link" data-title="Access">Access</a>
                   </li>
                   <li>
@@ -854,7 +857,7 @@ our <a href="https://github.com/retreaver/retreaver-js">Retreaver.js</a> library
 
 <p>Retreaver is a RESTful paginated API that returns 25 results per page. Each relevant index response will have a <a href="https://www.w3.org/wiki/LinkHeader">Link HTTP header</a> present.</p>
 
-<p><code>Link: &lt;https://api.retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;sort_by=created_at&amp;order=asc&amp;page=6996&gt;; rel="last", &lt;https://api.retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;sort_by=created_at&amp;order=asc&amp;page=2&gt;; rel="next"</code></p>
+<p><code>Link: &lt;https://api.retreaver.com/api/v1/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;sort_by=created_at&amp;order=asc&amp;page=6996&gt;; rel="last", &lt;https://api.retreaver.com/api/v1/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;sort_by=created_at&amp;order=asc&amp;page=2&gt;; rel="next"</code></p>
 
 <p>By parsing the Link header, you can determine the last, next, and previous pages.</p>
 
@@ -909,7 +912,7 @@ our <a href="https://github.com/retreaver/retreaver-js">Retreaver.js</a> library
 
 <span class="n">per_page</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="c1"># We start with the base URL provided (requesting 100 per page)</span>
-<span class="no">BASE_URL</span> <span class="o">=</span> <span class="s2">"https://api.retreaver.com/calls.json?api_key=</span><span class="si">#{</span><span class="no">API_KEY</span><span class="si">}</span><span class="s2">&amp;created_at_start=</span><span class="si">#{</span><span class="n">created_at_start</span><span class="si">}</span><span class="s2">&amp;company_id=</span><span class="si">#{</span><span class="no">COMPANY_ID</span><span class="si">}</span><span class="s2">&amp;per_page=</span><span class="si">#{</span><span class="n">per_page</span><span class="si">}</span><span class="s2">"</span>
+<span class="no">BASE_URL</span> <span class="o">=</span> <span class="s2">"https://api.retreaver.com/api/v1/calls.json?api_key=</span><span class="si">#{</span><span class="no">API_KEY</span><span class="si">}</span><span class="s2">&amp;created_at_start=</span><span class="si">#{</span><span class="n">created_at_start</span><span class="si">}</span><span class="s2">&amp;company_id=</span><span class="si">#{</span><span class="no">COMPANY_ID</span><span class="si">}</span><span class="s2">&amp;per_page=</span><span class="si">#{</span><span class="n">per_page</span><span class="si">}</span><span class="s2">"</span>
 
 <span class="k">def</span> <span class="nf">fetch_calls</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
   <span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
@@ -1069,7 +1072,7 @@ You should <strong>never, ever expose your Retreaver Core API key publicly</stro
 
 <h2 id="v1---get-recent-calls">V1 - Get recent Calls</h2>
 
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1"</span>
+<div class="highlight"><pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/api/v1/calls.json?api_key=woofwoofwoof&amp;company_id=1"</span>
 </code></pre></div>
 <blockquote>
   <p>The above command returns JSON structured like this:</p>
@@ -1126,7 +1129,7 @@ You should <strong>never, ever expose your Retreaver Core API key publicly</stro
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code>GET https://api.retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+<p><code>GET https://api.retreaver.com/api/v1/calls.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
@@ -1209,13 +1212,13 @@ You should <strong>never, ever expose your Retreaver Core API key publicly</stro
   <p>First page…</p>
 </blockquote>
 
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;sort_by=created_at&amp;order=asc&amp;page=1"</span>
+<div class="highlight"><pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/api/v1/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;sort_by=created_at&amp;order=asc&amp;page=1"</span>
 </code></pre></div>
 <blockquote>
   <p>Second page…</p>
 </blockquote>
 
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;sort_by=created_at&amp;order=asc&amp;page=2"</span>
+<div class="highlight"><pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/api/v1/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;sort_by=created_at&amp;order=asc&amp;page=2"</span>
 </code></pre></div>
 <blockquote>
   <p>etc…</p>
@@ -1226,13 +1229,13 @@ created, and then paginate through all your calls.</p>
 
 <h3 id="http-request-1">HTTP Request</h3>
 
-<p><code>https://api.retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;sort_by=created_at&amp;order=asc&amp;page=1</code></p>
+<p><code>https://api.retreaver.com/api/v1/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;sort_by=created_at&amp;order=asc&amp;page=1</code></p>
 
-<p><code>https://api.retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;sort_by=created_at&amp;order=asc&amp;page=2</code></p>
+<p><code>https://api.retreaver.com/api/v1/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;sort_by=created_at&amp;order=asc&amp;page=2</code></p>
 
 <h2 id="v1---enumerate-through-calls-in-a-specific-datetime-range">V1 - Enumerate through Calls in a specific date/time range.</h2>
 
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;created_at_start=2016-01-01T00:00:00+00:00&amp;created_at_end=2016-01-02T00:00:00+00:00&amp;page=1"</span>
+<div class="highlight"><pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/api/v1/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;created_at_start=2016-01-01T00:00:00+00:00&amp;created_at_end=2016-01-02T00:00:00+00:00&amp;page=1"</span>
 </code></pre></div>
 <p>By passing in <code>created_at_start</code> and <code>created_at_end</code> parameters, you can control the start and end time of Calls returned.</p>
 
@@ -1240,11 +1243,11 @@ created, and then paginate through all your calls.</p>
 
 <h3 id="http-request-2">HTTP Request</h3>
 
-<p><code>GET https://api.retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;created_at_start=2016-01-01T00:00:00+00:00&amp;created_at_end=2016-01-02T00:00:00+00:00&amp;page=1</code></p>
+<p><code>GET https://api.retreaver.com/api/v1/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;created_at_start=2016-01-01T00:00:00+00:00&amp;created_at_end=2016-01-02T00:00:00+00:00&amp;page=1</code></p>
 
 <h2 id="v1---get-a-specific-call">V1 - Get a specific Call</h2>
 
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof&amp;company_id=1"</span>
+<div class="highlight"><pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/api/v1/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof&amp;company_id=1"</span>
 </code></pre></div>
 <blockquote>
   <p>The above command returns JSON structured like this:</p>
@@ -1278,7 +1281,7 @@ created, and then paginate through all your calls.</p>
 
 <h3 id="http-request-3">HTTP Request</h3>
 
-<p><code>GET https://api.retreaver.com/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof</code></p>
+<p><code>GET https://api.retreaver.com/api/v1/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof</code></p>
 
 <h2 id="v2---get-recent-calls">V2 - Get recent Calls</h2>
 
@@ -1754,7 +1757,7 @@ created, and then paginate through all your calls.</p>
 
 <h2 id="v2---enumerate-through-calls-in-a-specific-datetime-range">V2 - Enumerate through Calls in a specific date/time range.</h2>
 
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;created_at_start=2016-01-01T00:00:00+00:00&amp;created_at_end=2016-01-02T00:00:00+00:00&amp;page=1"</span>
+<div class="highlight"><pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/api/v2/calls.json?api_key=woofwoofwoof&amp;company_id=1&amp;created_at_start=2016-01-01T00:00:00+00:00&amp;created_at_end=2016-01-02T00:00:00+00:00&amp;page=1"</span>
 </code></pre></div>
 <p>By passing in <code>created_at_start</code> and <code>created_at_end</code> parameters, you can control the start and end time of Calls returned.</p>
 
@@ -2118,7 +2121,7 @@ and will be applied when a call from the caller number is received.</p>
 
 <h2 id="get-all-affiliates">Get all Affiliates</h2>
 
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/affiliates.xml?api_key=woofwoofwoof&amp;company_id=1"</span>
+<div class="highlight"><pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/api/v1/affiliates.xml?api_key=woofwoofwoof&amp;company_id=1"</span>
 </code></pre></div>
 <blockquote>
   <p>The above command returns XML structured like this:</p>
@@ -2140,23 +2143,23 @@ and will be applied when a call from the caller number is received.</p>
 
 <h3 id="http-request-9">HTTP Request</h3>
 
-<p><code>GET https://api.retreaver.com/affiliates.xml?api_key=woofwoofwoof&amp;company_id=1</code></p>
+<p><code>GET https://api.retreaver.com/api/v1/affiliates.xml?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
 <h2 id="get-a-specific-affiliate-by-your-id">Get a specific Affiliate by your ID</h2>
 
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/affiliates/afid/0002.json?api_key=woofwoofwoof&amp;company_id=1"</span>
+<div class="highlight"><pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/api/v1/affiliates/afid/0002.json?api_key=woofwoofwoof&amp;company_id=1"</span>
 </code></pre></div>
 <p>Finds an Affiliate by AFID.</p>
 
 <h3 id="http-request-10">HTTP Request</h3>
 
-<p><code>GET https://api.retreaver.com/affiliates/afid/0002.xml?api_key=woofwoofwoof&amp;company_id=1</code></p>
+<p><code>GET https://api.retreaver.com/api/v1/affiliates/afid/0002.xml?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
 <h2 id="create-an-affiliate">Create an Affiliate</h2>
 
 <div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-s</span> <span class="se">\</span>
     <span class="nt">-X</span> POST <span class="se">\</span>
-    https://api.retreaver.com/affiliates.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1 <span class="se">\</span>
+    https://api.retreaver.com/api/v1/affiliates.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1 <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
     <span class="nt">-d</span> <span class="s1">'{"affiliate":{"first_name":"Nancy", "last_name":"Drew", "afid":"0002"}}'</span>
 </code></pre></div>
@@ -2164,7 +2167,7 @@ and will be applied when a call from the caller number is received.</p>
 
 <h3 id="http-request-11">HTTP Request</h3>
 
-<p><code>POST https://api.retreaver.com/affiliates.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+<p><code>POST https://api.retreaver.com/api/v1/affiliates.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
 <p><code>Content-Type: application/json</code></p>
 
@@ -2218,7 +2221,7 @@ and will be applied when a call from the caller number is received.</p>
 
 <div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-s</span> <span class="se">\</span>
     <span class="nt">-X</span> PUT <span class="se">\</span>
-    https://api.retreaver.com/affiliates/afid/002.json <span class="se">\</span>
+    https://api.retreaver.com/api/v1/affiliates/afid/002.json <span class="se">\</span>
     <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
     <span class="nt">-d</span> <span class="s1">'{"affiliate":{"first_name":"Nathan"}}'</span>
 </code></pre></div>
@@ -2245,7 +2248,7 @@ You must replace <code>0002</code> with the afid of the Affiliate you want to de
 
 <h3 id="http-request-12">HTTP Request</h3>
 
-<p><code>PUT https://api.retreaver.com/affiliates/afid/0002.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+<p><code>PUT https://api.retreaver.com/api/v1/affiliates/afid/0002.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
 <p><code>Content-Type: application/json</code></p>
 
@@ -2253,7 +2256,7 @@ You must replace <code>0002</code> with the afid of the Affiliate you want to de
 
 <h2 id="remove-an-affiliate">Remove an affiliate</h2>
 
-<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> DELETE https://api.retreaver.com/affiliates/afid/0002.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1
+<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> DELETE https://api.retreaver.com/api/v1/affiliates/afid/0002.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1
 </code></pre></div>
 <p>Deletes the given Affiliate. You must delete any Numbers the Affiliate has before deleting the Affiliate.</p>
 
@@ -3247,11 +3250,127 @@ Adding more than one Conversion Group to a Target via the API is <strong>not rec
       <td><code>timer</code></td>
     </tr>
     <tr>
+      <td>dedupe_seconds</td>
+      <td>integer</td>
+      <td>0 (No de-dupe)</td>
+      <td>optional</td>
+      <td>Prevents a repeat caller from triggering this group’s Conversions again within n seconds of their previous call. 0 disables deduplication. Must be one of the allowed values listed below.</td>
+    </tr>
+    <tr>
       <td>conversions_attributes</td>
       <td>array</td>
       <td> </td>
       <td>required</td>
       <td>The Conversions belonging to this group.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="allowed-dedupeseconds-values">Allowed dedupe_seconds Values</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Value</th>
+      <th>Duration</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>No de-dupe</td>
+    </tr>
+    <tr>
+      <td>3600</td>
+      <td>1 hour</td>
+    </tr>
+    <tr>
+      <td>7200</td>
+      <td>2 hours</td>
+    </tr>
+    <tr>
+      <td>21600</td>
+      <td>6 hours</td>
+    </tr>
+    <tr>
+      <td>43200</td>
+      <td>12 hours</td>
+    </tr>
+    <tr>
+      <td>86400</td>
+      <td>24 hours</td>
+    </tr>
+    <tr>
+      <td>172800</td>
+      <td>2 days</td>
+    </tr>
+    <tr>
+      <td>259200</td>
+      <td>3 days</td>
+    </tr>
+    <tr>
+      <td>345600</td>
+      <td>4 days</td>
+    </tr>
+    <tr>
+      <td>604800</td>
+      <td>1 week</td>
+    </tr>
+    <tr>
+      <td>2592000</td>
+      <td>30 days</td>
+    </tr>
+    <tr>
+      <td>5184000</td>
+      <td>60 days</td>
+    </tr>
+    <tr>
+      <td>7776000</td>
+      <td>90 days</td>
+    </tr>
+    <tr>
+      <td>10368000</td>
+      <td>120 days</td>
+    </tr>
+    <tr>
+      <td>12960000</td>
+      <td>150 days</td>
+    </tr>
+    <tr>
+      <td>15552000</td>
+      <td>180 days</td>
+    </tr>
+    <tr>
+      <td>18144000</td>
+      <td>210 days</td>
+    </tr>
+    <tr>
+      <td>20736000</td>
+      <td>240 days</td>
+    </tr>
+    <tr>
+      <td>23328000</td>
+      <td>270 days</td>
+    </tr>
+    <tr>
+      <td>25920000</td>
+      <td>300 days</td>
+    </tr>
+    <tr>
+      <td>28512000</td>
+      <td>330 days</td>
+    </tr>
+    <tr>
+      <td>31556952</td>
+      <td>1 year</td>
+    </tr>
+    <tr>
+      <td>315569520</td>
+      <td>1 decade</td>
+    </tr>
+    <tr>
+      <td>-1</td>
+      <td>Forever</td>
     </tr>
   </tbody>
 </table>
@@ -5306,21 +5425,113 @@ existing Contact Number, or see <a href="#update-a-contact-number-by-phone-numbe
 
 <h1 id="caller-lists">Caller Lists</h1>
 
-<p>Manage the caller lists on a Target. Add an remove numbers to the callers lists.</p>
+<p>Manage the caller lists on a Target or a Campaign. Add and remove numbers on the caller lists.</p>
 
-<p>A Caller List allows you to associate a list of caller numbers with a target and use these caller number when making routing decision.
-A common use case is a “suppressed” numbers list where certain calls should not be send to this target.</p>
+<p>A Caller List allows you to associate a list of caller numbers with a Target or a Campaign and use these caller numbers when making routing decisions.
+A common use case is a “suppressed” numbers list where certain calls should not be sent to this Target or Campaign.</p>
 
-<p>Another common use case is “a book of business” numbers list where a target has certain clients and they should only receive calls
+<p>Another common use case is “a book of business” numbers list where a Target has certain clients and they should only receive calls
 when the caller is on their book of business.</p>
+
+<h2 id="targets-and-campaigns">Targets and Campaigns</h2>
+
+<p>A caller list lives on either a Target or a Campaign. Everything in this section works the same way for both. Wherever the
+examples below use <code>/api/v2/targets/:target_id/...</code> you can use <code>/api/v2/campaigns/:campaign_id/...</code> instead and pass a Campaign id.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>On a Target</th>
+      <th>On a Campaign</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>/api/v2/targets/:target_id/caller_lists</code></td>
+      <td><code>/api/v2/campaigns/:campaign_id/caller_lists</code></td>
+    </tr>
+    <tr>
+      <td><code>/api/v2/targets/:target_id/caller_lists/:name/caller_list_numbers</code></td>
+      <td><code>/api/v2/campaigns/:campaign_id/caller_lists/:name/caller_list_numbers</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The examples below use Targets, but the Campaign URLs behave identically. A list is created on, and scoped to, whichever object the
+URL points at — a Target list and a Campaign list are independent even when they share the same name.</p>
 
 <h2 id="access">Access</h2>
 
-<p>To use the API a postback key should be issued from the type “Caller List Management”</p>
+<p>To use the API a postback key should be issued from the type “Caller List Management”. A key can be issued on a single Target, a
+single Campaign, or on the whole Company (a Company key can manage the lists on any Target or Campaign in that company).</p>
+
+<h3 id="permissions">Permissions</h3>
+
+<p>The key must also be granted the permissions for the actions you want to perform. A key that is missing the required permission for a
+request will receive an HTTP <code>403 Forbidden</code> response. Permissions are set when the key is created or edited.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Permission</th>
+      <th>Allows</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>caller_list__show</code></td>
+      <td>Read a caller list’s name and metadata. <strong>Required by every action below</strong>, because the list has to be looked up first.</td>
+    </tr>
+    <tr>
+      <td><code>caller_list__index</code></td>
+      <td>List the caller lists that exist on a Target or Campaign.</td>
+    </tr>
+    <tr>
+      <td><code>caller_list__create</code></td>
+      <td>Create new caller lists.</td>
+    </tr>
+    <tr>
+      <td><code>caller_list__update</code></td>
+      <td>Update a caller list’s metadata, such as its name.</td>
+    </tr>
+    <tr>
+      <td><code>caller_list__delete</code></td>
+      <td>Delete a caller list.</td>
+    </tr>
+    <tr>
+      <td><code>caller_list_number__show</code></td>
+      <td>Read / check a single number on a list.</td>
+    </tr>
+    <tr>
+      <td><code>caller_list_number__index</code></td>
+      <td>List (download) all the numbers on a list.</td>
+    </tr>
+    <tr>
+      <td><code>caller_list_number__create</code></td>
+      <td>Add numbers to a list.</td>
+    </tr>
+    <tr>
+      <td><code>caller_list_number__delete</code></td>
+      <td>Remove numbers from a list.</td>
+    </tr>
+    <tr>
+      <td><code>caller_list_upload__create</code></td>
+      <td>Mass add / remove numbers through an upload.</td>
+    </tr>
+    <tr>
+      <td><code>caller_list_check__create</code></td>
+      <td>Check whether a number is on a list and always get an HTTP <code>200</code> response.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Because every number, upload and check action loads the caller list first, the key needs <code>caller_list__show</code> <strong>in addition to</strong> the
+action-specific permission. For example, downloading the numbers on a list requires both <code>caller_list__show</code> and
+<code>caller_list_number__index</code>.</p>
 
 <h2 id="caller-list">Caller List</h2>
 
-<p>Caller lists are created on specific targets and companies</p>
+<p>Caller lists are created on a specific Target or Campaign.</p>
 
 <p>Numbers could be manages on the caller list after creating them.</p>
 
@@ -5448,7 +5659,75 @@ when the caller is on their book of business.</p>
 </span></code></pre></div>
 <h2 id="caller-list-number">Caller List Number</h2>
 
-<p>Manage a single number</p>
+<p>Manage the numbers on a caller list — add a number, remove a number, check a single number, or download the whole list.</p>
+
+<h3 id="listing-the-numbers-on-a-caller-list">Listing the numbers on a caller list</h3>
+
+<p>Download all the numbers on a caller list as JSON, one page at a time. Use this to export a list or to keep a local copy in sync.</p>
+
+<p>The response is <a href="#paginated">paginated</a> like the rest of the API — the body is a plain array and the page metadata is in the
+<code>Total</code>, <code>Per-Page</code> and <code>Link</code> response headers. The numbers are returned newest first.</p>
+
+<div class="highlight"><pre class="highlight shell"><code>curl <span class="s1">'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name/caller_list_numbers.json?key=:postback_key_uuid&amp;page=1&amp;per_page=100'</span> <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Authorization: Bearer :postback_key_secret_key"</span>
+</code></pre></div>
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>target_id</td>
+      <td>required</td>
+      <td>the id of the target on Retreaver</td>
+    </tr>
+    <tr>
+      <td>name</td>
+      <td>required</td>
+      <td>the name of the list on this Target</td>
+    </tr>
+    <tr>
+      <td>key</td>
+      <td>required</td>
+      <td>the postback_key UUID</td>
+    </tr>
+    <tr>
+      <td>page</td>
+      <td>optional</td>
+      <td>the page to fetch, starting at 1. Defaults to 1</td>
+    </tr>
+    <tr>
+      <td>per_page</td>
+      <td>optional</td>
+      <td>how many numbers to return per page, up to 100. Defaults to 25</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>This action requires the <code>caller_list_number__index</code> permission (in addition to <code>caller_list__show</code>).</p>
+
+<blockquote>
+  <p>The above command returns JSON structured like this:</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w"> </span><span class="nl">"caller_list_number"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+15855752500"</span><span class="p">,</span><span class="w"> </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-06-10T12:00:00.000Z"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w"> </span><span class="nl">"caller_list_number"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nl">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+15855752501"</span><span class="p">,</span><span class="w"> </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-06-10T12:00:01.000Z"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+  <p>and sets pagination headers like this:</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight plaintext"><code>Total: 2
+Per-Page: 100
+Link: &lt;...caller_list_numbers.json?...&amp;page=2&gt;; rel="next", &lt;...caller_list_numbers.json?...&amp;page=5&gt;; rel="last"
+</code></pre></div>
+<p>Follow the <code>Link</code> header’s <code>rel="next"</code> to walk through every page until it is no longer present.</p>
 
 <h3 id="adding-a-single-number-to-a-caller-list">Adding a single number to a caller list</h3>
 
@@ -6798,6 +7077,7 @@ attribute provided so that you don’t have to track which Targets are in each G
 <p>Each response includes key details such as:</p>
 
 <div class="highlight"><pre class="highlight plaintext"><code>The destination phone number to route the call to
+A SIP address to route the call to
 The expected payout
 The required duration (in seconds) of the call
 </code></pre></div>
@@ -6894,9 +7174,12 @@ The required duration (in seconds) of the call
 	</span><span class="nl">"retreaver_payout"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.0</span><span class="p">,</span><span class="w">
 	</span><span class="nl">"retreaver_seconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
 	</span><span class="nl">"inbound_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+18772435010"</span><span class="p">,</span><span class="w">
+	</span><span class="nl">"sip_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c6e4ce37-9b49-46af-bd8e-16cb7753499d@sip.rtb.retreaver.com"</span><span class="p">,</span><span class="w">
 	</span><span class="nl">"expires_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-10-28T12:08:49.880Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
+<p>Every <code>reserved</code> (and <code>confirmed</code>) response includes a <code>sip_address</code> alongside the <code>inbound_number</code>. The <code>sip_address</code> is a dynamic SIP destination unique to the reservation, and it is returned whether or not you provide a <code>caller_number</code>. Dial it to connect the call over SIP, or use the <code>inbound_number</code> to connect over PSTN — both route to the same reservation.</p>
+
 <h4 id="parameters">Parameters</h4>
 
 <table>
@@ -6950,6 +7233,7 @@ The required duration (in seconds) of the call
 	</span><span class="nl">"retreaver_payout"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.0</span><span class="p">,</span><span class="w">
 	</span><span class="nl">"retreaver_seconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
 	</span><span class="nl">"inbound_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+18772435010"</span><span class="p">,</span><span class="w">
+	</span><span class="nl">"sip_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c6e4ce37-9b49-46af-bd8e-16cb7753499d@sip.rtb.retreaver.com"</span><span class="p">,</span><span class="w">
 	</span><span class="nl">"expires_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-10-28T12:08:49.880Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
@@ -7012,6 +7296,7 @@ The required duration (in seconds) of the call
 	</span><span class="nl">"retreaver_payout"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.0</span><span class="p">,</span><span class="w">
 	</span><span class="nl">"retreaver_seconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
 	</span><span class="nl">"inbound_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+18772435010"</span><span class="p">,</span><span class="w">
+	</span><span class="nl">"sip_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c6e4ce37-9b49-46af-bd8e-16cb7753499d@sip.rtb.retreaver.com"</span><span class="p">,</span><span class="w">
 	</span><span class="nl">"expires_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-10-28T12:08:49.880Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
@@ -7102,6 +7387,7 @@ curl <span class="nt">-X</span> POST <span class="s2">"https://rtb.retreaver.com
 	</span><span class="nl">"retreaver_payout"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.0</span><span class="p">,</span><span class="w">
 	</span><span class="nl">"retreaver_seconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
 	</span><span class="nl">"inbound_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+18778955221"</span><span class="p">,</span><span class="w">
+	</span><span class="nl">"sip_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4454ffc8-c1b4-4420-81d2-4bbd1a1e132e@sip.rtb.retreaver.com"</span><span class="p">,</span><span class="w">
 	</span><span class="nl">"expires_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-10-28T12:29:04.397Z"</span><span class="p">,</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
@@ -7111,6 +7397,7 @@ curl <span class="nt">-X</span> POST <span class="s2">"https://rtb.retreaver.com
 	</span><span class="nl">"retreaver_payout"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.0</span><span class="p">,</span><span class="w">
 	</span><span class="nl">"retreaver_seconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
 	</span><span class="nl">"inbound_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+18778955221"</span><span class="p">,</span><span class="w">
+	</span><span class="nl">"sip_address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4454ffc8-c1b4-4420-81d2-4bbd1a1e132e@sip.rtb.retreaver.com"</span><span class="p">,</span><span class="w">
 	</span><span class="nl">"expires_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-10-28T12:29:04.397Z"</span><span class="p">,</span><span class="w">
 	</span><span class="nl">"retreaver_ping_shield"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
