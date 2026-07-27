@@ -1931,7 +1931,37 @@ Parameter | Type | Default | Required | Description
 id | integer | | see description | Required when updating an existing group. Omit to create a new one.
 name | string | Default Conversion Settings | optional | A label for the group, e.g. `50$ after 90s`.
 conversion_type | string | | required | `timer`
+dedupe_seconds | integer | 0 (No de-dupe) | optional | Prevents a repeat caller from triggering this group's Conversions again within n seconds of their previous call. 0 disables deduplication. Must be one of the allowed values listed below.
 conversions_attributes | array | | required | The Conversions belonging to this group.
+
+### Allowed dedupe_seconds Values
+
+Value | Duration
+----- | --------
+0 | No de-dupe
+3600 | 1 hour
+7200 | 2 hours
+21600 | 6 hours
+43200 | 12 hours
+86400 | 24 hours
+172800 | 2 days
+259200 | 3 days
+345600 | 4 days
+604800 | 1 week
+2592000 | 30 days
+5184000 | 60 days
+7776000 | 90 days
+10368000 | 120 days
+12960000 | 150 days
+15552000 | 180 days
+18144000 | 210 days
+20736000 | 240 days
+23328000 | 270 days
+25920000 | 300 days
+28512000 | 330 days
+31556952 | 1 year
+315569520 | 1 decade
+-1 | Forever
 
 ### Conversion Parameters
 
