@@ -2307,7 +2307,7 @@ dedupe_seconds | integer | 0 (Disabled) |  | Prevent a repeat caller from causin
 affiliate_can_pull_number | boolean | false | |  Allow affiliates to access this campaign via our LinkTrust integration.
 record_calls | boolean | true | | Toggles call recording on and off.
 message | string |  |  | *Text-to-speech*  A message you want read aloud to the caller when they dial your number. Make sure to tell them to press one to continue.
-voice_gender | string | Male |  | *Text-to-speech*  Male or Female, the gender of the text-to-speech voice you want.
+voice_gender | string | Female |  | *Text-to-speech*  Male or Female, the gender of the text-to-speech voice you want.
 message_file | file |  |  | *Audio File* An audio file you would like played for the caller when they dial your number. Use this field with multipart/form-data submissions.
 message_file_b64_data | string |  |  | *Audio File* A Base64-encoded audio file. Only use this field if you're not using the message_file field.
 message_file_b64_filename | string | |  | *Audio File* The original file name for the Base64-encoded audio file. Something like 'memo.flac'. We suggest using the highest quality audio available.
@@ -2670,7 +2670,7 @@ destroy_nested | boolean | false | | When set, causes existing timers and menu_o
 Parameter | Type | Default | Required | Description
 --------- | ---- | ------- | -------- | -----------
 message | string |  |  | *Text-to-speech*  A message you want read aloud to the caller when they dial your number. Make sure to tell them to press one to continue.
-voice_gender | string | Male |  | *Text-to-speech*  Male or Female, the gender of the text-to-speech voice you want.
+voice_gender | string | Female |  | *Text-to-speech*  Male or Female, the gender of the text-to-speech voice you want.
 message_file | file |  |  | *Audio File* An audio file you would like played for the caller when they dial your number. Use this field with multipart/form-data submissions.
 message_file_b64_data | string |  |  | *Audio File* A Base64-encoded audio file. Only use this field if you're not using the message_file field.
 message_file_b64_filename | string | |  | *Audio File* The original file name for the Base64-encoded audio file. Something like 'memo.flac'. We suggest using the highest quality audio available.
