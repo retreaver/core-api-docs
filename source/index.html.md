@@ -260,7 +260,7 @@ Final Result: 939 calls processed in 8.84 seconds.
 
 ~~~shell
 # With cURL, you can just pass the correct API key and company_id with each request.
-curl "https://api.retreaver.com/call.json?api_key=woofwoofwoof&company_id=1"
+curl "https://api.retreaver.com/calls.json?api_key=woofwoofwoof&company_id=1"
 ~~~
 
 > Make sure to replace `woofwoofwoof` with your API key.
@@ -1061,17 +1061,17 @@ When using GET place the params in the URL
 > GET
 
 ~~~bash
-curl "https://reteaverdata.com/data_writing/:postback_key_uuid?caller_number=:caller_number&age=39&utm_campaign=auto"
+curl "https://retreaverdata.com/data_writing?key=:postback_key_uuid&caller_number=:caller_number&age=39&utm_campaign=auto"
 ~~~
 
 > POST
 
 ~~~bash
-curl -X POST "https://reteaverdata.com/data_writing" \
+curl -X POST "https://retreaverdata.com/data_writing" \
   -H "Content-Type: application/json" \
   -d '{
-    "key": postback_key_uuid,
-    "caller_number": :caller_number,
+    "key": "postback_key_uuid",
+    "caller_number": ":caller_number",
     "age": "39",
     "utm_campaign": "auto"
   }'
@@ -1112,7 +1112,7 @@ curl -X POST "https://reteaverdata.com/data_writing" \
 | Parameter      | Type       | Required | Description                                  |
 |----------------|------------|----------|----------------------------------------------|
 | key            | string     | Yes      | The UUID of the Postback Key used to authorize this change |
-| caller_number  | string     | Optional | The caller number of the Call for which the tags should be applied. This or a call_uuid should be provider |
+| caller_number  | string     | Optional | The caller number of the Call for which the tags should be applied. This or a call_uuid should be provided. |
 | call_uuid      | string     | Optional | The uuid of the Call for which the tags should be applied. This or a caller_number should be provided. |
 | :tag_key       | string     | Optional | Dynamic key:value pairs in the form of '?key1=value1&key2=value2' |
 
@@ -1157,7 +1157,7 @@ curl "https://api.retreaver.com/api/v1/affiliates.xml?api_key=woofwoofwoof&compa
     <afid>0002</afid>
     <first-name>Nancy</first-name>
     <last-name>Drew</last-name>
-    <company-name>Acme</last-name>
+    <company-name>Acme</company-name>
     <updated-at type="datetime">2012-05-03T15:56:01Z</updated-at>
     <created-at type="datetime">2012-05-03T15:56:01Z</created-at>
   </affiliate>
@@ -1175,7 +1175,7 @@ Provides a complete list of Affiliates.
 ## Get a specific Affiliate by your ID
 
 ~~~shell
-curl "https://api.retreaver.com/api/v1/affiliates/afid/0002.json?api_key=woofwoofwoof&company_id=1"
+curl "https://api.retreaver.com/affiliates/afid/0002.json?api_key=woofwoofwoof&company_id=1"
 ~~~
 
 Finds an Affiliate by AFID.
@@ -1183,7 +1183,7 @@ Finds an Affiliate by AFID.
 
 ### HTTP Request
 
-`GET https://api.retreaver.com/api/v1/affiliates/afid/0002.xml?api_key=woofwoofwoof&company_id=1`
+`GET https://api.retreaver.com/affiliates/afid/0002.json?api_key=woofwoofwoof&company_id=1`
 
 
 ## Create an Affiliate
@@ -1223,7 +1223,7 @@ company_name | string | null |   | Their company name.
 ~~~shell
 curl -s \
     -X PUT \
-    https://api.retreaver.com/api/v1/affiliates/afid/002.json \
+    https://api.retreaver.com/affiliates/afid/002.json \
     -H "Content-Type: application/json" \
     -d '{"affiliate":{"first_name":"Nathan"}}'
 ~~~
@@ -1253,7 +1253,7 @@ You must replace <code>0002</code> with the afid of the Affiliate you want to de
 
 ### HTTP Request
 
-`PUT https://api.retreaver.com/api/v1/affiliates/afid/0002.json?api_key=woofwoofwoof&company_id=1`
+`PUT https://api.retreaver.com/affiliates/afid/0002.json?api_key=woofwoofwoof&company_id=1`
 
 `Content-Type: application/json`
 
@@ -1264,7 +1264,7 @@ You must replace <code>0002</code> with the afid of the Affiliate you want to de
 ## Remove an affiliate
 
 ~~~shell
-curl -X DELETE https://api.retreaver.com/api/v1/affiliates/afid/0002.json?api_key=woofwoofwoof&company_id=1
+curl -X DELETE https://api.retreaver.com/affiliates/afid/0002.json?api_key=woofwoofwoof&company_id=1
 ~~~
 
 Deletes the given Affiliate. You must delete any Numbers the Affiliate has before deleting the Affiliate.
@@ -3714,7 +3714,7 @@ action-specific permission. For example, downloading the numbers on a list requi
 
 Caller lists are created on a specific Target or Campaign.
 
-Numbers could be manages on the caller list after creating them.
+Numbers can be managed on the caller list after creating it.
 
 ### Create caller list
 
@@ -3875,8 +3875,8 @@ key       | uuid | null    | required | the postback_key UUID
 number    | string | null    | required | A phone number in preferably in [E.164 format](https://en.wikipedia.org/wiki/E.164), but NANP format is also accepted
 
 If the caller number is on the list there will be an HTTP 200 response showing the number and the number metadata.
-When the caller number is not on the list there will be an HTTP 404 response and this caller number is not on the caller lists.
-When a status number of 200 is required even when the caller number is not present on the list then
+When the caller number is not on the list, the API returns HTTP 404, indicating that it is not on the caller list.
+When a status code of 200 is required even when the caller number is not present on the list, then
 the endpoint for CallerListChecks could be used
 
 ## Caller List Checks
@@ -3889,16 +3889,14 @@ The preferred approach is to use the Caller List Number endpoint (GET <a href='#
 curl -X POST 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:name/caller_list_checks.json?key=:postback_key_uuid' \
     -H "Content-Type: application/json" \
     -H "Authorization: Bearer :postback_key_secret_key" \
-    -d '{"caller_list_check":  { "number": "+15855752500" }}'
+    -d '{"caller_list_check": {"number": "+15855752500"}}'
 ~~~
 
 > The above command returns JSON structured like this:
 
 ~~~json
 {
-    "caller_list_check": {
-        "status": "present",
-    }
+    "status": "present"
 }
 ~~~
 
@@ -3925,7 +3923,7 @@ caller_list_check[number]  | required | A phone number in preferably in [E.164 f
 
 | Field | Type | Description | Possible Values |
 |-------|------|--------------|-----------------|
-| `caller_list_check[status]` | string | Indicates the caller number presence status | `present`, `not-present` |
+| `status` | string | Indicates the caller number presence status | `present`, `not-present` |
 
 ## Caller List Uploads
 
@@ -3949,7 +3947,7 @@ curl -X POST 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:
 ~~~json
 {
   "caller_list_upload": {
-    "status": "Processing",
+    "status": "waiting",
     "created_at": "2025-04-30T13:29:40.100+03:00",
     "error_messages": [],
     "clear_before_upload": false,
@@ -4153,7 +4151,7 @@ By sending a `PUT` request you can update properties such as `can_resubscribe` a
 
 ~~~shell
 curl -s \
-    -X POST \
+    -X PUT \
     https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key=woofwoofwoof&company_id=1 \
     -H "Content-Type: application/json" \
     -d '{"suppressed_number": {"can_resubscribe": false}}'
@@ -4161,11 +4159,13 @@ curl -s \
 
 ### HTTP request
 
-`PUT http://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key=woofwoofwoof&company_id=1`
+`PUT https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key=woofwoofwoof&company_id=1`
 
 `Content-Type: application/json`
 
-`{"can_resubscribe": false, "campaign_id": "116dc0f6"}`
+`{"suppressed_number": {"can_resubscribe": false, "campaign_id": 116}}`
+
+`campaign_id` is the numeric internal Campaign ID, not the campaign `cid`.
 
 
 # Static Caller Numbers
