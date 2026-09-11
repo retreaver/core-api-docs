@@ -1040,6 +1040,79 @@ about the campaign like its `id` and `name`
 }
 ~~~
 
+## Update a Call
+
+~~~shell
+curl -s \
+    -X PUT \
+    "https://api.retreaver.com/api/v5/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof&company_id=1" \
+    -H "Content-Type: application/json" \
+    -d '{"call":{"revenue":20.0,"payout":5.0,"session_notes":"Credited after QA review"}}'
+~~~
+
+> The above command returns the updated Call, structured like this:
+
+~~~json
+{
+   "call":{
+      "uuid":"addcf985-017e-4962-be34-cf5d55e74afc",
+      "caller":"+17195220377",
+      "caller_zip":"80920",
+      "caller_state":"CO",
+      "caller_city":"COLORADO SPRINGS",
+      "caller_country":"US",
+      "dialed_call_duration":193,
+      "total_duration":204,
+      "status":"finished",
+      "start_time":"2012-04-29T12:29:40Z",
+      "forwarded_time":"2012-04-29T12:29:51Z",
+      "end_time":"2012-04-29T12:32:46Z",
+      "cid":"0003",
+      "afid":"03994",
+      "sid":null,
+      "dialed_number":"+18668987878",
+      "revenue":20.0,
+      "payout":5.0,
+      "converted":true,
+      "receivable":true,
+      "payable":true,
+      "updated_at":"2012-04-29T12:35:12Z",
+      "created_at":"2012-04-29T12:29:40Z"
+   }
+}
+~~~
+
+Changes any attributes you have passed in on the Call.
+
+<aside class="warning">
+Editing a Call <strong>changes reporting values that may already have been sent up- or downstream</strong>.
+Postbacks and pixels that already fired, exported reports, and third-party systems that synced the Call will
+<strong>not</strong> automatically receive the corrected values.
+</aside>
+
+Every edit is saved in the Call's version history, so all changes are auditable.
+
+If an edit <strong>newly</strong> marks the Call as converted, its conversion pixels will fire.
+
+
+### HTTP Request
+
+`PUT https://api.retreaver.com/api/v5/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof&company_id=1`
+
+`Content-Type: application/json`
+
+`{"call":{"revenue":20.0,"payout":5.0,"session_notes":"Credited after QA review"}}`
+
+### Parameters
+
+Parameter | Type | Default | Required | Description
+--------- | ---- | ------- | -------- | -----------
+revenue | float | | | Money you earned for the call. Setting a value of `0.01` or more marks the Call `receivable`. Passing `0` clears the revenue.
+payout | float | | | Money you owe the publisher for the call. Setting a value of `0.01` or more marks the Call `payable`. Passing `0` clears the payout.
+receivable | boolean | | | Set the receivable flag directly. Ignored when `revenue` is present in the same request.
+payable | boolean | | | Set the payable flag directly. Ignored when `payout` is present in the same request.
+session_notes | string | | | Free-form notes about the call.
+
 ## Call Data Writing
 
 Retreaver users can create data posting links that give publishers the ability to apply tags to an inbound caller using call data writing, these tags can be applied at any time, either before or after a call has been processed within a Retreaver campaign.
