@@ -704,6 +704,9 @@
                   <li>
                     <a href="#delete-a-payout-bid-modification-table" class="toc-h2 toc-link" data-title="Delete a Payout Bid Modification table">Delete a Payout Bid Modification table</a>
                   </li>
+                  <li>
+                    <a href="#script-example-a-data-driven-payout-reduction-split-as-a-controltreatment-test" class="toc-h2 toc-link" data-title="Script Example: a data-driven payout reduction, split as a Control/Treatment test">Script Example: a data-driven payout reduction, split as a Control/Treatment test</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -7898,7 +7901,107 @@ If a rules provider is handing you rule CSVs keyed on Retreaver's own IDs (the n
 <aside class="notice">
 Deleting a table is permanent and removes it from the campaign's upload history — it does not deactivate-and-keep, the way updating <code>active</code> to <code>false</code> does. If you might want to roll back to it later, deactivate it instead of deleting it.
 </aside>
-<h1 id="reports">Reports</h1>
+
+<h2 id="script-example-a-data-driven-payout-reduction-split-as-a-controltreatment-test">Script Example: a data-driven payout reduction, split as a Control/Treatment test</h2>
+
+<p>A common use of Payout Bid Modification is a payout experiment per publisher: pay less on part of a publisher’s traffic and leave the rest as a control group, so the impact is measurable against a baseline instead of applied blind. This script builds one from real data — it reads the merged Calls + RTB Inbounds file from the <a href="#example-merging-calls-and-rtb-inbounds-by-calluuid">merge example</a> in Exports, computes each publisher’s actual current payout rate from their <code>claimed</code> traffic, and generates a table that pays 10% less than that rate on half of each publisher’s traffic (bucket-split, so the split is stable and deterministic per call), leaving the other half at the current rate as the untouched control group.</p>
+
+<aside class="warning">
+This is a demo, not a recommendation — a flat 10% cut, a straight sum(Payout)/sum(Revenue) rate, and an even 50/50 split are all one arbitrary, simple choice. The actual work in a payout experiment like this is everything this script glosses over: what "current rate" should mean for a publisher whose mix of traffic varies (by hour, by geography, by conversion type), how big a change is worth testing and for how long, what split gives you a statistically meaningful read, and how you pull fresh data and recompute as the experiment runs rather than uploading a rule once and forgetting it. Treat the shape here — receive data, calculate rules, upload — as the scaffolding, and put your own math into it.
+</aside>
+
+<aside class="warning">
+The merged file's publisher-id column is RTB Inbounds' own <code>affiliate_id</code> — Retreaver's internal id, not a client-supplied one — so the generated rules key on <code>system_affiliate_id</code>, not <code>affiliate_id</code>. See the <a href="#the-rule-csv-format">warning above</a> about the two being different things.
+</aside>
+
+<aside class="warning">
+That column's header text isn't fixed, because different accounts use different terminology: it's <code>Source ID</code> on the old/Enterprise nomenclature (the default), but <code>Publisher ID</code> on a Performance Marketing account — same <code>affiliate_id</code> field underneath, just labeled differently per company. The script checks for either.
+</aside>
+
+<div class="highlight"><pre class="highlight ruby"><code><span class="c1"># How to run:</span>
+<span class="c1">#   ruby build_payout_reduction.rb &lt;campaign_id&gt; &lt;calls_with_rtb_inbounds.csv&gt;</span>
+<span class="c1">#</span>
+<span class="c1"># calls_with_rtb_inbounds.csv — from the merge example in Exports.</span>
+<span class="c1">#</span>
+<span class="c1"># This computes real numbers from your data and then activates a table immediately on</span>
+<span class="c1"># real traffic — review the printed per-publisher rates before confirming.</span>
+
+<span class="nb">require</span> <span class="s1">'csv'</span>
+<span class="nb">require</span> <span class="s1">'json'</span>
+<span class="nb">require</span> <span class="s1">'net/http'</span>
+<span class="nb">require</span> <span class="s1">'uri'</span>
+
+<span class="no">API_KEY</span> <span class="o">=</span> <span class="s2">"woofwoofwoof"</span>
+<span class="no">BASE_URL</span> <span class="o">=</span> <span class="s2">"https://api.retreaver.com"</span>
+<span class="no">PAYOUT_REDUCTION</span> <span class="o">=</span> <span class="mf">0.10</span>  <span class="c1"># pay 10% less than the current rate</span>
+<span class="no">TREATMENT_BUCKETS</span> <span class="o">=</span> <span class="mi">0</span><span class="o">...</span><span class="mi">5000</span>  <span class="c1"># half the 0-9999 bucket space; the rest is the control group</span>
+
+<span class="n">campaign_id</span><span class="p">,</span> <span class="n">merged_csv_path</span> <span class="o">=</span> <span class="no">ARGV</span>
+<span class="k">if</span> <span class="n">campaign_id</span><span class="p">.</span><span class="nf">nil?</span> <span class="o">||</span> <span class="n">merged_csv_path</span><span class="p">.</span><span class="nf">nil?</span>
+  <span class="nb">abort</span> <span class="s2">"Usage: ruby </span><span class="si">#{</span><span class="vg">$PROGRAM_NAME</span><span class="si">}</span><span class="s2"> &lt;campaign_id&gt; &lt;calls_with_rtb_inbounds.csv&gt;"</span>
+<span class="k">end</span>
+
+<span class="n">rows</span> <span class="o">=</span> <span class="no">CSV</span><span class="p">.</span><span class="nf">read</span><span class="p">(</span><span class="n">merged_csv_path</span><span class="p">,</span> <span class="ss">headers: </span><span class="kp">true</span><span class="p">)</span>
+
+<span class="c1"># The publisher-id column is "Source ID" on the default (old/Enterprise) nomenclature, or</span>
+<span class="c1"># "Publisher ID" on a Performance Marketing account — same affiliate_id field, different</span>
+<span class="c1"># label per company. Accept either rather than assuming one.</span>
+<span class="n">publisher_id_header</span> <span class="o">=</span> <span class="p">(</span><span class="n">rows</span><span class="p">.</span><span class="nf">headers</span> <span class="o">||</span> <span class="p">[]).</span><span class="nf">find</span> <span class="p">{</span> <span class="o">|</span><span class="n">h</span><span class="o">|</span> <span class="p">[</span><span class="s2">"Source ID"</span><span class="p">,</span> <span class="s2">"Publisher ID"</span><span class="p">].</span><span class="nf">include?</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="p">}</span>
+<span class="k">unless</span> <span class="n">publisher_id_header</span>
+  <span class="nb">abort</span> <span class="s2">"Could not find a 'Source ID' or 'Publisher ID' column in </span><span class="si">#{</span><span class="n">merged_csv_path</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+
+<span class="n">claimed</span> <span class="o">=</span> <span class="n">rows</span><span class="p">.</span><span class="nf">select</span> <span class="p">{</span> <span class="o">|</span><span class="n">row</span><span class="o">|</span> <span class="n">row</span><span class="p">[</span><span class="s2">"Status"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"claimed"</span> <span class="o">&amp;&amp;</span> <span class="n">row</span><span class="p">[</span><span class="s2">"Campaign ID"</span><span class="p">]</span> <span class="o">==</span> <span class="n">campaign_id</span> <span class="p">}</span>
+<span class="nb">abort</span> <span class="s2">"No claimed RTB Inbounds found for campaign </span><span class="si">#{</span><span class="n">campaign_id</span><span class="si">}</span><span class="s2"> in </span><span class="si">#{</span><span class="n">merged_csv_path</span><span class="si">}</span><span class="s2">"</span> <span class="k">if</span> <span class="n">claimed</span><span class="p">.</span><span class="nf">empty?</span>
+
+<span class="n">other_campaigns</span> <span class="o">=</span> <span class="n">rows</span><span class="p">.</span><span class="nf">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">row</span><span class="o">|</span> <span class="n">row</span><span class="p">[</span><span class="s2">"Campaign ID"</span><span class="p">]</span> <span class="p">}.</span><span class="nf">uniq</span> <span class="o">-</span> <span class="p">[</span><span class="n">campaign_id</span><span class="p">]</span>
+<span class="nb">puts</span> <span class="s2">"Note: ignoring other campaign(s) in this file: </span><span class="si">#{</span><span class="n">other_campaigns</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s1">', '</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span> <span class="k">if</span> <span class="n">other_campaigns</span><span class="p">.</span><span class="nf">any?</span>
+
+<span class="c1"># Sum Revenue/Payout per publisher across their claimed rows — see the aside above for why</span>
+<span class="c1"># this becomes system_affiliate_id, not affiliate_id, in the rules.</span>
+<span class="n">totals</span> <span class="o">=</span> <span class="n">claimed</span><span class="p">.</span><span class="nf">each_with_object</span><span class="p">(</span><span class="no">Hash</span><span class="p">.</span><span class="nf">new</span> <span class="p">{</span> <span class="o">|</span><span class="n">h</span><span class="p">,</span> <span class="n">k</span><span class="o">|</span> <span class="n">h</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">revenue: </span><span class="mf">0.0</span><span class="p">,</span> <span class="ss">payout: </span><span class="mf">0.0</span> <span class="p">}</span> <span class="p">})</span> <span class="k">do</span> <span class="o">|</span><span class="n">row</span><span class="p">,</span> <span class="n">sums</span><span class="o">|</span>
+  <span class="n">publisher_totals</span> <span class="o">=</span> <span class="n">sums</span><span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="n">publisher_id_header</span><span class="p">]]</span>
+  <span class="n">publisher_totals</span><span class="p">[</span><span class="ss">:revenue</span><span class="p">]</span> <span class="o">+=</span> <span class="n">row</span><span class="p">[</span><span class="s2">"Revenue"</span><span class="p">].</span><span class="nf">to_f</span>
+  <span class="n">publisher_totals</span><span class="p">[</span><span class="ss">:payout</span><span class="p">]</span> <span class="o">+=</span> <span class="n">row</span><span class="p">[</span><span class="s2">"Payout"</span><span class="p">].</span><span class="nf">to_f</span>
+<span class="k">end</span>
+
+<span class="n">csv_rows</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">"rule_id"</span><span class="p">,</span> <span class="s2">"system_affiliate_id"</span><span class="p">,</span> <span class="s2">"pbm_bucket"</span><span class="p">,</span> <span class="s2">"pbm_bucket"</span><span class="p">,</span> <span class="s2">"payout_pct"</span><span class="p">]]</span>
+<span class="n">rule_id</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="nb">puts</span> <span class="s2">"Payout changes for campaign </span><span class="si">#{</span><span class="n">campaign_id</span><span class="si">}</span><span class="s2"> (10% off on half of traffic, current rate on the other half):"</span>
+
+<span class="n">totals</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">publisher_id</span><span class="p">,</span> <span class="n">sums</span><span class="o">|</span>
+  <span class="k">next</span> <span class="k">if</span> <span class="n">sums</span><span class="p">[</span><span class="ss">:revenue</span><span class="p">].</span><span class="nf">zero?</span> <span class="c1"># no revenue, no rate to derive</span>
+
+  <span class="n">current_pct</span> <span class="o">=</span> <span class="p">(</span><span class="n">sums</span><span class="p">[</span><span class="ss">:payout</span><span class="p">]</span> <span class="o">/</span> <span class="n">sums</span><span class="p">[</span><span class="ss">:revenue</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span><span class="p">).</span><span class="nf">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+  <span class="n">reduced_pct</span> <span class="o">=</span> <span class="p">(</span><span class="n">current_pct</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="no">PAYOUT_REDUCTION</span><span class="p">)).</span><span class="nf">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"  publisher </span><span class="si">#{</span><span class="n">publisher_id</span><span class="si">}</span><span class="s2">: </span><span class="si">#{</span><span class="n">current_pct</span><span class="si">}</span><span class="s2">% -&gt; </span><span class="si">#{</span><span class="n">reduced_pct</span><span class="si">}</span><span class="s2">% on bucket </span><span class="si">#{</span><span class="no">TREATMENT_BUCKETS</span><span class="si">}</span><span class="s2">, </span><span class="si">#{</span><span class="n">current_pct</span><span class="si">}</span><span class="s2">% on the rest"</span>
+
+  <span class="n">rule_id</span> <span class="o">+=</span> <span class="mi">1</span>
+  <span class="n">csv_rows</span> <span class="o">&lt;&lt;</span> <span class="p">[</span><span class="n">rule_id</span><span class="p">,</span> <span class="n">publisher_id</span><span class="p">,</span> <span class="s2">"&gt;=</span><span class="si">#{</span><span class="no">TREATMENT_BUCKETS</span><span class="p">.</span><span class="nf">begin</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"&lt;</span><span class="si">#{</span><span class="no">TREATMENT_BUCKETS</span><span class="p">.</span><span class="nf">end</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">reduced_pct</span><span class="p">]</span>
+  <span class="n">rule_id</span> <span class="o">+=</span> <span class="mi">1</span>
+  <span class="n">csv_rows</span> <span class="o">&lt;&lt;</span> <span class="p">[</span><span class="n">rule_id</span><span class="p">,</span> <span class="n">publisher_id</span><span class="p">,</span> <span class="s2">"&gt;=</span><span class="si">#{</span><span class="no">TREATMENT_BUCKETS</span><span class="p">.</span><span class="nf">end</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="s2">"*"</span><span class="p">,</span> <span class="n">current_pct</span><span class="p">]</span>
+<span class="k">end</span>
+
+<span class="n">rule_id</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="n">csv_rows</span> <span class="o">&lt;&lt;</span> <span class="p">[</span><span class="n">rule_id</span><span class="p">,</span> <span class="s2">"*"</span><span class="p">,</span> <span class="s2">"*"</span><span class="p">,</span> <span class="s2">"*"</span><span class="p">,</span> <span class="s2">"current"</span><span class="p">]</span> <span class="c1"># anything unlisted (e.g. no claimed traffic yet) stays unmodified</span>
+
+<span class="n">csv_data</span> <span class="o">=</span> <span class="n">csv_rows</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:to_csv</span><span class="p">).</span><span class="nf">join</span>
+<span class="nb">puts</span> <span class="s2">"</span><span class="se">\n</span><span class="si">#{</span><span class="n">csv_data</span><span class="si">}</span><span class="s2">"</span>
+
+<span class="nb">print</span> <span class="s2">"Press Enter to upload and activate this table now, or Ctrl+C to cancel... "</span>
+<span class="no">STDIN</span><span class="p">.</span><span class="nf">gets</span>
+
+<span class="n">create_uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s2">"</span><span class="si">#{</span><span class="no">BASE_URL</span><span class="si">}</span><span class="s2">/api/v5/campaigns/</span><span class="si">#{</span><span class="n">campaign_id</span><span class="si">}</span><span class="s2">/payout_bid_modification_tables.json?api_key=</span><span class="si">#{</span><span class="no">API_KEY</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">body</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">payout_bid_modification_table: </span><span class="p">{</span> <span class="ss">csv_data: </span><span class="n">csv_data</span><span class="p">,</span> <span class="ss">active: </span><span class="kp">true</span> <span class="p">}</span> <span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="n">create_uri</span><span class="p">,</span> <span class="n">body</span><span class="p">.</span><span class="nf">to_json</span><span class="p">,</span> <span class="s2">"Content-Type"</span> <span class="o">=&gt;</span> <span class="s2">"application/json"</span><span class="p">).</span><span class="nf">body</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">response</span><span class="p">[</span><span class="s2">"errors"</span><span class="p">]</span>
+  <span class="nb">abort</span> <span class="s2">"Upload failed: </span><span class="si">#{</span><span class="n">response</span><span class="p">[</span><span class="s2">"errors"</span><span class="p">].</span><span class="nf">join</span><span class="p">(</span><span class="s2">", "</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+
+<span class="nb">puts</span> <span class="s2">"Uploaded and activated table id=</span><span class="si">#{</span><span class="n">response</span><span class="p">[</span><span class="s2">"id"</span><span class="p">]</span><span class="si">}</span><span class="s2"> (table_version=</span><span class="si">#{</span><span class="n">response</span><span class="p">[</span><span class="s2">"table_version"</span><span class="p">]</span><span class="si">}</span><span class="s2">) on campaign </span><span class="si">#{</span><span class="n">campaign_id</span><span class="si">}</span><span class="s2">."</span>
+</code></pre></div><h1 id="reports">Reports</h1>
 <p>## Reports Parameters
 <code>GET https://api.retreaver.com/api/v1/reports.json?....</code></p>
 
