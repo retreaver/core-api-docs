@@ -158,8 +158,9 @@ def fetch_calls(url)
   response = Net::HTTP.get_response(uri)
 
   if response.is_a?(Net::HTTPSuccess)
-    # 1. Parse the JSON body
-    calls = JSON.parse(response.body)
+    # 1. Parse the JSON body. Each element is root-wrapped ({"call": {...}}, see the
+    # example above) — unwrap here so callers get plain call hashes.
+    calls = JSON.parse(response.body).map { |entry| entry["call"] }
 
     # 2. Extract the 'next' link from the HTTP headers
     # Header looks like: <url>; rel="last", <url>; rel="next"

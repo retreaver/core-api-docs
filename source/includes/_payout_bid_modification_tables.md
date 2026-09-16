@@ -62,15 +62,21 @@ curl -s -X POST "https://api.retreaver.com/api/v5/campaigns/16728/payout_bid_mod
 
 ~~~json
 {
-  "id": 9001,
-  "campaign_id": 16728,
-  "table_version": 9001,
-  "active": true,
-  "salt": "acme_inc_2026-09-15",
-  "csv_data": "rule_id,caller_state,pbm_bucket,pbm_bucket,payout_pct\n1,=~^(CO|NY|TX)$,*,*,70\n2,*,>=5000,<7500,60\n3,*,*,*,current\n",
-  "created_at": "2026-09-15T18:04:22Z"
+  "payout_bid_modification_table": {
+    "id": 9001,
+    "campaign_id": 16728,
+    "table_version": 9001,
+    "active": true,
+    "salt": "acme_inc_2026-09-15",
+    "csv_data": "rule_id,caller_state,pbm_bucket,pbm_bucket,payout_pct\n1,=~^(CO|NY|TX)$,*,*,70\n2,*,>=5000,<7500,60\n3,*,*,*,current\n",
+    "created_at": "2026-09-15T18:04:22Z"
+  }
 }
 ~~~
+
+<aside class="notice">
+The response is wrapped in a <code>payout_bid_modification_table</code> key — <code>id</code>, <code>active</code>, etc. are nested one level in, not top-level.
+</aside>
 
 ### HTTP Request
 
@@ -104,13 +110,15 @@ curl "https://api.retreaver.com/api/v5/campaigns/16728/payout_bid_modification_t
 ~~~json
 [
   {
-    "id": 9001,
-    "campaign_id": 16728,
-    "table_version": 9001,
-    "active": true,
-    "salt": "acme_inc_2026-09-15",
-    "csv_data": "rule_id,caller_state,pbm_bucket,pbm_bucket,payout_pct\n1,=~^(CO|NY|TX)$,*,*,70\n2,*,>=5000,<7500,60\n3,*,*,*,current\n",
-    "created_at": "2026-09-15T18:04:22Z"
+    "payout_bid_modification_table": {
+      "id": 9001,
+      "campaign_id": 16728,
+      "table_version": 9001,
+      "active": true,
+      "salt": "acme_inc_2026-09-15",
+      "csv_data": "rule_id,caller_state,pbm_bucket,pbm_bucket,payout_pct\n1,=~^(CO|NY|TX)$,*,*,70\n2,*,>=5000,<7500,60\n3,*,*,*,current\n",
+      "created_at": "2026-09-15T18:04:22Z"
+    }
   }
 ]
 ~~~
@@ -271,5 +279,8 @@ if response["errors"]
   abort "Upload failed: #{response["errors"].join(", ")}"
 end
 
-puts "Uploaded and activated table id=#{response["id"]} (table_version=#{response["table_version"]}) on campaign #{campaign_id}."
+# A successful create response is wrapped in a payout_bid_modification_table key (see
+# Create a Payout Bid Modification table, above) — only a validation-error response is flat.
+table = response["payout_bid_modification_table"]
+puts "Uploaded and activated table id=#{table["id"]} (table_version=#{table["table_version"]}) on campaign #{campaign_id}."
 ~~~
