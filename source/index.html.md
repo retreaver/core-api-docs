@@ -11,7 +11,10 @@ toc_footers:
 includes:
   - target_groups
   - rtb
+  - rtb_inbounds
+  - payout_bid_modification_tables
   - reports
+  - exports
   - deprecated_routes
   - errors
 
@@ -131,16 +134,24 @@ require 'benchmark'
 API_KEY = "woofwoofwoof"
 COMPANY_ID = "1"
 
-# 2 hours in the past. Use iso8601 as a format
+# 2 hours in the past, through now. Use iso8601 as a format
 # 2026-02-25T18:08:31Z
 # Note that the api accepts other params like
-# updated_at_end, updated_at_start, created_at_end
+# updated_at_end, updated_at_start
 # and that calls could be sorted in different ways. Consult the documentation.
-created_at_start = Time.at(Time.now.to_i-2*3600).utc.iso8601
+start_time = Time.at(Time.now.to_i-2*3600).utc
+end_time = Time.now.utc
+created_at_start = start_time.iso8601
+created_at_end = end_time.iso8601
+
+puts "About to download Calls created between #{created_at_start} and #{created_at_end}"
+puts "  using api_key=#{API_KEY} for company_id=#{COMPANY_ID}"
+print "Press Enter to continue, or Ctrl+C to cancel... "
+STDIN.gets
 
 per_page = 100
 # We start with the base URL provided (requesting 100 per page)
-BASE_URL = "https://api.retreaver.com/api/v1/calls.json?api_key=#{API_KEY}&created_at_start=#{created_at_start}&company_id=#{COMPANY_ID}&per_page=#{per_page}"
+BASE_URL = "https://api.retreaver.com/api/v1/calls.json?api_key=#{API_KEY}&created_at_start=#{created_at_start}&created_at_end=#{created_at_end}&company_id=#{COMPANY_ID}&per_page=#{per_page}"
 
 def fetch_calls(url)
   uri = URI.parse(url)
@@ -202,7 +213,16 @@ end
 
 puts "Total time elapsed: #{time.round(2)} seconds"
 
-puts "\nAll data for calls available at 'all_calls' array with size #{all_calls}"
+# Save alongside the 'all_calls' array in memory, named after the exact window queried — filename-safe
+# (no colons), so e.g. 20260225T160831Z-20260225T180831Z for a 2-hour window ending 2026-02-25T18:08:31Z.
+def filename_timestamp(time)
+  time.strftime('%Y%m%dT%H%M%SZ')
+end
+
+calls_file = "calls_#{filename_timestamp(start_time)}-#{filename_timestamp(end_time)}.json"
+File.write(calls_file, JSON.pretty_generate(all_calls))
+
+puts "\nAll data for calls available at 'all_calls' array with size #{all_calls.length}, saved to #{calls_file}"
 
 ~~~
 
