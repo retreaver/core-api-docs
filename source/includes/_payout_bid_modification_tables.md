@@ -170,3 +170,105 @@ Returns an empty `200 OK` body on success.
 <aside class="notice">
 Deleting a table is permanent and removes it from the campaign's upload history — it does not deactivate-and-keep, the way updating <code>active</code> to <code>false</code> does. If you might want to roll back to it later, deactivate it instead of deleting it.
 </aside>
+
+## Script Example: a data-driven payout reduction, split as a Control/Treatment test
+
+A common use of Payout Bid Modification is a payout experiment per publisher: pay less on part of a publisher's traffic and leave the rest as a control group, so the impact is measurable against a baseline instead of applied blind. This script builds one from real data — it reads the merged Calls + RTB Inbounds file from the [merge example](#example-merging-calls-and-rtb-inbounds-by-calluuid) in Exports, computes each publisher's actual current payout rate from their `claimed` traffic, and generates a table that pays 10% less than that rate on half of each publisher's traffic (bucket-split, so the split is stable and deterministic per call), leaving the other half at the current rate as the untouched control group.
+
+<aside class="warning">
+This is a demo, not a recommendation — a flat 10% cut, a straight sum(Payout)/sum(Revenue) rate, and an even 50/50 split are all one arbitrary, simple choice. The actual work in a payout experiment like this is everything this script glosses over: what "current rate" should mean for a publisher whose mix of traffic varies (by hour, by geography, by conversion type), how big a change is worth testing and for how long, what split gives you a statistically meaningful read, and how you pull fresh data and recompute as the experiment runs rather than uploading a rule once and forgetting it. Treat the shape here — receive data, calculate rules, upload — as the scaffolding, and put your own math into it.
+</aside>
+
+<aside class="warning">
+The merged file's publisher-id column is RTB Inbounds' own <code>affiliate_id</code> — Retreaver's internal id, not a client-supplied one — so the generated rules key on <code>system_affiliate_id</code>, not <code>affiliate_id</code>. See the <a href="#the-rule-csv-format">warning above</a> about the two being different things.
+</aside>
+
+<aside class="warning">
+That column's header text isn't fixed, because different accounts use different terminology: it's <code>Source ID</code> on the old/Enterprise nomenclature (the default), but <code>Publisher ID</code> on a Performance Marketing account — same <code>affiliate_id</code> field underneath, just labeled differently per company. The script checks for either.
+</aside>
+
+~~~ruby
+# How to run:
+#   ruby build_payout_reduction.rb <campaign_id> <calls_with_rtb_inbounds.csv>
+#
+# calls_with_rtb_inbounds.csv — from the merge example in Exports.
+#
+# This computes real numbers from your data and then activates a table immediately on
+# real traffic — review the printed per-publisher rates before confirming.
+
+require 'csv'
+require 'json'
+require 'net/http'
+require 'uri'
+
+API_KEY = "woofwoofwoof"
+BASE_URL = "https://api.retreaver.com"
+PAYOUT_REDUCTION = 0.10  # pay 10% less than the current rate
+TREATMENT_BUCKETS = 0...5000  # half the 0-9999 bucket space; the rest is the control group
+
+campaign_id, merged_csv_path = ARGV
+if campaign_id.nil? || merged_csv_path.nil?
+  abort "Usage: ruby #{$PROGRAM_NAME} <campaign_id> <calls_with_rtb_inbounds.csv>"
+end
+
+rows = CSV.read(merged_csv_path, headers: true)
+
+# The publisher-id column is "Source ID" on the default (old/Enterprise) nomenclature, or
+# "Publisher ID" on a Performance Marketing account — same affiliate_id field, different
+# label per company. Accept either rather than assuming one.
+publisher_id_header = (rows.headers || []).find { |h| ["Source ID", "Publisher ID"].include?(h) }
+unless publisher_id_header
+  abort "Could not find a 'Source ID' or 'Publisher ID' column in #{merged_csv_path}"
+end
+
+claimed = rows.select { |row| row["Status"] == "claimed" && row["Campaign ID"] == campaign_id }
+abort "No claimed RTB Inbounds found for campaign #{campaign_id} in #{merged_csv_path}" if claimed.empty?
+
+other_campaigns = rows.map { |row| row["Campaign ID"] }.uniq - [campaign_id]
+puts "Note: ignoring other campaign(s) in this file: #{other_campaigns.join(', ')}" if other_campaigns.any?
+
+# Sum Revenue/Payout per publisher across their claimed rows — see the aside above for why
+# this becomes system_affiliate_id, not affiliate_id, in the rules.
+totals = claimed.each_with_object(Hash.new { |h, k| h[k] = { revenue: 0.0, payout: 0.0 } }) do |row, sums|
+  publisher_totals = sums[row[publisher_id_header]]
+  publisher_totals[:revenue] += row["Revenue"].to_f
+  publisher_totals[:payout] += row["Payout"].to_f
+end
+
+csv_rows = [["rule_id", "system_affiliate_id", "pbm_bucket", "pbm_bucket", "payout_pct"]]
+rule_id = 0
+
+puts "Payout changes for campaign #{campaign_id} (10% off on half of traffic, current rate on the other half):"
+
+totals.each do |publisher_id, sums|
+  next if sums[:revenue].zero? # no revenue, no rate to derive
+
+  current_pct = (sums[:payout] / sums[:revenue] * 100).round(2)
+  reduced_pct = (current_pct * (1 - PAYOUT_REDUCTION)).round(2)
+  puts "  publisher #{publisher_id}: #{current_pct}% -> #{reduced_pct}% on bucket #{TREATMENT_BUCKETS}, #{current_pct}% on the rest"
+
+  rule_id += 1
+  csv_rows << [rule_id, publisher_id, ">=#{TREATMENT_BUCKETS.begin}", "<#{TREATMENT_BUCKETS.end}", reduced_pct]
+  rule_id += 1
+  csv_rows << [rule_id, publisher_id, ">=#{TREATMENT_BUCKETS.end}", "*", current_pct]
+end
+
+rule_id += 1
+csv_rows << [rule_id, "*", "*", "*", "current"] # anything unlisted (e.g. no claimed traffic yet) stays unmodified
+
+csv_data = csv_rows.map(&:to_csv).join
+puts "\n#{csv_data}"
+
+print "Press Enter to upload and activate this table now, or Ctrl+C to cancel... "
+STDIN.gets
+
+create_uri = URI.parse("#{BASE_URL}/api/v5/campaigns/#{campaign_id}/payout_bid_modification_tables.json?api_key=#{API_KEY}")
+body = { payout_bid_modification_table: { csv_data: csv_data, active: true } }
+response = JSON.parse(Net::HTTP.post(create_uri, body.to_json, "Content-Type" => "application/json").body)
+
+if response["errors"]
+  abort "Upload failed: #{response["errors"].join(", ")}"
+end
+
+puts "Uploaded and activated table id=#{response["id"]} (table_version=#{response["table_version"]}) on campaign #{campaign_id}."
+~~~
