@@ -676,6 +676,37 @@
               </ul>
           </li>
           <li>
+            <a href="#rtbinbounds" class="toc-h1 toc-link" data-title="RtbInbounds">RtbInbounds</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-rtb-inbounds" class="toc-h2 toc-link" data-title="Get all RTB Inbounds">Get all RTB Inbounds</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#payout-bid-modification-tables" class="toc-h1 toc-link" data-title="Payout bid modification tables">Payout bid modification tables</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#the-rule-csv-format" class="toc-h2 toc-link" data-title="The rule CSV format">The rule CSV format</a>
+                  </li>
+                  <li>
+                    <a href="#create-a-payout-bid-modification-table" class="toc-h2 toc-link" data-title="Create a Payout Bid Modification table">Create a Payout Bid Modification table</a>
+                  </li>
+                  <li>
+                    <a href="#list-a-campaigns-payout-bid-modification-tables" class="toc-h2 toc-link" data-title="List a campaign’s Payout Bid Modification tables">List a campaign’s Payout Bid Modification tables</a>
+                  </li>
+                  <li>
+                    <a href="#get-a-specific-payout-bid-modification-table" class="toc-h2 toc-link" data-title="Get a specific Payout Bid Modification table">Get a specific Payout Bid Modification table</a>
+                  </li>
+                  <li>
+                    <a href="#activate-or-roll-back-a-table" class="toc-h2 toc-link" data-title="Activate or roll back a table">Activate or roll back a table</a>
+                  </li>
+                  <li>
+                    <a href="#delete-a-payout-bid-modification-table" class="toc-h2 toc-link" data-title="Delete a Payout Bid Modification table">Delete a Payout Bid Modification table</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#reports" class="toc-h1 toc-link" data-title="Reports">Reports</a>
               <ul class="toc-list-h2">
                   <li>
@@ -689,6 +720,26 @@
                   </li>
                   <li>
                     <a href="#not-all-tag-values-are-indexed" class="toc-h2 toc-link" data-title="Not all tag values are indexed">Not all tag values are indexed</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#exports" class="toc-h1 toc-link" data-title="Exports">Exports</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#create-an-export" class="toc-h2 toc-link" data-title="Create an export">Create an export</a>
+                  </li>
+                  <li>
+                    <a href="#check-an-exports-status" class="toc-h2 toc-link" data-title="Check an export’s status">Check an export’s status</a>
+                  </li>
+                  <li>
+                    <a href="#download-the-export" class="toc-h2 toc-link" data-title="Download the export">Download the export</a>
+                  </li>
+                  <li>
+                    <a href="#script-example-downloading-an-rtb-inbounds-export" class="toc-h2 toc-link" data-title="Script Example: Downloading an RTB Inbounds export">Script Example: Downloading an RTB Inbounds export</a>
+                  </li>
+                  <li>
+                    <a href="#example-merging-calls-and-rtb-inbounds-by-calluuid" class="toc-h2 toc-link" data-title="Example: merging Calls and RTB Inbounds by call_uuid">Example: merging Calls and RTB Inbounds by call_uuid</a>
                   </li>
               </ul>
           </li>
@@ -903,16 +954,24 @@ our <a href="https://github.com/retreaver/retreaver-js">Retreaver.js</a> library
 <span class="no">API_KEY</span> <span class="o">=</span> <span class="s2">"woofwoofwoof"</span>
 <span class="no">COMPANY_ID</span> <span class="o">=</span> <span class="s2">"1"</span>
 
-<span class="c1"># 2 hours in the past. Use iso8601 as a format</span>
+<span class="c1"># 2 hours in the past, through now. Use iso8601 as a format</span>
 <span class="c1"># 2026-02-25T18:08:31Z</span>
 <span class="c1"># Note that the api accepts other params like</span>
-<span class="c1"># updated_at_end, updated_at_start, created_at_end</span>
+<span class="c1"># updated_at_end, updated_at_start</span>
 <span class="c1"># and that calls could be sorted in different ways. Consult the documentation.</span>
-<span class="n">created_at_start</span> <span class="o">=</span> <span class="no">Time</span><span class="p">.</span><span class="nf">at</span><span class="p">(</span><span class="no">Time</span><span class="p">.</span><span class="nf">now</span><span class="p">.</span><span class="nf">to_i</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="mi">3600</span><span class="p">).</span><span class="nf">utc</span><span class="p">.</span><span class="nf">iso8601</span>
+<span class="n">start_time</span> <span class="o">=</span> <span class="no">Time</span><span class="p">.</span><span class="nf">at</span><span class="p">(</span><span class="no">Time</span><span class="p">.</span><span class="nf">now</span><span class="p">.</span><span class="nf">to_i</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="mi">3600</span><span class="p">).</span><span class="nf">utc</span>
+<span class="n">end_time</span> <span class="o">=</span> <span class="no">Time</span><span class="p">.</span><span class="nf">now</span><span class="p">.</span><span class="nf">utc</span>
+<span class="n">created_at_start</span> <span class="o">=</span> <span class="n">start_time</span><span class="p">.</span><span class="nf">iso8601</span>
+<span class="n">created_at_end</span> <span class="o">=</span> <span class="n">end_time</span><span class="p">.</span><span class="nf">iso8601</span>
+
+<span class="nb">puts</span> <span class="s2">"About to download Calls created between </span><span class="si">#{</span><span class="n">created_at_start</span><span class="si">}</span><span class="s2"> and </span><span class="si">#{</span><span class="n">created_at_end</span><span class="si">}</span><span class="s2">"</span>
+<span class="nb">puts</span> <span class="s2">"  using api_key=</span><span class="si">#{</span><span class="no">API_KEY</span><span class="si">}</span><span class="s2"> for company_id=</span><span class="si">#{</span><span class="no">COMPANY_ID</span><span class="si">}</span><span class="s2">"</span>
+<span class="nb">print</span> <span class="s2">"Press Enter to continue, or Ctrl+C to cancel... "</span>
+<span class="no">STDIN</span><span class="p">.</span><span class="nf">gets</span>
 
 <span class="n">per_page</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="c1"># We start with the base URL provided (requesting 100 per page)</span>
-<span class="no">BASE_URL</span> <span class="o">=</span> <span class="s2">"https://api.retreaver.com/api/v1/calls.json?api_key=</span><span class="si">#{</span><span class="no">API_KEY</span><span class="si">}</span><span class="s2">&amp;created_at_start=</span><span class="si">#{</span><span class="n">created_at_start</span><span class="si">}</span><span class="s2">&amp;company_id=</span><span class="si">#{</span><span class="no">COMPANY_ID</span><span class="si">}</span><span class="s2">&amp;per_page=</span><span class="si">#{</span><span class="n">per_page</span><span class="si">}</span><span class="s2">"</span>
+<span class="no">BASE_URL</span> <span class="o">=</span> <span class="s2">"https://api.retreaver.com/api/v1/calls.json?api_key=</span><span class="si">#{</span><span class="no">API_KEY</span><span class="si">}</span><span class="s2">&amp;created_at_start=</span><span class="si">#{</span><span class="n">created_at_start</span><span class="si">}</span><span class="s2">&amp;created_at_end=</span><span class="si">#{</span><span class="n">created_at_end</span><span class="si">}</span><span class="s2">&amp;company_id=</span><span class="si">#{</span><span class="no">COMPANY_ID</span><span class="si">}</span><span class="s2">&amp;per_page=</span><span class="si">#{</span><span class="n">per_page</span><span class="si">}</span><span class="s2">"</span>
 
 <span class="k">def</span> <span class="nf">fetch_calls</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
   <span class="n">uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
@@ -974,7 +1033,16 @@ our <a href="https://github.com/retreaver/retreaver-js">Retreaver.js</a> library
 
 <span class="nb">puts</span> <span class="s2">"Total time elapsed: </span><span class="si">#{</span><span class="n">time</span><span class="p">.</span><span class="nf">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2"> seconds"</span>
 
-<span class="nb">puts</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">All data for calls available at 'all_calls' array with size </span><span class="si">#{</span><span class="n">all_calls</span><span class="si">}</span><span class="s2">"</span>
+<span class="c1"># Save alongside the 'all_calls' array in memory, named after the exact window queried — filename-safe</span>
+<span class="c1"># (no colons), so e.g. 20260225T160831Z-20260225T180831Z for a 2-hour window ending 2026-02-25T18:08:31Z.</span>
+<span class="k">def</span> <span class="nf">filename_timestamp</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+  <span class="n">time</span><span class="p">.</span><span class="nf">strftime</span><span class="p">(</span><span class="s1">'%Y%m%dT%H%M%SZ'</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">calls_file</span> <span class="o">=</span> <span class="s2">"calls_</span><span class="si">#{</span><span class="n">filename_timestamp</span><span class="p">(</span><span class="n">start_time</span><span class="p">)</span><span class="si">}</span><span class="s2">-</span><span class="si">#{</span><span class="n">filename_timestamp</span><span class="p">(</span><span class="n">end_time</span><span class="p">)</span><span class="si">}</span><span class="s2">.json"</span>
+<span class="no">File</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">calls_file</span><span class="p">,</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">pretty_generate</span><span class="p">(</span><span class="n">all_calls</span><span class="p">))</span>
+
+<span class="nb">puts</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">All data for calls available at 'all_calls' array with size </span><span class="si">#{</span><span class="n">all_calls</span><span class="p">.</span><span class="nf">length</span><span class="si">}</span><span class="s2">, saved to </span><span class="si">#{</span><span class="n">calls_file</span><span class="si">}</span><span class="s2">"</span>
 
 </code></pre></div>
 <h2 id="data-retrieval--real-time-sync">Data Retrieval &amp; Real-Time Sync</h2>
@@ -7408,6 +7476,428 @@ curl <span class="nt">-X</span> POST <span class="s2">"https://rtb.retreaver.com
 <p>If a publisher sends multiple RTB requests for the same caller_number before the initial reservation expires, Retreaver Ping Shield will activate.</p>
 
 <p>Ping Shield caches the first response and prevents unnecessary processing of duplicate requests. This ensures that buyers are not pinged multiple times for the same caller on the same postback key, while still returning the original reservation to the publisher.</p>
+<h1 id="rtbinbounds">RtbInbounds</h1>
+
+<p>RtbInbounds is the log of inbound <a href="#real-time-bidding-rtb">Real-Time Bidding</a> reservations — one row per RTB ping your campaign received, whether it was claimed, expired, rejected, or resulted in no target. It’s the same data shown on the RTB Inbounds dashboard in your account.</p>
+
+<p>This endpoint returns a live, filtered page of recent rows. To pull a large historical range as a single file, use <a href="#exports">Exports</a> instead.</p>
+
+<h2 id="get-all-rtb-inbounds">Get all RTB Inbounds</h2>
+
+<div class="highlight"><pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/api/v5/rtb_inbounds.json?api_key=woofwoofwoof&amp;campaign_id[]=123&amp;created_at=last_7d"</span>
+</code></pre></div>
+<blockquote>
+  <p>The above command returns JSON structured like this:</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"rtb_inbounds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"call_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3d745a09-6e2b-4b8f-9e7d-9a2f6a9d9d21"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8f0a2d13-9d3a-4b3e-9a7a-6b8e4b9d9a21"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"postback_key_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">456</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"caller_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+15551234567"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"affiliate_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">789</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"target_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">321</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"revenue"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.5</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"payout"</span><span class="p">:</span><span class="w"> </span><span class="mf">8.75</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"claimed"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"duplicate_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"duplicate_original_uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00000000-0000-0000-0000-000000000000"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"caller_state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TX"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"caller_city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Austin"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"caller_zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"78701"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"caller_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-09-01T14:02:11Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"confirmed_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-09-01T14:02:12Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"ended_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-09-01T14:05:41Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"time_to_resolve"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.2</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"fired_pixels_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"fired_pixels_error_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"pbm_table_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"pbm_rule_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"pbm_bucket"</span><span class="p">:</span><span class="w"> </span><span class="mi">6231</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"pbm_variant"</span><span class="p">:</span><span class="w"> </span><span class="s2">"treatment"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"pbm_original_payout"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"pbm_percent_of_revenue"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code>GET https://api.retreaver.com/api/v5/rtb_inbounds.json?api_key=woofwoofwoof</code></p>
+
+<p>This endpoint is versioned like the rest of the API — <code>v2</code>, <code>v3</code>, <code>v4</code>, and <code>v5</code> all serve the same data.</p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>api_key</td>
+      <td>string</td>
+      <td>Required. The api_key used to authenticate this request.</td>
+    </tr>
+    <tr>
+      <td>campaign_id[]</td>
+      <td>integer array</td>
+      <td>Restrict to one or more of your campaigns.</td>
+    </tr>
+    <tr>
+      <td>affiliate_id[]</td>
+      <td>integer array</td>
+      <td>Restrict to one or more Sources.</td>
+    </tr>
+    <tr>
+      <td>target_id[]</td>
+      <td>integer array</td>
+      <td>Restrict to one or more Call Endpoints.</td>
+    </tr>
+    <tr>
+      <td>postback_key_id[]</td>
+      <td>integer array</td>
+      <td>Restrict to one or more postback (RTB) keys.</td>
+    </tr>
+    <tr>
+      <td>status[]</td>
+      <td>string array</td>
+      <td>One or more of: <code>expired</code>, <code>claimed</code>, <code>no-target</code>, <code>rejected</code>.</td>
+    </tr>
+    <tr>
+      <td>duplicate</td>
+      <td>boolean</td>
+      <td><code>true</code> or <code>false</code> — restrict to duplicate (or non-duplicate) reservations.</td>
+    </tr>
+    <tr>
+      <td>caller_state</td>
+      <td>string</td>
+      <td>Two-letter US/CA state or province abbreviation.</td>
+    </tr>
+    <tr>
+      <td>caller_country</td>
+      <td>string</td>
+      <td>Two-letter country abbreviation.</td>
+    </tr>
+    <tr>
+      <td>revenue[]</td>
+      <td>[min, max]</td>
+      <td>Two-element array, e.g. <code>revenue[]=20&amp;revenue[]=30</code>.</td>
+    </tr>
+    <tr>
+      <td>payout[]</td>
+      <td>[min, max]</td>
+      <td>Two-element array, same shape as <code>revenue[]</code>.</td>
+    </tr>
+    <tr>
+      <td>created_at</td>
+      <td>string</td>
+      <td>A relative window, e.g. <code>last_7d</code>. Takes precedence over the explicit bounds below when present.</td>
+    </tr>
+    <tr>
+      <td>created_at_start</td>
+      <td>datetime</td>
+      <td>Explicit range start (ISO 8601). Ignored if <code>created_at</code> is present.</td>
+    </tr>
+    <tr>
+      <td>created_at_end</td>
+      <td>datetime</td>
+      <td>Explicit range end (ISO 8601). Ignored if <code>created_at</code> is present. The window between start and end can’t exceed 2 months.</td>
+    </tr>
+    <tr>
+      <td>page</td>
+      <td>integer</td>
+      <td>Page number. Defaults to 1.</td>
+    </tr>
+    <tr>
+      <td>with_filters</td>
+      <td>boolean</td>
+      <td>When <code>true</code>, the response also includes a <code>filters</code> object listing every valid campaign/publisher/target/postback-key/status value for your account, so you don’t have to page those resources separately just to build a picker.</td>
+    </tr>
+  </tbody>
+</table>
+
+<aside class="notice">
+Results are always returned 100 per page — <code>per_page</code> isn't configurable on this endpoint.
+</aside>
+
+<p>You can only filter by IDs (campaign, affiliate, target, postback key) that your api_key’s account already has access to; any other IDs passed are silently dropped from the filter.</p>
+
+<h3 id="response-fields">Response fields</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>call_uuid</td>
+      <td>UUID of the Call this reservation belongs to. This is the join key back to <a href="#paginated">Calls</a> — note it is <em>not</em> the same value as this reservation’s own <code>uuid</code>. Not every reservation results in a Call (e.g. a <code>rejected</code> or <code>no-target</code> ping); when there is none, this is the all-zero UUID <code>00000000-0000-0000-0000-000000000000</code>, not <code>null</code>.</td>
+    </tr>
+    <tr>
+      <td>uuid</td>
+      <td>This RTB reservation’s own identifier.</td>
+    </tr>
+    <tr>
+      <td>status</td>
+      <td>One of <code>expired</code>, <code>claimed</code>, <code>no-target</code>, <code>rejected</code> (plus some internal Ping Shield statuses).</td>
+    </tr>
+    <tr>
+      <td>revenue / payout</td>
+      <td>Dollar amounts for this reservation.</td>
+    </tr>
+    <tr>
+      <td>time_to_resolve</td>
+      <td>Seconds between the ping and its resolution.</td>
+    </tr>
+    <tr>
+      <td>duplicate_original_uuid</td>
+      <td>UUID of the original reservation this one duplicates, when <code>duplicate</code> is true. Otherwise the same all-zero UUID sentinel as <code>call_uuid</code> above, never <code>null</code>.</td>
+    </tr>
+    <tr>
+      <td>pbm_*</td>
+      <td>Only present when <a href="#payout-bid-modification-tables">Payout Bid Modification</a> is enabled for the campaign’s company — see that section for what each <code>pbm_*</code> field means.</td>
+    </tr>
+  </tbody>
+</table>
+
+<aside class="notice">
+UUID columns on RtbInbounds and its Exports are never <code>null</code> — an absent UUID is always the all-zero sentinel <code>00000000-0000-0000-0000-000000000000</code>. Check against that string rather than for null/blank.
+</aside>
+
+<h3 id="pagination">Pagination</h3>
+
+<p>Like every paginated index in this API, responses carry a <code>Link</code> header — see <a href="#paginated">Paginated</a>.</p>
+<h1 id="payout-bid-modification-tables">Payout bid modification tables</h1>
+
+<aside class="notice">
+This is a detailed, rules-engine-shaped API. If you're setting up Payout Bid Modification for the first time, start with the conceptual guide at <a href="https://learn.retreaver.com/guides/payout-bid-modification" target="_blank">learn.retreaver.com/guides/payout-bid-modification</a> before working through the reference below.
+</aside>
+
+<p>A Payout Bid Modification (PBM) table is a CSV of rules, uploaded to a Campaign, that adjusts the payout percentage of an RTB ping based on its attributes (caller state, revenue, a deterministic bucket assignment, or any other tag key) — for example, to run a Control/Treatment payout experiment, or to apply a rate card from a rules provider.</p>
+
+<p>A table is <strong>write-once</strong>: <code>csv_data</code>, <code>salt</code>, and <code>table_version</code> can only be set on create. The only thing you can ever change afterward is <code>active</code> — flipping it is how you roll a campaign forward to a new table, or roll it back to a previous one. A campaign can have many uploaded tables (its upload history), but only one may be <code>active</code> at a time; activating one automatically deactivates whichever table was previously active for that campaign.</p>
+
+<h2 id="the-rule-csv-format">The rule CSV format</h2>
+
+<p>Each row is one rule, evaluated top to bottom — the first matching row wins. Two columns are reserved:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Column</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>rule_id</td>
+      <td>Carried through unchanged, used for logging/reporting.</td>
+    </tr>
+    <tr>
+      <td>payout_pct</td>
+      <td>The percentage of revenue to pay out when this rule matches (e.g. <code>70</code>), or the literal string <code>current</code> to leave the payout unmodified.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Every other column header is a real Retreaver tag key, used as-is — e.g. <code>caller_state</code>, <code>sub_id</code>, <code>revenue</code>, <code>system_affiliate_id</code>, or <code>pbm_bucket</code> (the ping’s deterministic bucket assignment, 0-9999, used for percentage-based traffic splits). Each cell uses the same <code>key:operator:value</code> shorthand used elsewhere in Retreaver for tag conditions, minus the <code>key:</code> part (the column header already says which key):</p>
+
+<ul>
+  <li>A plain value defaults to equality, e.g. <code>CO</code>.</li>
+  <li>Prefix an operator for anything else, e.g. <code>!=CA</code>, <code>&gt;=5000</code>, or <code>=~^(CO|NY|TX)$</code> to match a whole set of values in one row.</li>
+  <li><code>*</code>, or leaving the column out of a row entirely, means “no constraint” for that row.</li>
+</ul>
+
+<p>The <strong>same key can appear as more than one column</strong> to AND multiple comparators together — e.g. two <code>pbm_bucket</code> columns, <code>&gt;=5000</code> and <code>&lt;7500</code>, express a bucket range (there’s no dedicated <code>bucket_from</code>/<code>bucket_to</code> — it’s just <code>pbm_bucket</code> twice, like any other tag key range).</p>
+
+<aside class="warning">
+For Affiliates, Campaigns, and Targets there are two different keys, matching the <a href="#our-ids-vs-customer-ids">Our IDs vs Customer IDs</a> distinction elsewhere in this API — and picking the wrong one matches silently, it won't error:
+
+Key | Matches on
+--- | ----------
+`system_affiliate_id`, `system_campaign_id`, `system_target_id` | Retreaver's own internal ID (the `id` in every JSON response in this API).
+`affiliate_id`, `campaign_id`, `target_id` | The client-supplied external ID (`afid`/`cid`/`tid`) — the one set by whoever integrated with Retreaver on that object, not Retreaver's own ID.
+
+If a rules provider is handing you rule CSVs keyed on Retreaver's own IDs (the normal case — it's what every other endpoint in this API calls `affiliate_id`/`campaign_id`/`target_id`), use the `system_*` column.
+</aside>
+
+<div class="highlight"><pre class="highlight plaintext"><code>rule_id,caller_state,pbm_bucket,pbm_bucket,payout_pct
+1,=~^(CO|NY|TX)$,*,*,70
+2,*,&gt;=5000,&lt;7500,60
+3,*,*,*,current
+</code></pre></div>
+<p>Limits: at most 1000 rules per table, 1MB of CSV per upload.</p>
+
+<h2 id="create-a-payout-bid-modification-table">Create a Payout Bid Modification table</h2>
+
+<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-s</span> <span class="nt">-X</span> POST <span class="s2">"https://api.retreaver.com/api/v5/campaigns/16728/payout_bid_modification_tables.json?api_key=woofwoofwoof"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  <span class="nt">-d</span> <span class="s1">'{
+        "payout_bid_modification_table": {
+          "csv_data": "rule_id,caller_state,pbm_bucket,pbm_bucket,payout_pct\n1,=~^(CO|NY|TX)$,*,*,70\n2,*,&gt;=5000,&lt;7500,60\n3,*,*,*,current\n",
+          "active": true
+        }
+      }'</span>
+</code></pre></div>
+<blockquote>
+  <p>The above command returns JSON structured like this:</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9001</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">16728</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"table_version"</span><span class="p">:</span><span class="w"> </span><span class="mi">9001</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"salt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"acme_inc_2026-09-15"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"csv_data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rule_id,caller_state,pbm_bucket,pbm_bucket,payout_pct</span><span class="se">\n</span><span class="s2">1,=~^(CO|NY|TX)$,*,*,70</span><span class="se">\n</span><span class="s2">2,*,&gt;=5000,&lt;7500,60</span><span class="se">\n</span><span class="s2">3,*,*,*,current</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-09-15T18:04:22Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code>POST https://api.retreaver.com/api/v5/campaigns/:campaign_id/payout_bid_modification_tables.json?api_key=woofwoofwoof</code></p>
+
+<p><code>Content-Type: application/json</code></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>csv_data</td>
+      <td>string</td>
+      <td>Yes</td>
+      <td>The rule CSV, as described above.</td>
+    </tr>
+    <tr>
+      <td>active</td>
+      <td>boolean</td>
+      <td>No</td>
+      <td>Defaults to <code>false</code>. Set <code>true</code> to activate this table immediately (deactivating whichever table was previously active on the campaign).</td>
+    </tr>
+    <tr>
+      <td>salt</td>
+      <td>string</td>
+      <td>No</td>
+      <td>Makes bucket assignment independently verifiable — the same <code>(salt, call_uuid)</code> pair always produces the same <code>pbm_bucket</code>, so whoever supplied the CSV can recompute it on their side and confirm the assignment. If you omit it, one is derived automatically from your company name and the upload date. To pull each call’s actual <code>pbm_bucket</code> (and other <code>pbm_*</code> result fields) alongside its Call data for that verification, see <a href="#example-merging-calls-and-rtb-inbounds-by-calluuid">Example: merging Calls and RTB Inbounds by call_uuid</a>.</td>
+    </tr>
+    <tr>
+      <td>table_version</td>
+      <td>string</td>
+      <td>No</td>
+      <td>An optional label for this upload (e.g. to match a rules provider’s own revision numbering), unique per campaign. If omitted, it defaults to this table’s own <code>id</code>. This is a label only — it is never the lookup key; every route below identifies a table by <code>id</code>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>If <code>csv_data</code> doesn’t parse (bad CSV, unknown operator, too many rules, over the size limit), the response is:</p>
+
+<div class="highlight"><pre class="highlight json"><code><span class="p">{</span><span class="w"> </span><span class="nl">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Csv data could not be parsed into rules (...)"</span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<h2 id="list-a-campaigns-payout-bid-modification-tables">List a campaign’s Payout Bid Modification tables</h2>
+
+<div class="highlight"><pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/api/v5/campaigns/16728/payout_bid_modification_tables.json?api_key=woofwoofwoof"</span>
+</code></pre></div>
+<blockquote>
+  <p>The above command returns JSON structured like this:</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9001</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"campaign_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">16728</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"table_version"</span><span class="p">:</span><span class="w"> </span><span class="mi">9001</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"salt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"acme_inc_2026-09-15"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"csv_data"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rule_id,caller_state,pbm_bucket,pbm_bucket,payout_pct</span><span class="se">\n</span><span class="s2">1,=~^(CO|NY|TX)$,*,*,70</span><span class="se">\n</span><span class="s2">2,*,&gt;=5000,&lt;7500,60</span><span class="se">\n</span><span class="s2">3,*,*,*,current</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-09-15T18:04:22Z"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div>
+<h3 id="http-request-1">HTTP Request</h3>
+
+<p><code>GET https://api.retreaver.com/api/v5/campaigns/:campaign_id/payout_bid_modification_tables.json?api_key=woofwoofwoof</code></p>
+
+<p>Returned most-recently-uploaded first.</p>
+
+<h2 id="get-a-specific-payout-bid-modification-table">Get a specific Payout Bid Modification table</h2>
+
+<div class="highlight"><pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/api/v5/campaigns/16728/payout_bid_modification_tables/9001.json?api_key=woofwoofwoof"</span>
+</code></pre></div>
+<h3 id="http-request-2">HTTP Request</h3>
+
+<p><code>GET https://api.retreaver.com/api/v5/campaigns/:campaign_id/payout_bid_modification_tables/:id.json?api_key=woofwoofwoof</code></p>
+
+<p>Same response shape as create, above.</p>
+
+<h2 id="activate-or-roll-back-a-table">Activate or roll back a table</h2>
+
+<p>The only field an update can change is <code>active</code>. To roll a campaign back to a previous upload, activate that older table’s <code>id</code> — this deactivates whatever table is currently active on the campaign the same way creating with <code>active: true</code> does.</p>
+
+<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-s</span> <span class="nt">-X</span> PUT <span class="s2">"https://api.retreaver.com/api/v5/campaigns/16728/payout_bid_modification_tables/9001.json?api_key=woofwoofwoof"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  <span class="nt">-d</span> <span class="s1">'{ "payout_bid_modification_table": { "active": false } }'</span>
+</code></pre></div>
+<h3 id="http-request-3">HTTP Request</h3>
+
+<p><code>PUT https://api.retreaver.com/api/v5/campaigns/:campaign_id/payout_bid_modification_tables/:id.json?api_key=woofwoofwoof</code></p>
+
+<p><code>Content-Type: application/json</code></p>
+
+<h3 id="parameters-1">Parameters</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>active</td>
+      <td>boolean</td>
+      <td>Yes</td>
+      <td><code>true</code> to activate this table (deactivating the campaign’s current one); <code>false</code> to deactivate it without activating anything else.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="delete-a-payout-bid-modification-table">Delete a Payout Bid Modification table</h2>
+
+<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> DELETE <span class="s2">"https://api.retreaver.com/api/v5/campaigns/16728/payout_bid_modification_tables/9001.json?api_key=woofwoofwoof"</span>
+</code></pre></div>
+<p>Returns an empty <code>200 OK</code> body on success.</p>
+
+<h3 id="http-request-4">HTTP Request</h3>
+
+<p><code>DELETE https://api.retreaver.com/api/v5/campaigns/:campaign_id/payout_bid_modification_tables/:id.json?api_key=woofwoofwoof</code></p>
+
+<aside class="notice">
+Deleting a table is permanent and removes it from the campaign's upload history — it does not deactivate-and-keep, the way updating <code>active</code> to <code>false</code> does. If you might want to roll back to it later, deactivate it instead of deleting it.
+</aside>
 <h1 id="reports">Reports</h1>
 <p>## Reports Parameters
 <code>GET https://api.retreaver.com/api/v1/reports.json?....</code></p>
@@ -7789,6 +8279,305 @@ The Reports API response is cached and is not intended for realtime polling. For
     </tr>
   </tbody>
 </table>
+<h1 id="exports">Exports</h1>
+
+<p>Exports generate a CSV of a large historical range in the background, so you’re not paginating thousands of rows yourself. The flow is always the same three steps: create the export, poll it until it’s finished, then download the file from the URL the export gives you.</p>
+
+<p>Currently the only export type exposed here is <code>rtb_inbounds</code>. For Calls, there’s no async export yet — page through <a href="#paginated"><code>/api/v5/calls</code></a> directly (see the <a href="#script-example-exporting-recently-created-calls-via-retreaver-api">Script Example</a> for a working pagination loop).</p>
+
+<h2 id="create-an-export">Create an export</h2>
+
+<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> POST <span class="s2">"https://api.retreaver.com/api/v5/exports/rtb_inbounds.json?api_key=woofwoofwoof"</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  <span class="nt">-d</span> <span class="s1">'{
+        "export": {
+          "format": "csv",
+          "params": { "campaign_id": [123], "created_at": "last_7d" }
+        }
+      }'</span>
+</code></pre></div>
+<blockquote>
+  <p>The above command returns JSON structured like this:</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">501</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"export_count"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"export_progress"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"export_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"csv"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"file_upload_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"in_progress"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code>POST https://api.retreaver.com/api/v5/exports/rtb_inbounds.json?api_key=woofwoofwoof</code></p>
+
+<p><code>Content-Type: application/json</code></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>format</td>
+      <td>string</td>
+      <td>No</td>
+      <td>Only <code>csv</code> is supported today; it’s the default if omitted.</td>
+    </tr>
+    <tr>
+      <td>params</td>
+      <td>object</td>
+      <td>Yes</td>
+      <td>The filter to export — same filter keys as <a href="#rtbinbounds">RtbInbounds</a>’s query parameters (<code>campaign_id</code>, <code>affiliate_id</code>, <code>target_id</code>, <code>caller_state</code>, <code>status</code>, etc, as plain values or arrays), plus one of <code>created_at</code> (a relative token like <code>last_7d</code>) or <code>created_at_start</code>/<code>created_at_end</code>. The window is capped at 2 months, same as the live log.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="check-an-exports-status">Check an export’s status</h2>
+
+<div class="highlight"><pre class="highlight shell"><code>curl <span class="s2">"https://api.retreaver.com/api/v5/exports/rtb_inbounds/501.json?api_key=woofwoofwoof"</span>
+</code></pre></div>
+<blockquote>
+  <p>While it’s still generating:</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">501</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"export_count"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"export_progress"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"export_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"csv"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"file_upload_url"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"in_progress"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+  <p>Once it’s finished:</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">501</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"export_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">168</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"export_progress"</span><span class="p">:</span><span class="w"> </span><span class="mi">168</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"export_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"format"</span><span class="p">:</span><span class="w"> </span><span class="s2">"csv"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"file_upload_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/v2/reports/rtb_inbounds/501/download"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"in_progress"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<h3 id="http-request-1">HTTP Request</h3>
+
+<p><code>GET https://api.retreaver.com/api/v5/exports/rtb_inbounds/:id.json?api_key=woofwoofwoof</code></p>
+
+<p>Poll this until <code>in_progress</code> is <code>false</code> — <code>export_count</code> stays <code>null</code> and <code>export_progress</code>/<code>export_percentage</code> stay at <code>0</code> for the whole run; there’s no partial progress to report while an export is generating.</p>
+
+<h3 id="response-fields">Response fields</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>export_count</td>
+      <td><code>null</code> while generating. Once <code>in_progress</code> is <code>false</code>, the number of rows in your export.</td>
+    </tr>
+    <tr>
+      <td>export_progress</td>
+      <td><code>0</code> while generating. Once <code>in_progress</code> is <code>false</code>, the same as <code>export_count</code>.</td>
+    </tr>
+    <tr>
+      <td>export_percentage</td>
+      <td><code>0.0</code> while generating; <code>100.0</code> once <code>in_progress</code> is <code>false</code>.</td>
+    </tr>
+    <tr>
+      <td>in_progress</td>
+      <td><code>true</code> while generating; <code>false</code> once finished (or failed — check <code>errors</code>).</td>
+    </tr>
+    <tr>
+      <td>file_upload_url</td>
+      <td>The path to download the finished file from, relative to <code>https://api.retreaver.com</code> (e.g. <code>/v2/reports/rtb_inbounds/501/download</code>) — not a full URL. <code>null</code> until the export is done.</td>
+    </tr>
+    <tr>
+      <td>errors</td>
+      <td>Populated if the export request itself was invalid (e.g. a bad <code>params</code> filter).</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="download-the-export">Download the export</h2>
+
+<p>Once <code>in_progress</code> is <code>false</code>, prepend <code>https://api.retreaver.com</code> to the <code>file_upload_url</code> from the previous response — don’t construct the path yourself, only prepend the host, since it isn’t under <code>/api/v5/</code>. It’s still authenticated the same way (<code>api_key</code>) and redirects to the actual file:</p>
+
+<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-L</span> <span class="nt">-o</span> rtb_inbounds.csv.gz <span class="se">\</span>
+  <span class="s2">"https://api.retreaver.com/v2/reports/rtb_inbounds/501/download?api_key=woofwoofwoof"</span>
+<span class="nb">gunzip </span>rtb_inbounds.csv.gz
+</code></pre></div>
+<aside class="notice">
+The file is always gzip-compressed, whatever the export's <code>format</code> — decompress it before reading (<code>gunzip</code>, or <code>Zlib::GzipReader</code> / your language's equivalent, as in the merge example below).
+</aside>
+
+<h2 id="script-example-downloading-an-rtb-inbounds-export">Script Example: Downloading an RTB Inbounds export</h2>
+
+<p>Creates an export, polls it, downloads it, and decompresses it to a date-ranged CSV file — the scriptable version of the three steps above. When it finishes, you’re left with one file in the current directory, named <code>rtb_inbounds_&lt;start&gt;-&lt;end&gt;.csv</code> (e.g. <code>rtb_inbounds_20260908-20260915.csv</code>).</p>
+
+<div class="highlight"><pre class="highlight ruby"><code><span class="c1"># How to run:</span>
+<span class="c1">#   1. Save this script to a file, e.g. download_rtb_inbounds.rb</span>
+<span class="c1">#   2. Edit API_KEY below</span>
+<span class="c1">#   3. Run: ruby download_rtb_inbounds.rb</span>
+<span class="c1">#   4. You'll end up with one result file in the current directory, named</span>
+<span class="c1">#      rtb_inbounds_&lt;start&gt;-&lt;end&gt;.csv (e.g. rtb_inbounds_20260908-20260915.csv)</span>
+
+<span class="nb">require</span> <span class="s1">'net/http'</span>
+<span class="nb">require</span> <span class="s1">'uri'</span>
+<span class="nb">require</span> <span class="s1">'json'</span>
+<span class="nb">require</span> <span class="s1">'time'</span>
+<span class="nb">require</span> <span class="s1">'zlib'</span>
+<span class="nb">require</span> <span class="s1">'stringio'</span>
+
+<span class="no">API_KEY</span> <span class="o">=</span> <span class="s2">"woofwoofwoof"</span>
+<span class="no">BASE_URL</span> <span class="o">=</span> <span class="s2">"https://api.retreaver.com"</span>
+
+<span class="c1"># The download itself is a redirect (302) to the actual file, not the file itself —</span>
+<span class="c1"># Net::HTTP doesn't follow redirects on its own.</span>
+<span class="k">def</span> <span class="nf">http_get_following_redirects</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span> <span class="n">limit</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+  <span class="k">raise</span> <span class="s2">"too many redirects"</span> <span class="k">if</span> <span class="n">limit</span> <span class="o">==</span> <span class="mi">0</span>
+
+  <span class="n">response</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">get_response</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span>
+  <span class="n">response</span><span class="p">.</span><span class="nf">is_a?</span><span class="p">(</span><span class="no">Net</span><span class="o">::</span><span class="no">HTTPRedirection</span><span class="p">)</span> <span class="p">?</span> <span class="n">http_get_following_redirects</span><span class="p">(</span><span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">response</span><span class="p">[</span><span class="s1">'location'</span><span class="p">]),</span> <span class="n">limit</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">:</span> <span class="n">response</span>
+<span class="k">end</span>
+
+<span class="c1"># Create + poll + download an RTB Inbounds export, saving the decompressed CSV to `path`.</span>
+<span class="k">def</span> <span class="nf">fetch_rtb_inbounds_csv</span><span class="p">(</span><span class="n">created_at_start</span><span class="p">:,</span> <span class="n">created_at_end</span><span class="p">:,</span> <span class="n">path</span><span class="p">:)</span>
+  <span class="nb">puts</span> <span class="s2">"Creating RTB Inbounds export..."</span>
+  <span class="n">create_uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s2">"</span><span class="si">#{</span><span class="no">BASE_URL</span><span class="si">}</span><span class="s2">/api/v5/exports/rtb_inbounds.json?api_key=</span><span class="si">#{</span><span class="no">API_KEY</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+  <span class="n">create_body</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">export: </span><span class="p">{</span> <span class="ss">format: </span><span class="s2">"csv"</span><span class="p">,</span> <span class="ss">params: </span><span class="p">{</span> <span class="ss">created_at_start: </span><span class="n">created_at_start</span><span class="p">,</span> <span class="ss">created_at_end: </span><span class="n">created_at_end</span> <span class="p">}</span> <span class="p">}</span> <span class="p">}</span>
+  <span class="n">export</span> <span class="o">=</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="n">create_uri</span><span class="p">,</span> <span class="n">create_body</span><span class="p">.</span><span class="nf">to_json</span><span class="p">,</span> <span class="s2">"Content-Type"</span> <span class="o">=&gt;</span> <span class="s2">"application/json"</span><span class="p">).</span><span class="nf">body</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"  export id=</span><span class="si">#{</span><span class="n">export</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span><span class="si">}</span><span class="s2"> created, polling until it's done..."</span>
+
+  <span class="n">show_uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s2">"</span><span class="si">#{</span><span class="no">BASE_URL</span><span class="si">}</span><span class="s2">/api/v5/exports/rtb_inbounds/</span><span class="si">#{</span><span class="n">export</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span><span class="si">}</span><span class="s2">.json?api_key=</span><span class="si">#{</span><span class="no">API_KEY</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+  <span class="kp">loop</span> <span class="k">do</span>
+    <span class="nb">sleep</span> <span class="mi">2</span>
+    <span class="n">export</span> <span class="o">=</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">get_response</span><span class="p">(</span><span class="n">show_uri</span><span class="p">).</span><span class="nf">body</span><span class="p">)</span>
+    <span class="c1"># export_progress/export_count don't report partial progress — poll on in_progress itself.</span>
+    <span class="nb">puts</span> <span class="s2">"  in_progress=</span><span class="si">#{</span><span class="n">export</span><span class="p">[</span><span class="s1">'in_progress'</span><span class="p">]</span><span class="si">}</span><span class="s2">..."</span>
+    <span class="k">break</span> <span class="k">unless</span> <span class="n">export</span><span class="p">[</span><span class="s1">'in_progress'</span><span class="p">]</span>
+  <span class="k">end</span>
+
+  <span class="c1"># file_upload_url is a path (e.g. "/v2/reports/rtb_inbounds/501/download"), not a full URL — prepend BASE_URL.</span>
+  <span class="nb">puts</span> <span class="s2">"Downloading export from </span><span class="si">#{</span><span class="n">export</span><span class="p">[</span><span class="s1">'file_upload_url'</span><span class="p">]</span><span class="si">}</span><span class="s2">..."</span>
+  <span class="n">download_uri</span> <span class="o">=</span> <span class="no">URI</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="s2">"</span><span class="si">#{</span><span class="no">BASE_URL</span><span class="si">}#{</span><span class="n">export</span><span class="p">[</span><span class="s1">'file_upload_url'</span><span class="p">]</span><span class="si">}</span><span class="s2">?api_key=</span><span class="si">#{</span><span class="no">API_KEY</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+  <span class="n">response</span> <span class="o">=</span> <span class="n">http_get_following_redirects</span><span class="p">(</span><span class="n">download_uri</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"  downloaded </span><span class="si">#{</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">.</span><span class="nf">bytesize</span><span class="si">}</span><span class="s2"> gzip-compressed bytes."</span>
+
+  <span class="c1"># The export is always written gzip-compressed — decompress before use.</span>
+  <span class="n">csv_text</span> <span class="o">=</span> <span class="no">Zlib</span><span class="o">::</span><span class="no">GzipReader</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="no">StringIO</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">)).</span><span class="nf">read</span>
+  <span class="no">File</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">csv_text</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"  saved </span><span class="si">#{</span><span class="n">csv_text</span><span class="p">.</span><span class="nf">bytesize</span><span class="si">}</span><span class="s2"> bytes (decompressed) to </span><span class="si">#{</span><span class="n">path</span><span class="si">}</span><span class="s2">"</span>
+
+  <span class="n">path</span>
+<span class="k">end</span>
+
+<span class="n">created_at_start</span> <span class="o">=</span> <span class="p">(</span><span class="no">Time</span><span class="p">.</span><span class="nf">now</span> <span class="o">-</span> <span class="mi">7</span> <span class="o">*</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">3600</span><span class="p">).</span><span class="nf">utc</span>
+<span class="n">created_at_end</span> <span class="o">=</span> <span class="no">Time</span><span class="p">.</span><span class="nf">now</span><span class="p">.</span><span class="nf">utc</span>
+<span class="n">date_range</span> <span class="o">=</span> <span class="s2">"</span><span class="si">#{</span><span class="n">created_at_start</span><span class="p">.</span><span class="nf">strftime</span><span class="p">(</span><span class="s1">'%Y%m%d'</span><span class="p">)</span><span class="si">}</span><span class="s2">-</span><span class="si">#{</span><span class="n">created_at_end</span><span class="p">.</span><span class="nf">strftime</span><span class="p">(</span><span class="s1">'%Y%m%d'</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+
+<span class="nb">puts</span> <span class="s2">"About to export RTB Inbounds created between </span><span class="si">#{</span><span class="n">created_at_start</span><span class="p">.</span><span class="nf">iso8601</span><span class="si">}</span><span class="s2"> and </span><span class="si">#{</span><span class="n">created_at_end</span><span class="p">.</span><span class="nf">iso8601</span><span class="si">}</span><span class="s2">"</span>
+<span class="nb">puts</span> <span class="s2">"  using api_key=</span><span class="si">#{</span><span class="no">API_KEY</span><span class="si">}</span><span class="s2">"</span>
+<span class="nb">print</span> <span class="s2">"Press Enter to continue, or Ctrl+C to cancel... "</span>
+<span class="no">STDIN</span><span class="p">.</span><span class="nf">gets</span>
+
+<span class="n">rtb_inbounds_csv_path</span> <span class="o">=</span> <span class="n">fetch_rtb_inbounds_csv</span><span class="p">(</span>
+  <span class="ss">created_at_start: </span><span class="n">created_at_start</span><span class="p">.</span><span class="nf">iso8601</span><span class="p">,</span>
+  <span class="ss">created_at_end: </span><span class="n">created_at_end</span><span class="p">.</span><span class="nf">iso8601</span><span class="p">,</span>
+  <span class="ss">path: </span><span class="s2">"rtb_inbounds_</span><span class="si">#{</span><span class="n">date_range</span><span class="si">}</span><span class="s2">.csv"</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nb">puts</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">Done! RTB Inbounds saved to </span><span class="si">#{</span><span class="no">File</span><span class="p">.</span><span class="nf">expand_path</span><span class="p">(</span><span class="n">rtb_inbounds_csv_path</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+</code></pre></div>
+<h2 id="example-merging-calls-and-rtb-inbounds-by-calluuid">Example: merging Calls and RTB Inbounds by call_uuid</h2>
+
+<p>RTB Inbounds rows carry a <code>call_uuid</code> for the Call each reservation belongs to, so you can enrich an export with Call data (or vice versa) by joining on that field. This doesn’t fetch either dataset itself — it takes the two files already produced elsewhere on this page and joins them:</p>
+
+<ul>
+  <li>a Calls JSON file, e.g. <code>calls_20260225T160831Z-20260225T180831Z.json</code> from the <a href="#script-example-exporting-recently-created-calls-via-retreaver-api">Script Example</a> in the Introduction.</li>
+  <li>an RTB Inbounds CSV file, e.g. <code>rtb_inbounds_20260908-20260915.csv</code> from the <a href="#script-example-downloading-an-rtb-inbounds-export">Script Example: Downloading an RTB Inbounds export</a> above.</li>
+</ul>
+
+<p>The join below is a <strong>full outer join</strong>, keyed on <code>call_uuid</code>: every RTB Inbounds row is included even when it has no matching Call (e.g. a <code>rejected</code> or <code>no-target</code> ping never created one), and every Call is included even when no RTB Inbounds row references it (e.g. it wasn’t reserved through RTB at all). The unmatched side is simply left blank rather than the row being dropped. Columns are ordered RTB Inbounds columns first, then Call columns.</p>
+
+<div class="highlight"><pre class="highlight ruby"><code><span class="c1"># How to run:</span>
+<span class="c1">#   ruby merge_calls_with_rtb_inbounds.rb &lt;calls.json&gt; &lt;rtb_inbounds.csv&gt;</span>
+<span class="c1">#</span>
+<span class="c1"># calls.json       — from the Script Example in the Introduction</span>
+<span class="c1"># rtb_inbounds.csv — from the Script Example: Downloading an RTB Inbounds export, above</span>
+
+<span class="nb">require</span> <span class="s1">'json'</span>
+<span class="nb">require</span> <span class="s1">'csv'</span>
+
+<span class="n">calls_path</span><span class="p">,</span> <span class="n">rtb_inbounds_csv_path</span> <span class="o">=</span> <span class="no">ARGV</span>
+<span class="k">if</span> <span class="n">calls_path</span><span class="p">.</span><span class="nf">nil?</span> <span class="o">||</span> <span class="n">rtb_inbounds_csv_path</span><span class="p">.</span><span class="nf">nil?</span>
+  <span class="nb">abort</span> <span class="s2">"Usage: ruby </span><span class="si">#{</span><span class="vg">$PROGRAM_NAME</span><span class="si">}</span><span class="s2"> &lt;calls.json&gt; &lt;rtb_inbounds.csv&gt;"</span>
+<span class="k">end</span>
+
+<span class="n">all_calls</span> <span class="o">=</span> <span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="no">File</span><span class="p">.</span><span class="nf">read</span><span class="p">(</span><span class="n">calls_path</span><span class="p">))</span>
+<span class="n">rtb_inbounds</span> <span class="o">=</span> <span class="no">CSV</span><span class="p">.</span><span class="nf">read</span><span class="p">(</span><span class="n">rtb_inbounds_csv_path</span><span class="p">,</span> <span class="ss">headers: </span><span class="kp">true</span><span class="p">)</span>
+<span class="n">calls_by_uuid</span> <span class="o">=</span> <span class="n">all_calls</span><span class="p">.</span><span class="nf">each_with_object</span><span class="p">({})</span> <span class="p">{</span> <span class="o">|</span><span class="n">call</span><span class="p">,</span> <span class="n">h</span><span class="o">|</span> <span class="n">h</span><span class="p">[</span><span class="n">call</span><span class="p">[</span><span class="s2">"uuid"</span><span class="p">]]</span> <span class="o">=</span> <span class="n">call</span> <span class="p">}</span>
+
+<span class="c1"># A Call field can be an array/hash (downstream_call_uuids, target_group, ...) — flatten those to a</span>
+<span class="c1"># JSON string so they round-trip through a single CSV cell.</span>
+<span class="k">def</span> <span class="nf">csv_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+  <span class="n">value</span><span class="p">.</span><span class="nf">is_a?</span><span class="p">(</span><span class="no">Array</span><span class="p">)</span> <span class="o">||</span> <span class="n">value</span><span class="p">.</span><span class="nf">is_a?</span><span class="p">(</span><span class="no">Hash</span><span class="p">)</span> <span class="p">?</span> <span class="n">value</span><span class="p">.</span><span class="nf">to_json</span> <span class="p">:</span> <span class="n">value</span>
+<span class="k">end</span>
+
+<span class="c1"># RTB Inbounds columns first, then one column per key found across all_calls' own JSON keys.</span>
+<span class="n">rtb_headers</span> <span class="o">=</span> <span class="n">rtb_inbounds</span><span class="p">.</span><span class="nf">headers</span> <span class="o">||</span> <span class="p">[]</span>
+<span class="n">call_headers</span> <span class="o">=</span> <span class="n">all_calls</span><span class="p">.</span><span class="nf">flat_map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:keys</span><span class="p">).</span><span class="nf">uniq</span>
+<span class="n">matched_call_uuids</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">written</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="nb">puts</span> <span class="s2">"Merging </span><span class="si">#{</span><span class="n">rtb_inbounds</span><span class="p">.</span><span class="nf">length</span><span class="si">}</span><span class="s2"> RTB Inbounds rows with </span><span class="si">#{</span><span class="n">all_calls</span><span class="p">.</span><span class="nf">length</span><span class="si">}</span><span class="s2"> calls by call_uuid..."</span>
+
+<span class="no">CSV</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="s2">"calls_with_rtb_inbounds.csv"</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">out</span><span class="o">|</span>
+  <span class="n">out</span> <span class="o">&lt;&lt;</span> <span class="n">rtb_headers</span> <span class="o">+</span> <span class="n">call_headers</span>
+
+  <span class="n">rtb_inbounds</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">row</span><span class="o">|</span>
+    <span class="n">call</span> <span class="o">=</span> <span class="n">calls_by_uuid</span><span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s2">"Call UUID"</span><span class="p">]]</span>
+    <span class="n">matched_call_uuids</span><span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s2">"Call UUID"</span><span class="p">]]</span> <span class="o">=</span> <span class="kp">true</span> <span class="k">if</span> <span class="n">call</span>
+
+    <span class="n">out</span> <span class="o">&lt;&lt;</span> <span class="n">rtb_headers</span><span class="p">.</span><span class="nf">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">h</span><span class="o">|</span> <span class="n">row</span><span class="p">[</span><span class="n">h</span><span class="p">]</span> <span class="p">}</span> <span class="o">+</span> <span class="n">call_headers</span><span class="p">.</span><span class="nf">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">h</span><span class="o">|</span> <span class="n">call</span> <span class="o">&amp;&amp;</span> <span class="n">csv_value</span><span class="p">(</span><span class="n">call</span><span class="p">[</span><span class="n">h</span><span class="p">])</span> <span class="p">}</span>
+    <span class="n">written</span> <span class="o">+=</span> <span class="mi">1</span>
+  <span class="k">end</span>
+
+  <span class="n">all_calls</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">call</span><span class="o">|</span>
+    <span class="k">next</span> <span class="k">if</span> <span class="n">matched_call_uuids</span><span class="p">[</span><span class="n">call</span><span class="p">[</span><span class="s2">"uuid"</span><span class="p">]]</span>
+
+    <span class="n">out</span> <span class="o">&lt;&lt;</span> <span class="n">rtb_headers</span><span class="p">.</span><span class="nf">map</span> <span class="p">{</span> <span class="kp">nil</span> <span class="p">}</span> <span class="o">+</span> <span class="n">call_headers</span><span class="p">.</span><span class="nf">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">h</span><span class="o">|</span> <span class="n">csv_value</span><span class="p">(</span><span class="n">call</span><span class="p">[</span><span class="n">h</span><span class="p">])</span> <span class="p">}</span>
+    <span class="n">written</span> <span class="o">+=</span> <span class="mi">1</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="nb">puts</span> <span class="s2">"Wrote </span><span class="si">#{</span><span class="n">written</span><span class="si">}</span><span class="s2"> rows (</span><span class="si">#{</span><span class="n">rtb_inbounds</span><span class="p">.</span><span class="nf">length</span><span class="si">}</span><span class="s2"> from RTB Inbounds, </span><span class="si">#{</span><span class="n">written</span> <span class="o">-</span> <span class="n">rtb_inbounds</span><span class="p">.</span><span class="nf">length</span><span class="si">}</span><span class="s2"> Calls with no RTB Inbounds row) to calls_with_rtb_inbounds.csv."</span>
+</code></pre></div>
+<aside class="notice">
+The RTB Inbounds CSV headers are human-readable labels (e.g. <code>Call UUID</code>, <code>Status</code>), not the JSON field names (<code>call_uuid</code>, <code>status</code>) — the <a href="#rtbinbounds">RtbInbounds</a> JSON endpoint uses the plain field names shown there. Calls have no such relabeling: each Call's own JSON keys (<code>uuid</code>, <code>status</code>, ...) are used as-is for its columns.
+</aside>
 <h1 id="deprecated-routes">DEPRECATED ROUTES</h1>
 
 <h2 id="check-whether-or-not-you-have-any-suppressed-numbers">Check whether or not you have any Suppressed Numbers</h2>
