@@ -173,7 +173,7 @@ Deleting a table is permanent and removes it from the campaign's upload history 
 
 ## Script Example: a data-driven payout reduction, split as a Control/Treatment test
 
-A common use of Payout Bid Modification is a payout experiment per publisher: pay less on part of a publisher's traffic and leave the rest as a control group, so the impact is measurable against a baseline instead of applied blind. This script builds one from real data — it reads the merged Calls + RTB Inbounds file from the [merge example](#example-merging-calls-and-rtb-inbounds-by-calluuid) in Exports, computes each publisher's actual current payout rate from their `claimed` traffic, and generates a table that pays 10% less than that rate on half of each publisher's traffic (bucket-split, so the split is stable and deterministic per call), leaving the other half at the current rate as the untouched control group.
+A common use of Payout Bid Modification is a payout experiment per publisher: pay less on part of a publisher's traffic and leave the rest as a control group, so the impact is measurable against a baseline instead of applied blind. This script builds one from real data — it reads the merged Calls + RTB Inbounds file from the [merge example](#example-merging-calls-and-rtb-inbounds-by-calluuid) in Exports, computes each publisher's actual current payout rate from their `claimed` traffic, and generates a table that pays 10% less than that rate on half of each publisher's traffic (bucket-split, so the split is stable and deterministic per call). The other half — the control group — gets no rule at all: a bucket you don't want to change is simply left out of the CSV, and the trailing catch-all row (`payout_pct=current`) covers it, rather than writing an explicit "current" row for every publisher.
 
 <aside class="warning">
 This is a demo, not a recommendation — a flat 10% cut, a straight sum(Payout)/sum(Revenue) rate, and an even 50/50 split are all one arbitrary, simple choice. The actual work in a payout experiment like this is everything this script glosses over: what "current rate" should mean for a publisher whose mix of traffic varies (by hour, by geography, by conversion type), how big a change is worth testing and for how long, what split gives you a statistically meaningful read, and how you pull fresh data and recompute as the experiment runs rather than uploading a rule once and forgetting it. Treat the shape here — receive data, calculate rules, upload — as the scaffolding, and put your own math into it.
@@ -245,16 +245,17 @@ totals.each do |publisher_id, sums|
 
   current_pct = (sums[:payout] / sums[:revenue] * 100).round(2)
   reduced_pct = (current_pct * (1 - PAYOUT_REDUCTION)).round(2)
-  puts "  publisher #{publisher_id}: #{current_pct}% -> #{reduced_pct}% on bucket #{TREATMENT_BUCKETS}, #{current_pct}% on the rest"
+  puts "  publisher #{publisher_id}: #{current_pct}% -> #{reduced_pct}% on bucket #{TREATMENT_BUCKETS}, unchanged on the rest"
 
+  # Only the treatment half gets a rule. The control half is deliberately left OUT of the
+  # rules entirely, rather than given its own "current" row — it falls through to the
+  # catch-all below, same as any publisher/bucket we never wrote a rule for.
   rule_id += 1
   csv_rows << [rule_id, publisher_id, ">=#{TREATMENT_BUCKETS.begin}", "<#{TREATMENT_BUCKETS.end}", reduced_pct]
-  rule_id += 1
-  csv_rows << [rule_id, publisher_id, ">=#{TREATMENT_BUCKETS.end}", "*", current_pct]
 end
 
 rule_id += 1
-csv_rows << [rule_id, "*", "*", "*", "current"] # anything unlisted (e.g. no claimed traffic yet) stays unmodified
+csv_rows << [rule_id, "*", "*", "*", "current"] # everything not matched above (control buckets, other publishers) stays unmodified
 
 csv_data = csv_rows.map(&:to_csv).join
 puts "\n#{csv_data}"
