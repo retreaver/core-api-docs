@@ -381,6 +381,9 @@
                     <a href="#v4---calls" class="toc-h2 toc-link" data-title="V4 - Calls">V4 - Calls</a>
                   </li>
                   <li>
+                    <a href="#update-a-call" class="toc-h2 toc-link" data-title="Update a Call">Update a Call</a>
+                  </li>
+                  <li>
                     <a href="#call-data-writing" class="toc-h2 toc-link" data-title="Call Data Writing">Call Data Writing</a>
                   </li>
               </ul>
@@ -2062,6 +2065,117 @@ about the campaign like its <code>id</code> and <code>name</code></li>
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
+<h2 id="update-a-call">Update a Call</h2>
+
+<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-s</span> <span class="se">\</span>
+    <span class="nt">-X</span> PUT <span class="se">\</span>
+    <span class="s2">"https://api.retreaver.com/api/v5/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof&amp;company_id=1"</span> <span class="se">\</span>
+    <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+    <span class="nt">-d</span> <span class="s1">'{"call":{"revenue":20.0,"payout":5.0,"session_notes":"Credited after QA review"}}'</span>
+</code></pre></div>
+<blockquote>
+  <p>The above command returns the updated Call, structured like this:</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nl">"call"</span><span class="p">:{</span><span class="w">
+      </span><span class="nl">"uuid"</span><span class="p">:</span><span class="s2">"addcf985-017e-4962-be34-cf5d55e74afc"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"caller"</span><span class="p">:</span><span class="s2">"+17195220377"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"caller_zip"</span><span class="p">:</span><span class="s2">"80920"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"caller_state"</span><span class="p">:</span><span class="s2">"CO"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"caller_city"</span><span class="p">:</span><span class="s2">"COLORADO SPRINGS"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"caller_country"</span><span class="p">:</span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dialed_call_duration"</span><span class="p">:</span><span class="mi">193</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"total_duration"</span><span class="p">:</span><span class="mi">204</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"status"</span><span class="p">:</span><span class="s2">"finished"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"start_time"</span><span class="p">:</span><span class="s2">"2012-04-29T12:29:40Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"forwarded_time"</span><span class="p">:</span><span class="s2">"2012-04-29T12:29:51Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"end_time"</span><span class="p">:</span><span class="s2">"2012-04-29T12:32:46Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"cid"</span><span class="p">:</span><span class="s2">"0003"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"afid"</span><span class="p">:</span><span class="s2">"03994"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"sid"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"dialed_number"</span><span class="p">:</span><span class="s2">"+18668987878"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"revenue"</span><span class="p">:</span><span class="mf">20.0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"payout"</span><span class="p">:</span><span class="mf">5.0</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"converted"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"receivable"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"payable"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"updated_at"</span><span class="p">:</span><span class="s2">"2012-04-29T12:35:12Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"created_at"</span><span class="p">:</span><span class="s2">"2012-04-29T12:29:40Z"</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Changes any attributes you have passed in on the Call.</p>
+
+<aside class="warning">
+Editing a Call <strong>changes reporting values that may already have been sent up- or downstream</strong>.
+Postbacks and pixels that already fired, exported reports, and third-party systems that synced the Call will
+<strong>not</strong> automatically receive the corrected values.
+</aside>
+
+<p>Every edit is saved in the Call’s version history, so all changes are auditable.</p>
+
+<p>If an edit <strong>newly</strong> marks the Call as converted, its conversion pixels will fire.</p>
+
+<h3 id="http-request-8">HTTP Request</h3>
+
+<p><code>PUT https://api.retreaver.com/api/v5/calls/addcf985-017e-4962-be34-cf5d55e74afc.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+
+<p><code>Content-Type: application/json</code></p>
+
+<p><code>{"call":{"revenue":20.0,"payout":5.0,"session_notes":"Credited after QA review"}}</code></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>revenue</td>
+      <td>float</td>
+      <td> </td>
+      <td> </td>
+      <td>Money you earned for the call. Setting a value of <code>0.01</code> or more marks the Call <code>receivable</code>. Passing <code>0</code> clears the revenue.</td>
+    </tr>
+    <tr>
+      <td>payout</td>
+      <td>float</td>
+      <td> </td>
+      <td> </td>
+      <td>Money you owe the publisher for the call. Setting a value of <code>0.01</code> or more marks the Call <code>payable</code>. Passing <code>0</code> clears the payout.</td>
+    </tr>
+    <tr>
+      <td>receivable</td>
+      <td>boolean</td>
+      <td> </td>
+      <td> </td>
+      <td>Set the receivable flag directly. Ignored when <code>revenue</code> is present in the same request.</td>
+    </tr>
+    <tr>
+      <td>payable</td>
+      <td>boolean</td>
+      <td> </td>
+      <td> </td>
+      <td>Set the payable flag directly. Ignored when <code>payout</code> is present in the same request.</td>
+    </tr>
+    <tr>
+      <td>session_notes</td>
+      <td>string</td>
+      <td> </td>
+      <td> </td>
+      <td>Free-form notes about the call.</td>
+    </tr>
+  </tbody>
+</table>
+
 <h2 id="call-data-writing">Call Data Writing</h2>
 
 <p>Retreaver users can create data posting links that give publishers the ability to apply tags to an inbound caller using call data writing, these tags can be applied at any time, either before or after a call has been processed within a Retreaver campaign.</p>
@@ -2125,11 +2239,11 @@ about the campaign like its <code>id</code> and <code>name</code></li>
   </span><span class="nl">"status"</span><span class="p">:</span><span class="s2">"call not found, tags stored"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<h3 id="http-request-8">HTTP Request</h3>
+<h3 id="http-request-9">HTTP Request</h3>
 
 <p><code>POST/GET https://retreaverdata.com/data_writing</code></p>
 
-<h3 id="parameters">Parameters</h3>
+<h3 id="parameters-1">Parameters</h3>
 
 <table>
   <thead>
@@ -2213,7 +2327,7 @@ and will be applied when a call from the caller number is received.</p>
 </code></pre></div>
 <p>Provides a complete list of Affiliates.</p>
 
-<h3 id="http-request-9">HTTP Request</h3>
+<h3 id="http-request-10">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/api/v1/affiliates.xml?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -2223,7 +2337,7 @@ and will be applied when a call from the caller number is received.</p>
 </code></pre></div>
 <p>Finds an Affiliate by AFID.</p>
 
-<h3 id="http-request-10">HTTP Request</h3>
+<h3 id="http-request-11">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/api/v1/affiliates/afid/0002.xml?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -2237,7 +2351,7 @@ and will be applied when a call from the caller number is received.</p>
 </code></pre></div>
 <p>Creates an Affiliate.</p>
 
-<h3 id="http-request-11">HTTP Request</h3>
+<h3 id="http-request-12">HTTP Request</h3>
 
 <p><code>POST https://api.retreaver.com/api/v1/affiliates.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -2245,7 +2359,7 @@ and will be applied when a call from the caller number is received.</p>
 
 <p><code>{"affiliate":{"first_name":"Nancy", "last_name":"Drew", "afid":"0002"}}</code></p>
 
-<h3 id="parameters-1">Parameters</h3>
+<h3 id="parameters-2">Parameters</h3>
 
 <table>
   <thead>
@@ -2318,7 +2432,7 @@ and will be applied when a call from the caller number is received.</p>
 You must replace <code>0002</code> with the afid of the Affiliate you want to delete.
 </aside>
 
-<h3 id="http-request-12">HTTP Request</h3>
+<h3 id="http-request-13">HTTP Request</h3>
 
 <p><code>PUT https://api.retreaver.com/api/v1/affiliates/afid/0002.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -2394,7 +2508,7 @@ You must replace <code>0002</code> with the afid of the Affiliate you want to de
    </span><span class="p">}</span><span class="w">
 </span><span class="p">}]</span><span class="w">
 </span></code></pre></div>
-<h3 id="http-request-13">HTTP Request</h3>
+<h3 id="http-request-14">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/targets.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -2456,7 +2570,7 @@ You must replace <code>0002</code> with the afid of the Affiliate you want to de
    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<h3 id="http-request-14">HTTP Request</h3>
+<h3 id="http-request-15">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/targets/6588.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -2609,7 +2723,7 @@ You must replace <code>0002</code> with the afid of the Affiliate you want to de
 </span></code></pre></div>
 <p>Creates a new Target.</p>
 
-<h3 id="http-request-15">HTTP Request</h3>
+<h3 id="http-request-16">HTTP Request</h3>
 
 <p><code>POST https://api.retreaver.com/targets.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -2617,7 +2731,7 @@ You must replace <code>0002</code> with the afid of the Affiliate you want to de
 
 <p><code>{"target":{"number":"+18668987878", "name":"Retreaver Support"}}</code></p>
 
-<h3 id="parameters-2">Parameters</h3>
+<h3 id="parameters-3">Parameters</h3>
 
 <table>
   <thead>
@@ -3054,7 +3168,7 @@ You must replace <code>0002</code> with the afid of the Affiliate you want to de
 You must replace <code>22592</code> with the Retreaver ID of the Target you want to delete.
 </aside>
 
-<h3 id="http-request-16">HTTP Request</h3>
+<h3 id="http-request-17">HTTP Request</h3>
 
 <p><code>PUT https://api.retreaver.com/targets/22592.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -3068,7 +3182,7 @@ You must replace <code>22592</code> with the Retreaver ID of the Target you want
 </code></pre></div>
 <p>Deletes the given Target.</p>
 
-<h3 id="http-request-17">HTTP Request</h3>
+<h3 id="http-request-18">HTTP Request</h3>
 
 <p><code>DELETE https://api.retreaver.com/targets/22592.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -3112,7 +3226,7 @@ You must replace <code>22592</code> with the Retreaver ID of the Target you want
 
 <p>There is a limit of 100 tags added in this manner, but the system will automatically concatenate US zip <code>geo</code> tags.</p>
 
-<h3 id="http-request-18">HTTP Request</h3>
+<h3 id="http-request-19">HTTP Request</h3>
 
 <p><code>PUT https://api.retreaver.com/targets/22592.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -3177,7 +3291,7 @@ You must replace <code>22592</code> with the Retreaver ID of the Target you want
 
 <p>You can modify these Caps by updating your Target with nested objects <code>hard_cap_attributes</code>, <code>hourly_cap_attributes</code>, <code>daily_cap_attributes</code>, and <code>monthly_cap_attributes</code>.</p>
 
-<h3 id="http-request-19">HTTP Request</h3>
+<h3 id="http-request-20">HTTP Request</h3>
 
 <p><code>PUT https://api.retreaver.com/targets/22592.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -3185,7 +3299,7 @@ You must replace <code>22592</code> with the Retreaver ID of the Target you want
 
 <p><code>{"target":{"hard_cap_attributes":{"cap":100}}}</code></p>
 
-<h3 id="parameters-3">Parameters</h3>
+<h3 id="parameters-4">Parameters</h3>
 
 <table>
   <thead>
@@ -3217,7 +3331,7 @@ You must replace <code>22592</code> with the Retreaver ID of the Target you want
 </code></pre></div>
 <p>Clears any Calls contributing to the given Target’s hard cap, resetting it to 0. Returns HTTP 200 on success.</p>
 
-<h3 id="http-request-20">HTTP Request</h3>
+<h3 id="http-request-21">HTTP Request</h3>
 
 <p><code>POST https://api.retreaver.com/targets/22592/reset_cap.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -3279,7 +3393,7 @@ You must replace <code>22592</code> with the Retreaver ID of the Target you want
 Adding more than one Conversion Group to a Target via the API is <strong>not recommended</strong>: it is hard to understand which group will win once evaluation order is taken into account. If a Target does have several Conversion Groups, a call only ever converts through one of them. The groups are evaluated in ascending `eval_order`, and the first group whose tags match the call is applied. Use at your own risk.
 </aside>
 
-<h3 id="http-request-21">HTTP Request</h3>
+<h3 id="http-request-22">HTTP Request</h3>
 
 <p><code>PUT https://api.retreaver.com/targets/22592.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -3534,7 +3648,7 @@ Adding more than one Conversion Group to a Target via the API is <strong>not rec
 Providing <strong>both</strong> <code>conversion_group</code> and <code>conversion</code> <code>id</code> values is mandatory. Failing to do so will not update anything — instead a new Conversion, or a whole new Conversion Group with its own Conversion, will be created alongside the existing ones. Use at your own risk.
 </aside>
 
-<h3 id="http-request-22">HTTP Request</h3>
+<h3 id="http-request-23">HTTP Request</h3>
 
 <p><code>PUT https://api.retreaver.com/targets/22592.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -3569,7 +3683,7 @@ Providing <strong>both</strong> <code>conversion_group</code> and <code>conversi
 Always delete the entire Conversion Group. Do not delete individual Conversions out of a group.
 </aside>
 
-<h3 id="http-request-23">HTTP Request</h3>
+<h3 id="http-request-24">HTTP Request</h3>
 
 <p><code>PUT https://api.retreaver.com/targets/22592.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -3577,7 +3691,7 @@ Always delete the entire Conversion Group. Do not delete individual Conversions 
 
 <p><code>{"target":{"conversion_groups_attributes":[{"id":256490,"_destroy":true}]}}</code></p>
 
-<h3 id="parameters-4">Parameters</h3>
+<h3 id="parameters-5">Parameters</h3>
 
 <table>
   <thead>
@@ -3665,7 +3779,7 @@ Always delete the entire Conversion Group. Do not delete individual Conversions 
 </span></code></pre></div>
 <p>List all the Campaigns in your Account.</p>
 
-<h3 id="http-request-24">HTTP Request</h3>
+<h3 id="http-request-25">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/campaigns.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -3723,7 +3837,7 @@ Always delete the entire Conversion Group. Do not delete individual Conversions 
 </span></code></pre></div>
 <p>Get a campaign by your ID.</p>
 
-<h3 id="http-request-25">HTTP Request</h3>
+<h3 id="http-request-26">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/campaigns/cid/0044.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -3804,7 +3918,7 @@ Always delete the entire Conversion Group. Do not delete individual Conversions 
 </span></code></pre></div>
 <p>Create a new Campaign.</p>
 
-<h3 id="http-request-26">HTTP Request</h3>
+<h3 id="http-request-27">HTTP Request</h3>
 
 <p><code>POST https://api.retreaver.com/campaigns.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -3812,7 +3926,7 @@ Always delete the entire Conversion Group. Do not delete individual Conversions 
 
 <p><code>{"campaign":{"cid":"0044","name":"MyCampaign","message":"Thanks for calling, please press one to continue.","voice_gender":"Male","timers_attributes":[{"seconds":0,"url":"http://callpixels.com/click.html"},{"seconds":90,"url":"http://callpixels.com/sale.html"}],"menu_options_attributes":[{"option":"1","target_number":"+16474570424"}]}}</code></p>
 
-<h3 id="parameters-5">Parameters</h3>
+<h3 id="parameters-6">Parameters</h3>
 
 <table>
   <thead>
@@ -4059,7 +4173,7 @@ Always delete the entire Conversion Group. Do not delete individual Conversions 
 You must replace <code>0044</code> with the cid of the Campaign you want to update.
 </aside>
 
-<h3 id="http-request-27">HTTP Request</h3>
+<h3 id="http-request-28">HTTP Request</h3>
 
 <p><code>PUT https://api.retreaver.com/campaigns/cid/0044.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -4133,11 +4247,11 @@ You must replace <code>0044</code> with the cid of the Campaign you want to upda
 </span></code></pre></div>
 <p>Get all Numbers belonging to the Company.</p>
 
-<h3 id="http-request-28">HTTP Request</h3>
+<h3 id="http-request-29">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/numbers.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
-<h3 id="parameters-6">Parameters</h3>
+<h3 id="parameters-7">Parameters</h3>
 
 <table>
   <thead>
@@ -4220,7 +4334,7 @@ You must replace <code>0044</code> with the cid of the Campaign you want to upda
 </span></code></pre></div>
 <p>Get a Number by our internal ID.</p>
 
-<h3 id="http-request-29">HTTP Request</h3>
+<h3 id="http-request-30">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/numbers/5.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -4297,7 +4411,7 @@ You must replace <code>0044</code> with the cid of the Campaign you want to upda
 </span></code></pre></div>
 <p>Creates a new phone Number.</p>
 
-<h3 id="http-request-30">HTTP Request</h3>
+<h3 id="http-request-31">HTTP Request</h3>
 
 <p><code>POST https://api.retreaver.com/numbers.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -4305,7 +4419,7 @@ You must replace <code>0044</code> with the cid of the Campaign you want to upda
 
 <p><code>{"number":{"type":"Toll-free","desired_text":"TEST","afid":"0002","cid":"0001","sid":"superaffiliate"}}</code></p>
 
-<h3 id="parameters-7">Parameters</h3>
+<h3 id="parameters-8">Parameters</h3>
 
 <table>
   <thead>
@@ -4594,7 +4708,7 @@ You must replace <code>0044</code> with the cid of the Campaign you want to upda
 You must replace <code>79</code> with the Retreaver ID of the Number you want to update.
 </aside>
 
-<h3 id="http-request-31">HTTP Request</h3>
+<h3 id="http-request-32">HTTP Request</h3>
 
 <p><code>PUT https://api.retreaver.com/numbers/79.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -4642,11 +4756,11 @@ you want to track many different attributes.</p>
 </span></code></pre></div>
 <p>Returns all the Number Pools you have in our system.</p>
 
-<h3 id="http-request-32">HTTP Request</h3>
+<h3 id="http-request-33">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/number_pools.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
-<h3 id="parameters-8">Parameters</h3>
+<h3 id="parameters-9">Parameters</h3>
 
 <table>
   <thead>
@@ -4698,7 +4812,7 @@ you want to track many different attributes.</p>
 </span></code></pre></div>
 <p>Returns a single Number Pool based on our internal ID.</p>
 
-<h3 id="http-request-33">HTTP Request</h3>
+<h3 id="http-request-34">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/number_pools/1.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -4751,7 +4865,7 @@ you want to track many different attributes.</p>
 </span></code></pre></div>
 <p>Creates a new Number Pool.</p>
 
-<h3 id="http-request-34">HTTP Request</h3>
+<h3 id="http-request-35">HTTP Request</h3>
 
 <p><code>POST https://api.retreaver.com/number_pools.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -4759,7 +4873,7 @@ you want to track many different attributes.</p>
 
 <p><code>{"number_pool":{"cid":"111","max_pool_size":100,"hide_embedded_access":true,"google_analytics":true}}</code></p>
 
-<h3 id="parameters-9">Parameters</h3>
+<h3 id="parameters-10">Parameters</h3>
 
 <table>
   <thead>
@@ -4884,7 +4998,7 @@ you want to track many different attributes.</p>
 You must replace <code>49</code> with the Retreaver ID of the Number Pool you want to update.
 </aside>
 
-<h3 id="http-request-35">HTTP Request</h3>
+<h3 id="http-request-36">HTTP Request</h3>
 
 <p><code>PUT https://api.retreaver.com/number_pools/49.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -4934,7 +5048,7 @@ This will also delete all Numbers associated with this Number Pool!
 You should always pass in the <code>company_id</code> parameter when requesting other objects, because switching Companies in the web interface will also switch Companies in the API.
 </aside>
 
-<h3 id="http-request-36">HTTP Request</h3>
+<h3 id="http-request-37">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/company.json?api_key=woofwoofwoof</code></p>
 
@@ -4962,7 +5076,7 @@ You should always pass in the <code>company_id</code> parameter when requesting 
 </span></code></pre></div>
 <p>Returns the Company matching our internal ID.</p>
 
-<h3 id="http-request-37">HTTP Request</h3>
+<h3 id="http-request-38">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/companies/1.json?api_key=woofwoofwoof</code></p>
 
@@ -5005,7 +5119,7 @@ You should always pass in the <code>company_id</code> parameter when requesting 
 </span></code></pre></div>
 <p>Provides a complete list of Companies accessible via your Account.</p>
 
-<h3 id="http-request-38">HTTP Request</h3>
+<h3 id="http-request-39">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/companies.json?api_key=woofwoofwoof</code></p>
 
@@ -5041,7 +5155,7 @@ You should always pass in the <code>company_id</code> parameter when requesting 
 The Companies you create each have their own Accounts and payment settings.
 </aside>
 
-<h3 id="http-request-39">HTTP Request</h3>
+<h3 id="http-request-40">HTTP Request</h3>
 
 <p><code>POST https://api.retreaver.com/companies.json?api_key=woofwoofwoof</code></p>
 
@@ -5049,7 +5163,7 @@ The Companies you create each have their own Accounts and payment settings.
 
 <p><code>{"company":{"name":"CallPixels.com"}}</code></p>
 
-<h3 id="parameters-10">Parameters</h3>
+<h3 id="parameters-11">Parameters</h3>
 
 <table>
   <thead>
@@ -5104,7 +5218,7 @@ The Companies you create each have their own Accounts and payment settings.
 You must replace <code>2</code> with the Retreaver ID of the Company you want to update.
 </aside>
 
-<h3 id="http-request-40">HTTP Request</h3>
+<h3 id="http-request-41">HTTP Request</h3>
 
 <p><code>PUT https://api.retreaver.com/companies/2.json?api_key=woofwoofwoof</code></p>
 
@@ -5118,7 +5232,7 @@ You must replace <code>2</code> with the Retreaver ID of the Company you want to
 </code></pre></div>
 <p>Deletes the given Company. You must delete any Numbers and Number Pools the Company has first.</p>
 
-<h3 id="http-request-41">HTTP Request</h3>
+<h3 id="http-request-42">HTTP Request</h3>
 
 <p><code>DELETE https://api.retreaver.com/companies/2.json?api_key=woofwoofwoof</code></p>
 
@@ -5157,7 +5271,7 @@ You must replace <code>2</code> with the Retreaver ID of the Company you want to
 </span></code></pre></div>
 <p>Provides a complete list of Contacts.</p>
 
-<h3 id="http-request-42">HTTP Request</h3>
+<h3 id="http-request-43">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/contacts.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -5192,7 +5306,7 @@ You must replace <code>2</code> with the Retreaver ID of the Company you want to
 </span></code></pre></div>
 <p>Finds a Contact by its Retreaver ID.</p>
 
-<h3 id="http-request-43">HTTP Request</h3>
+<h3 id="http-request-44">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/contacts/2.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -5231,7 +5345,7 @@ You must replace <code>2</code> with the Retreaver ID of the Company you want to
 </span></code></pre></div>
 <p>Creates a Contact and associated Contact Number(s).</p>
 
-<h3 id="http-request-44">HTTP Request</h3>
+<h3 id="http-request-45">HTTP Request</h3>
 
 <p><code>POST https://api.retreaver.com/contacts.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -5239,7 +5353,7 @@ You must replace <code>2</code> with the Retreaver ID of the Company you want to
 
 <p><code>{"contact":{"tag_list":"&lt;&lt;&lt;name:Retreaver Support&gt;&gt;&gt;","contact_numbers_attributes":[{"number":"8668987878", "description":"Landline"}]}}</code></p>
 
-<h3 id="parameters-11">Parameters</h3>
+<h3 id="parameters-12">Parameters</h3>
 
 <table>
   <thead>
@@ -5345,7 +5459,7 @@ You must replace <code>2</code> with the Retreaver ID of the Company you want to
 <p>Changes any attributes you have passed in on the Contact. To change a Contact Number, you must pass in the ID of the
 existing Contact Number, or see <a href="#update-a-contact-number-by-phone-number">below</a> for an easier method.</p>
 
-<h3 id="http-request-45">HTTP Request</h3>
+<h3 id="http-request-46">HTTP Request</h3>
 
 <p><code>PUT https://api.retreaver.com/contacts/2.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -5359,7 +5473,7 @@ existing Contact Number, or see <a href="#update-a-contact-number-by-phone-numbe
 </code></pre></div>
 <p>Deletes the given Contact and all Contact Numbers associated with it.</p>
 
-<h3 id="http-request-46">HTTP Request</h3>
+<h3 id="http-request-47">HTTP Request</h3>
 
 <p><code>DELETE https://api.retreaver.com/contacts/2.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -5394,7 +5508,7 @@ existing Contact Number, or see <a href="#update-a-contact-number-by-phone-numbe
 </span></code></pre></div>
 <p>Finds a Contact by phone number.</p>
 
-<h3 id="http-request-47">HTTP Request</h3>
+<h3 id="http-request-48">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/contact_numbers/+18001234567/contact.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -5433,7 +5547,7 @@ existing Contact Number, or see <a href="#update-a-contact-number-by-phone-numbe
 </span></code></pre></div>
 <p>Updates a Contact by phone number.</p>
 
-<h3 id="http-request-48">HTTP Request</h3>
+<h3 id="http-request-49">HTTP Request</h3>
 
 <p><code>PUT https://api.retreaver.com/contact_numbers/+18001234567/contact.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -5447,7 +5561,7 @@ existing Contact Number, or see <a href="#update-a-contact-number-by-phone-numbe
 </code></pre></div>
 <p>Deletes the contact associated with the phone number and all other contact numbers associated with the contact.</p>
 
-<h3 id="http-request-49">HTTP Request</h3>
+<h3 id="http-request-50">HTTP Request</h3>
 
 <p><code>DELETE https://api.retreaver.com/contact_numbers/+18001234567/contact.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -5461,7 +5575,7 @@ existing Contact Number, or see <a href="#update-a-contact-number-by-phone-numbe
 </code></pre></div>
 <p>Deletes the contact number from the Contact it is associated with, as long as the Contact has more than one Contact Number.</p>
 
-<h3 id="http-request-50">HTTP Request</h3>
+<h3 id="http-request-51">HTTP Request</h3>
 
 <p><code>DELETE https://api.retreaver.com/contact_numbers/+18668987878.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -5487,7 +5601,7 @@ existing Contact Number, or see <a href="#update-a-contact-number-by-phone-numbe
 </span></code></pre></div>
 <p>Easily updates a Contact Number.</p>
 
-<h3 id="http-request-51">HTTP Request</h3>
+<h3 id="http-request-52">HTTP Request</h3>
 
 <p><code>PUT https://api.retreaver.com/contact_numbers/+18001234567.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -6110,7 +6224,7 @@ Suppressed Numbers exist regardless of whether or not there is a corresponding C
 </span></code></pre></div>
 <p>Returns true if the Company has any numbers suppressed.</p>
 
-<h3 id="http-request-52">HTTP Request</h3>
+<h3 id="http-request-53">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/suppressed_numbers/check.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -6160,7 +6274,7 @@ Suppressed Numbers exist regardless of whether or not there is a corresponding C
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
-<h3 id="http-request-53">HTTP Request</h3>
+<h3 id="http-request-54">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/suppressed_numbers.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -6189,7 +6303,7 @@ Suppressed Numbers exist regardless of whether or not there is a corresponding C
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<h3 id="http-request-54">HTTP Request</h3>
+<h3 id="http-request-55">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -6199,7 +6313,7 @@ Suppressed Numbers exist regardless of whether or not there is a corresponding C
 
 <div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> DELETE https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1
 </code></pre></div>
-<h3 id="http-request-55">HTTP Request</h3>
+<h3 id="http-request-56">HTTP Request</h3>
 
 <p><code>DELETE https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -6230,7 +6344,7 @@ Suppressed Numbers exist regardless of whether or not there is a corresponding C
   </span><span class="nl">"can_resubscribe"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<h3 id="http-request-56">HTTP Request</h3>
+<h3 id="http-request-57">HTTP Request</h3>
 
 <p><code>POST https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -6248,7 +6362,7 @@ Suppressed Numbers exist regardless of whether or not there is a corresponding C
     <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
     <span class="nt">-d</span> <span class="s1">'{"suppressed_number": {"can_resubscribe": false}}'</span>
 </code></pre></div>
-<h3 id="http-request-57">HTTP request</h3>
+<h3 id="http-request-58">HTTP request</h3>
 
 <p><code>PUT http://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -6280,7 +6394,7 @@ prompt the caller for the caller’s real number, or will randomize the CallerID
 </span></code></pre></div>
 <p>Provides a complete list of Static Numbers.</p>
 
-<h3 id="http-request-58">HTTP Request</h3>
+<h3 id="http-request-59">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/static_caller_numbers.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -6294,7 +6408,7 @@ prompt the caller for the caller’s real number, or will randomize the CallerID
 </code></pre></div>
 <p>Creates a Static Caller Number.</p>
 
-<h3 id="http-request-59">HTTP Request</h3>
+<h3 id="http-request-60">HTTP Request</h3>
 
 <p><code>POST https://api.retreaver.com/static_caller_numbers.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -6302,7 +6416,7 @@ prompt the caller for the caller’s real number, or will randomize the CallerID
 
 <p><code>{"static_caller_number": {"number": "+18668987878"}}</code></p>
 
-<h3 id="parameters-12">Parameters</h3>
+<h3 id="parameters-13">Parameters</h3>
 
 <table>
   <thead>
@@ -6331,7 +6445,7 @@ prompt the caller for the caller’s real number, or will randomize the CallerID
 </code></pre></div>
 <p>Removes the Static Caller Number.</p>
 
-<h3 id="http-request-60">HTTP Request</h3>
+<h3 id="http-request-61">HTTP Request</h3>
 
 <p><code>DELETE https://api.retreaver.com/static_caller_numbers/1234.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h1 id="target-groups">Target Groups</h1>
