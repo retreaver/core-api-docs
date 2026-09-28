@@ -1364,6 +1364,242 @@ curl -X DELETE https://api.retreaver.com/api/v1/affiliates/afid/0002.json?api_ke
 Deletes the given Affiliate. You must delete any Numbers the Affiliate has before deleting the Affiliate.
 
 
+## Adding a Conversion to a Publisher
+
+~~~shell
+curl -s \
+ -X PUT \
+ "https://api.retreaver.com/api/v1/affiliates/afid/0002.json?api_key=woofwoofwoof&company_id=1" \
+ -H "Content-Type: application/json" \
+ -d '{"affiliate":{"conversion_groups_attributes":[{"name":"50%","conversion_type":"revshare","conversions_attributes":[{"payout":50.0,"payout_percent":true}]}]}}'
+~~~
+
+> The above command returns JSON structured like this:
+
+~~~json
+{
+    "affiliate": {
+        "afid": "0002",
+        "first_name": "Nathan",
+        "last_name": "Drew",
+        "conversion_groups": [
+            {
+                "id": 256490,
+                "name": "50%",
+                "dedupe_seconds": 0,
+                "eval_order": 0,
+                "postback": false,
+                "conversion_type": "revshare",
+                "postback_uuid": null,
+                "tag_values": [],
+                "conversions": [
+                    {
+                        "id": 263254,
+                        "type": null,
+                        "seconds": 90,
+                        "revenue": 0.0,
+                        "payout": 50.0,
+                        "payout_percent": true,
+                        "payout_modifier": null,
+                        "postback_timeout": 600,
+                        "match_trigger": null
+                    }
+                ]
+            }
+        ]
+    }
+}
+~~~
+
+Conversions on a Publisher are managed through nested Conversion Groups. Update your Publisher with a `conversion_groups_attributes` array, where each group holds its own nested `conversions_attributes` array.
+
+The example creates a revshare Conversion named `50%`: once the call converts on the Target side, the payout will be 50% of what the revenue on the call was.
+
+Passing a group in `conversion_groups_attributes` without an `id` always creates a new Conversion Group. To modify an existing group or its Conversions, include the `id` values returned when reading the Publisher.
+
+<aside class="notice">
+The best option for a Publisher conversion is the <code>revshare</code> conversion_type. This type pays out to the Publisher only after the Target converts, regardless of when the Target converts. Your Publisher can be paid out a percent (%) of the revenue, or a flat dollar ($) amount. This is determined from the value of <code>payout_percent</code>.
+</aside>
+
+### Evaluation Order
+
+<aside class="warning">
+Adding more than one Conversion Group to a Publisher via the API is <strong>not recommended</strong>: it is hard to understand which group will win once evaluation order is taken into account. If a Publisher does have several Conversion Groups, a call only ever converts through one of them. The groups are evaluated in ascending `eval_order`, and the first group whose tags match the call is applied. Use at your own risk.
+</aside>
+
+
+### HTTP Request
+
+`PUT https://api.retreaver.com/api/v1/affiliates/afid/0002.json?api_key=woofwoofwoof&company_id=1`
+
+`Content-Type: application/json`
+
+`{"affiliate":{"conversion_groups_attributes":[{"name":"50%","conversion_type":"revshare","conversions_attributes":[{"payout":50.0,"payout_percent":true}]}]}}`
+
+### Conversion Group Parameters
+
+Parameter | Type | Default | Required | Description
+--------- | ---- | ------- | -------- | -----------
+id | integer | | see description | Required when updating an existing group. Omit to create a new one.
+name | string | Default Conversion Settings | optional | A label for the group, e.g. `50% for Drew`.
+conversion_type | string | | required | One of: `timer`, `revshare`, `attempt`, `postback`
+dedupe_seconds | integer | 0 (No de-dupe) | optional | Prevents a repeat caller from triggering this group's Conversions again within n seconds of their previous call. 0 disables deduplication. Must be one of the allowed values listed below.
+conversions_attributes | array | | required | The Conversions belonging to this group.
+
+### Allowed dedupe_seconds Values
+
+Value | Duration
+----- | --------
+0 | No de-dupe
+3600 | 1 hour
+7200 | 2 hours
+21600 | 6 hours
+43200 | 12 hours
+86400 | 24 hours
+172800 | 2 days
+259200 | 3 days
+345600 | 4 days
+604800 | 1 week
+2592000 | 30 days
+5184000 | 60 days
+7776000 | 90 days
+10368000 | 120 days
+12960000 | 150 days
+15552000 | 180 days
+18144000 | 210 days
+20736000 | 240 days
+23328000 | 270 days
+25920000 | 300 days
+28512000 | 330 days
+31556952 | 1 year
+315569520 | 1 decade
+-1 | Forever
+
+### Conversion Parameters
+
+Parameter | Type | Default | Required | Description
+--------- | ---- | ------- | -------- | -----------
+id | integer | | see description | Required when updating an existing Conversion. Omit to create a new one.
+seconds | integer | 90 | optional | Call duration in seconds required for a timer Conversion to convert.
+revenue | decimal | 0 | optional | The revenue attributed to the call when it converts.
+payout | decimal | 0 | optional | The payout attributed to the call when it converts.
+payout_percent | boolean | false | optional | If `true` then payout would be PERCENT (%) amount of `revenue`. If `false` (which is the default). It will be the DOLLAR ($) amount specified
+
+### Payout Examples
+
+revenue | payout | payout_percent | result | Description
+------- | ------ | -------------- | ------ | -----------
+150 | 50 | false | $50 | 50$
+150 | 50 | true | $75 | 50% of $150 = $75
+
+
+## Updating a Conversion on a Publisher
+
+~~~shell
+curl -s \
+ -X PUT \
+ "https://api.retreaver.com/api/v1/affiliates/afid/0002.json?api_key=woofwoofwoof&company_id=1" \
+ -H "Content-Type: application/json" \
+ -d '{"affiliate":{"conversion_groups_attributes":[{"id":256490,"name":"75$ after 90s","conversion_type":"timer","conversions_attributes":[{"id":263254,"payout":75.0,"payout_percent":false}]}]}}'
+~~~
+
+> The above command returns JSON structured like this:
+
+~~~json
+{
+    "affiliate": {
+        "afid": "0002",
+        "first_name": "Nathan",
+        "last_name": "Drew",
+        "conversion_groups": [
+            {
+                "id": 256490,
+                "name": "75$ after 90s",
+                "dedupe_seconds": 0,
+                "eval_order": 0,
+                "postback": false,
+                "conversion_type": "timer",
+                "postback_uuid": null,
+                "tag_values": [],
+                "conversions": [
+                    {
+                        "id": 263254,
+                        "type": null,
+                        "seconds": 90,
+                        "revenue": 0.0,
+                        "payout": 75.0,
+                        "payout_percent": false,
+                        "payout_modifier": null,
+                        "postback_timeout": 600,
+                        "match_trigger": null
+                    }
+                ]
+            }
+        ]
+    }
+}
+~~~
+
+To update an existing Conversion Group or Conversion, include their `id` values along with only the attributes you want to change; anything left out keeps its current value. The example renames the group to `75$ after 90s`, raises the Conversion's payout to $75.00, switches `payout_percent` off, and changes the group's `conversion_type` to `timer`: the Publisher now always receives a flat $75.00 payout once a call lasts 90 seconds.
+
+<aside class="warning">
+Providing <strong>both</strong> <code>conversion_group</code> and <code>conversion</code> <code>id</code> values is mandatory. Failing to do so will not update anything — instead a new Conversion, or a whole new Conversion Group with its own Conversion, will be created alongside the existing ones. Use at your own risk.
+</aside>
+
+### HTTP Request
+
+`PUT https://api.retreaver.com/api/v1/affiliates/afid/0002.json?api_key=woofwoofwoof&company_id=1`
+
+`Content-Type: application/json`
+
+`{"affiliate":{"conversion_groups_attributes":[{"id":256490,"name":"75$ after 90s","conversion_type":"timer","conversions_attributes":[{"id":263254,"payout":75.0,"payout_percent":false}]}]}}`
+
+
+## Deleting a Conversion from a Publisher
+
+~~~shell
+curl -s \
+ -X PUT \
+ "https://api.retreaver.com/api/v1/affiliates/afid/0002.json?api_key=woofwoofwoof&company_id=1" \
+ -H "Content-Type: application/json" \
+ -d '{"affiliate":{"conversion_groups_attributes":[{"id":256490,"_destroy":true}]}}'
+~~~
+
+> The above command returns JSON structured like this:
+
+~~~json
+{
+    "affiliate": {
+        "afid": "0002",
+        "first_name": "Nathan",
+        "last_name": "Drew",
+        "conversion_groups": []
+    }
+}
+~~~
+
+To remove conversion settings from a Publisher, delete the whole Conversion Group: pass the group's `id` together with `"_destroy": true` inside `conversion_groups_attributes`.
+
+<aside class="warning">
+Always delete the entire Conversion Group. Do not delete individual Conversions out of a group.
+</aside>
+
+### HTTP Request
+
+`PUT https://api.retreaver.com/api/v1/affiliates/afid/0002.json?api_key=woofwoofwoof&company_id=1`
+
+`Content-Type: application/json`
+
+`{"affiliate":{"conversion_groups_attributes":[{"id":256490,"_destroy":true}]}}`
+
+### Parameters
+
+Parameter | Type | Default | Required | Description
+--------- | ---- | ------- | -------- | -----------
+id | integer | | required | The `id` of the Conversion Group to delete.
+_destroy | boolean | false | required | Set to `true` to delete the group.
+
+
 
 
 # Targets
@@ -2024,7 +2260,7 @@ Parameter | Type | Default | Required | Description
 --------- | ---- | ------- | -------- | -----------
 id | integer | | see description | Required when updating an existing group. Omit to create a new one.
 name | string | Default Conversion Settings | optional | A label for the group, e.g. `50$ after 90s`.
-conversion_type | string | | required | `timer`
+conversion_type | string | | required | One of: `timer`, `attempt`, `postback`
 dedupe_seconds | integer | 0 (No de-dupe) | optional | Prevents a repeat caller from triggering this group's Conversions again within n seconds of their previous call. 0 disables deduplication. Must be one of the allowed values listed below.
 conversions_attributes | array | | required | The Conversions belonging to this group.
 
