@@ -1,5 +1,8 @@
 ---
-title: Retreaver Core 0.1 API Reference
+title: Retreaver Core 0.1 API Reference (Legacy) | Retreaver API
+description: Legacy reference for the Retreaver Core API. For the current Retreaver API documentation, visit learn.retreaver.com/api.
+canonical_url: https://learn.retreaver.com/api
+new_docs_url: https://learn.retreaver.com/api
 
 language_tabs:
   - shell: cURL
@@ -22,6 +25,18 @@ search: true
 ---
 
 # Introduction
+
+<aside class="promo">
+  <div class="promo-text">
+    <span class="promo-badge">New</span>
+    <p class="promo-title">We have a new API documentation site</p>
+    <p class="promo-body">Explore the latest <a href="https://learn.retreaver.com/api">Retreaver API documentation</a>, with updated guides, examples, and endpoint references.</p>
+    <a class="promo-cta" href="https://learn.retreaver.com/api">Explore the new docs &rarr;</a>
+  </div>
+  <a class="promo-image" href="https://learn.retreaver.com/api" title="Retreaver API Documentation">
+    <img src="images/retreaver-api.webp" alt="Retreaver API Documentation: API reference for calls, campaigns, affiliates, and more" title="Retreaver API Documentation" width="1600" height="833">
+  </a>
+</aside>
 
 The Retreaver Core API can be used to automate core business processes, like changing where calls are routed, and many other
 features that would normally be accessed through our account portal.
