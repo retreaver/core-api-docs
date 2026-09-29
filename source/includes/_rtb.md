@@ -17,7 +17,7 @@ To learn more about the scenarios you can implement with the RTB API, see the gu
 > Passing data as URL Params
 
 ~~~shell
-curl -X POST "https://rtb.retreaver.com/rtbs.json?" \
+curl -X POST "https://rtb.retreaver.com/rtbs.json" \
   -d "key=7fc40342-f0a0-4e8f-bf09-b3887eedcb41" \
   -d "publisher_id=retreaver_pub" \
   -d "caller_number=+18558485518"
@@ -27,6 +27,7 @@ curl -X POST "https://rtb.retreaver.com/rtbs.json?" \
 
 ~~~shell
 curl -X POST "https://rtb.retreaver.com/rtbs.json" \
+  -H "Content-Type: application/json" \
   -d '{
 	"key": "7fc40342-f0a0-4e8f-bf09-b3887eedcb41",
 	"publisher_id": "retreaver_pub",
@@ -45,7 +46,7 @@ Parameter | Mandatory | Description
 --------- | ------- | -----------
 key | Yes | Postback key, found on the campaign page where the Real Time Bidding Postback Key is issued.
 publisher_id/source_id | Yes | The Source/Affiliate/Publisher this bid is going to be attributed to.
-caller_number | Yes | The caller number.
+caller_number | Conditional | The caller number, unless the postback key allows requests without one.
 inbound_number | No | If provided the `rtb` will expect the caller to call this number. If not provided the `rtb` will return a temporary number.
 tags | No | Providing additional query parameters will result in tagging the `rtb` with those additional values. Please view the examples below.
 
@@ -58,6 +59,7 @@ Additional information could be passed along as params to the request. In this c
 
 ~~~shell
 curl -X POST "https://rtb.retreaver.com/rtbs.json" \
+  -H "Content-Type: application/json" \
   -d '{
 	"key": "7fc40342-f0a0-4e8f-bf09-b3887eedcb41",
 	"publisher_id": "retreaver_pub",
@@ -99,6 +101,7 @@ age | 25
 
 ~~~shell
 curl -X POST "https://rtb.retreaver.com/rtbs.json" \
+	-H "Content-Type: application/json" \
  	-d '{
 		"key": "7fc40342-f0a0-4e8f-bf09-b3887eedcb41",
 		"publisher_id": "retreaver_pub",
@@ -142,6 +145,7 @@ inbound_number | +12029795452
 
 ~~~shell
 curl -X PUT "https://rtb.retreaver.com/rtbs/c6e4ce37-9b49-46af-bd8e-16cb7753499d.json" \
+  -H "Content-Type: application/json" \
   -d '{
 	"key": "7fc40342-f0a0-4e8f-bf09-b3887eedcb41",
 	"status": "confirmed"
@@ -177,7 +181,7 @@ When a reservation is created in Retreaver, it is not immediately counted agains
 
 To apply a reservation to the caps, it must first be confirmed.
 
-To confirm the resevration send a PUT/PATCH request
+To confirm the reservation send a PUT/PATCH request
 
 
 #### Parameters
@@ -191,7 +195,7 @@ status | "confirmed" | 'confirmed' will confirm the reservation
 <aside class="notice">
 Reservations can be automatically applied to caps if this behavior is enabled on the postback key.
 
-Otherwise, they must be explicitly confirm by sending a PUT/PATCH request to the reservation URL with a status="confirmed" param.
+Otherwise, they must be explicitly confirmed by sending a PUT/PATCH request to the reservation URL with a status="confirmed" param.
 </aside>
 
 <aside class="notice">
@@ -209,6 +213,7 @@ When a reservation is confirmed, the publisher is <strong>expected to place the 
 
 ~~~shell
 curl -X POST "https://rtb.retreaver.com/rtbs.json" \
+ -H "Content-Type: application/json" \
  -d '{
  	"key": 7fc40342-f0a0-4e8f-bf09-b3887eedcb41"
  	"publisher_id": "retreaver_pub",
@@ -216,6 +221,7 @@ curl -X POST "https://rtb.retreaver.com/rtbs.json" \
  }'
 
 curl -X POST "https://rtb.retreaver.com/rtbs.json" \
+ -H "Content-Type: application/json" \
  -d '{
  	"key": 7fc40342-f0a0-4e8f-bf09-b3887eedcb41"
  	"publisher_id": "retreaver_pub",

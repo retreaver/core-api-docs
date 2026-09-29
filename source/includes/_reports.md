@@ -9,14 +9,14 @@ Parameter | Mandatory | Description
 api_key | Yes | The api_key used to authenticate this request.
 company_id | No | Return reports associated to the specific company IF you have access to that company. If left blank it will default to the current company associated with the user using the api_key.
 domain | Yes | The domain of the report. Currently only 'calls'
-facet | Yes | One of: ['publisher', 'buyer', 'campaign', 'number', 'daily', 'tag_value', 'state']. This is the object that you will want to generate a report for.
+facet | Yes | One of: ['number', 'campaign', 'affiliate', 'target', 'date', 'tag_value', 'state']. This is the object that you will want to generate a report for. For companies with affiliate marketing enabled, `publisher` and `buyer` may be used as aliases for `affiliate` and `target`.
 created_at_start | Yes |
 created_at_end | Yes |
 page | No
 per_page | No
 tag_value_key | No | When faceting by tag_value you may want to provide a second facet to drill down on. [Example](#tag-value-name-report)
 
-NOTE: created_at_start must be before created_at_end and the two must be smaller that 2 years apart.
+NOTE: created_at_start must be before created_at_end and the two must be less than 2 years apart.
 
 ## Buyer Calls In Progress Report
 ~~~shell
