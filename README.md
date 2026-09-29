@@ -1,4 +1,14 @@
 <p align="center">
+  <a href="https://learn.retreaver.com/api"><img src="https://retreaver.com/logo.png" alt="Retreaver" width="260"></a>
+</p>
+
+# Retreaver API Documentation
+
+> **Deprecated:** This repository hosts the legacy Retreaver Core API reference at [retreaver.github.io/core-api-docs](https://retreaver.github.io/core-api-docs/). It is still being kept up to date for the time being, but the current **[Retreaver API documentation](https://learn.retreaver.com/api)** lives at [learn.retreaver.com/api](https://learn.retreaver.com/api).
+
+<hr>
+
+<p align="center">
   <img src="https://raw.githubusercontent.com/slatedocs/img/main/logo-slate.png" alt="Slate: API Documentation Generator" width="226">
   <br>
   <a href="https://github.com/slatedocs/slate/actions?query=workflow%3ABuild+branch%3Amain"><img src="https://github.com/slatedocs/slate/workflows/Build/badge.svg?branch=main" alt="Build Status"></a>

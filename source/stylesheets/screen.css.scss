@@ -206,6 +206,57 @@ body {
       text-decoration: none;
     }
   }
+
+  // Card linking to the new API docs site, at the bottom of the ToC
+  .new-docs-card {
+    display: block;
+    margin: 0 $nav-padding 1.5em;
+    padding: 12px 14px;
+    background-color: $retreaver-dark-offset;
+    border: 1px solid $retreaver-menal-gray;
+    border-left: 3px solid $retreaver-blue;
+    border-radius: 6px;
+    color: $nav-text;
+    text-decoration: none;
+    transition: border-color 130ms linear, background-color 130ms linear;
+
+    &:hover {
+      border-color: $retreaver-blue;
+      background-color: lighten($retreaver-dark-offset, 4%);
+
+      .new-docs-url {
+        color: $retreaver-blue;
+      }
+    }
+
+    .new-docs-badge {
+      display: inline-block;
+      margin-bottom: 6px;
+      padding: 1px 6px;
+      border-radius: 3px;
+      background-color: $retreaver-blue;
+      color: $retreaver-dark;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .new-docs-title {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.35;
+    }
+
+    .new-docs-url {
+      display: block;
+      margin-top: 4px;
+      color: $secondary;
+      font-size: 12px;
+      font-weight: 500;
+    }
+  }
 }
 
 .toc-link,
@@ -532,6 +583,103 @@ body {
     font-size: 14px;
   }
 
+  // Promo banner for the new API docs site (Introduction)
+  aside.promo {
+    position: relative;
+    overflow: hidden;
+    min-height: 240px;
+    padding: 0;
+    margin-left: $main-padding;
+    margin-right: calc(#{$examples-width} + #{$main-padding});
+    border-radius: 8px;
+    background:
+      radial-gradient(ellipse at 0% 0%, rgba($retreaver-blue, 0.18), transparent 55%),
+      $promo-bg;
+    color: $retreaver-light;
+
+    &:before {
+      display: none;
+    }
+
+    .promo-text {
+      position: relative;
+      z-index: 1;
+      max-width: 55%;
+      padding: 32px;
+    }
+
+    .promo-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 3px;
+      background-color: $retreaver-blue;
+      color: $retreaver-dark;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .promo-title {
+      margin: 12px 0 6px;
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.25;
+      color: #fff;
+    }
+
+    .promo-body {
+      margin: 0 0 16px;
+      color: $secondary;
+
+      a {
+        color: $retreaver-blue;
+      }
+    }
+
+    .promo-cta {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 6px;
+      background-color: $retreaver-blue;
+      color: $retreaver-dark;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color 130ms linear;
+
+      &:hover {
+        background-color: lighten($retreaver-blue, 15%);
+      }
+    }
+
+    .promo-image {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 60%;
+
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: left top;
+      }
+
+      // Fade the screenshot into the banner background on the left and bottom
+      &:after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(to right, $promo-bg 0%, rgba($promo-bg, 0.6) 30%, transparent 65%),
+          linear-gradient(to top, $promo-bg 0%, transparent 35%),
+          linear-gradient(to bottom, rgba($promo-bg, 0.8) 0%, transparent 12%);
+      }
+    }
+  }
+
   aside.notice:before {
     @extend %icon-info-sign;
   }
@@ -637,6 +785,28 @@ body {
 @media (max-width: $phone-width) {
   .dark-box {
     display: none;
+  }
+
+  // Stack the promo banner: screenshot on top, text below
+  .content aside.promo {
+    margin-right: $main-padding;
+    display: flex;
+    flex-direction: column-reverse;
+
+    .promo-text {
+      max-width: none;
+      padding-top: 0;
+    }
+
+    .promo-image {
+      position: relative;
+      width: 100%;
+      height: 160px;
+
+      &:after {
+        background: linear-gradient(to top, $promo-bg 0%, transparent 60%);
+      }
+    }
   }
 
   %left-col {
