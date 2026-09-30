@@ -408,6 +408,15 @@
                   <li>
                     <a href="#remove-an-affiliate" class="toc-h2 toc-link" data-title="Remove an affiliate">Remove an affiliate</a>
                   </li>
+                  <li>
+                    <a href="#adding-a-conversion-to-a-publisher" class="toc-h2 toc-link" data-title="Adding a Conversion to a Publisher">Adding a Conversion to a Publisher</a>
+                  </li>
+                  <li>
+                    <a href="#updating-a-conversion-on-a-publisher" class="toc-h2 toc-link" data-title="Updating a Conversion on a Publisher">Updating a Conversion on a Publisher</a>
+                  </li>
+                  <li>
+                    <a href="#deleting-a-conversion-from-a-publisher" class="toc-h2 toc-link" data-title="Deleting a Conversion from a Publisher">Deleting a Conversion from a Publisher</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -2465,6 +2474,440 @@ You must replace <code>0002</code> with the afid of the Affiliate you want to de
 </code></pre></div>
 <p>Deletes the given Affiliate. You must delete any Numbers the Affiliate has before deleting the Affiliate.</p>
 
+<h2 id="adding-a-conversion-to-a-publisher">Adding a Conversion to a Publisher</h2>
+
+<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-s</span> <span class="se">\</span>
+ <span class="nt">-X</span> PUT <span class="se">\</span>
+ <span class="s2">"https://api.retreaver.com/api/v1/affiliates/afid/0002.json?api_key=woofwoofwoof&amp;company_id=1"</span> <span class="se">\</span>
+ <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+ <span class="nt">-d</span> <span class="s1">'{"affiliate":{"conversion_groups_attributes":[{"name":"50%","conversion_type":"revshare","conversions_attributes":[{"payout":50.0,"payout_percent":true}]}]}}'</span>
+</code></pre></div>
+<blockquote>
+  <p>The above command returns JSON structured like this:</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"affiliate"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"afid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0002"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nathan"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Drew"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"conversion_groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">256490</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50%"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"dedupe_seconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"eval_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"postback"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"conversion_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"revshare"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"postback_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"tag_values"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nl">"conversions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">263254</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"seconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">90</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"revenue"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"payout"</span><span class="p">:</span><span class="w"> </span><span class="mf">50.0</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"payout_percent"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"payout_modifier"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"postback_timeout"</span><span class="p">:</span><span class="w"> </span><span class="mi">600</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"match_trigger"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Conversions on a Publisher are managed through nested Conversion Groups. Update your Publisher with a <code>conversion_groups_attributes</code> array, where each group holds its own nested <code>conversions_attributes</code> array.</p>
+
+<p>The example creates a revshare Conversion named <code>50%</code>: once the call converts on the Target side, the payout will be 50% of what the revenue on the call was.</p>
+
+<p>Passing a group in <code>conversion_groups_attributes</code> without an <code>id</code> always creates a new Conversion Group. To modify an existing group or its Conversions, include the <code>id</code> values returned when reading the Publisher.</p>
+
+<aside class="notice">
+The best option for a Publisher conversion is the <code>revshare</code> conversion_type. This type pays out to the Publisher only after the Target converts, regardless of when the Target converts. Your Publisher can be paid out a percent (%) of the revenue, or a flat dollar ($) amount. This is determined from the value of <code>payout_percent</code>.
+</aside>
+
+<h3 id="evaluation-order">Evaluation Order</h3>
+
+<aside class="warning">
+Adding more than one Conversion Group to a Publisher via the API is <strong>not recommended</strong>: it is hard to understand which group will win once evaluation order is taken into account. If a Publisher does have several Conversion Groups, a call only ever converts through one of them. The groups are evaluated in ascending `eval_order`, and the first group whose tags match the call is applied. Use at your own risk.
+</aside>
+
+<h3 id="http-request-14">HTTP Request</h3>
+
+<p><code>PUT https://api.retreaver.com/api/v1/affiliates/afid/0002.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+
+<p><code>Content-Type: application/json</code></p>
+
+<p><code>{"affiliate":{"conversion_groups_attributes":[{"name":"50%","conversion_type":"revshare","conversions_attributes":[{"payout":50.0,"payout_percent":true}]}]}}</code></p>
+
+<h3 id="conversion-group-parameters">Conversion Group Parameters</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>id</td>
+      <td>integer</td>
+      <td> </td>
+      <td>see description</td>
+      <td>Required when updating an existing group. Omit to create a new one.</td>
+    </tr>
+    <tr>
+      <td>name</td>
+      <td>string</td>
+      <td>Default Conversion Settings</td>
+      <td>optional</td>
+      <td>A label for the group, e.g. <code>50% for Drew</code>.</td>
+    </tr>
+    <tr>
+      <td>conversion_type</td>
+      <td>string</td>
+      <td> </td>
+      <td>required</td>
+      <td>One of: <code>timer</code>, <code>revshare</code>, <code>attempt</code>, <code>postback</code></td>
+    </tr>
+    <tr>
+      <td>dedupe_seconds</td>
+      <td>integer</td>
+      <td>0 (No de-dupe)</td>
+      <td>optional</td>
+      <td>Prevents a repeat caller from triggering this group’s Conversions again within n seconds of their previous call. 0 disables deduplication. Must be one of the allowed values listed below.</td>
+    </tr>
+    <tr>
+      <td>conversions_attributes</td>
+      <td>array</td>
+      <td> </td>
+      <td>required</td>
+      <td>The Conversions belonging to this group.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="allowed-dedupeseconds-values">Allowed dedupe_seconds Values</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Value</th>
+      <th>Duration</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>No de-dupe</td>
+    </tr>
+    <tr>
+      <td>3600</td>
+      <td>1 hour</td>
+    </tr>
+    <tr>
+      <td>7200</td>
+      <td>2 hours</td>
+    </tr>
+    <tr>
+      <td>21600</td>
+      <td>6 hours</td>
+    </tr>
+    <tr>
+      <td>43200</td>
+      <td>12 hours</td>
+    </tr>
+    <tr>
+      <td>86400</td>
+      <td>24 hours</td>
+    </tr>
+    <tr>
+      <td>172800</td>
+      <td>2 days</td>
+    </tr>
+    <tr>
+      <td>259200</td>
+      <td>3 days</td>
+    </tr>
+    <tr>
+      <td>345600</td>
+      <td>4 days</td>
+    </tr>
+    <tr>
+      <td>604800</td>
+      <td>1 week</td>
+    </tr>
+    <tr>
+      <td>2592000</td>
+      <td>30 days</td>
+    </tr>
+    <tr>
+      <td>5184000</td>
+      <td>60 days</td>
+    </tr>
+    <tr>
+      <td>7776000</td>
+      <td>90 days</td>
+    </tr>
+    <tr>
+      <td>10368000</td>
+      <td>120 days</td>
+    </tr>
+    <tr>
+      <td>12960000</td>
+      <td>150 days</td>
+    </tr>
+    <tr>
+      <td>15552000</td>
+      <td>180 days</td>
+    </tr>
+    <tr>
+      <td>18144000</td>
+      <td>210 days</td>
+    </tr>
+    <tr>
+      <td>20736000</td>
+      <td>240 days</td>
+    </tr>
+    <tr>
+      <td>23328000</td>
+      <td>270 days</td>
+    </tr>
+    <tr>
+      <td>25920000</td>
+      <td>300 days</td>
+    </tr>
+    <tr>
+      <td>28512000</td>
+      <td>330 days</td>
+    </tr>
+    <tr>
+      <td>31556952</td>
+      <td>1 year</td>
+    </tr>
+    <tr>
+      <td>315569520</td>
+      <td>1 decade</td>
+    </tr>
+    <tr>
+      <td>-1</td>
+      <td>Forever</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="conversion-parameters">Conversion Parameters</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>id</td>
+      <td>integer</td>
+      <td> </td>
+      <td>see description</td>
+      <td>Required when updating an existing Conversion. Omit to create a new one.</td>
+    </tr>
+    <tr>
+      <td>seconds</td>
+      <td>integer</td>
+      <td>90</td>
+      <td>optional</td>
+      <td>Call duration in seconds required for a timer Conversion to convert.</td>
+    </tr>
+    <tr>
+      <td>revenue</td>
+      <td>decimal</td>
+      <td>0</td>
+      <td>optional</td>
+      <td>The revenue attributed to the call when it converts.</td>
+    </tr>
+    <tr>
+      <td>payout</td>
+      <td>decimal</td>
+      <td>0</td>
+      <td>optional</td>
+      <td>The payout attributed to the call when it converts.</td>
+    </tr>
+    <tr>
+      <td>payout_percent</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>optional</td>
+      <td>If <code>true</code> then payout would be PERCENT (%) amount of <code>revenue</code>. If <code>false</code> (which is the default). It will be the DOLLAR ($) amount specified</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="payout-examples">Payout Examples</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>revenue</th>
+      <th>payout</th>
+      <th>payout_percent</th>
+      <th>result</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>150</td>
+      <td>50</td>
+      <td>false</td>
+      <td>$50</td>
+      <td>50$</td>
+    </tr>
+    <tr>
+      <td>150</td>
+      <td>50</td>
+      <td>true</td>
+      <td>$75</td>
+      <td>50% of $150 = $75</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="updating-a-conversion-on-a-publisher">Updating a Conversion on a Publisher</h2>
+
+<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-s</span> <span class="se">\</span>
+ <span class="nt">-X</span> PUT <span class="se">\</span>
+ <span class="s2">"https://api.retreaver.com/api/v1/affiliates/afid/0002.json?api_key=woofwoofwoof&amp;company_id=1"</span> <span class="se">\</span>
+ <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+ <span class="nt">-d</span> <span class="s1">'{"affiliate":{"conversion_groups_attributes":[{"id":256490,"name":"75$ after 90s","conversion_type":"timer","conversions_attributes":[{"id":263254,"payout":75.0,"payout_percent":false}]}]}}'</span>
+</code></pre></div>
+<blockquote>
+  <p>The above command returns JSON structured like this:</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"affiliate"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"afid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0002"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nathan"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Drew"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"conversion_groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">256490</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"75$ after 90s"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"dedupe_seconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"eval_order"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"postback"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"conversion_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"timer"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"postback_uuid"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"tag_values"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nl">"conversions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">263254</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"seconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">90</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"revenue"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"payout"</span><span class="p">:</span><span class="w"> </span><span class="mf">75.0</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"payout_percent"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"payout_modifier"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"postback_timeout"</span><span class="p">:</span><span class="w"> </span><span class="mi">600</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"match_trigger"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>To update an existing Conversion Group or Conversion, include their <code>id</code> values along with only the attributes you want to change; anything left out keeps its current value. The example renames the group to <code>75$ after 90s</code>, raises the Conversion’s payout to $75.00, switches <code>payout_percent</code> off, and changes the group’s <code>conversion_type</code> to <code>timer</code>: the Publisher now always receives a flat $75.00 payout once a call lasts 90 seconds.</p>
+
+<aside class="warning">
+Providing <strong>both</strong> <code>conversion_group</code> and <code>conversion</code> <code>id</code> values is mandatory. Failing to do so will not update anything — instead a new Conversion, or a whole new Conversion Group with its own Conversion, will be created alongside the existing ones. Use at your own risk.
+</aside>
+
+<h3 id="http-request-15">HTTP Request</h3>
+
+<p><code>PUT https://api.retreaver.com/api/v1/affiliates/afid/0002.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+
+<p><code>Content-Type: application/json</code></p>
+
+<p><code>{"affiliate":{"conversion_groups_attributes":[{"id":256490,"name":"75$ after 90s","conversion_type":"timer","conversions_attributes":[{"id":263254,"payout":75.0,"payout_percent":false}]}]}}</code></p>
+
+<h2 id="deleting-a-conversion-from-a-publisher">Deleting a Conversion from a Publisher</h2>
+
+<div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-s</span> <span class="se">\</span>
+ <span class="nt">-X</span> PUT <span class="se">\</span>
+ <span class="s2">"https://api.retreaver.com/api/v1/affiliates/afid/0002.json?api_key=woofwoofwoof&amp;company_id=1"</span> <span class="se">\</span>
+ <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+ <span class="nt">-d</span> <span class="s1">'{"affiliate":{"conversion_groups_attributes":[{"id":256490,"_destroy":true}]}}'</span>
+</code></pre></div>
+<blockquote>
+  <p>The above command returns JSON structured like this:</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"affiliate"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"afid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0002"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nathan"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Drew"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"conversion_groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>To remove conversion settings from a Publisher, delete the whole Conversion Group: pass the group’s <code>id</code> together with <code>"_destroy": true</code> inside <code>conversion_groups_attributes</code>.</p>
+
+<aside class="warning">
+Always delete the entire Conversion Group. Do not delete individual Conversions out of a group.
+</aside>
+
+<h3 id="http-request-16">HTTP Request</h3>
+
+<p><code>PUT https://api.retreaver.com/api/v1/affiliates/afid/0002.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
+
+<p><code>Content-Type: application/json</code></p>
+
+<p><code>{"affiliate":{"conversion_groups_attributes":[{"id":256490,"_destroy":true}]}}</code></p>
+
+<h3 id="parameters-3">Parameters</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>id</td>
+      <td>integer</td>
+      <td> </td>
+      <td>required</td>
+      <td>The <code>id</code> of the Conversion Group to delete.</td>
+    </tr>
+    <tr>
+      <td>_destroy</td>
+      <td>boolean</td>
+      <td>false</td>
+      <td>required</td>
+      <td>Set to <code>true</code> to delete the group.</td>
+    </tr>
+  </tbody>
+</table>
+
 <h1 id="targets">Targets</h1>
 
 <p>Targets are the destination phone numbers that calls are routed to, for instance, your call center.</p>
@@ -2527,7 +2970,7 @@ You must replace <code>0002</code> with the afid of the Affiliate you want to de
    </span><span class="p">}</span><span class="w">
 </span><span class="p">}]</span><span class="w">
 </span></code></pre></div>
-<h3 id="http-request-14">HTTP Request</h3>
+<h3 id="http-request-17">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/targets.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -2589,7 +3032,7 @@ You must replace <code>0002</code> with the afid of the Affiliate you want to de
    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<h3 id="http-request-15">HTTP Request</h3>
+<h3 id="http-request-18">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/targets/6588.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -2742,7 +3185,7 @@ You must replace <code>0002</code> with the afid of the Affiliate you want to de
 </span></code></pre></div>
 <p>Creates a new Target.</p>
 
-<h3 id="http-request-16">HTTP Request</h3>
+<h3 id="http-request-19">HTTP Request</h3>
 
 <p><code>POST https://api.retreaver.com/targets.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -2750,7 +3193,7 @@ You must replace <code>0002</code> with the afid of the Affiliate you want to de
 
 <p><code>{"target":{"number":"+18668987878", "name":"Retreaver Support"}}</code></p>
 
-<h3 id="parameters-3">Parameters</h3>
+<h3 id="parameters-4">Parameters</h3>
 
 <table>
   <thead>
@@ -3187,7 +3630,7 @@ You must replace <code>0002</code> with the afid of the Affiliate you want to de
 You must replace <code>22592</code> with the Retreaver ID of the Target you want to delete.
 </aside>
 
-<h3 id="http-request-17">HTTP Request</h3>
+<h3 id="http-request-20">HTTP Request</h3>
 
 <p><code>PUT https://api.retreaver.com/targets/22592.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -3201,7 +3644,7 @@ You must replace <code>22592</code> with the Retreaver ID of the Target you want
 </code></pre></div>
 <p>Deletes the given Target.</p>
 
-<h3 id="http-request-18">HTTP Request</h3>
+<h3 id="http-request-21">HTTP Request</h3>
 
 <p><code>DELETE https://api.retreaver.com/targets/22592.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -3245,7 +3688,7 @@ You must replace <code>22592</code> with the Retreaver ID of the Target you want
 
 <p>There is a limit of 100 tags added in this manner, but the system will automatically concatenate US zip <code>geo</code> tags.</p>
 
-<h3 id="http-request-19">HTTP Request</h3>
+<h3 id="http-request-22">HTTP Request</h3>
 
 <p><code>PUT https://api.retreaver.com/targets/22592.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -3310,7 +3753,7 @@ You must replace <code>22592</code> with the Retreaver ID of the Target you want
 
 <p>You can modify these Caps by updating your Target with nested objects <code>hard_cap_attributes</code>, <code>hourly_cap_attributes</code>, <code>daily_cap_attributes</code>, and <code>monthly_cap_attributes</code>.</p>
 
-<h3 id="http-request-20">HTTP Request</h3>
+<h3 id="http-request-23">HTTP Request</h3>
 
 <p><code>PUT https://api.retreaver.com/targets/22592.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -3318,7 +3761,7 @@ You must replace <code>22592</code> with the Retreaver ID of the Target you want
 
 <p><code>{"target":{"hard_cap_attributes":{"cap":100}}}</code></p>
 
-<h3 id="parameters-4">Parameters</h3>
+<h3 id="parameters-5">Parameters</h3>
 
 <table>
   <thead>
@@ -3350,7 +3793,7 @@ You must replace <code>22592</code> with the Retreaver ID of the Target you want
 </code></pre></div>
 <p>Clears any Calls contributing to the given Target’s hard cap, resetting it to 0. Returns HTTP 200 on success.</p>
 
-<h3 id="http-request-21">HTTP Request</h3>
+<h3 id="http-request-24">HTTP Request</h3>
 
 <p><code>POST https://api.retreaver.com/targets/22592/reset_cap.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -3406,13 +3849,13 @@ You must replace <code>22592</code> with the Retreaver ID of the Target you want
 
 <p>Passing a group in <code>conversion_groups_attributes</code> without an <code>id</code> always creates a new Conversion Group. To modify an existing group or its Conversions, include the <code>id</code> values returned when reading the Target.</p>
 
-<h3 id="evaluation-order">Evaluation Order</h3>
+<h3 id="evaluation-order-1">Evaluation Order</h3>
 
 <aside class="warning">
 Adding more than one Conversion Group to a Target via the API is <strong>not recommended</strong>: it is hard to understand which group will win once evaluation order is taken into account. If a Target does have several Conversion Groups, a call only ever converts through one of them. The groups are evaluated in ascending `eval_order`, and the first group whose tags match the call is applied. Use at your own risk.
 </aside>
 
-<h3 id="http-request-22">HTTP Request</h3>
+<h3 id="http-request-25">HTTP Request</h3>
 
 <p><code>PUT https://api.retreaver.com/targets/22592.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -3420,7 +3863,7 @@ Adding more than one Conversion Group to a Target via the API is <strong>not rec
 
 <p><code>{"target":{"conversion_groups_attributes":[{"name":"50$ after 90s","conversion_type":"timer","conversions_attributes":[{"seconds":90,"revenue":50.0}]}]}}</code></p>
 
-<h3 id="conversion-group-parameters">Conversion Group Parameters</h3>
+<h3 id="conversion-group-parameters-1">Conversion Group Parameters</h3>
 
 <table>
   <thead>
@@ -3452,7 +3895,7 @@ Adding more than one Conversion Group to a Target via the API is <strong>not rec
       <td>string</td>
       <td> </td>
       <td>required</td>
-      <td><code>timer</code></td>
+      <td>One of: <code>timer</code>, <code>attempt</code>, <code>postback</code></td>
     </tr>
     <tr>
       <td>dedupe_seconds</td>
@@ -3471,7 +3914,7 @@ Adding more than one Conversion Group to a Target via the API is <strong>not rec
   </tbody>
 </table>
 
-<h3 id="allowed-dedupeseconds-values">Allowed dedupe_seconds Values</h3>
+<h3 id="allowed-dedupeseconds-values-1">Allowed dedupe_seconds Values</h3>
 
 <table>
   <thead>
@@ -3580,7 +4023,7 @@ Adding more than one Conversion Group to a Target via the API is <strong>not rec
   </tbody>
 </table>
 
-<h3 id="conversion-parameters">Conversion Parameters</h3>
+<h3 id="conversion-parameters-1">Conversion Parameters</h3>
 
 <table>
   <thead>
@@ -3667,7 +4110,7 @@ Adding more than one Conversion Group to a Target via the API is <strong>not rec
 Providing <strong>both</strong> <code>conversion_group</code> and <code>conversion</code> <code>id</code> values is mandatory. Failing to do so will not update anything — instead a new Conversion, or a whole new Conversion Group with its own Conversion, will be created alongside the existing ones. Use at your own risk.
 </aside>
 
-<h3 id="http-request-23">HTTP Request</h3>
+<h3 id="http-request-26">HTTP Request</h3>
 
 <p><code>PUT https://api.retreaver.com/targets/22592.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -3702,7 +4145,7 @@ Providing <strong>both</strong> <code>conversion_group</code> and <code>conversi
 Always delete the entire Conversion Group. Do not delete individual Conversions out of a group.
 </aside>
 
-<h3 id="http-request-24">HTTP Request</h3>
+<h3 id="http-request-27">HTTP Request</h3>
 
 <p><code>PUT https://api.retreaver.com/targets/22592.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -3710,7 +4153,7 @@ Always delete the entire Conversion Group. Do not delete individual Conversions 
 
 <p><code>{"target":{"conversion_groups_attributes":[{"id":256490,"_destroy":true}]}}</code></p>
 
-<h3 id="parameters-5">Parameters</h3>
+<h3 id="parameters-6">Parameters</h3>
 
 <table>
   <thead>
@@ -3798,7 +4241,7 @@ Always delete the entire Conversion Group. Do not delete individual Conversions 
 </span></code></pre></div>
 <p>List all the Campaigns in your Account.</p>
 
-<h3 id="http-request-25">HTTP Request</h3>
+<h3 id="http-request-28">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/campaigns.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -3856,7 +4299,7 @@ Always delete the entire Conversion Group. Do not delete individual Conversions 
 </span></code></pre></div>
 <p>Get a campaign by your ID.</p>
 
-<h3 id="http-request-26">HTTP Request</h3>
+<h3 id="http-request-29">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/campaigns/cid/0044.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -3937,7 +4380,7 @@ Always delete the entire Conversion Group. Do not delete individual Conversions 
 </span></code></pre></div>
 <p>Create a new Campaign.</p>
 
-<h3 id="http-request-27">HTTP Request</h3>
+<h3 id="http-request-30">HTTP Request</h3>
 
 <p><code>POST https://api.retreaver.com/campaigns.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -3945,7 +4388,7 @@ Always delete the entire Conversion Group. Do not delete individual Conversions 
 
 <p><code>{"campaign":{"cid":"0044","name":"MyCampaign","message":"Thanks for calling, please press one to continue.","voice_gender":"Male","timers_attributes":[{"seconds":0,"url":"http://callpixels.com/click.html"},{"seconds":90,"url":"http://callpixels.com/sale.html"}],"menu_options_attributes":[{"option":"1","target_number":"+16474570424"}]}}</code></p>
 
-<h3 id="parameters-6">Parameters</h3>
+<h3 id="parameters-7">Parameters</h3>
 
 <table>
   <thead>
@@ -4192,7 +4635,7 @@ Always delete the entire Conversion Group. Do not delete individual Conversions 
 You must replace <code>0044</code> with the cid of the Campaign you want to update.
 </aside>
 
-<h3 id="http-request-28">HTTP Request</h3>
+<h3 id="http-request-31">HTTP Request</h3>
 
 <p><code>PUT https://api.retreaver.com/campaigns/cid/0044.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -4266,11 +4709,11 @@ You must replace <code>0044</code> with the cid of the Campaign you want to upda
 </span></code></pre></div>
 <p>Get all Numbers belonging to the Company.</p>
 
-<h3 id="http-request-29">HTTP Request</h3>
+<h3 id="http-request-32">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/numbers.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
-<h3 id="parameters-7">Parameters</h3>
+<h3 id="parameters-8">Parameters</h3>
 
 <table>
   <thead>
@@ -4353,7 +4796,7 @@ You must replace <code>0044</code> with the cid of the Campaign you want to upda
 </span></code></pre></div>
 <p>Get a Number by our internal ID.</p>
 
-<h3 id="http-request-30">HTTP Request</h3>
+<h3 id="http-request-33">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/numbers/5.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -4430,7 +4873,7 @@ You must replace <code>0044</code> with the cid of the Campaign you want to upda
 </span></code></pre></div>
 <p>Creates a new phone Number.</p>
 
-<h3 id="http-request-31">HTTP Request</h3>
+<h3 id="http-request-34">HTTP Request</h3>
 
 <p><code>POST https://api.retreaver.com/numbers.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -4438,7 +4881,7 @@ You must replace <code>0044</code> with the cid of the Campaign you want to upda
 
 <p><code>{"number":{"type":"Toll-free","desired_text":"TEST","afid":"0002","cid":"0001","sid":"superaffiliate"}}</code></p>
 
-<h3 id="parameters-8">Parameters</h3>
+<h3 id="parameters-9">Parameters</h3>
 
 <table>
   <thead>
@@ -4727,7 +5170,7 @@ You must replace <code>0044</code> with the cid of the Campaign you want to upda
 You must replace <code>79</code> with the Retreaver ID of the Number you want to update.
 </aside>
 
-<h3 id="http-request-32">HTTP Request</h3>
+<h3 id="http-request-35">HTTP Request</h3>
 
 <p><code>PUT https://api.retreaver.com/numbers/79.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -4775,11 +5218,11 @@ you want to track many different attributes.</p>
 </span></code></pre></div>
 <p>Returns all the Number Pools you have in our system.</p>
 
-<h3 id="http-request-33">HTTP Request</h3>
+<h3 id="http-request-36">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/number_pools.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
-<h3 id="parameters-9">Parameters</h3>
+<h3 id="parameters-10">Parameters</h3>
 
 <table>
   <thead>
@@ -4831,7 +5274,7 @@ you want to track many different attributes.</p>
 </span></code></pre></div>
 <p>Returns a single Number Pool based on our internal ID.</p>
 
-<h3 id="http-request-34">HTTP Request</h3>
+<h3 id="http-request-37">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/number_pools/1.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -4884,7 +5327,7 @@ you want to track many different attributes.</p>
 </span></code></pre></div>
 <p>Creates a new Number Pool.</p>
 
-<h3 id="http-request-35">HTTP Request</h3>
+<h3 id="http-request-38">HTTP Request</h3>
 
 <p><code>POST https://api.retreaver.com/number_pools.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -4892,7 +5335,7 @@ you want to track many different attributes.</p>
 
 <p><code>{"number_pool":{"cid":"111","max_pool_size":100,"hide_embedded_access":true,"google_analytics":true}}</code></p>
 
-<h3 id="parameters-10">Parameters</h3>
+<h3 id="parameters-11">Parameters</h3>
 
 <table>
   <thead>
@@ -5017,7 +5460,7 @@ you want to track many different attributes.</p>
 You must replace <code>49</code> with the Retreaver ID of the Number Pool you want to update.
 </aside>
 
-<h3 id="http-request-36">HTTP Request</h3>
+<h3 id="http-request-39">HTTP Request</h3>
 
 <p><code>PUT https://api.retreaver.com/number_pools/49.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -5067,7 +5510,7 @@ This will also delete all Numbers associated with this Number Pool!
 You should always pass in the <code>company_id</code> parameter when requesting other objects, because switching Companies in the web interface will also switch Companies in the API.
 </aside>
 
-<h3 id="http-request-37">HTTP Request</h3>
+<h3 id="http-request-40">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/company.json?api_key=woofwoofwoof</code></p>
 
@@ -5095,7 +5538,7 @@ You should always pass in the <code>company_id</code> parameter when requesting 
 </span></code></pre></div>
 <p>Returns the Company matching our internal ID.</p>
 
-<h3 id="http-request-38">HTTP Request</h3>
+<h3 id="http-request-41">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/companies/1.json?api_key=woofwoofwoof</code></p>
 
@@ -5138,7 +5581,7 @@ You should always pass in the <code>company_id</code> parameter when requesting 
 </span></code></pre></div>
 <p>Provides a complete list of Companies accessible via your Account.</p>
 
-<h3 id="http-request-39">HTTP Request</h3>
+<h3 id="http-request-42">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/companies.json?api_key=woofwoofwoof</code></p>
 
@@ -5174,7 +5617,7 @@ You should always pass in the <code>company_id</code> parameter when requesting 
 The Companies you create each have their own Accounts and payment settings.
 </aside>
 
-<h3 id="http-request-40">HTTP Request</h3>
+<h3 id="http-request-43">HTTP Request</h3>
 
 <p><code>POST https://api.retreaver.com/companies.json?api_key=woofwoofwoof</code></p>
 
@@ -5182,7 +5625,7 @@ The Companies you create each have their own Accounts and payment settings.
 
 <p><code>{"company":{"name":"CallPixels.com"}}</code></p>
 
-<h3 id="parameters-11">Parameters</h3>
+<h3 id="parameters-12">Parameters</h3>
 
 <table>
   <thead>
@@ -5237,7 +5680,7 @@ The Companies you create each have their own Accounts and payment settings.
 You must replace <code>2</code> with the Retreaver ID of the Company you want to update.
 </aside>
 
-<h3 id="http-request-41">HTTP Request</h3>
+<h3 id="http-request-44">HTTP Request</h3>
 
 <p><code>PUT https://api.retreaver.com/companies/2.json?api_key=woofwoofwoof</code></p>
 
@@ -5251,7 +5694,7 @@ You must replace <code>2</code> with the Retreaver ID of the Company you want to
 </code></pre></div>
 <p>Deletes the given Company. You must delete any Numbers and Number Pools the Company has first.</p>
 
-<h3 id="http-request-42">HTTP Request</h3>
+<h3 id="http-request-45">HTTP Request</h3>
 
 <p><code>DELETE https://api.retreaver.com/companies/2.json?api_key=woofwoofwoof</code></p>
 
@@ -5290,7 +5733,7 @@ You must replace <code>2</code> with the Retreaver ID of the Company you want to
 </span></code></pre></div>
 <p>Provides a complete list of Contacts.</p>
 
-<h3 id="http-request-43">HTTP Request</h3>
+<h3 id="http-request-46">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/contacts.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -5325,7 +5768,7 @@ You must replace <code>2</code> with the Retreaver ID of the Company you want to
 </span></code></pre></div>
 <p>Finds a Contact by its Retreaver ID.</p>
 
-<h3 id="http-request-44">HTTP Request</h3>
+<h3 id="http-request-47">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/contacts/2.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -5364,7 +5807,7 @@ You must replace <code>2</code> with the Retreaver ID of the Company you want to
 </span></code></pre></div>
 <p>Creates a Contact and associated Contact Number(s).</p>
 
-<h3 id="http-request-45">HTTP Request</h3>
+<h3 id="http-request-48">HTTP Request</h3>
 
 <p><code>POST https://api.retreaver.com/contacts.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -5372,7 +5815,7 @@ You must replace <code>2</code> with the Retreaver ID of the Company you want to
 
 <p><code>{"contact":{"tag_list":"&lt;&lt;&lt;name:Retreaver Support&gt;&gt;&gt;","contact_numbers_attributes":[{"number":"8668987878", "description":"Landline"}]}}</code></p>
 
-<h3 id="parameters-12">Parameters</h3>
+<h3 id="parameters-13">Parameters</h3>
 
 <table>
   <thead>
@@ -5478,7 +5921,7 @@ You must replace <code>2</code> with the Retreaver ID of the Company you want to
 <p>Changes any attributes you have passed in on the Contact. To change a Contact Number, you must pass in the ID of the
 existing Contact Number, or see <a href="#update-a-contact-number-by-phone-number">below</a> for an easier method.</p>
 
-<h3 id="http-request-46">HTTP Request</h3>
+<h3 id="http-request-49">HTTP Request</h3>
 
 <p><code>PUT https://api.retreaver.com/contacts/2.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -5492,7 +5935,7 @@ existing Contact Number, or see <a href="#update-a-contact-number-by-phone-numbe
 </code></pre></div>
 <p>Deletes the given Contact and all Contact Numbers associated with it.</p>
 
-<h3 id="http-request-47">HTTP Request</h3>
+<h3 id="http-request-50">HTTP Request</h3>
 
 <p><code>DELETE https://api.retreaver.com/contacts/2.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -5527,7 +5970,7 @@ existing Contact Number, or see <a href="#update-a-contact-number-by-phone-numbe
 </span></code></pre></div>
 <p>Finds a Contact by phone number.</p>
 
-<h3 id="http-request-48">HTTP Request</h3>
+<h3 id="http-request-51">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/contact_numbers/+18001234567/contact.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -5566,7 +6009,7 @@ existing Contact Number, or see <a href="#update-a-contact-number-by-phone-numbe
 </span></code></pre></div>
 <p>Updates a Contact by phone number.</p>
 
-<h3 id="http-request-49">HTTP Request</h3>
+<h3 id="http-request-52">HTTP Request</h3>
 
 <p><code>PUT https://api.retreaver.com/contact_numbers/+18001234567/contact.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -5580,7 +6023,7 @@ existing Contact Number, or see <a href="#update-a-contact-number-by-phone-numbe
 </code></pre></div>
 <p>Deletes the contact associated with the phone number and all other contact numbers associated with the contact.</p>
 
-<h3 id="http-request-50">HTTP Request</h3>
+<h3 id="http-request-53">HTTP Request</h3>
 
 <p><code>DELETE https://api.retreaver.com/contact_numbers/+18001234567/contact.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -5594,7 +6037,7 @@ existing Contact Number, or see <a href="#update-a-contact-number-by-phone-numbe
 </code></pre></div>
 <p>Deletes the contact number from the Contact it is associated with, as long as the Contact has more than one Contact Number.</p>
 
-<h3 id="http-request-51">HTTP Request</h3>
+<h3 id="http-request-54">HTTP Request</h3>
 
 <p><code>DELETE https://api.retreaver.com/contact_numbers/+18668987878.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -5620,7 +6063,7 @@ existing Contact Number, or see <a href="#update-a-contact-number-by-phone-numbe
 </span></code></pre></div>
 <p>Easily updates a Contact Number.</p>
 
-<h3 id="http-request-52">HTTP Request</h3>
+<h3 id="http-request-55">HTTP Request</h3>
 
 <p><code>PUT https://api.retreaver.com/contact_numbers/+18001234567.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -6243,7 +6686,7 @@ Suppressed Numbers exist regardless of whether or not there is a corresponding C
 </span></code></pre></div>
 <p>Returns true if the Company has any numbers suppressed.</p>
 
-<h3 id="http-request-53">HTTP Request</h3>
+<h3 id="http-request-56">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/suppressed_numbers/check.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -6293,7 +6736,7 @@ Suppressed Numbers exist regardless of whether or not there is a corresponding C
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
-<h3 id="http-request-54">HTTP Request</h3>
+<h3 id="http-request-57">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/suppressed_numbers.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -6322,7 +6765,7 @@ Suppressed Numbers exist regardless of whether or not there is a corresponding C
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<h3 id="http-request-55">HTTP Request</h3>
+<h3 id="http-request-58">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -6332,7 +6775,7 @@ Suppressed Numbers exist regardless of whether or not there is a corresponding C
 
 <div class="highlight"><pre class="highlight shell"><code>curl <span class="nt">-X</span> DELETE https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key<span class="o">=</span>woofwoofwoof&amp;company_id<span class="o">=</span>1
 </code></pre></div>
-<h3 id="http-request-56">HTTP Request</h3>
+<h3 id="http-request-59">HTTP Request</h3>
 
 <p><code>DELETE https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -6363,7 +6806,7 @@ Suppressed Numbers exist regardless of whether or not there is a corresponding C
   </span><span class="nl">"can_resubscribe"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<h3 id="http-request-57">HTTP Request</h3>
+<h3 id="http-request-60">HTTP Request</h3>
 
 <p><code>POST https://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -6381,7 +6824,7 @@ Suppressed Numbers exist regardless of whether or not there is a corresponding C
     <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
     <span class="nt">-d</span> <span class="s1">'{"suppressed_number": {"can_resubscribe": false}}'</span>
 </code></pre></div>
-<h3 id="http-request-58">HTTP request</h3>
+<h3 id="http-request-61">HTTP request</h3>
 
 <p><code>PUT http://api.retreaver.com/suppressed_numbers/+13216065590.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -6413,7 +6856,7 @@ prompt the caller for the caller’s real number, or will randomize the CallerID
 </span></code></pre></div>
 <p>Provides a complete list of Static Numbers.</p>
 
-<h3 id="http-request-59">HTTP Request</h3>
+<h3 id="http-request-62">HTTP Request</h3>
 
 <p><code>GET https://api.retreaver.com/static_caller_numbers.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -6427,7 +6870,7 @@ prompt the caller for the caller’s real number, or will randomize the CallerID
 </code></pre></div>
 <p>Creates a Static Caller Number.</p>
 
-<h3 id="http-request-60">HTTP Request</h3>
+<h3 id="http-request-63">HTTP Request</h3>
 
 <p><code>POST https://api.retreaver.com/static_caller_numbers.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 
@@ -6435,7 +6878,7 @@ prompt the caller for the caller’s real number, or will randomize the CallerID
 
 <p><code>{"static_caller_number": {"number": "+18668987878"}}</code></p>
 
-<h3 id="parameters-13">Parameters</h3>
+<h3 id="parameters-14">Parameters</h3>
 
 <table>
   <thead>
@@ -6464,7 +6907,7 @@ prompt the caller for the caller’s real number, or will randomize the CallerID
 </code></pre></div>
 <p>Removes the Static Caller Number.</p>
 
-<h3 id="http-request-61">HTTP Request</h3>
+<h3 id="http-request-64">HTTP Request</h3>
 
 <p><code>DELETE https://api.retreaver.com/static_caller_numbers/1234.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h1 id="target-groups">Target Groups</h1>
