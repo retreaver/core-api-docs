@@ -1266,7 +1266,8 @@ curl "https://api.retreaver.com/api/v1/affiliates.xml?api_key=woofwoofwoof&compa
     <afid>0002</afid>
     <first-name>Nancy</first-name>
     <last-name>Drew</last-name>
-    <company-name>Acme</last-name>
+    <company-name>Acme</company-name>
+    <time-zone>UTC</time-zone>
     <updated-at type="datetime">2012-05-03T15:56:01Z</updated-at>
     <created-at type="datetime">2012-05-03T15:56:01Z</created-at>
   </affiliate>
@@ -1274,7 +1275,7 @@ curl "https://api.retreaver.com/api/v1/affiliates.xml?api_key=woofwoofwoof&compa
 ~~~
 
 
-Provides a complete list of Affiliates.
+Provides a complete list of Affiliates. Each Affiliate also carries its `time_zone` and `business_hours`, as shown under [Get a specific Affiliate](#get-a-specific-affiliate-by-your-id).
 
 ### HTTP Request
 
@@ -1287,7 +1288,104 @@ Provides a complete list of Affiliates.
 curl "https://api.retreaver.com/api/v1/affiliates/afid/0002.json?api_key=woofwoofwoof&company_id=1"
 ~~~
 
-Finds an Affiliate by AFID.
+> The above command returns JSON structured like this:
+
+~~~json
+{
+  "affiliate": {
+    "id": 3286,
+    "afid": "0002",
+    "first_name": "Nancy",
+    "last_name": "Drew",
+    "company_name": "Acme",
+    "paused": false,
+    "time_zone": "Eastern Time (US & Canada)",
+    "business_hours": [
+      {
+        "id": 78256,
+        "target_id": null,
+        "work_day": true,
+        "time_open": 0,
+        "time_close": 2400,
+        "day_of_week": 0,
+        "invert": false,
+        "created_at": "2026-10-05T10:43:58.373Z",
+        "updated_at": "2026-10-05T10:43:58.373Z"
+      },
+      {
+        "id": 78257,
+        "target_id": null,
+        "work_day": true,
+        "time_open": 0,
+        "time_close": 2400,
+        "day_of_week": 1,
+        "invert": false,
+        "created_at": "2026-10-05T10:43:58.373Z",
+        "updated_at": "2026-10-05T10:43:58.373Z"
+      },
+      {
+        "id": 78258,
+        "target_id": null,
+        "work_day": true,
+        "time_open": 0,
+        "time_close": 2400,
+        "day_of_week": 2,
+        "invert": false,
+        "created_at": "2026-10-05T10:43:58.373Z",
+        "updated_at": "2026-10-05T10:43:58.373Z"
+      },
+      {
+        "id": 78259,
+        "target_id": null,
+        "work_day": true,
+        "time_open": 0,
+        "time_close": 2400,
+        "day_of_week": 3,
+        "invert": false,
+        "created_at": "2026-10-05T10:43:58.373Z",
+        "updated_at": "2026-10-05T10:43:58.373Z"
+      },
+      {
+        "id": 78260,
+        "target_id": null,
+        "work_day": true,
+        "time_open": 0,
+        "time_close": 2400,
+        "day_of_week": 4,
+        "invert": false,
+        "created_at": "2026-10-05T10:43:58.373Z",
+        "updated_at": "2026-10-05T10:43:58.373Z"
+      },
+      {
+        "id": 78261,
+        "target_id": null,
+        "work_day": true,
+        "time_open": 0,
+        "time_close": 2400,
+        "day_of_week": 5,
+        "invert": false,
+        "created_at": "2026-10-05T10:43:58.373Z",
+        "updated_at": "2026-10-05T10:43:58.373Z"
+      },
+      {
+        "id": 78262,
+        "target_id": null,
+        "work_day": true,
+        "time_open": 0,
+        "time_close": 2400,
+        "day_of_week": 6,
+        "invert": false,
+        "created_at": "2026-10-05T10:43:58.373Z",
+        "updated_at": "2026-10-05T10:43:58.373Z"
+      }
+    ],
+    "updated_at": "2026-10-05T10:43:58.629Z",
+    "created_at": "2026-10-05T10:43:58.373Z"
+  }
+}
+~~~
+
+Finds an Affiliate by AFID. The `business_hours` rows carry the `id` you pass back when changing a day.
 
 
 ### HTTP Request
@@ -1300,7 +1398,7 @@ Finds an Affiliate by AFID.
 ~~~shell
 curl -s \
     -X POST \
-    https://api.retreaver.com/api/v1/affiliates.json?api_key=woofwoofwoof&company_id=1 \
+    "https://api.retreaver.com/api/v1/affiliates.json?api_key=woofwoofwoof&company_id=1" \
     -H "Content-Type: application/json" \
     -d '{"affiliate":{"first_name":"Nancy", "last_name":"Drew", "afid":"0002"}}'
 ~~~
@@ -1324,6 +1422,21 @@ afid | string | null | required | The affiliate's ID. This should align with any
 first_name | string | null |   | The affiliate's first name, for your reference.
 last_name | string | null |   | Their last name.
 company_name | string | null |   | Their company name.
+time_zone | string | the API user's time zone | | The time zone used when determining if the affiliate is within its business hours. See [Valid Time Zones](#valid-time-zones).
+business_hours_attributes | array | | | An optional array of business hours. Affiliates are set to be open 24/7 by default.
+
+**Nested Attribute: Business Hours**
+
+Outside an Affiliate's Business Hours, its RTB pings and the calls to its Numbers are rejected before any Target is considered, the same way a paused Affiliate is handled. These hours are based on the Affiliate `time_zone`. Every Affiliate is created with one row per day of the week, open 0:00 to 24:00; to change a day, pass that row's existing `id` (returned under `business_hours`) along with the fields to set.
+
+Parameter | Type | Default | Required | Description
+--------- | ---- | ------- | -------- | -----------
+id | integer | | | The existing row to change. Omit it to add another window to that day.
+day_of_week | integer | | required for a new row | A zero-indexed day of the week, with 0 being Sunday and 6 being Saturday.
+work_day | boolean | true | | Whether or not the affiliate is open on this day.
+time_open | integer | 0 | | The 24 hour time the affiliate opens, formatted `HHMM`.
+time_close | integer | 2400 | | The 24 hour time the affiliate closes, formatted `HHMM`.
+invert | boolean | false | | Treat the window as closed hours instead of open hours. Great if you have overnight shifts.
 
 
 ## Update an Affiliate
@@ -1346,6 +1459,7 @@ curl -s \
     "first_name": "Nathan",
     "last_name": "Drew",
     "company_name": null,
+    "time_zone": "UTC",
     "updated_at": "2012-05-03T20:20:03Z",
     "created_at": "2012-05-03T14:29:37Z"
   }
@@ -1368,12 +1482,26 @@ You must replace <code>0002</code> with the afid of the Affiliate you want to de
 
 `{"affiliate":{"first_name":"Nathan"}}`
 
+### Parameters
+
+Accepts the same parameters as [Create an Affiliate](#create-an-affiliate), including `time_zone` and `business_hours_attributes`.
+
+> Close an Affiliate on Sundays by passing that row's existing `id`:
+
+~~~shell
+curl -s \
+    -X PUT \
+    "https://api.retreaver.com/api/v1/affiliates/afid/0002.json?api_key=woofwoofwoof&company_id=1" \
+    -H "Content-Type: application/json" \
+    -d '{"affiliate":{"time_zone":"Eastern Time (US & Canada)","business_hours_attributes":[{"id":78256,"work_day":false}]}}'
+~~~
+
 
 
 ## Remove an affiliate
 
 ~~~shell
-curl -X DELETE https://api.retreaver.com/api/v1/affiliates/afid/0002.json?api_key=woofwoofwoof&company_id=1
+curl -X DELETE "https://api.retreaver.com/api/v1/affiliates/afid/0002.json?api_key=woofwoofwoof&company_id=1"
 ~~~
 
 Deletes the given Affiliate. You must delete any Numbers the Affiliate has before deleting the Affiliate.
@@ -1948,7 +2076,7 @@ day_of_week | integer | | required | A zero-indexed day of the week, with 0 bein
 work_day | boolean | true | | Whether or not the target is open on this day.
 time_open | integer | 0 | | The 24 hour time the target opens, formatted `HHMM`.
 time_close | integer | 2400 | | The 24 hour time the target closes, formatted `HHMM`.
-inverted | boolean | false | | Open hours become closed! Closed become open! Oh the insanity! Great if you have overnight shifts.
+invert | boolean | false | | Open hours become closed! Closed become open! Oh the insanity! Great if you have overnight shifts.
 
 ### Valid Time Zones
 
