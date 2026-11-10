@@ -1,7 +1,7 @@
 # Exports
 
 <aside class="danger">
-This section has moved to <a href="https://learn.retreaver.com/api/exports">learn.retreaver.com/api/exports</a>.
+<strong>This section has moved.</strong> Read the <a href="https://learn.retreaver.com/api/exports">Retreaver Exports API</a> docs on learn.retreaver.com.
 </aside>
 
 Exports generate a CSV of a large historical range in the background, so you're not paginating thousands of rows yourself. The flow is always the same three steps: create the export, poll it until it's finished, then download the file from the URL the export gives you.

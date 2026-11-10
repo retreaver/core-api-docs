@@ -577,13 +577,28 @@ body {
     }
 
     // "This section has moved" notices pointing at learn.retreaver.com/api
+    // Tinted, not solid: dark text on a solid $danger fill was hard to read.
     &.danger {
-      background-color: $aside-danger-bg;
+      padding-left: 1em;
+      padding-right: 1em;
+      border-left: 4px solid $aside-danger-bg;
+      border-radius: 0 4px 4px 0;
+      background-color: mix($aside-danger-bg, $main-bg, 8%);
+      color: $main-text;
+
+      &:before {
+        color: $aside-danger-bg;
+      }
 
       a {
-        color: inherit;
+        color: darken($aside-danger-bg, 18%);
         font-weight: 600;
         text-decoration: underline;
+        text-underline-offset: 2px;
+
+        &:hover {
+          color: darken($aside-danger-bg, 28%);
+        }
       }
     }
   }

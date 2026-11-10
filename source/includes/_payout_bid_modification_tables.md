@@ -1,7 +1,7 @@
 # Payout bid modification tables
 
 <aside class="danger">
-This section has moved to <a href="https://learn.retreaver.com/api/payout-bid-modification-tables">learn.retreaver.com/api/payout-bid-modification-tables</a>.
+<strong>This section has moved.</strong> Read the <a href="https://learn.retreaver.com/api/payout-bid-modification-tables">Retreaver Payout Bid Modification Tables API</a> docs on learn.retreaver.com.
 </aside>
 
 <aside class="notice">

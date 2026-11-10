@@ -1,7 +1,7 @@
 # Reports
 
 <aside class="danger">
-This section has moved to <a href="https://learn.retreaver.com/api/reports">learn.retreaver.com/api/reports</a>.
+<strong>This section has moved.</strong> Read the <a href="https://learn.retreaver.com/api/reports">Retreaver Call Reports API</a> docs on learn.retreaver.com.
 </aside>
 
 ## Reports Parameters
