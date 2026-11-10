@@ -268,6 +268,8 @@
 "create-a-company---deprecated": "/deprecated#create-a-company---deprecated"
 "update-a-company---deprecated": "/deprecated#update-a-company---deprecated"
 "errors": "/errors"
+# Legacy anchors: no heading on the current page has these ids, but older builds
+# did, so links to them may still exist. verify_redirects.rb lists them as warnings.
 "get-recent-calls": "/calls#get-recent-calls"
 "get-recent-": "/calls#get-recent-calls"
 "delete-a-number-from-the-company-39-s-suppressed-numbers": "/suppressed-numbers#delete-a-number-from-the-companys-suppressed-numbers"

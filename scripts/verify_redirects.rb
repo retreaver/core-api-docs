@@ -14,9 +14,11 @@ map = YAML.load_file(File.expand_path('../data/redirects.yml', __dir__))
 built = File.read(File.expand_path('../build/index.html', __dir__))
 errors = []
 
-built.scan(/<h[123] id="([^"]+)"/).flatten.uniq.each do |id|
+headings = built.scan(/<h[123] id="([^"]+)"/).flatten.uniq
+headings.each do |id|
   errors << "no entry for ##{id}" unless map.key?(id)
 end
+legacy = map.keys - built.scan(/\bid="([^"]+)"/).flatten
 
 pages = Hash.new do |h, path|
   res = Net::HTTP.get_response(URI("#{BASE}#{path}"))
@@ -34,5 +36,6 @@ map.each do |old, target|
 end
 
 puts "#{map.size} anchors, #{pages.size} pages checked"
+puts "warning: #{legacy.size} entries match no id on the old page (legacy anchors?): #{legacy.join(', ')}" if legacy.any?
 abort(errors.map { |e| "  #{e}" }.join("\n")) if errors.any?
 puts 'OK'

@@ -13,7 +13,10 @@
     var map = <%= data.redirects.to_h.to_json %>;
     var hash = '';
     try { hash = decodeURIComponent(location.hash.slice(1)); } catch (e) {}
-    location.replace(base + (map[hash] || map[hash.toLowerCase()] || ''));
+    // hasOwnProperty, so #constructor or #toString cannot match Object.prototype
+    var has = function (k) { return Object.prototype.hasOwnProperty.call(map, k); };
+    var path = has(hash) ? map[hash] : has(hash.toLowerCase()) ? map[hash.toLowerCase()] : '';
+    location.replace(base + path);
   })();
 </script>
 <noscript><meta http-equiv="refresh" content="0; url=https://learn.retreaver.com/api"></noscript>

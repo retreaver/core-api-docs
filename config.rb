@@ -14,6 +14,10 @@ set :markdown,
     no_intra_emphasis: true,
     renderer: UniqueHeadCounter
 
+# The pre-Slate pages under source/old stay in the repo but are no longer built.
+# Without them on gh-pages, /old/* falls through to 404.html, which redirects to learn.
+ignore 'old/*'
+
 # Assets
 set :css_dir, 'stylesheets'
 set :js_dir, 'javascripts'
