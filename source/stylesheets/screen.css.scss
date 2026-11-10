@@ -575,6 +575,17 @@ body {
     &.success {
       background-color: $aside-success-bg;
     }
+
+    // "This section has moved" notices pointing at learn.retreaver.com/api
+    &.danger {
+      background-color: $aside-danger-bg;
+
+      a {
+        color: inherit;
+        font-weight: 600;
+        text-decoration: underline;
+      }
+    }
   }
 
   aside:before {
@@ -690,6 +701,10 @@ body {
 
   aside.success:before {
     @extend %icon-ok-sign;
+  }
+
+  aside.danger:before {
+    @extend %icon-exclamation-sign;
   }
 
   .search-highlight {

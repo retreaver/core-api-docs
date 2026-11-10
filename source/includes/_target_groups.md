@@ -1,5 +1,9 @@
 # Target Groups
 
+<aside class="danger">
+This section has moved to <a href="https://learn.retreaver.com/api/target-groups">learn.retreaver.com/api/target-groups</a>.
+</aside>
+
 Target Groups group Target objects and can be used in Campaign/Number routing settings, allowing you to easily manage
 how calls are routed.
 

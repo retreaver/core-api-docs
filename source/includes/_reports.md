@@ -1,4 +1,9 @@
 # Reports
+
+<aside class="danger">
+This section has moved to <a href="https://learn.retreaver.com/api/reports">learn.retreaver.com/api/reports</a>.
+</aside>
+
 ## Reports Parameters
 `GET https://api.retreaver.com/api/v1/reports.json?....`
 

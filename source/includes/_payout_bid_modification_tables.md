@@ -1,5 +1,9 @@
 # Payout bid modification tables
 
+<aside class="danger">
+This section has moved to <a href="https://learn.retreaver.com/api/payout-bid-modification-tables">learn.retreaver.com/api/payout-bid-modification-tables</a>.
+</aside>
+
 <aside class="notice">
 This is a detailed, rules-engine-shaped API. If you're setting up Payout Bid Modification for the first time, start with the conceptual guide at <a href="https://learn.retreaver.com/guides/payout-bid-modification" target="_blank">learn.retreaver.com/guides/payout-bid-modification</a> before working through the reference below.
 </aside>

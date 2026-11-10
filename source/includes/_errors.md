@@ -1,5 +1,9 @@
 # Errors
 
+<aside class="danger">
+This section has moved to <a href="https://learn.retreaver.com/api/errors">learn.retreaver.com/api/errors</a>.
+</aside>
+
 
 The Retreaver Core API uses the following error codes:
 

@@ -38,6 +38,10 @@ search: true
   </a>
 </aside>
 
+<aside class="danger">
+This section has moved to <a href="https://learn.retreaver.com/api/introduction">learn.retreaver.com/api/introduction</a>.
+</aside>
+
 The Retreaver Core API can be used to automate core business processes, like changing where calls are routed, and many other
 features that would normally be accessed through our account portal.
 
@@ -292,6 +296,10 @@ Final Result: 939 calls processed in 8.84 seconds.
 
 # Authentication
 
+<aside class="danger">
+This section has moved to <a href="https://learn.retreaver.com/api/authentication">learn.retreaver.com/api/authentication</a>.
+</aside>
+
 > To authorize, use this code:
 
 ~~~shell
@@ -326,6 +334,10 @@ You should <strong>never, ever expose your Retreaver Core API key publicly</stro
 If you suspect your API key has been publicly exposed, [reset it](https://support.retreaver.com/faq/how-do-i-get-my-api-key/).
 
 # Calls
+
+<aside class="danger">
+This section has moved to <a href="https://learn.retreaver.com/api/calls">learn.retreaver.com/api/calls</a>.
+</aside>
 
 Or, more precisely, phone calls.
 
@@ -1245,6 +1257,10 @@ Note that if the call has already been routed, the tags will still be applied ev
 
 # Affiliates
 
+<aside class="danger">
+This section has moved to <a href="https://learn.retreaver.com/api/affiliates">learn.retreaver.com/api/affiliates</a>.
+</aside>
+
 Entering Affiliates into our system allows you to attribute calls back to the Affiliate who created them, and to update any external tracking systems.
 
 If you're not in affiliate marketing, Affiliate objects can be used for whatever source attribution is relevant. Affiliates exist for your reference.
@@ -1618,6 +1634,10 @@ _destroy | boolean | false | required | Set to `true` to delete the group.
 
 
 # Targets
+
+<aside class="danger">
+This section has moved to <a href="https://learn.retreaver.com/api/targets">learn.retreaver.com/api/targets</a>.
+</aside>
 
 Targets are the destination phone numbers that calls are routed to, for instance, your call center.
 
@@ -2425,6 +2445,10 @@ _destroy | boolean | false | required | Set to `true` to delete the group.
 
 # Campaigns
 
+<aside class="danger">
+This section has moved to <a href="https://learn.retreaver.com/api/campaigns">learn.retreaver.com/api/campaigns</a>.
+</aside>
+
 By configuring a Campaign, you can reuse the settings of the Campaign when creating Numbers. Campaigns should be configured before creating Numbers.
 
 
@@ -2773,6 +2797,10 @@ Delete a Campaign by CID. You must delete all the Numbers belonging to that Camp
 
 
 # Numbers
+
+<aside class="danger">
+This section has moved to <a href="https://learn.retreaver.com/api/numbers">learn.retreaver.com/api/numbers</a>.
+</aside>
 
 Numbers are the physical phone numbers that you want routed to a Campaign. A Number can be routed directly to the Target phone number, or it can be screened with a greeting which requires the caller to press a button to continue. The IVR can be configured to have options that forward to other Campaigns if desired.
 
@@ -3157,6 +3185,10 @@ until you have confirmed that the port has completed.
 
 # Number Pools
 
+<aside class="danger">
+This section has moved to <a href="https://learn.retreaver.com/api/number-pools">learn.retreaver.com/api/number-pools</a>.
+</aside>
+
 Number Pools are used to dynamically assign Numbers whenever a user visits your website. Number Pools are used in lieu of static Numbers when
 you want to track many different attributes.
 
@@ -3400,6 +3432,10 @@ This will also delete all Numbers associated with this Number Pool!
 
 # Companies
 
+<aside class="danger">
+This section has moved to <a href="https://learn.retreaver.com/api/companies">learn.retreaver.com/api/companies</a>.
+</aside>
+
 Company exists to allow resellers to separate their resources by Company. AFID and CID collisions will not occur between Companies.
 
 
@@ -3630,6 +3666,10 @@ Deletes the given Company. You must delete any Numbers and Number Pools the Comp
 
 
 # Contacts
+
+<aside class="danger">
+This section has moved to <a href="https://learn.retreaver.com/api/contacts">learn.retreaver.com/api/contacts</a>.
+</aside>
 
 Contacts allow you to tie individual Calls from many Contact Numbers back to one person. You can also tag Contacts, and calls from their Contact Numbers will automatically inherit the tags.
 
@@ -3955,6 +3995,10 @@ Deletes the contact associated with the phone number and all other contact numbe
 
 # Contact Numbers
 
+<aside class="danger">
+This section has moved to <a href="https://learn.retreaver.com/api/contact-numbers">learn.retreaver.com/api/contact-numbers</a>.
+</aside>
+
 A convenience API for removing and updating Contact Numbers.
 
 ## Delete a Contact Number from a Contact by phone number
@@ -4005,6 +4049,10 @@ Easily updates a Contact Number.
 
 
 # Caller Lists
+
+<aside class="danger">
+This section has moved to <a href="https://learn.retreaver.com/api/caller-lists">learn.retreaver.com/api/caller-lists</a>.
+</aside>
 
 Manage the caller lists on a Target or a Campaign. Add and remove numbers on the caller lists.
 
@@ -4334,6 +4382,10 @@ curl -X POST 'https://api.retreaver.com/api/v2/targets/:target_id/caller_lists/:
 
 # Suppressed Numbers
 
+<aside class="danger">
+This section has moved to <a href="https://learn.retreaver.com/api/suppressed-numbers">learn.retreaver.com/api/suppressed-numbers</a>.
+</aside>
+
 Manage the company's Suppressed Numbers, including creating, updating, deleting, and retrieving suppressed numbers.
 
 <aside  class="notice">
@@ -4514,6 +4566,10 @@ curl -s \
 
 
 # Static Caller Numbers
+
+<aside class="danger">
+This section has moved to <a href="https://learn.retreaver.com/api/static-caller-numbers">learn.retreaver.com/api/static-caller-numbers</a>.
+</aside>
 
 Static Caller Numbers are used to tell Retreaver that calls from a certain CallerID should be handled separately. Use
 Static Caller Numbers when you have a call center sending you many calls with the same CallerID. Retreaver will either
