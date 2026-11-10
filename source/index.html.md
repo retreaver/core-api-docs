@@ -3,6 +3,7 @@ title: Retreaver Core 0.1 API Reference (Legacy) | Retreaver API
 description: Legacy reference for the Retreaver Core API. For the current Retreaver API documentation, visit learn.retreaver.com/api.
 canonical_url: https://learn.retreaver.com/api
 new_docs_url: https://learn.retreaver.com/api
+redirect: true # see source/layouts/_redirect.erb
 
 language_tabs:
   - shell: cURL
