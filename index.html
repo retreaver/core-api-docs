@@ -3,6 +3,21 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <script>
+  (function () {
+    if (/[?&]no-redirect\b/.test(location.search)) return;
+    var base = 'https://learn.retreaver.com/api';
+    var map = {"introduction":"/introduction","version":"/introduction#version","multi-format":"/introduction#multi-format","nomenclature":"/introduction#nomenclature","our-ids-vs-customer-ids":"/introduction#our-ids-vs-customer-ids","paginated":"/introduction#paginated","trees":"/introduction#trees","script-example-exporting-recently-created-calls-via-retreaver-api":"/introduction#script-example-benchmarking-your-export","data-retrieval--real-time-sync":"/introduction#data-retrieval--real-time-sync","benchmarks":"/introduction#benchmarks","execution-logs-sequence-processing---1923-seconds-for-772-calls":"/introduction#execution-logs-sequence-processing---1923-seconds-for-772-calls","execution-logs-parallel-processing---884-seconds-for-1000-calls-in-4-threads":"/introduction#execution-logs-parallel-processing---884-seconds-for-1000-calls-in-4-threads","authentication":"/authentication","calls":"/calls","v1---get-recent-calls":"/calls#get-recent-calls-2","http-request":"/calls","query-parameters":"/calls","v1---enumerate-through-all-calls":"/calls#enumerate-through-all-calls-2","http-request-1":"/calls","v1---enumerate-through-calls-in-a-specific-datetime-range":"/calls#enumerate-through-calls-in-a-specific-datetime-range-2","http-request-2":"/calls","v1---get-a-specific-call":"/calls#get-a-specific-call-2","http-request-3":"/calls","v2---get-recent-calls":"/calls#get-recent-calls-1","whats-new-in-v2":"/calls#whats-new-in-v2","http-request-4":"/calls","query-parameters-1":"/calls","v2---enumerate-through-all-calls":"/calls#enumerate-through-all-calls-1","http-request-5":"/calls","v2---enumerate-through-calls-in-a-specific-datetime-range":"/calls#enumerate-through-calls-in-a-specific-datetime-range-1","http-request-6":"/calls","v2---get-a-specific-call":"/calls#get-a-specific-call-1","http-request-7":"/calls","v3---calls":"/calls#calls-api-v3","whats-new-in-v3":"/calls#whats-new-in-v3","v4---calls":"/calls#calls-api-v4","whats-new-in-v4":"/calls","update-a-call":"/calls#update-a-call","http-request-8":"/calls","parameters":"/calls","call-data-writing":"/calls#call-data-writing","available-on-retreaverdatacom-domain":"/calls","methods":"/calls#methods","http-request-9":"/calls","parameters-1":"/calls","call-not-found":"/calls#call-not-found","completed-call-found":"/calls#completed-call-found","in-progress-call-found":"/calls#in-progress-call-found","affiliates":"/affiliates","get-all-affiliates":"/affiliates#list-all-affiliates","http-request-10":"/affiliates","get-a-specific-affiliate-by-your-id":"/affiliates#get-an-affiliate-by-afid","http-request-11":"/affiliates","create-an-affiliate":"/affiliates#create-an-affiliate","http-request-12":"/affiliates","parameters-2":"/affiliates","update-an-affiliate":"/affiliates#update-an-affiliate","http-request-13":"/affiliates","remove-an-affiliate":"/affiliates#delete-an-affiliate","adding-a-conversion-to-a-publisher":"/affiliates","evaluation-order":"/affiliates","http-request-14":"/affiliates","conversion-group-parameters":"/affiliates","allowed-dedupeseconds-values":"/affiliates","conversion-parameters":"/affiliates","payout-examples":"/affiliates","updating-a-conversion-on-a-publisher":"/affiliates","http-request-15":"/affiliates","deleting-a-conversion-from-a-publisher":"/affiliates","http-request-16":"/affiliates","parameters-3":"/affiliates","targets":"/targets","get-all-targets":"/targets#list-all-targets","http-request-17":"/targets","get-a-specific-target":"/targets#get-a-specific-target","http-request-18":"/targets","create-a-target":"/targets#create-a-target","http-request-19":"/targets","parameters-4":"/targets","valid-time-zones":"/targets#valid-time-zones","update-a-target":"/targets#update-a-target","http-request-20":"/targets","remove-a-target":"/targets#delete-a-target","http-request-21":"/targets","tagging-a-target":"/targets#tagging-a-target","http-request-22":"/targets","changing-a-targets-caps":"/targets#cap-attributes","http-request-23":"/targets","parameters-5":"/targets","resetting-a-hard-cap":"/targets#reset-hard-cap","http-request-24":"/targets","adding-a-conversion-to-a-target":"/targets#add-a-conversion-to-a-target","evaluation-order-1":"/targets","http-request-25":"/targets","conversion-group-parameters-1":"/targets","allowed-dedupeseconds-values-1":"/targets","conversion-parameters-1":"/targets","updating-a-conversion-on-a-target":"/targets#update-a-conversion-on-a-target","http-request-26":"/targets","deleting-a-conversion-from-a-target":"/targets#delete-a-conversion-from-a-target","http-request-27":"/targets","parameters-6":"/targets","campaigns":"/campaigns","get-all-campaigns":"/campaigns#list-all-campaigns","http-request-28":"/campaigns","get-a-specific-campaign":"/campaigns#get-a-specific-campaign","http-request-29":"/campaigns","create-a-campaign":"/campaigns#create-a-campaign","http-request-30":"/campaigns","parameters-7":"/campaigns","update-a-campaign":"/campaigns#update-a-campaign","http-request-31":"/campaigns","remove-a-campaign":"/campaigns#delete-a-campaign","numbers":"/numbers","get-all-numbers":"/numbers#list-all-numbers","http-request-32":"/numbers","parameters-8":"/numbers","get-a-specific-number":"/numbers#get-a-specific-number","http-request-33":"/numbers","create-a-number":"/numbers#create-a-number","http-request-34":"/numbers","parameters-9":"/numbers","optional-parameters":"/numbers","update-a-number":"/numbers#update-a-number","http-request-35":"/numbers","remove-a-number":"/numbers#delete-a-number","number-pools":"/number-pools","get-all-number-pools":"/number-pools#list-all-number-pools","http-request-36":"/number-pools","parameters-10":"/number-pools","get-a-specific-number-pool":"/number-pools#get-a-specific-number-pool","http-request-37":"/number-pools","create-a-number-pool":"/number-pools#create-a-number-pool","http-request-38":"/number-pools","parameters-11":"/number-pools","update-a-number-pool":"/number-pools#update-a-number-pool","http-request-39":"/number-pools","remove-a-number-pool":"/number-pools#delete-a-number-pool","companies":"/companies","get-the-active-company":"/companies#get-the-active-company","http-request-40":"/companies","get-a-specific-company":"/companies#get-a-specific-company","http-request-41":"/companies","get-all-companies":"/companies#list-all-companies","http-request-42":"/companies","create-a-company":"/companies#create-a-company","http-request-43":"/companies","parameters-12":"/companies","update-a-company":"/companies#update-a-company","http-request-44":"/companies","remove-a-company":"/companies","http-request-45":"/companies","contacts":"/contacts","get-all-contacts":"/contacts#get-all-contacts","http-request-46":"/contacts","get-a-specific-contact-by-id":"/contacts#get-a-specific-contact-by-id","http-request-47":"/contacts","create-a-contact":"/contacts#create-a-contact","http-request-48":"/contacts","parameters-13":"/contacts","taglist-notes":"/contacts","update-a-contact":"/contacts#update-a-contact","http-request-49":"/contacts","remove-a-contact":"/contacts#remove-a-contact","http-request-50":"/contacts","get-a-specific-contact-by-phone-number":"/contacts#get-a-specific-contact-by-phone-number","http-request-51":"/contacts","update-a-contact-by-phone-number":"/contacts#update-a-contact-by-phone-number","http-request-52":"/contacts","delete-a-contact-by-phone-number":"/contacts#delete-a-contact-by-phone-number","http-request-53":"/contacts","contact-numbers":"/contact-numbers","delete-a-contact-number-from-a-contact-by-phone-number":"/contact-numbers#delete-a-contact-number-from-a-contact-by-phone-number","http-request-54":"/contact-numbers","update-a-contact-number-by-phone-number":"/contact-numbers#update-a-contact-number-by-phone-number","http-request-55":"/contact-numbers","caller-lists":"/caller-lists","targets-and-campaigns":"/caller-lists#targets-and-campaigns","access":"/caller-lists#access","permissions":"/caller-lists#permissions","caller-list":"/caller-lists#caller-list","create-caller-list":"/caller-lists#create-caller-list","delete-a-caller-list":"/caller-lists#delete-a-caller-list","show-caller-list":"/caller-lists#show-caller-list","caller-list-number":"/caller-lists#caller-list-number","listing-the-numbers-on-a-caller-list":"/caller-lists#listing-the-numbers-on-a-caller-list","adding-a-single-number-to-a-caller-list":"/caller-lists#adding-a-single-number-to-a-caller-list","response-format":"/caller-lists#response-format","deleting-a-single-number-from-caller-list":"/caller-lists#deleting-a-single-number-from-caller-list","checking-if-a-number-is-on-a-caller-list":"/caller-lists#checking-if-a-number-is-on-a-caller-list","caller-list-checks":"/caller-lists#caller-list-checks","create-caller-list-check":"/caller-lists#create-caller-list-check","caller-list-uploads":"/caller-lists#caller-list-uploads","add-many-numbers-to-a-caller-list":"/caller-lists#add-many-numbers-to-a-caller-list","remove-many-numbers-from-a-caller-list":"/caller-lists#remove-many-numbers-from-a-caller-list","suppressed-numbers":"/suppressed-numbers","check-whether-or-not-the-company-has-any-suppressed-numbers":"/suppressed-numbers#check-whether-or-not-the-company-has-any-suppressed-numbers","http-request-56":"/suppressed-numbers","get-all-suppressed-numbers-for-a-company":"/suppressed-numbers#get-all-suppressed-numbers-for-a-company","http-request-57":"/suppressed-numbers","get-a-specific-suppressed-number":"/suppressed-numbers#get-a-specific-suppressed-number","http-request-58":"/suppressed-numbers","delete-a-number-from-the-companys-suppressed-numbers":"/suppressed-numbers#delete-a-number-from-the-companys-suppressed-numbers","http-request-59":"/suppressed-numbers","create-a-suppressed-number-for-a-company":"/suppressed-numbers#create-a-suppressed-number-for-a-company","http-request-60":"/suppressed-numbers","update-a-suppressed-number-for-a-company":"/suppressed-numbers#update-a-suppressed-number-for-a-company","http-request-61":"/suppressed-numbers","static-caller-numbers":"/static-caller-numbers","get-all-static-caller-numbers":"/static-caller-numbers#get-all-static-caller-numbers","http-request-62":"/static-caller-numbers","create-a-static-caller-number":"/static-caller-numbers#create-a-static-caller-number","http-request-63":"/static-caller-numbers","parameters-14":"/static-caller-numbers","delete-a-static-caller-number":"/static-caller-numbers#delete-a-static-caller-number","http-request-64":"/static-caller-numbers","target-groups":"/target-groups","get-all-target-groups":"/target-groups#list-all-target-groups","get-a-specific-target-group":"/target-groups#get-a-specific-target-group","create-a-target-group":"/target-groups#create-a-target-group","update-a-target-group":"/target-groups#update-a-target-group","delete-a-target-group":"/target-groups#delete-a-target-group","replacing-targets-in-a-target-group":"/target-groups#update-a-target-group","adding-targets-to-a-target-group":"/target-groups#update-a-target-group","removing-targets-from-a-target-group":"/target-groups#update-a-target-group","changing-a-target-groups-caps":"/target-groups#cap-attributes","resetting-all-hard-caps-on-targets-in-a-target-group":"/target-groups#reset-hard-cap","real-time-bidding-rtb":"/real-time-bidding-rtb","create-a-reservation":"/real-time-bidding-rtb#rtb-posting-instructions-for-publishers","pass-additional-data":"/real-time-bidding-rtb","place-a-bid-on-a-static-inbound-number":"/real-time-bidding-rtb","confirm-a-reservation":"/real-time-bidding-rtb#confirming-a-reservation","retreaver-ping-shield":"/real-time-bidding-rtb#what-is-the-retreaver-ping-shield-and-what-does-it-do","rtbinbounds":"/rtb-inbounds","get-all-rtb-inbounds":"/rtb-inbounds#list-rtb-inbounds","response-fields":"/rtb-inbounds","pagination":"/rtb-inbounds","payout-bid-modification-tables":"/payout-bid-modification-tables","the-rule-csv-format":"/payout-bid-modification-tables#the-rule-csv-format","create-a-payout-bid-modification-table":"/payout-bid-modification-tables#create-a-payout-bid-modification-table","list-a-campaigns-payout-bid-modification-tables":"/payout-bid-modification-tables#list-a-campaigns-payout-bid-modification-tables","get-a-specific-payout-bid-modification-table":"/payout-bid-modification-tables#get-a-specific-payout-bid-modification-table","activate-or-roll-back-a-table":"/payout-bid-modification-tables#activate-or-roll-back-a-table","delete-a-payout-bid-modification-table":"/payout-bid-modification-tables#delete-a-payout-bid-modification-table","script-example-a-data-driven-payout-reduction-split-as-a-controltreatment-test":"/payout-bid-modification-tables#script-example-a-controltreatment-payout-reduction","reports":"/reports","reports-parameters":"/reports#reports-parameters","buyer-calls-in-progress-report":"/reports#buyer-calls-in-progress-report","tag-value-report":"/reports#tag-value-report","tag-value-name-report":"/reports#tag-value-name-report","not-all-tag-values-are-indexed":"/reports#not-all-tag-values-are-indexed","exports":"/exports","create-an-export":"/exports#create-an-export","check-an-exports-status":"/exports#check-an-exports-status","download-the-export":"/exports#download-the-export","script-example-downloading-an-rtb-inbounds-export":"/exports#script-example-downloading-an-rtb-inbounds-export","example-merging-calls-and-rtb-inbounds-by-calluuid":"/exports#example-merging-calls-and-rtb-inbounds-by-call_uuid","deprecated-routes":"/deprecated","check-whether-or-not-you-have-any-suppressed-numbers":"/deprecated#check-whether-or-not-you-have-any-suppressed-numbers","delete-a-contact-number-from-the-suppression-list-by-phone-number":"/deprecated#delete-a-contact-number-from-the-suppression-list-by-phone-number","suppress-a-contact-number-by-phone-number":"/deprecated#suppress-a-contact-number-by-phone-number","get-the-active-company---deprecated":"/deprecated#get-the-active-company---deprecated","get-a-specific-company---deprecated":"/deprecated#get-a-specific-company---deprecated","get-all-companies---deprecated":"/deprecated#get-all-companies---deprecated","create-a-company---deprecated":"/deprecated#create-a-company---deprecated","update-a-company---deprecated":"/deprecated#update-a-company---deprecated","errors":"/errors","get-recent-calls":"/calls#get-recent-calls","get-recent-":"/calls#get-recent-calls","delete-a-number-from-the-company-39-s-suppressed-numbers":"/suppressed-numbers#delete-a-number-from-the-companys-suppressed-numbers"};
+    var hash = '';
+    try { hash = decodeURIComponent(location.hash.slice(1)); } catch (e) {}
+    // hasOwnProperty, so #constructor or #toString cannot match Object.prototype
+    var has = function (k) { return Object.prototype.hasOwnProperty.call(map, k); };
+    var path = has(hash) ? map[hash] : has(hash.toLowerCase()) ? map[hash.toLowerCase()] : '';
+    location.replace(base + path);
+  })();
+</script>
+<noscript><meta http-equiv="refresh" content="0; url=https://learn.retreaver.com/api"></noscript>
+
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Retreaver Core 0.1 API Reference (Legacy) | Retreaver API</title>
@@ -284,7 +299,7 @@
   color: #859900;
 }
     </style>
-    <link href="stylesheets/screen-2ae9589b.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/screen-389a5978.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print-c62cd32f.css" rel="stylesheet" media="print" />
       <script src="javascripts/all-1badf9fd.js"></script>
 
@@ -727,6 +742,9 @@
             <a href="#reports" class="toc-h1 toc-link" data-title="Reports">Reports</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#reports-parameters" class="toc-h2 toc-link" data-title="Reports Parameters">Reports Parameters</a>
+                  </li>
+                  <li>
                     <a href="#buyer-calls-in-progress-report" class="toc-h2 toc-link" data-title="Buyer Calls In Progress Report">Buyer Calls In Progress Report</a>
                   </li>
                   <li>
@@ -818,6 +836,10 @@
   <a class="promo-image" href="https://learn.retreaver.com/api" title="Retreaver API Documentation">
     <img src="images/retreaver-api-c91514c8.webp" alt="Retreaver API Documentation: API reference for calls, campaigns, affiliates, and more" title="Retreaver API Documentation" width="1600" height="833" />
   </a>
+</aside>
+
+<aside class="danger">
+<strong>This section has moved.</strong> Read the <a href="https://learn.retreaver.com/api/introduction">Retreaver API introduction</a> docs on learn.retreaver.com.
 </aside>
 
 <p>The Retreaver Core API can be used to automate core business processes, like changing where calls are routed, and many other
@@ -1134,6 +1156,10 @@ Thread 0 finished Page 9  (100 calls) <br /></p>
 
 <h1 id="authentication">Authentication</h1>
 
+<aside class="danger">
+<strong>This section has moved.</strong> Read the <a href="https://learn.retreaver.com/api/authentication">Retreaver API authentication</a> docs on learn.retreaver.com.
+</aside>
+
 <blockquote>
   <p>To authorize, use this code:</p>
 </blockquote>
@@ -1170,6 +1196,10 @@ You should <strong>never, ever expose your Retreaver Core API key publicly</stro
 <p>If you suspect your API key has been publicly exposed, <a href="https://support.retreaver.com/faq/how-do-i-get-my-api-key/">reset it</a>.</p>
 
 <h1 id="calls">Calls</h1>
+
+<aside class="danger">
+<strong>This section has moved.</strong> Read the <a href="https://learn.retreaver.com/api/calls">Retreaver Calls API</a> docs on learn.retreaver.com.
+</aside>
 
 <p>Or, more precisely, phone calls.</p>
 
@@ -2329,6 +2359,10 @@ and will be applied when a call from the caller number is received.</p>
 
 <h1 id="affiliates">Affiliates</h1>
 
+<aside class="danger">
+<strong>This section has moved.</strong> Read the <a href="https://learn.retreaver.com/api/affiliates">Retreaver Affiliates API</a> docs on learn.retreaver.com.
+</aside>
+
 <p>Entering Affiliates into our system allows you to attribute calls back to the Affiliate who created them, and to update any external tracking systems.</p>
 
 <p>If you’re not in affiliate marketing, Affiliate objects can be used for whatever source attribution is relevant. Affiliates exist for your reference.</p>
@@ -2909,6 +2943,10 @@ Always delete the entire Conversion Group. Do not delete individual Conversions 
 </table>
 
 <h1 id="targets">Targets</h1>
+
+<aside class="danger">
+<strong>This section has moved.</strong> Read the <a href="https://learn.retreaver.com/api/targets">Retreaver Targets API</a> docs on learn.retreaver.com.
+</aside>
 
 <p>Targets are the destination phone numbers that calls are routed to, for instance, your call center.</p>
 
@@ -4185,6 +4223,10 @@ Always delete the entire Conversion Group. Do not delete individual Conversions 
 
 <h1 id="campaigns">Campaigns</h1>
 
+<aside class="danger">
+<strong>This section has moved.</strong> Read the <a href="https://learn.retreaver.com/api/campaigns">Retreaver Campaigns API</a> docs on learn.retreaver.com.
+</aside>
+
 <p>By configuring a Campaign, you can reuse the settings of the Campaign when creating Numbers. Campaigns should be configured before creating Numbers.</p>
 
 <h2 id="get-all-campaigns">Get all Campaigns</h2>
@@ -4650,6 +4692,10 @@ You must replace <code>0044</code> with the cid of the Campaign you want to upda
 <p>Delete a Campaign by CID. You must delete all the Numbers belonging to that Campaign first.</p>
 
 <h1 id="numbers">Numbers</h1>
+
+<aside class="danger">
+<strong>This section has moved.</strong> Read the <a href="https://learn.retreaver.com/api/numbers">Retreaver Numbers API</a> docs on learn.retreaver.com.
+</aside>
 
 <p>Numbers are the physical phone numbers that you want routed to a Campaign. A Number can be routed directly to the Target phone number, or it can be screened with a greeting which requires the caller to press a button to continue. The IVR can be configured to have options that forward to other Campaigns if desired.</p>
 
@@ -5187,6 +5233,10 @@ until you have confirmed that the port has completed.</p>
 
 <h1 id="number-pools">Number Pools</h1>
 
+<aside class="danger">
+<strong>This section has moved.</strong> Read the <a href="https://learn.retreaver.com/api/number-pools">Retreaver Number Pools API</a> docs on learn.retreaver.com.
+</aside>
+
 <p>Number Pools are used to dynamically assign Numbers whenever a user visits your website. Number Pools are used in lieu of static Numbers when
 you want to track many different attributes.</p>
 
@@ -5480,6 +5530,10 @@ This will also delete all Numbers associated with this Number Pool!
 
 <h1 id="companies">Companies</h1>
 
+<aside class="danger">
+<strong>This section has moved.</strong> Read the <a href="https://learn.retreaver.com/api/companies">Retreaver Companies API</a> docs on learn.retreaver.com.
+</aside>
+
 <p>Company exists to allow resellers to separate their resources by Company. AFID and CID collisions will not occur between Companies.</p>
 
 <h2 id="get-the-active-company">Get the active Company</h2>
@@ -5699,6 +5753,10 @@ You must replace <code>2</code> with the Retreaver ID of the Company you want to
 <p><code>DELETE https://api.retreaver.com/companies/2.json?api_key=woofwoofwoof</code></p>
 
 <h1 id="contacts">Contacts</h1>
+
+<aside class="danger">
+<strong>This section has moved.</strong> Read the <a href="https://learn.retreaver.com/api/contacts">Retreaver Contacts API</a> docs on learn.retreaver.com.
+</aside>
 
 <p>Contacts allow you to tie individual Calls from many Contact Numbers back to one person. You can also tag Contacts, and calls from their Contact Numbers will automatically inherit the tags.</p>
 
@@ -6029,6 +6087,10 @@ existing Contact Number, or see <a href="#update-a-contact-number-by-phone-numbe
 
 <h1 id="contact-numbers">Contact Numbers</h1>
 
+<aside class="danger">
+<strong>This section has moved.</strong> Read the <a href="https://learn.retreaver.com/api/contact-numbers">Retreaver Contact Numbers API</a> docs on learn.retreaver.com.
+</aside>
+
 <p>A convenience API for removing and updating Contact Numbers.</p>
 
 <h2 id="delete-a-contact-number-from-a-contact-by-phone-number">Delete a Contact Number from a Contact by phone number</h2>
@@ -6072,6 +6134,10 @@ existing Contact Number, or see <a href="#update-a-contact-number-by-phone-numbe
 <p><code>{"contact_number":{"number":"+18005551234"}}</code></p>
 
 <h1 id="caller-lists">Caller Lists</h1>
+
+<aside class="danger">
+<strong>This section has moved.</strong> Read the <a href="https://learn.retreaver.com/api/caller-lists">Retreaver Caller Lists API</a> docs on learn.retreaver.com.
+</aside>
 
 <p>Manage the caller lists on a Target or a Campaign. Add and remove numbers on the caller lists.</p>
 
@@ -6666,6 +6732,10 @@ the endpoint for CallerListChecks could be used</p>
 </code></pre></div>
 <h1 id="suppressed-numbers">Suppressed Numbers</h1>
 
+<aside class="danger">
+<strong>This section has moved.</strong> Read the <a href="https://learn.retreaver.com/api/suppressed-numbers">Retreaver Suppressed Numbers API</a> docs on learn.retreaver.com.
+</aside>
+
 <p>Manage the company’s Suppressed Numbers, including creating, updating, deleting, and retrieving suppressed numbers.</p>
 
 <aside class="notice">
@@ -6834,6 +6904,10 @@ Suppressed Numbers exist regardless of whether or not there is a corresponding C
 
 <h1 id="static-caller-numbers">Static Caller Numbers</h1>
 
+<aside class="danger">
+<strong>This section has moved.</strong> Read the <a href="https://learn.retreaver.com/api/static-caller-numbers">Retreaver Static Caller Numbers API</a> docs on learn.retreaver.com.
+</aside>
+
 <p>Static Caller Numbers are used to tell Retreaver that calls from a certain CallerID should be handled separately. Use
 Static Caller Numbers when you have a call center sending you many calls with the same CallerID. Retreaver will either
 prompt the caller for the caller’s real number, or will randomize the CallerID for use with our call control API.</p>
@@ -6911,6 +6985,10 @@ prompt the caller for the caller’s real number, or will randomize the CallerID
 
 <p><code>DELETE https://api.retreaver.com/static_caller_numbers/1234.json?api_key=woofwoofwoof&amp;company_id=1</code></p>
 <h1 id="target-groups">Target Groups</h1>
+
+<aside class="danger">
+<strong>This section has moved.</strong> Read the <a href="https://learn.retreaver.com/api/target-groups">Retreaver Target Groups API</a> docs on learn.retreaver.com.
+</aside>
 
 <p>Target Groups group Target objects and can be used in Campaign/Number routing settings, allowing you to easily manage
 how calls are routed.</p>
@@ -7720,6 +7798,10 @@ attribute provided so that you don’t have to track which Targets are in each G
 
 <h1 id="real-time-bidding-rtb">Real-Time Bidding (RTB)</h1>
 
+<aside class="danger">
+<strong>This section has moved.</strong> Read the <a href="https://learn.retreaver.com/api/real-time-bidding-rtb">Retreaver Real-Time Bidding (RTB) API</a> docs on learn.retreaver.com.
+</aside>
+
 <p>The Retreaver Real-Time Bidding (RTB) API enables publishers to send requests to Retreaver and receive confirmation on whether a call buyer(endpoint) is available.</p>
 
 <p>Each response includes key details such as:</p>
@@ -8058,6 +8140,10 @@ curl <span class="nt">-X</span> POST <span class="s2">"https://rtb.retreaver.com
 <p>Ping Shield caches the first response and prevents unnecessary processing of duplicate requests. This ensures that buyers are not pinged multiple times for the same caller on the same postback key, while still returning the original reservation to the publisher.</p>
 <h1 id="rtbinbounds">RtbInbounds</h1>
 
+<aside class="danger">
+<strong>This section has moved.</strong> Read the <a href="https://learn.retreaver.com/api/rtb-inbounds">Retreaver RTB Inbounds API</a> docs on learn.retreaver.com.
+</aside>
+
 <p>RtbInbounds is the log of inbound <a href="#real-time-bidding-rtb">Real-Time Bidding</a> reservations — one row per RTB ping your campaign received, whether it was claimed, expired, rejected, or resulted in no target. It’s the same data shown on the RTB Inbounds dashboard in your account.</p>
 
 <p>This endpoint returns a live, filtered page of recent rows. To pull a large historical range as a single file, use <a href="#exports">Exports</a> instead.</p>
@@ -8260,6 +8346,10 @@ UUID columns on RtbInbounds and its Exports are never <code>null</code> — an a
 
 <p>Like every paginated index in this API, responses carry a <code>Link</code> header — see <a href="#paginated">Paginated</a>.</p>
 <h1 id="payout-bid-modification-tables">Payout bid modification tables</h1>
+
+<aside class="danger">
+<strong>This section has moved.</strong> Read the <a href="https://learn.retreaver.com/api/payout-bid-modification-tables">Retreaver Payout Bid Modification Tables API</a> docs on learn.retreaver.com.
+</aside>
 
 <aside class="notice">
 This is a detailed, rules-engine-shaped API. If you're setting up Payout Bid Modification for the first time, start with the conceptual guide at <a href="https://learn.retreaver.com/guides/payout-bid-modification" target="_blank">learn.retreaver.com/guides/payout-bid-modification</a> before working through the reference below.
@@ -8591,8 +8681,13 @@ That column's header text isn't fixed, because different accounts use different 
 <span class="n">table</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="s2">"payout_bid_modification_table"</span><span class="p">]</span>
 <span class="nb">puts</span> <span class="s2">"Uploaded and activated table id=</span><span class="si">#{</span><span class="n">table</span><span class="p">[</span><span class="s2">"id"</span><span class="p">]</span><span class="si">}</span><span class="s2"> (table_version=</span><span class="si">#{</span><span class="n">table</span><span class="p">[</span><span class="s2">"table_version"</span><span class="p">]</span><span class="si">}</span><span class="s2">) on campaign </span><span class="si">#{</span><span class="n">campaign_id</span><span class="si">}</span><span class="s2">."</span>
 </code></pre></div><h1 id="reports">Reports</h1>
-<p>## Reports Parameters
-<code>GET https://api.retreaver.com/api/v1/reports.json?....</code></p>
+
+<aside class="danger">
+<strong>This section has moved.</strong> Read the <a href="https://learn.retreaver.com/api/reports">Retreaver Call Reports API</a> docs on learn.retreaver.com.
+</aside>
+
+<h2 id="reports-parameters">Reports Parameters</h2>
+<p><code>GET https://api.retreaver.com/api/v1/reports.json?....</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
@@ -8973,6 +9068,10 @@ The Reports API response is cached and is not intended for realtime polling. For
 </table>
 <h1 id="exports">Exports</h1>
 
+<aside class="danger">
+<strong>This section has moved.</strong> Read the <a href="https://learn.retreaver.com/api/exports">Retreaver Exports API</a> docs on learn.retreaver.com.
+</aside>
+
 <p>Exports generate a CSV of a large historical range in the background, so you’re not paginating thousands of rows yourself. The flow is always the same three steps: create the export, poll it until it’s finished, then download the file from the URL the export gives you.</p>
 
 <p>Currently the only export type exposed here is <code>rtb_inbounds</code>. For Calls, there’s no async export yet — page through <a href="#paginated"><code>/api/v5/calls</code></a> directly (see the <a href="#script-example-exporting-recently-created-calls-via-retreaver-api">Script Example</a> for a working pagination loop).</p>
@@ -9272,6 +9371,10 @@ The RTB Inbounds CSV headers are human-readable labels (e.g. <code>Call UUID</co
 </aside>
 <h1 id="deprecated-routes">DEPRECATED ROUTES</h1>
 
+<aside class="danger">
+<strong>This section has moved.</strong> Read the <a href="https://learn.retreaver.com/api/deprecated">deprecated Retreaver API routes</a> docs on learn.retreaver.com.
+</aside>
+
 <h2 id="check-whether-or-not-you-have-any-suppressed-numbers">Check whether or not you have any Suppressed Numbers</h2>
 
 <aside class="warning">
@@ -9553,6 +9656,10 @@ contact with a company after choosing to be routed to a “add caller to suppres
 
 <p><code>{"company":{"name":"Retreaver"}}</code></p>
 <h1 id="errors">Errors</h1>
+
+<aside class="danger">
+<strong>This section has moved.</strong> Read the <a href="https://learn.retreaver.com/api/errors">Retreaver API error codes</a> docs on learn.retreaver.com.
+</aside>
 
 <p>The Retreaver Core API uses the following error codes:</p>
 
