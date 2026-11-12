@@ -1,10 +1,11 @@
+> [!WARNING]
+> **Deprecated:** **[Retreaver API documentation](https://learn.retreaver.com/api)** now lives at our new website: [learn.retreaver.com/api](https://learn.retreaver.com/api). This repository contains our old Retreaver Core API reference which was previously available on `retreaver.github.io/core-api-docs`. 
+
 <p align="center">
   <a href="https://learn.retreaver.com/api"><img src="https://retreaver.com/logo.png" alt="Retreaver" width="260"></a>
 </p>
 
 # Retreaver API Documentation
-
-> **Deprecated:** This repository hosts the legacy Retreaver Core API reference at [retreaver.github.io/core-api-docs](https://retreaver.github.io/core-api-docs/). It is still being kept up to date for the time being, but the current **[Retreaver API documentation](https://learn.retreaver.com/api)** lives at [learn.retreaver.com/api](https://learn.retreaver.com/api).
 
 <hr>
 
