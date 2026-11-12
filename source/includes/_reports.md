@@ -1,4 +1,9 @@
 # Reports
+
+<aside class="danger">
+<strong>This section has moved.</strong> Read the <a href="https://learn.retreaver.com/api/reports">Retreaver Call Reports API</a> docs on learn.retreaver.com.
+</aside>
+
 ## Reports Parameters
 `GET https://api.retreaver.com/api/v1/reports.json?....`
 

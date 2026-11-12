@@ -1,5 +1,9 @@
 # RtbInbounds
 
+<aside class="danger">
+<strong>This section has moved.</strong> Read the <a href="https://learn.retreaver.com/api/rtb-inbounds">Retreaver RTB Inbounds API</a> docs on learn.retreaver.com.
+</aside>
+
 RtbInbounds is the log of inbound [Real-Time Bidding](#real-time-bidding-rtb) reservations — one row per RTB ping your campaign received, whether it was claimed, expired, rejected, or resulted in no target. It's the same data shown on the RTB Inbounds dashboard in your account.
 
 This endpoint returns a live, filtered page of recent rows. To pull a large historical range as a single file, use [Exports](#exports) instead.

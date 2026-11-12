@@ -1,0 +1,22 @@
+<%#
+  Sends readers to learn.retreaver.com/api, where these docs now live. The old
+  #anchor picks the new page and heading (data/redirects.yml); unknown anchors
+  land on /api. Add ?no-redirect to the URL to read the old page.
+
+  The meta refresh is inside <noscript> so it cannot race the script's
+  location.replace and send a #calls reader to /api instead of /api/calls.
+%>
+<script>
+  (function () {
+    if (/[?&]no-redirect\b/.test(location.search)) return;
+    var base = 'https://learn.retreaver.com/api';
+    var map = <%= data.redirects.to_h.to_json %>;
+    var hash = '';
+    try { hash = decodeURIComponent(location.hash.slice(1)); } catch (e) {}
+    // hasOwnProperty, so #constructor or #toString cannot match Object.prototype
+    var has = function (k) { return Object.prototype.hasOwnProperty.call(map, k); };
+    var path = has(hash) ? map[hash] : has(hash.toLowerCase()) ? map[hash.toLowerCase()] : '';
+    location.replace(base + path);
+  })();
+</script>
+<noscript><meta http-equiv="refresh" content="0; url=https://learn.retreaver.com/api"></noscript>

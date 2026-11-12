@@ -1,5 +1,9 @@
 # Real-Time Bidding (RTB)
 
+<aside class="danger">
+<strong>This section has moved.</strong> Read the <a href="https://learn.retreaver.com/api/real-time-bidding-rtb">Retreaver Real-Time Bidding (RTB) API</a> docs on learn.retreaver.com.
+</aside>
+
 The Retreaver Real-Time Bidding (RTB) API enables publishers to send requests to Retreaver and receive confirmation on whether a call buyer(endpoint) is available.
 
 Each response includes key details such as:

@@ -1,5 +1,9 @@
 # DEPRECATED ROUTES
 
+<aside class="danger">
+<strong>This section has moved.</strong> Read the <a href="https://learn.retreaver.com/api/deprecated">deprecated Retreaver API routes</a> docs on learn.retreaver.com.
+</aside>
+
 ## Check whether or not you have any Suppressed Numbers
 
 <aside class="warning">
